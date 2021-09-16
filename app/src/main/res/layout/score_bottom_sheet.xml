@@ -1,31 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/idLLScore"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/idLLScore">
+    android:orientation="vertical">
+
     <TextView
+        android:id="@+id/idTVScore"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/purple_200"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        android:textAllCaps="false"
-        android:textAlignment="center"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         android:gravity="center"
-        android:text="How dare you!!"
-        android:layout_margin="10dp"
         android:padding="3dp"
-        android:id="@+id/idTVScore"/>
+        android:text="How dare you!!"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/purple_200"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
-        android:layout_width="match_parent"
+        android:id="@+id/idBtnRestart"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="25dp"
         android:text="Do it again"
         android:textAllCaps="false"
-        android:id="@+id/idBtnRestart"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/idTVScore" />
 
+    <Button
+        android:id="@+id/idBtnBack"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="80dp"
+        android:text="Back"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/idBtnRestart"
+        app:layout_constraintTop_toBottomOf="@+id/idTVScore" />
 
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.QuizFragment"
-    android:orientation="vertical">
+    tools:context=".MainActivity">
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,7 +17,7 @@
         android:textSize="20sp"
         android:textColor="@color/black"
         android:id="@+id/idTVQuestionAttempted"
-         />
+        />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -80,5 +80,9 @@
             android:textAllCaps="false" />
     </LinearLayout>
 
-
+    <Button
+        android:id="@+id/buttonback"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:text="Back" />
 </RelativeLayout>

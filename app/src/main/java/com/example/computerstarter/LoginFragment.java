@@ -1,12 +1,18 @@
 package com.example.computerstarter;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -49,10 +55,32 @@ public class LoginFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.app_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        switch (id){
+            case R.id.settings:
+                Toast.makeText(getActivity(), "Settings", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.account:
+                Toast.makeText(getActivity(), "Account", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.quiz:
+                Toast.makeText(getActivity(), "Quiz", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), QuizActivity.class);
+                startActivity(intent);
+                break;
         }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
