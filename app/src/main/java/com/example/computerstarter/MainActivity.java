@@ -2,10 +2,13 @@ package com.example.computerstarter;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -15,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
@@ -38,9 +43,6 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.main_page:
                     selectedFragment = new MainPageFragment();
-                    break;
-                case R.id.profile:
-                    selectedFragment = new LoginFragment();
                     break;
                 case R.id.forum:
                     selectedFragment = new Social_Media();

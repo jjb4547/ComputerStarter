@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/education"
         android:title="Education"
-        android:icon="@drawable/ic_quiz"/>
+        android:icon="@drawable/ic_quiz" />
     <item
         android:id="@+id/main_page"
         android:title="Main Page"
-        android:icon="@drawable/ic_main"/>
-    <item
-        android:id="@+id/profile"
-        android:title="Profile"
-        android:icon="@drawable/ic_account"/>
+        android:icon="@drawable/ic_main"
+       />
     <item android:id="@+id/forum"
         android:title="Forum"
         android:icon="@drawable/ic_account"
+
         />
 </menu>
