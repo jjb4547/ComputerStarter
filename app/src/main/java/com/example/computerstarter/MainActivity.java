@@ -7,8 +7,6 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.Window;
-import android.view.WindowManager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -45,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
                     selectedFragment = new MainPageFragment();
                     break;
                 case R.id.forum:
-                    selectedFragment = new Social_Media();
+                    selectedFragment = new SocialMediaFragment();
             }
             // It will help to replace the
             // one fragment to other.

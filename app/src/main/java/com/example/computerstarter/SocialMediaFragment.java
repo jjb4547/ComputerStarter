@@ -19,7 +19,7 @@ import android.widget.Toast;
  * Use the {@link LoginFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Social_Media extends Fragment {
+public class SocialMediaFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -30,7 +30,7 @@ public class Social_Media extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public Social_Media() {
+    public SocialMediaFragment() {
         // Required empty public constructor
     }
 
@@ -43,8 +43,8 @@ public class Social_Media extends Fragment {
      * @return A new instance of fragment LoginFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static Social_Media newInstance(String param1, String param2) {
-        Social_Media fragment = new Social_Media();
+    public static SocialMediaFragment newInstance(String param1, String param2) {
+        SocialMediaFragment fragment = new SocialMediaFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
