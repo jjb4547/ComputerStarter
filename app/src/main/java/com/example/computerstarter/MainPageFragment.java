@@ -63,7 +63,7 @@ public class MainPageFragment extends Fragment {
         inflater.inflate(R.menu.app_menu, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
-    //Comment
+    //Comment new
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
