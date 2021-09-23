@@ -9,7 +9,7 @@
         android:id="@+id/settings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Account Page"
+        android:text="Account"
         tools:layout_editor_absoluteX="176dp"
         tools:layout_editor_absoluteY="313dp"
         app:layout_constraintBottom_toBottomOf="parent"
