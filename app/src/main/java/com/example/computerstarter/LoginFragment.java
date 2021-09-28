@@ -80,6 +80,7 @@ public class LoginFragment extends Fragment {
             case R.id.quiz:
                 Toast.makeText(getActivity(), "Quiz", Toast.LENGTH_SHORT).show();
                 Intent intent_quiz = new Intent(getActivity(), QuizActivity.class);
+                intent_quiz.putExtra("ID","Login");
                 startActivity(intent_quiz);
                 break;
         }

@@ -50,6 +50,7 @@ public class EducationFragment extends Fragment{
             case R.id.quiz:
                 Toast.makeText(getActivity(), "Quiz", Toast.LENGTH_SHORT).show();
                 Intent intent_quiz = new Intent(getActivity(), QuizActivity.class);
+                intent_quiz.putExtra("ID","Education");
                 startActivity(intent_quiz);
                 break;
         }
