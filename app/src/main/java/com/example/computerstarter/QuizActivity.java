@@ -116,6 +116,7 @@ public class QuizActivity extends AppCompatActivity {
             option4Btn.setText(quizModuleArrayList.get(currentPos).getOption4());
         }
     }
+    //Different Quizzes
     private void getQuizQuestion_Education(ArrayList<QuizModule> quizModuleArrayList) {
         quizModuleArrayList.add(new QuizModule("What is your knowledge of computers ?", "Beginner","Intermediate", "Advanced", "I am a computer","I am a computer"));
         quizModuleArrayList.add(new QuizModule("Do you plan on upgrading a computer ? (Answer has no affect)", "Yes", "No", "What is a computer", "computer who","Yes"));
