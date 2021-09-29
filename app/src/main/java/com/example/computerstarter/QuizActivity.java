@@ -161,5 +161,4 @@ public class QuizActivity extends AppCompatActivity {
         }
         return quizModuleArrayList.size();
     }
-
 }

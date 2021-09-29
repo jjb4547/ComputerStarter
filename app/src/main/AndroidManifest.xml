@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ComputerStarter">
         <activity
-            android:name=".MainActivity"
+            android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,6 +21,7 @@
         <activity android:name=".QuizActivity"/>
         <activity android:name=".SettingsActivity"/>
         <activity android:name=".AccountActivity"/>
+        <activity android:name=".MainActivity"/>
     </application>
 
 </manifest>
