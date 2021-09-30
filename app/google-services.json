@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "984763088508",
+    "project_id": "computerstarter-csun22",
+    "storage_bucket": "computerstarter-csun22.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:984763088508:android:90377b8bfca1c26138d3f9",
+        "android_client_info": {
+          "package_name": "com.example.computerstarter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "984763088508-a1n1vsu5oj344m6r89ch99upaba3tsnt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDy773BtbznT12bMvc2R7vJPMGxnE6sr9Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "984763088508-a1n1vsu5oj344m6r89ch99upaba3tsnt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

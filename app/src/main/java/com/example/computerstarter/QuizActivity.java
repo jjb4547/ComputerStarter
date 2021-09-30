@@ -8,7 +8,9 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -25,14 +27,21 @@ public class QuizActivity extends AppCompatActivity {
     private Button option4Btn;
     private ArrayList<QuizModule> quizModuleArrayList;
     int currentScore =0, questionAttempted = 1, currentPos = 0, num_of_questions =0;
+    RelativeLayout layout;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //requestWindowFeature(Window.FEATURE_NO_TITLE);
-        //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.quiz_layout);
+        layout = findViewById(R.id.relativelayout);
+        layout.setOnTouchListener(new OnSwipeTouchListener(QuizActivity.this){
+            @Override
+            public void onSwipeRight(){
+                super.onSwipeRight();
+                finish();
+            }
+        });
         Button backbutton = findViewById(R.id.buttonback);
         questionTV = findViewById(R.id.idTVQuestion);
         questionNumberTV = findViewById(R.id.idTVQuestionAttempted);
