@@ -15,11 +15,12 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
 public class QuizActivity extends AppCompatActivity {
-
     private TextView questionTV, questionNumberTV;
     private Button option1Btn;
     private Button option2Btn;

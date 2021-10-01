@@ -23,6 +23,7 @@
         app:menu="@menu/bottom_menu"
         android:background="@color/cardview_dark_background"
         app:itemIconTint="@android:color/white"
-        app:itemTextColor="@android:color/white"/>
+        app:itemTextColor="@android:color/white"
+        />
 
 </RelativeLayout>
