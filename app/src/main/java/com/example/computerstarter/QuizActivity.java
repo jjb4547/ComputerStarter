@@ -26,7 +26,8 @@ public class QuizActivity extends AppCompatActivity {
     private Button option2Btn;
     private Button option3Btn;
     private Button option4Btn;
-    private ArrayList<QuizModule> quizModuleArrayList;
+    ArrayList<QuizModule> quizModuleArrayList;
+    private ArrayList<String> quizAnswers;
     int currentScore =0, questionAttempted = 1, currentPos = 0, num_of_questions =0;
     RelativeLayout layout;
 
@@ -51,39 +52,36 @@ public class QuizActivity extends AppCompatActivity {
         option3Btn = findViewById(R.id.idBtnOption3);
         option4Btn = findViewById(R.id.idBtnOption4);
         quizModuleArrayList = new ArrayList<>();
+        quizAnswers = new ArrayList<>();
         num_of_questions = getActivityName(quizModuleArrayList);
         setDataToViews(currentPos,num_of_questions);
         backbutton.setOnClickListener(view -> {
             finish();
         });
         option1Btn.setOnClickListener(view -> {
-            if(quizModuleArrayList.get(currentPos).getAnswer().trim().equalsIgnoreCase(option1Btn.getText().toString().trim())){
-                currentScore++;
-            }
+            quizAnswers.add(quizModuleArrayList.get(currentPos).getQuestion());
+            quizAnswers.add(quizModuleArrayList.get(currentPos).getOption1());
             questionAttempted++;
             currentPos++;
             setDataToViews(currentPos,num_of_questions);
         });
         option2Btn.setOnClickListener(view -> {
-            if(quizModuleArrayList.get(currentPos).getAnswer().trim().equalsIgnoreCase(option2Btn.getText().toString().trim())){
-                currentScore++;
-            }
+            quizAnswers.add(quizModuleArrayList.get(currentPos).getQuestion());
+            quizAnswers.add(quizModuleArrayList.get(currentPos).getOption2());
             questionAttempted++;
             currentPos++;
             setDataToViews(currentPos,num_of_questions);
         });
         option3Btn.setOnClickListener(view -> {
-            if(quizModuleArrayList.get(currentPos).getAnswer().trim().equalsIgnoreCase(option3Btn.getText().toString().trim())){
-                currentScore++;
-            }
+            quizAnswers.add(quizModuleArrayList.get(currentPos).getQuestion());
+            quizAnswers.add(quizModuleArrayList.get(currentPos).getOption3());
             questionAttempted++;
             currentPos++;
             setDataToViews(currentPos,num_of_questions);
         });
         option4Btn.setOnClickListener(view -> {
-            if(quizModuleArrayList.get(currentPos).getAnswer().trim().equalsIgnoreCase(option4Btn.getText().toString().trim())){
-                currentScore++;
-            }
+            quizAnswers.add(quizModuleArrayList.get(currentPos).getQuestion());
+            quizAnswers.add(quizModuleArrayList.get(currentPos).getOption4());
             questionAttempted++;
             currentPos++;
             setDataToViews(currentPos,num_of_questions);
@@ -93,10 +91,9 @@ public class QuizActivity extends AppCompatActivity {
     private void showBottomSheet(){
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
         View bottomSheetView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.score_bottom_sheet, (LinearLayout)findViewById(R.id.idLLScore));
-        TextView scoreTV = bottomSheetView.findViewById(R.id.idTVScore);
-        Button restartQuizBtn = bottomSheetView.findViewById((R.id.idBtnRestart));
+        Button restartQuizBtn = bottomSheetView.findViewById(R.id.idBtnRestart);
         Button backButton = bottomSheetView.findViewById(R.id.idBtnBack);
-        scoreTV.setText("Your Score is \n"+currentScore+ "/"+num_of_questions);
+        Button resultBtn = bottomSheetView.findViewById(R.id.buttonResult);
         restartQuizBtn.setOnClickListener(view -> {
             currentPos =0;
             setDataToViews(currentPos,num_of_questions);
@@ -106,6 +103,11 @@ public class QuizActivity extends AppCompatActivity {
         });
         backButton.setOnClickListener(view -> {
            finish();
+        });
+        resultBtn.setOnClickListener(view -> {
+            Intent intent = new Intent(QuizActivity.this,Results_Activity.class);
+            intent.putStringArrayListExtra("List",quizAnswers);
+            startActivity(intent);
         });
         bottomSheetDialog.setCancelable(false);
         bottomSheetDialog.setContentView(bottomSheetView);
@@ -127,14 +129,14 @@ public class QuizActivity extends AppCompatActivity {
         }
     }
     //Different Quizzes
-    private void getQuizQuestion_Education(ArrayList<QuizModule> quizModuleArrayList) {
+    protected void getQuizQuestion_Education(ArrayList<QuizModule> quizModuleArrayList) {
         quizModuleArrayList.add(new QuizModule("What is your knowledge of computers ?", "Beginner","Intermediate", "Advanced", "I am a computer","I am a computer"));
         quizModuleArrayList.add(new QuizModule("Do you plan on upgrading a computer ? (Answer has no affect)", "Yes", "No", "What is a computer", "computer who","Yes"));
         quizModuleArrayList.add(new QuizModule("What type of computers interest you ?", "School", "Gaming", "Art/Design", "Other","Yes"));
         quizModuleArrayList.add(new QuizModule("What is your budget for your build ?", "1-499", "500-999", "1000-1999", "2000+++++","Yes"));
         quizModuleArrayList.add(new QuizModule("If applicable, what area of study or career are you in ?", "STEM", "History", "Athlete", "I'm Useless","Yes"));
     }
-    private void getQuizQuestion_Social(ArrayList<QuizModule> quizModuleArrayList) {
+    protected void getQuizQuestion_Social(ArrayList<QuizModule> quizModuleArrayList) {
         quizModuleArrayList.add(new QuizModule("Choose up to  10 subjects that interest you: ", "#Beginner","#Intermediate", "#Advanced", "#I am a computer","#I am a computer"));
     }
     private void getQuizQuestion_Building(ArrayList<QuizModule> quizModuleArrayList) {
