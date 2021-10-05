@@ -78,10 +78,4 @@
             android:text="Option 4"
             android:textAllCaps="false" />
     </LinearLayout>
-
-    <Button
-        android:id="@+id/buttonback"
-        android:layout_width="75dp"
-        android:layout_height="wrap_content"
-        android:text="Back" />
 </RelativeLayout>

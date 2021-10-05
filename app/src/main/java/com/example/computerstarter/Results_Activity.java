@@ -1,6 +1,9 @@
 package com.example.computerstarter;
 
+import android.app.ActionBar;
+import android.app.Activity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -21,8 +24,9 @@ public class Results_Activity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.result_layout);
+        getSupportActionBar().setTitle("Results");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         questions = findViewById(R.id.idQuestions);
-        backbutton = findViewById(R.id.backbutton);
         currentPos = 0;
         layout = findViewById(R.id.relativelayout);
         layout.setOnTouchListener(new OnSwipeTouchListener(Results_Activity.this){
@@ -45,10 +49,18 @@ public class Results_Activity extends AppCompatActivity {
             content.append('\n');
         }
             questions.setText(content.toString());
-        backbutton.setOnClickListener(view -> {
-            finish();
-        });
 
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // app icon in action bar clicked; goto parent activity.
+                this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 }

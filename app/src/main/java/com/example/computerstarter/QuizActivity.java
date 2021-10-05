@@ -3,6 +3,7 @@ package com.example.computerstarter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -36,6 +37,8 @@ public class QuizActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.quiz_layout);
+        getSupportActionBar().setTitle("Quiz");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         layout = findViewById(R.id.relativelayout);
         layout.setOnTouchListener(new OnSwipeTouchListener(QuizActivity.this){
             @Override
@@ -44,7 +47,6 @@ public class QuizActivity extends AppCompatActivity {
                 finish();
             }
         });
-        Button backbutton = findViewById(R.id.buttonback);
         questionTV = findViewById(R.id.idTVQuestion);
         questionNumberTV = findViewById(R.id.idTVQuestionAttempted);
         option1Btn = findViewById(R.id.idBtnOption1);
@@ -55,9 +57,6 @@ public class QuizActivity extends AppCompatActivity {
         quizAnswers = new ArrayList<>();
         num_of_questions = getActivityName(quizModuleArrayList);
         setDataToViews(currentPos,num_of_questions);
-        backbutton.setOnClickListener(view -> {
-            finish();
-        });
         option1Btn.setOnClickListener(view -> {
             quizAnswers.add(quizModuleArrayList.get(currentPos).getQuestion());
             quizAnswers.add(quizModuleArrayList.get(currentPos).getOption1());
@@ -172,5 +171,16 @@ public class QuizActivity extends AppCompatActivity {
             }
         }
         return quizModuleArrayList.size();
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // app icon in action bar clicked; goto parent activity.
+                this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

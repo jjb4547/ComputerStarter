@@ -1,6 +1,7 @@
 package com.example.computerstarter;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Button;
 
 import androidx.annotation.Nullable;
@@ -11,9 +12,18 @@ public class AccountActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.account_layout);
-        Button buttonback = findViewById(R.id.buttonback);
-        buttonback.setOnClickListener(view -> {
-            finish();
-        });
+        getSupportActionBar().setTitle("Account");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // app icon in action bar clicked; goto parent activity.
+                this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
