@@ -1,21 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Fragments.EducationFragment"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    android:fillViewport="true"
+    tools:layout_editor_absoluteX="24dp"
+    tools:layout_editor_absoluteY="24dp">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Education"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:orientation="vertical"
+        tools:context=".Fragments.EducationFragment">
+
+        <Button
+            android:id="@+id/CPU"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:text="@string/parts_key"
+            app:layout_constraintEnd_toEndOf="@+id/EduTitle"
+            app:layout_constraintStart_toStartOf="@+id/EduTitle"
+            app:layout_constraintTop_toBottomOf="@+id/EduTitle" />
+
+        <TextView
+            android:id="@+id/EduTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="56dp"
+            android:text="@string/education_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/motherboard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:text="motherboard"
+            app:layout_constraintEnd_toEndOf="@+id/CPU"
+            app:layout_constraintHorizontal_bias="0.508"
+            app:layout_constraintStart_toStartOf="@+id/CPU"
+            app:layout_constraintTop_toBottomOf="@+id/CPU" />
+
+        <Button
+            android:id="@+id/memory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:text="Memory"
+            app:layout_constraintEnd_toEndOf="@+id/motherboard"
+            app:layout_constraintStart_toStartOf="@+id/motherboard"
+            app:layout_constraintTop_toBottomOf="@+id/motherboard" />
+
+        <Button
+            android:id="@+id/storage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:text="Storage"
+            app:layout_constraintEnd_toEndOf="@+id/memory"
+            app:layout_constraintStart_toStartOf="@+id/memory"
+            app:layout_constraintTop_toBottomOf="@+id/memory" />
+
+        <Button
+            android:id="@+id/video_card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="56dp"
+            android:text="Video Card"
+            app:layout_constraintEnd_toEndOf="@+id/storage"
+            app:layout_constraintStart_toStartOf="@+id/storage"
+            app:layout_constraintTop_toBottomOf="@+id/storage" />
+
+        <Button
+            android:id="@+id/power_supply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:text="Power Supply"
+            app:layout_constraintEnd_toEndOf="@+id/video_card"
+            app:layout_constraintHorizontal_bias="0.541"
+            app:layout_constraintStart_toStartOf="@+id/video_card"
+            app:layout_constraintTop_toBottomOf="@+id/video_card" />
+
+        <TextView
+            android:id="@+id/ras_ard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:text="Raspberry Pi Vs. Arduino"
+            app:layout_constraintEnd_toEndOf="@+id/power_supply"
+            app:layout_constraintStart_toStartOf="@+id/power_supply"
+            app:layout_constraintTop_toBottomOf="@+id/power_supply" />
+
+        <Button
+            android:id="@+id/raspberry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:text="Raspberry Pi"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.235"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ras_ard" />
+
+        <Button
+            android:id="@+id/arduino"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:text="Arduino"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.758"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ras_ard" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

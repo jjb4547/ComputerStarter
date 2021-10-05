@@ -63,6 +63,11 @@ public class EducationFragment extends Fragment{
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_education, container, false);
     }
+    //onClick attribute here for the buttons in edu frag
+    public void launchInfo(View v){
+        //Intent i = new Intent(this,CPU.class);
+
+    }
 
 
 }
