@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <PreferenceCategory
+        android:icon="@drawable/ic_key"
+        android:title="Account"
+        android:visibility="visible"
+        app:iconSpaceReserved="true"></PreferenceCategory>
+    <PreferenceCategory
+        android:icon="@drawable/ic_chat"
+        android:title="Messages"></PreferenceCategory>
+    <PreferenceCategory android:title="Notifications"
+        android:icon="@drawable/ic_notifications">
+        <SeekBarPreference
+            android:key="volume_notifications"
+            android:title="Volume"
+            app:showSeekBarValue="true"
+            android:defaultValue="100"/>
+        <SwitchPreference
+            android:key="notifications"
+            android:title="Disable Notifications"
+            android:summaryOn="You will no longer receive notifications"
+            android:summaryOff="You will receive notifications"/>
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Help"
+        android:icon="@drawable/ic_help">
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Invite a Friend+"
+        android:icon="@drawable/ic_people">
+    </PreferenceCategory>
+
+
+</PreferenceScreen>
