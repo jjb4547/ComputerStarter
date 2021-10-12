@@ -15,10 +15,12 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.text.DateFormatSymbols;
+import java.util.ArrayList;
 
 
 //working on this
@@ -97,42 +99,56 @@ public class EducationFragment extends Fragment{
                     //testing
                     //Toast.makeText(getActivity(),"Clicked CPU", Toast.LENGTH_SHORT).show();
                     //gonna pass more stuff in to make it so I dont need like 8 different activities(just one)
+                    /*
+                    TextView title = (TextView) view.findViewById(R.id.partTitle);
+                    title.setText("CPU");
+                    */
+                    //trying to change title
+
                     Intent i = new Intent(getActivity(),EducationActivities.class);
+                    i.putExtra("position",0);
                     startActivity(i);
                 }
                 else if(position == 1){
                     //Toast.makeText(getActivity(),"Clicked mother", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(getActivity(),EducationActivities.class);
+                    i.putExtra("position",1);
                     startActivity(i);
                 }
                 else if(position == 2){
                     //Toast.makeText(getActivity(),"Clicked memory", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(getActivity(),EducationActivities.class);
+                    i.putExtra("position",2);
                     startActivity(i);
                 }
                 else if(position == 3){
                     //Toast.makeText(getActivity(),"Clicked storage", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(getActivity(),EducationActivities.class);
+                    i.putExtra("position",3);
                     startActivity(i);
                 }
                 else if(position == 4){
                     //Toast.makeText(getActivity(),"Clicked video card", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(getActivity(),EducationActivities.class);
+                    i.putExtra("position",4);
                     startActivity(i);
                 }
                 else if(position == 5){
                     //Toast.makeText(getActivity(),"Clicked power supply", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(getActivity(),EducationActivities.class);
+                    i.putExtra("position",5);
                     startActivity(i);
                 }
                 else if(position == 6){
                     //Toast.makeText(getActivity(),"Clicked raspberry", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(getActivity(),EducationActivities.class);
+                    i.putExtra("position",6);
                     startActivity(i);
                 }
                 else if(position == 7){
                     //Toast.makeText(getActivity(),"Clicked arduino", Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(getActivity(),EducationActivities.class);
+                    i.putExtra("position",7);
                     startActivity(i);
                 }
             }
@@ -142,12 +158,15 @@ public class EducationFragment extends Fragment{
         //return inflater.inflate(R.layout.fragment_education, container, false);
         return view;
     }
-    //onClick attribute here for the buttons in edu frag
-    //scrapping this
-    //public void launchInfo(View v){
-        //Intent i = new Intent(EducationFragment.this, EducationActivities.class);
-        //startActivity(i);
-    //}
+    /*
+    private void partsInfo(){
+        String[] diffTitles ={"CPU","Motherboard","Memory(RAM)","Storage","Video Card(GPU)","Power Supply","Raspberry Pi and Possibilities",
+        "Arduino and Possibilities"};
+        String[] diffPara;
+
+    }
+
+     */
 
 
 }

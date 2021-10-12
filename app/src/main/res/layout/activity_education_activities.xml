@@ -7,7 +7,7 @@
     tools:context=".EducationActivities">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/partTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
@@ -20,14 +20,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/partPara"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="Helpful information goes here"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/partTitle" />
 
     <TextView
         android:id="@+id/textView4"
@@ -37,5 +37,5 @@
         android:text="Maybe an image below or above the small paragraph too"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/partPara" />
 </androidx.constraintlayout.widget.ConstraintLayout>
