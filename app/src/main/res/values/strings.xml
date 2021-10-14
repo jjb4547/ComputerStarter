@@ -1,63 +1,135 @@
 <resources>
     <string name="app_name">ComputerStarter</string>
+    <!--Brief Titles-->
+    <string name="brief_description_gpu">
+        Brief Description of a GPU
+    </string>
+    <string name="brief_description_cpu">
+        Brief Description of a CPU
+    </string>
+    <string name="brief_description_mot">
+        Brief Description of a Motherboard
+    </string>
+    <string name="brief_description_mem">
+        Brief Description of Memory
+    </string>
+    <string name="brief_description_stor">
+        Brief Description of a Storage Unit
+    </string>
+    <string name="brief_description_psu">
+        Brief Description of a Power Supply
+    </string>
+
+    <!--Ports Titles-->
+    <string name="ports_gpu">
+        Ports of a GPU
+    </string>
+    <string name="ports_cpu">
+        Cores and More
+    </string>
+    <string name="ports_mot">
+        Ports of a Motherboard
+    </string>
+    <string name="ports_mem">
+        Ports of a Memory
+    </string>
+    <string name="ports_stor">
+        Ports of a Storage
+    </string>
+    <string name="ports_psu">
+        Ports of a Power Supply Unit
+    </string>
+
+    <!--Component Descriptions-->
+    <string name="gpu_desc">
+        Storage is a very important component of the PC just like everything else in the PC.
+        The storage component is a piece of hardware that has the capability to hold information
+        within a certain time frame or forever.In other words, it is a place to store your data
+        either temporarily or permanently.
+    </string>
+    <string name="cpu_desc">
+        The CPU (central processing unit) is often called the brain of the system because it handles
+        instructions from both hardware and software. The CPU lives on on the motherboard in the CPU
+        socket covered by a heat sink. The CPU at its most basic performs calculations from instructions
+        it’s sent from peripheral devices or inner hardware like the RAM. Today you will see many options
+        for CPUs from different manufacturers with different line ups of product. Each CPU has its own
+        amount of cores and architectures that differentiates it from other manufacturers or even from
+        older generations of the same product. From experience, do not cheap out on this part of the
+        computer because no expensive GPU or amount of RAM will stop the bottleneck that will occur
+        because of an older low core CPU.
+    </string>
+    <string name="mot_desc">
+        The motherboard acts as the foundation for all other computer parts to live on. It serves to
+        route power to help coordinate how the components work together. It is not the same as the CPU
+        since it does not make computations. The motherboard does more organization of the computation
+        and results. It does not affect performance, but the sockets available will since an older CPU
+        socket will only support older CPUs and more sockets for more RAM would increase the performance
+        of the computer. The motherboard is also home to the BIOS(Basic Input/Output System) which allows
+        you to view hardware information, change your boot drive, manage power settings, and overclock and
+        underclock the CPU or RAM.
+    </string>
+    <string name="mem_desc">
+        The memory or more commonly known as RAM (random access memory) is a short term memory location for
+        the computer. Without RAM the computer would take much longer to open applications or do tasks. It
+        is able to retrieve and store data the computer needs now or soon at high speeds. Unlike the actual
+        storage of the computer, it only stores data when the computer is powered. The high speeds allow the
+        CPU to do more computations without having to dig through a slower regular storage drive. RAM is
+        usually bought in quantities of gigabytes(GB) in increments of 8 GBs in single stick or multiple
+        all the way up to 128 GBs of RAM.
+    </string>
+    <string name="stor_desc">
+        Storage is a very important component of the PC just like everything else in the PC. The storage component
+        is a piece of hardware that has the capability to hold information within a certain time frame or forever.
+        In other words, it is a place to store your data either temporarily or permanently.
+    </string>
+    <string name="psu_desc">
+        Gives power to all the components in the PC.
+    </string>
+
+    <!--Ports Description-->
+    <string name="gpu_ports_description">
+        Depending on the GPU you purchase and when you purchased it the ports on the GPU may differ
+        a little, but not by too much. For example, if you were to purchase a GPU back in 2003 the
+        ports that would be included with it would consist of the DVI port, a VGA port and a S-Video
+        port. If you were to purchase the up and coming GPU in the market you would find yourself having
+        many HDMI ports, some DisplayPorts and depending on the GPU manufacturer you could find yourself
+        having a DVI or even a VGA port.
+    </string>
+    <string name="cpu_ports_description">
+        The main two companies producing CPUs are AMD and Intel. The core count can go from two all the
+        way up to sixty-four for professional settings. Clock speed is another piece of information that
+        is advertised a lot when shopping for CPUs. Clock speed is measured in megahertz(MHz) or gigahertz
+        (GHz) and means how many instructions a CPU can handle per second. The speed of the computer will
+        depend on multiple factors other than the clock speed like the other components.
+    </string>
+    <string name="mem_ports_description">
+    </string>
+    <string name="stor_ports_description">
+    </string>
+    <string name="mot_ports_description">
+        The back panel of the motherboard holds many of the ports needed to attach peripherals to interact
+        with the computer. Most newer boards contain a HDMI or Displayport for the monitor, usb ports for
+        mouse and keyboard or any more accessories, and many I/O connectors.
+    </string>
+    <string name="psu_ports_description">
+        Connection for the power cord to the computer, the fan that pulls out the heat from the internal of the PSU, a switch to change the voltage provided and a rocker switch to turn the power supply on and off.
+
+    </string>
+
+    <string-array name="comp_names">
+        <item>CPU</item>
+        <item>MotherBoard</item>
+        <item>Memory(RAM)</item>
+        <item>Storage</item>
+        <item>Video Card</item>
+        <item>Power Supply</item>
+        <item>Raspberry Pi and More</item>
+        <item>Arduino and More</item>
+    </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="learn_more">more to come</string>
-    <string name="education_title">Touch to learn more</string>
-    <string name="remind_to_take_a_break">Remind me to take a break</string>
-    <string name="key_upload_quality">key_upload_quality</string>
-    <string name="remind_me">Remind me to take a break</string>
-    <string name="remind_me_for_bed_time">remind_me_for_bed_time</string>
-    <string name="remind_for_bed_time">Remind me for bed time</string>
-    <string name="limit_data_usage">prefs_limit_data_usage</string>
-    <string name="stream_video">Only stream HD video on Wi-Fi</string>
-    <string name="limit_mobile_usage">Limit mobile data usage</string>
-    <string name="double_tap_to_seek">Double-tap to seek</string>
-    <string name="pref_seek_val">pref_seek_val</string>
-    <string name="seconds">seconds</string>
-    <string name="uploads">Uploads</string>
-    <string name="pref_uploads">pref_uploads</string>
-    <string name="specify_network_prefs">Specify network preferences for uploads</string>
-    <string name="prefs_restricted_mode">prefs_restricted_mode</string>
-    <string name="restricated_mode">Restricted Mode can help to hide videos with potentially mature content.No filter is 100% accurate, but it should help you to avoid most of this type of content.</string>
-    <string name="restricated_mode_description">Restricted Mode</string>
-    <string name="prefs_enable_stats">prefs_enable_stats</string>
-    <string name="enable_stats">Enable stats for nerds</string>
-
-    <string-array name="pref_upload_quality_entries">
-        <item>360p</item>
-        <item>480p</item>
-        <item>720p</item>
-        <item>1080p</item>
-        <item>Original</item>
-    </string-array>
-
-    <string-array name="pref_remind_me_to_take_a_break">
-        <item>1 hours</item>
-        <item>2 hours</item>
-        <item>3 hours</item>
-        <item>5 hours</item>
-        <item>10 hours</item>
-    </string-array>
-
-    <string-array name="pref_seek_values">
-        <item>5</item>
-        <item>10</item>
-        <item>15</item>
-        <item>20</item>
-        <item>30</item>
-    </string-array>
-
-    <string-array name="pref_duration">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-    </string-array>
-
-    <string-array name="pref_uploads">
-        <item>Only when on Wi-Fi</item>
-        <item>On any network</item>
-    </string-array>
+    <string name="title_activity_education_tabbed">Education_Tabbed</string>
+    <string name="tab_text_1">Beginner</string>
+    <string name="tab_text_2">Intermediate</string>
+    <string name="tab_text_3">Expert</string>
 </resources>

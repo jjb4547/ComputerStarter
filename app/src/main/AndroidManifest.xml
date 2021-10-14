@@ -10,6 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ComputerStarter">
         <activity
+            android:name=".Education_Tabbed"
+            android:exported="false"
+            android:label="@string/title_activity_education_tabbed"
+            android:theme="@style/Theme.ComputerStarter.NoActionBar" />
+        <activity
             android:name=".EducationActivities"
             android:exported="true" />
         <activity
@@ -21,12 +26,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Results_Activity"/>
-        <activity android:name=".QuizActivity"/>
-        <activity android:name=".SettingsActivity"/>
-        <activity android:name=".AccountActivity"/>
-        <activity android:name=".MainActivity"/>
-
+        <activity android:name=".Results_Activity" />
+        <activity android:name=".QuizActivity" />
+        <activity android:name=".SettingsActivity" />
+        <activity android:name=".AccountActivity" />
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

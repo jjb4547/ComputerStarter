@@ -106,49 +106,49 @@ public class EducationFragment extends Fragment{
                     */
                     //trying to change title
 
-                    Intent i = new Intent(getActivity(),EducationActivities.class);
+                    Intent i = new Intent(getActivity(),Education_Tabbed.class);
                     i.putExtra("position",0);
                     startActivity(i);
                 }
                 else if(position == 1){
                     //Toast.makeText(getActivity(),"Clicked mother", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(getActivity(),EducationActivities.class);
+                    Intent i = new Intent(getActivity(),Education_Tabbed.class);
                     i.putExtra("position",1);
                     startActivity(i);
                 }
                 else if(position == 2){
                     //Toast.makeText(getActivity(),"Clicked memory", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(getActivity(),EducationActivities.class);
+                    Intent i = new Intent(getActivity(),Education_Tabbed.class);
                     i.putExtra("position",2);
                     startActivity(i);
                 }
                 else if(position == 3){
                     //Toast.makeText(getActivity(),"Clicked storage", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(getActivity(),EducationActivities.class);
+                    Intent i = new Intent(getActivity(),Education_Tabbed.class);
                     i.putExtra("position",3);
                     startActivity(i);
                 }
                 else if(position == 4){
                     //Toast.makeText(getActivity(),"Clicked video card", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(getActivity(),EducationActivities.class);
+                    Intent i = new Intent(getActivity(),Education_Tabbed.class);
                     i.putExtra("position",4);
                     startActivity(i);
                 }
                 else if(position == 5){
                     //Toast.makeText(getActivity(),"Clicked power supply", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(getActivity(),EducationActivities.class);
+                    Intent i = new Intent(getActivity(),Education_Tabbed.class);
                     i.putExtra("position",5);
                     startActivity(i);
                 }
                 else if(position == 6){
                     //Toast.makeText(getActivity(),"Clicked raspberry", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(getActivity(),EducationActivities.class);
+                    Intent i = new Intent(getActivity(),Education_Tabbed.class);
                     i.putExtra("position",6);
                     startActivity(i);
                 }
                 else if(position == 7){
                     //Toast.makeText(getActivity(),"Clicked arduino", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(getActivity(),EducationActivities.class);
+                    Intent i = new Intent(getActivity(),Education_Tabbed.class);
                     i.putExtra("position",7);
                     startActivity(i);
                 }

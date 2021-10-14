@@ -16,8 +16,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+//import com.google.firebase.database.DatabaseReference;
+//import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -37,7 +37,8 @@ public class QuizActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.quiz_layout);
-        getSupportActionBar().setTitle("Quiz");
+        if(getSupportActionBar()!=null)
+            getSupportActionBar().setTitle("Quiz");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         layout = findViewById(R.id.relativelayout);
         layout.setOnTouchListener(new OnSwipeTouchListener(QuizActivity.this){
@@ -89,7 +90,7 @@ public class QuizActivity extends AppCompatActivity {
     }
     private void showBottomSheet(){
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
-        View bottomSheetView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.score_bottom_sheet, (LinearLayout)findViewById(R.id.idLLScore));
+        View bottomSheetView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.score_bottom_sheet,findViewById(R.id.idLLScore));
         Button restartQuizBtn = bottomSheetView.findViewById(R.id.idBtnRestart);
         Button backButton = bottomSheetView.findViewById(R.id.idBtnBack);
         Button resultBtn = bottomSheetView.findViewById(R.id.buttonResult);
@@ -174,13 +175,10 @@ public class QuizActivity extends AppCompatActivity {
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                // app icon in action bar clicked; goto parent activity.
-                this.finish();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
+        if (item.getItemId()==android.R.id.home) {
+            this.finish();
+            return true;
+        }else
+            return super.onOptionsItemSelected(item);
     }
 }

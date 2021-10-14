@@ -1,39 +1,32 @@
 package com.example.computerstarter;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager.widget.ViewPager;
-
-import android.app.ActionBar;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.view.MenuItem;
-import android.widget.Adapter;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.android.material.tabs.TabLayout;
-
-public class EducationActivities extends AppCompatActivity {
-    //gonna try to make this like quiz activity
-    // for the title, paragraph and image
-    //private TextView eduTitle,eduPara;
-    //private ImageView eduPic;
-    //arraylist of display options
-    //private ArrayList
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
-
+public class BeginnerFragment extends Fragment {
+    public BeginnerFragment() {
+        // Required empty public constructor
+    }
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_education_activities);
-        //changing the title
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_beginner, container, false);
         String[] diffTitles = getResources().getStringArray(R.array.comp_names);
-        TextView brief_desc = findViewById(R.id.first_title);
-        TextView info = findViewById(R.id.first_info);
-        TextView ports_desc =findViewById(R.id.second_title);
-        TextView info_desc = findViewById(R.id.second_info);
-        Bundle bundle = getIntent().getExtras();
+        TextView brief_desc = view.findViewById(R.id.first_title);
+        TextView info = view.findViewById(R.id.first_info);
+        TextView ports_desc =view.findViewById(R.id.second_title);
+        TextView info_desc = view.findViewById(R.id.second_info);
+        ImageView imageView = view.findViewById(R.id.image_comp);
+        Bundle bundle = getActivity().getIntent().getExtras();
         if(bundle != null){
             int position = bundle.getInt("position");
             switch (position){
@@ -45,9 +38,7 @@ public class EducationActivities extends AppCompatActivity {
                     info.setText(getString(R.string.cpu_desc));
                     info_desc.setText(getString(R.string.cpu_ports_description));
                     ports_desc.setText(getString(R.string.ports_cpu));
-                    if(getSupportActionBar()!=null)
-                        getSupportActionBar().setTitle(diffTitles[0]);
-                    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                    imageView.setImageResource(R.mipmap.ic_logo);
                     break;
                 case 1:
                     //Motherboard
@@ -57,9 +48,6 @@ public class EducationActivities extends AppCompatActivity {
                     info.setText(getString(R.string.mot_desc));
                     info_desc.setText(getString(R.string.mot_ports_description));
                     ports_desc.setText(getString(R.string.ports_mot));
-                    if(getSupportActionBar()!=null)
-                        getSupportActionBar().setTitle(diffTitles[1]);
-                    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
                     break;
                 case 2:
                     //Memory
@@ -69,9 +57,6 @@ public class EducationActivities extends AppCompatActivity {
                     info.setText(getString(R.string.mem_desc));
                     info_desc.setText(getString(R.string.mem_ports_description));
                     ports_desc.setText(getString(R.string.ports_mem));
-                    if(getSupportActionBar()!=null)
-                        getSupportActionBar().setTitle(diffTitles[2]);
-                    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
                     break;
                 case 3:
                     //Storage
@@ -81,9 +66,6 @@ public class EducationActivities extends AppCompatActivity {
                     info.setText(getString(R.string.stor_desc));
                     info_desc.setText(getString(R.string.stor_ports_description));
                     ports_desc.setText(getString(R.string.ports_stor));
-                    if(getSupportActionBar()!=null)
-                        getSupportActionBar().setTitle(diffTitles[3]);
-                    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
                     break;
                 case 4:
                     //Video Card
@@ -93,9 +75,6 @@ public class EducationActivities extends AppCompatActivity {
                     info.setText(getString(R.string.gpu_desc));
                     info_desc.setText(getString(R.string.gpu_ports_description));
                     ports_desc.setText(getString(R.string.ports_gpu));
-                    if(getSupportActionBar()!=null)
-                        getSupportActionBar().setTitle(diffTitles[4]);
-                    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
                     break;
                 case 5:
                     //Power Supply
@@ -105,33 +84,17 @@ public class EducationActivities extends AppCompatActivity {
                     info.setText(getString(R.string.psu_desc));
                     info_desc.setText(getString(R.string.psu_ports_description));
                     ports_desc.setText(getString(R.string.ports_psu));
-                    if(getSupportActionBar()!=null)
-                        getSupportActionBar().setTitle(diffTitles[5]);
-                    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
                     break;
                 case 6:
                     //Raspberry Pi
-                    if(getSupportActionBar()!=null)
-                    getSupportActionBar().setTitle(diffTitles[6]);
-                    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
                     break;
                 case 7:
                     //Arduino
-                    if(getSupportActionBar()!=null)
-                        getSupportActionBar().setTitle(diffTitles[7]);
-                    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
                     break;
 
             }
         }
+        return view;
     }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId()==android.R.id.home) {
-            // app icon in action bar clicked; goto parent activity.
-            this.finish();
-            return true;
-        }else
-            return super.onOptionsItemSelected(item);
-    }
+
 }
