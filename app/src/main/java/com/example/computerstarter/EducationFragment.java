@@ -21,11 +21,17 @@ import android.widget.Toast;
 import java.text.DateFormat;
 import java.text.DateFormatSymbols;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 
 //working on this
 public class EducationFragment extends Fragment{
-
+    private boolean sortAscending = true;
+    private boolean unSorted = true;
+    ListView listView;
+    String[] diffTitles;
     public EducationFragment() {
         // Required empty public constructor
     }
@@ -33,7 +39,7 @@ public class EducationFragment extends Fragment{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-
+        String[] diffTitles = getResources().getStringArray(R.array.comp_names);
     }
 
     @Override
@@ -51,19 +57,38 @@ public class EducationFragment extends Fragment{
                 Intent intent_settings = new Intent(getActivity(), SettingsActivity.class);
                 startActivity(intent_settings);
                 break;
-            case R.id.account:
+            /*case R.id.account:
                 Toast.makeText(getActivity(), "Account", Toast.LENGTH_SHORT).show();
                 Intent intent_account = new Intent(getActivity(), AccountActivity.class);
                 startActivity(intent_account);
                 break;
+
+             */
             case R.id.quiz:
                 Toast.makeText(getActivity(), "Quiz", Toast.LENGTH_SHORT).show();
                 Intent intent_quiz = new Intent(getActivity(), QuizActivity.class);
                 intent_quiz.putExtra("ID","Education");
                 startActivity(intent_quiz);
                 break;
+            case R.id.action_sort:
+                if(unSorted)
+                    Toast.makeText(getActivity(), "A-Z",Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(getActivity(), "Z-A",Toast.LENGTH_SHORT).show();
+                sortData();
         }
         return super.onOptionsItemSelected(item);
+    }
+    private void sortData(){
+        List<String>sortedTitles = Arrays.asList(getResources().getStringArray(R.array.comp_names));
+        if(unSorted)
+            Collections.sort(sortedTitles);
+        else
+            Collections.reverse(sortedTitles);
+        diffTitles = sortedTitles.toArray(new String[0]);
+        sortAscending=!sortAscending;
+        unSorted=!unSorted;
+        listView.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1,diffTitles));
     }
 
     @Override
@@ -73,21 +98,13 @@ public class EducationFragment extends Fragment{
         View view = inflater.inflate(R.layout.fragment_education, container, false);
         //my changes to get listView
         //might need its own method
-        String [] eduParts = {"CPU",
-        "MotherBoard",
-        "Memory",
-        "Storage",
-        "Video Card",
-        "PowerSupply",
-        "Raspberry Pi and more",
-        "Arduino and more"};
-        ListView listView = (ListView) view.findViewById(R.id.lvEdu);
+        listView = view.findViewById(R.id.lvEdu);
         listView.setClickable(true);
-
+        diffTitles = getResources().getStringArray(R.array.comp_names);
         ArrayAdapter<String> listViewAdapter = new ArrayAdapter<String>(
                 getActivity(),
                 android.R.layout.simple_list_item_1,
-                eduParts
+                diffTitles
         );
         listView.setAdapter(listViewAdapter);
 
@@ -98,58 +115,81 @@ public class EducationFragment extends Fragment{
                 //they all open the same thing for now
                 if(position ==0){
                     //testing
-                    //Toast.makeText(getActivity(),"Clicked CPU", Toast.LENGTH_SHORT).show();
-                    //gonna pass more stuff in to make it so I dont need like 8 different activities(just one)
-                    /*
-                    TextView title = (TextView) view.findViewById(R.id.partTitle);
-                    title.setText("CPU");
-                    */
-                    //trying to change title
-
+                    Toast.makeText(getActivity(),diffTitles[0], Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(getActivity(),Education_Tabbed.class);
-                    i.putExtra("position",0);
+                    i.putExtra("component",diffTitles[0]);
                     startActivity(i);
                 }
                 else if(position == 1){
-                    //Toast.makeText(getActivity(),"Clicked mother", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),diffTitles[1], Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(getActivity(),Education_Tabbed.class);
-                    i.putExtra("position",1);
+                    i.putExtra("component",diffTitles[1]);
                     startActivity(i);
                 }
                 else if(position == 2){
-                    //Toast.makeText(getActivity(),"Clicked memory", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),diffTitles[2], Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(getActivity(),Education_Tabbed.class);
-                    i.putExtra("position",2);
+                    i.putExtra("component",diffTitles[2]);
                     startActivity(i);
                 }
                 else if(position == 3){
-                    //Toast.makeText(getActivity(),"Clicked storage", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),diffTitles[3], Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(getActivity(),Education_Tabbed.class);
-                    i.putExtra("position",3);
+                    i.putExtra("component",diffTitles[3]);
                     startActivity(i);
                 }
                 else if(position == 4){
-                    //Toast.makeText(getActivity(),"Clicked video card", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),diffTitles[4], Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(getActivity(),Education_Tabbed.class);
-                    i.putExtra("position",4);
+                    i.putExtra("component",diffTitles[4]);
                     startActivity(i);
                 }
                 else if(position == 5){
-                    //Toast.makeText(getActivity(),"Clicked power supply", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),diffTitles[5], Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(getActivity(),Education_Tabbed.class);
-                    i.putExtra("position",5);
+                    i.putExtra("component",diffTitles[5]);
                     startActivity(i);
                 }
                 else if(position == 6){
-                    //Toast.makeText(getActivity(),"Clicked raspberry", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),diffTitles[6], Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(getActivity(),Education_Tabbed.class);
-                    i.putExtra("position",6);
+                    i.putExtra("component",diffTitles[6]);
                     startActivity(i);
                 }
                 else if(position == 7){
-                    //Toast.makeText(getActivity(),"Clicked arduino", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),diffTitles[7], Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(getActivity(),Education_Tabbed.class);
-                    i.putExtra("position",7);
+                    i.putExtra("component",diffTitles[7]);
+                    startActivity(i);
+                }
+                else if(position == 8){
+                    Toast.makeText(getActivity(),diffTitles[8], Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(getActivity(),Education_Tabbed.class);
+                    i.putExtra("component",diffTitles[8]);
+                    startActivity(i);
+                }
+                else if(position == 9){
+                    Toast.makeText(getActivity(),diffTitles[9], Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(getActivity(),Education_Tabbed.class);
+                    i.putExtra("component",diffTitles[9]);
+                    startActivity(i);
+                }
+                else if(position == 10){
+                    Toast.makeText(getActivity(),diffTitles[10], Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(getActivity(),Education_Tabbed.class);
+                    i.putExtra("component",diffTitles[10]);
+                    startActivity(i);
+                }
+                else if(position == 11){
+                    Toast.makeText(getActivity(),diffTitles[11], Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(getActivity(),Education_Tabbed.class);
+                    i.putExtra("component",diffTitles[11]);
+                    startActivity(i);
+                }
+                else if(position == 12){
+                    Toast.makeText(getActivity(),diffTitles[12], Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(getActivity(),Education_Tabbed.class);
+                    i.putExtra("component",diffTitles[12]);
                     startActivity(i);
                 }
             }

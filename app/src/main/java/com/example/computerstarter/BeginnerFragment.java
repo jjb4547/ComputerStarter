@@ -1,16 +1,22 @@
 package com.example.computerstarter;
 
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
 
 public class BeginnerFragment extends Fragment {
     public BeginnerFragment() {
@@ -20,76 +26,119 @@ public class BeginnerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_beginner, container, false);
-        String[] diffTitles = getResources().getStringArray(R.array.comp_names);
         TextView brief_desc = view.findViewById(R.id.first_title);
         TextView info = view.findViewById(R.id.first_info);
         TextView ports_desc =view.findViewById(R.id.second_title);
         TextView info_desc = view.findViewById(R.id.second_info);
+        TextView link_title = view.findViewById(R.id.useful_links);
+        TextView actual_link = view.findViewById(R.id.component_links);
         ImageView imageView = view.findViewById(R.id.image_comp);
         Bundle bundle = getActivity().getIntent().getExtras();
         if(bundle != null){
-            int position = bundle.getInt("position");
+            String position = bundle.getString("component");
+            brief_desc.setTypeface(null, Typeface.BOLD);
+            ports_desc.setTypeface(null,Typeface.BOLD);
+            link_title.setTypeface(null,Typeface.BOLD);
             switch (position){
-                case 0:
+                case "CPU":
                     //CPU
-                    brief_desc.setTypeface(null, Typeface.BOLD);
-                    ports_desc.setTypeface(null,Typeface.BOLD);
                     brief_desc.setText(getString(R.string.brief_description_cpu));
                     info.setText(getString(R.string.cpu_desc));
                     info_desc.setText(getString(R.string.cpu_ports_description));
                     ports_desc.setText(getString(R.string.ports_cpu));
-                    imageView.setImageResource(R.mipmap.ic_logo);
+                    imageView.setImageResource(R.drawable.amd_cpu);
+                    link_title.setText(getString(R.string.link_title));
+                    actual_link.setText(getString(R.string.cpu_link));
+                    actual_link.setMovementMethod(LinkMovementMethod.getInstance());
+                    actual_link.setLinkTextColor(Color.BLUE);
                     break;
-                case 1:
+                case "MotherBoard":
                     //Motherboard
-                    brief_desc.setTypeface(null, Typeface.BOLD);
-                    ports_desc.setTypeface(null,Typeface.BOLD);
                     brief_desc.setText(getString(R.string.brief_description_mot));
                     info.setText(getString(R.string.mot_desc));
                     info_desc.setText(getString(R.string.mot_ports_description));
                     ports_desc.setText(getString(R.string.ports_mot));
+                    imageView.setImageResource(R.drawable.motherboard);
+                    link_title.setText(getString(R.string.link_title));
+                    actual_link.setText(getString(R.string.mot_link));
+                    actual_link.setMovementMethod(LinkMovementMethod.getInstance());
+                    actual_link.setLinkTextColor(Color.BLUE);
                     break;
-                case 2:
+                case "Memory":
                     //Memory
-                    brief_desc.setTypeface(null, Typeface.BOLD);
-                    ports_desc.setTypeface(null,Typeface.BOLD);
                     brief_desc.setText(getString(R.string.brief_description_mem));
                     info.setText(getString(R.string.mem_desc));
                     info_desc.setText(getString(R.string.mem_ports_description));
                     ports_desc.setText(getString(R.string.ports_mem));
+                    imageView.setImageResource(R.drawable.memory);
+                    link_title.setText(getString(R.string.link_title));
+                    actual_link.setText(getString(R.string.mem_link));
+                    actual_link.setMovementMethod(LinkMovementMethod.getInstance());
+                    actual_link.setLinkTextColor(Color.BLUE);
                     break;
-                case 3:
+                case "Storage":
                     //Storage
-                    brief_desc.setTypeface(null, Typeface.BOLD);
-                    ports_desc.setTypeface(null,Typeface.BOLD);
                     brief_desc.setText(getString(R.string.brief_description_stor));
                     info.setText(getString(R.string.stor_desc));
                     info_desc.setText(getString(R.string.stor_ports_description));
                     ports_desc.setText(getString(R.string.ports_stor));
+                    imageView.setImageResource(R.drawable.storage);
+                    link_title.setText(getString(R.string.link_title));
+                    actual_link.setText(getString(R.string.stor_link));
+                    actual_link.setMovementMethod(LinkMovementMethod.getInstance());
+                    actual_link.setLinkTextColor(Color.BLUE);
                     break;
-                case 4:
+                case "Video Card":
                     //Video Card
-                    brief_desc.setTypeface(null, Typeface.BOLD);
-                    ports_desc.setTypeface(null,Typeface.BOLD);
                     brief_desc.setText(getString(R.string.brief_description_gpu));
                     info.setText(getString(R.string.gpu_desc));
                     info_desc.setText(getString(R.string.gpu_ports_description));
                     ports_desc.setText(getString(R.string.ports_gpu));
+                    imageView.setImageResource(R.drawable.vga_pic);
+                    link_title.setText(getString(R.string.link_title));
+                    actual_link.setText(getString(R.string.gpu_link));
+                    actual_link.setMovementMethod(LinkMovementMethod.getInstance());
+                    actual_link.setLinkTextColor(Color.BLUE);
                     break;
-                case 5:
+                case "Power Supply":
                     //Power Supply
-                    brief_desc.setTypeface(null, Typeface.BOLD);
-                    ports_desc.setTypeface(null,Typeface.BOLD);
                     brief_desc.setText(getString(R.string.brief_description_psu));
                     info.setText(getString(R.string.psu_desc));
                     info_desc.setText(getString(R.string.psu_ports_description));
                     ports_desc.setText(getString(R.string.ports_psu));
+                    imageView.setImageResource(R.drawable.psu);
+                    link_title.setText(getString(R.string.link_title));
+                    actual_link.setText(getString(R.string.psu_link));
+                    actual_link.setMovementMethod(LinkMovementMethod.getInstance());
+                    actual_link.setLinkTextColor(Color.BLUE);
                     break;
-                case 6:
+                case "Raspberry Pi and More":
                     //Raspberry Pi
+                    brief_desc.setText("Coming Soon!");
                     break;
-                case 7:
+                case "Arduino and More":
                     //Arduino
+                    brief_desc.setText("Coming Soon!");
+                    break;
+                case "CPU Cooler":
+                    //CPU Cooler
+                    brief_desc.setText("Coming Soon!");
+                    break;
+                case "Case":
+                    //Case
+                    brief_desc.setText("Coming Soon!");
+                    break;
+                case "OS":
+                    //OS
+                    brief_desc.setText("Coming Soon!");
+                    break;
+                case "Monitor":
+                    //Monitor
+                    brief_desc.setText("Coming Soon!");
+                    break;
+                case "Peripherals":
+                    //Peripherals
+                    brief_desc.setText("Coming Soon!");
                     break;
 
             }

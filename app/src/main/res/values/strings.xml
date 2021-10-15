@@ -19,6 +19,21 @@
     <string name="brief_description_psu">
         Brief Description of a Power Supply
     </string>
+    <string name="brief_description_cpucool">
+        Brief Description of a Power Supply
+    </string>
+    <string name="brief_description_case">
+        Brief Description of a Power Supply
+    </string>
+    <string name="brief_description_os">
+        Brief Description of a Power Supply
+    </string>
+    <string name="brief_description_mon">
+        Brief Description of a Power Supply
+    </string>
+    <string name="brief_description_per">
+        Brief Description of a Power Supply
+    </string>
 
     <!--Ports Titles-->
     <string name="ports_gpu">
@@ -112,24 +127,46 @@
         mouse and keyboard or any more accessories, and many I/O connectors.
     </string>
     <string name="psu_ports_description">
-        Connection for the power cord to the computer, the fan that pulls out the heat from the internal of the PSU, a switch to change the voltage provided and a rocker switch to turn the power supply on and off.
-
+        Connection for the power cord to the computer, the fan that pulls out the heat from the internal
+        of the PSU, a switch to change the voltage provided and a rocker switch to turn the power supply
+        on and off.
     </string>
 
     <string-array name="comp_names">
         <item>CPU</item>
         <item>MotherBoard</item>
-        <item>Memory(RAM)</item>
+        <item>Memory</item>
         <item>Storage</item>
         <item>Video Card</item>
         <item>Power Supply</item>
         <item>Raspberry Pi and More</item>
         <item>Arduino and More</item>
+        <item>CPU Cooler</item>
+        <item>Case</item>
+        <item>OS</item>
+        <item>Monitor</item>
+        <item>Peripherals</item>
     </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_education_tabbed">Education_Tabbed</string>
     <string name="tab_text_1">Beginner</string>
-    <string name="tab_text_2">Intermediate</string>
+    <string name="tab_text_2">Moderate</string>
     <string name="tab_text_3">Expert</string>
+
+    <string name="link_title">Links to Further your knowledge</string>
+    <string name="cpu_link"><a href="https://www.computerhope.com/jargon/c/cpu.htm">computerhope.com/jargon/c/cpu.htm</a></string>
+    <string name="mot_link"><a href="https://www.computerhope.com/jargon/m/mothboar.htm">computerhope.com/jargon/m/mothboar.htm</a></string>
+    <string name="mem_link"><a href="https://www.computerhope.com/jargon/r/ram.htm">computerhope.com/jargon/r/ram.htm</a></string>
+    <string name="stor_link"><a href="https://www.computerhope.com/jargon/s/stordevi.htm">computerhope.com/jargon/s/stordevi.htm</a></string>
+    <string name="gpu_link"><a href="https://www.computerhope.com/jargon/v/video-card.htm">computerhope.com/jargon/v/video-card.htm</a></string>
+    <string name="psu_link"><a href="https://www.computerhope.com/jargon/p/power-supply.htm">computerhope.com/jargon/p/power-supply.htm</a></string>
+    <!--
+    <string name="rasp_link"><a href="https://www.computerhope.com/jargon/c/cpu.htm">computerhope.com/jargon/c/cpu.htm</a></string>
+    <string name="ard_link"><a href="https://www.computerhope.com/jargon/c/cpu.htm">computerhope.com/jargon/c/cpu.htm</a></string>
+    <string name="cool_link"><a href="https://www.computerhope.com/jargon/c/cpu.htm">computerhope.com/jargon/c/cpu.htm</a></string>
+    <string name="case_link"><a href="https://www.computerhope.com/jargon/c/cpu.htm">computerhope.com/jargon/c/cpu.htm</a></string>
+    <string name="os_link"><a href="https://www.computerhope.com/jargon/c/cpu.htm">computerhope.com/jargon/c/cpu.htm</a></string>
+    <string name="mon_link"><a href="https://www.computerhope.com/jargon/c/cpu.htm">computerhope.com/jargon/c/cpu.htm</a></string>
+    <string name="per_link"><a href="https://www.computerhope.com/jargon/c/cpu.htm">computerhope.com/jargon/c/cpu.htm</a></string>
+    -->
 </resources>

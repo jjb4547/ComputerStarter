@@ -8,6 +8,7 @@ import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
 
 import android.app.AlarmManager;
+import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -20,6 +21,8 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.TimerTask;
+
 public class MainActivity extends AppCompatActivity {
     private static int SPLASH_TIMEOUT = 2000;
     @Override
@@ -28,8 +31,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         //createNotificationChannel();
         //addNotification();
-        //Toolbar toolbar = findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
@@ -72,7 +73,8 @@ public class MainActivity extends AppCompatActivity {
                 .setSmallIcon(R.mipmap.ic_logo)
                 .setContentTitle("Computer Starter Notification")
                 .setContentText("Come back we miss you!")
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setAutoCancel(true);
         //NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getApplicationContext());
         Intent intent = new Intent(this, MainActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(this,0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
@@ -96,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
         }
-    }*/
+    }
 
+     */
 }

@@ -73,11 +73,13 @@ public class MainPageFragment extends Fragment {
                 Intent intent_settings = new Intent(getActivity(), SettingsActivity.class);
                 startActivity(intent_settings);
                 break;
-            case R.id.account:
+            /*case R.id.account:
                 Toast.makeText(getActivity(), "Account", Toast.LENGTH_SHORT).show();
                 Intent intent_account = new Intent(getActivity(), AccountActivity.class);
                 startActivity(intent_account);
                 break;
+
+             */
             case R.id.quiz:
                 Toast.makeText(getActivity(), "Quiz", Toast.LENGTH_SHORT).show();
                 Intent intent_quiz = new Intent(getActivity(), QuizActivity.class);

@@ -5,9 +5,10 @@
     <item
         android:id="@+id/quiz"
         android:title="Quiz" />
+    <!--Ports Description
     <item
         android:id="@+id/account"
-        android:title="Account" />
+        android:title="Account" /> -->
     <item
         android:id="@+id/settings"
         android:title="Settings" />

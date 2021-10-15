@@ -72,11 +72,13 @@ public class LoginFragment extends Fragment {
                 Intent intent_settings = new Intent(getActivity(), SettingsActivity.class);
                 startActivity(intent_settings);
                 break;
-            case R.id.account:
+            /*case R.id.account:
                 Toast.makeText(getActivity(), "Account", Toast.LENGTH_SHORT).show();
                 Intent intent_account = new Intent(getActivity(), AccountActivity.class);
                 startActivity(intent_account);
                 break;
+
+             */
             case R.id.quiz:
                 Toast.makeText(getActivity(), "Quiz", Toast.LENGTH_SHORT).show();
                 Intent intent_quiz = new Intent(getActivity(), QuizActivity.class);
@@ -93,4 +95,6 @@ public class LoginFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_login, container, false);
     }
+
+
 }

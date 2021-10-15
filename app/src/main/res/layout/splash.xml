@@ -3,23 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/design_default_color_primary">
 
     <TextView
         android:id="@+id/splash_text"
-        android:layout_width="204dp"
-        android:layout_height="46dp"
+        android:layout_width="217dp"
+        android:layout_height="137dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="400dp"
         android:text="ComputerStarter"
         android:textAlignment="center"
-        android:textSize="25dp"
+        android:textSize="45sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.316" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
+        android:id="@+id/imageView"
         android:layout_width="186dp"
         android:layout_height="169dp"
         android:layout_marginTop="25dp"
@@ -27,4 +29,30 @@
         app:layout_constraintEnd_toEndOf="@+id/splash_text"
         app:layout_constraintStart_toStartOf="@+id/splash_text"
         app:layout_constraintTop_toBottomOf="@+id/splash_text" />
+
+    <TextView
+        android:id="@+id/percent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="88dp"
+        android:gravity="center_horizontal"
+        android:text="Hello"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="338dp"
+        android:layout_height="75dp"
+        android:outlineAmbientShadowColor="@color/black"
+        android:outlineSpotShadowColor="@color/black"
+        android:progressTint="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/percent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="@+id/percent"
+        app:layout_constraintTop_toBottomOf="@+id/percent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -39,7 +39,7 @@ public class SettingsActivity extends AppCompatActivity {
     private void loadSettings(){
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         boolean notifications = sp.getBoolean("notifications",false);
-        int volume = sp.getInt("volume_notifications",0);
+        int volume = sp.getInt("volume_notifications",100);
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

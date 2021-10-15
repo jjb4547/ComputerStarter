@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
@@ -39,31 +38,46 @@ public class Education_Tabbed extends AppCompatActivity {
         });
         Bundle bundle = getIntent().getExtras();
         if(bundle!=null){
-            int position = bundle.getInt("position");
+            String position = bundle.getString("component");
             switch (position){
-                case 0:
+                case "CPU":
                     view.setText(diffTitles[0]);
                     break;
-                case 1:
+                case "MotherBoard":
                     view.setText(diffTitles[1]);
                     break;
-                case 2:
+                case "Memory":
                     view.setText(diffTitles[2]);
                     break;
-                case 3:
+                case "Storage":
                     view.setText(diffTitles[3]);
                     break;
-                case 4:
+                case "Video Card":
                     view.setText(diffTitles[4]);
                     break;
-                case 5:
+                case "Power Supply":
                     view.setText(diffTitles[5]);
                     break;
-                case 6:
+                case "Raspberry Pi and More":
                     view.setText(diffTitles[6]);
                     break;
-                case 7:
+                case "Arduino and More":
                     view.setText(diffTitles[7]);
+                    break;
+                case "CPU Cooler":
+                    view.setText(diffTitles[8]);
+                    break;
+                case "Case":
+                    view.setText(diffTitles[9]);
+                    break;
+                case "OS":
+                    view.setText(diffTitles[10]);
+                    break;
+                case "Monitor":
+                    view.setText(diffTitles[11]);
+                    break;
+                case "Peripherals":
+                    view.setText(diffTitles[12]);
                     break;
             }
         }

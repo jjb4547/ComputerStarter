@@ -7,6 +7,10 @@ import android.widget.Button;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.w3c.dom.Node;
+
+import java.util.LinkedList;
+
 public class AccountActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -14,6 +18,8 @@ public class AccountActivity extends AppCompatActivity {
         setContentView(R.layout.account_layout);
         getSupportActionBar().setTitle("Account");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        LinkedList linkedList = new LinkedList();
+
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

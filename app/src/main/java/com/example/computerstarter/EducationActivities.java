@@ -35,9 +35,9 @@ public class EducationActivities extends AppCompatActivity {
         TextView info_desc = findViewById(R.id.second_info);
         Bundle bundle = getIntent().getExtras();
         if(bundle != null){
-            int position = bundle.getInt("position");
+            String position = bundle.getString("component");
             switch (position){
-                case 0:
+                case "CPU":
                     //CPU
                     brief_desc.setTypeface(null, Typeface.BOLD);
                     ports_desc.setTypeface(null,Typeface.BOLD);
@@ -49,7 +49,7 @@ public class EducationActivities extends AppCompatActivity {
                         getSupportActionBar().setTitle(diffTitles[0]);
                     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
                     break;
-                case 1:
+                case "Motherboard":
                     //Motherboard
                     brief_desc.setTypeface(null, Typeface.BOLD);
                     ports_desc.setTypeface(null,Typeface.BOLD);
@@ -61,7 +61,7 @@ public class EducationActivities extends AppCompatActivity {
                         getSupportActionBar().setTitle(diffTitles[1]);
                     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
                     break;
-                case 2:
+                case "Memory":
                     //Memory
                     brief_desc.setTypeface(null, Typeface.BOLD);
                     ports_desc.setTypeface(null,Typeface.BOLD);
@@ -73,7 +73,7 @@ public class EducationActivities extends AppCompatActivity {
                         getSupportActionBar().setTitle(diffTitles[2]);
                     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
                     break;
-                case 3:
+                case "Storage":
                     //Storage
                     brief_desc.setTypeface(null, Typeface.BOLD);
                     ports_desc.setTypeface(null,Typeface.BOLD);
@@ -85,7 +85,7 @@ public class EducationActivities extends AppCompatActivity {
                         getSupportActionBar().setTitle(diffTitles[3]);
                     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
                     break;
-                case 4:
+                case "Video Card":
                     //Video Card
                     brief_desc.setTypeface(null, Typeface.BOLD);
                     ports_desc.setTypeface(null,Typeface.BOLD);
@@ -97,7 +97,7 @@ public class EducationActivities extends AppCompatActivity {
                         getSupportActionBar().setTitle(diffTitles[4]);
                     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
                     break;
-                case 5:
+                case "Power Supply":
                     //Power Supply
                     brief_desc.setTypeface(null, Typeface.BOLD);
                     ports_desc.setTypeface(null,Typeface.BOLD);
@@ -109,13 +109,13 @@ public class EducationActivities extends AppCompatActivity {
                         getSupportActionBar().setTitle(diffTitles[5]);
                     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
                     break;
-                case 6:
+                case "Raspberry Pi":
                     //Raspberry Pi
                     if(getSupportActionBar()!=null)
                     getSupportActionBar().setTitle(diffTitles[6]);
                     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
                     break;
-                case 7:
+                case "Arduino":
                     //Arduino
                     if(getSupportActionBar()!=null)
                         getSupportActionBar().setTitle(diffTitles[7]);
