@@ -1,22 +1,21 @@
 package com.example.computerstarter;
 
 import android.os.Bundle;
-import android.view.MenuItem;
-import android.widget.Button;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
-import org.w3c.dom.Node;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+public class Login extends AppCompatActivity {
 
-import java.util.LinkedList;
-
-public class AccountActivity extends AppCompatActivity {
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.account_layout);
-        getSupportActionBar().setTitle("Account");
+        setContentView(R.layout.login_layout);
+        getSupportActionBar().setTitle("Login");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
     @Override
@@ -28,4 +27,5 @@ public class AccountActivity extends AppCompatActivity {
         }else
             return super.onOptionsItemSelected(item);
     }
+
 }

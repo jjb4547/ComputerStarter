@@ -18,6 +18,7 @@
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/drawable/ic_notifications.xml" value="0.22083333333333333" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/drawable/ic_people.xml" value="0.22083333333333333" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/drawable/ic_quiz.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/about_layout.xml" value="0.33" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/account_layout.xml" value="0.17572463768115942" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/activity_education_activities.xml" value="0.14012738853503184" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/activity_education_tabbed.xml" value="0.5" />
@@ -31,6 +32,8 @@
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/fragment_login.xml" value="0.20833333333333334" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/fragment_main_page.xml" value="0.20833333333333334" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/fragment_quiz.xml" value="0.20833333333333334" />
+        <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/help_layout.xml" value="0.2552083333333333" />
+        <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/login_layout.xml" value="0.17401215805471124" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/quiz_layout.xml" value="0.22" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/result_layout.xml" value="0.33796296296296297" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/score_bottom_sheet.xml" value="0.33" />

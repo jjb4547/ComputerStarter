@@ -140,7 +140,6 @@ public class BeginnerFragment extends Fragment {
                     //Peripherals
                     brief_desc.setText("Coming Soon!");
                     break;
-
             }
         }
         return view;

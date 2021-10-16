@@ -31,6 +31,13 @@
         <activity android:name=".SettingsActivity" />
         <activity android:name=".AccountActivity" />
         <activity android:name=".MainActivity" />
+        <activity android:name=".Login"/>
+        <activity android:name=".AboutActivity"/>
+        <activity android:name=".HelpActivity"/>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

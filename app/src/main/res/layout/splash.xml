@@ -3,18 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/design_default_color_primary">
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/splash_text"
-        android:layout_width="217dp"
-        android:layout_height="137dp"
+        android:layout_width="390dp"
+        android:layout_height="50dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="400dp"
+        android:fontFamily="@font/autour_one"
         android:text="ComputerStarter"
         android:textAlignment="center"
-        android:textSize="45sp"
+        android:textColor="@color/black"
+        android:textSize="35sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,7 +42,8 @@
         app:layout_constraintEnd_toEndOf="@+id/imageView"
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        android:textColor="@color/black"/>
 
     <ProgressBar
         android:id="@+id/progressBar"

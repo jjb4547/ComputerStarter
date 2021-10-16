@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.SeekBar;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -35,6 +36,7 @@ public class SettingsActivity extends AppCompatActivity {
             getFragmentManager().beginTransaction().add(R.id.idFrameLayout, new SettingsFragment()).commit();
         }
         loadSettings();
+
     }
     private void loadSettings(){
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());

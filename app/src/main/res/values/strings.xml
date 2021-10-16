@@ -169,4 +169,5 @@
     <string name="mon_link"><a href="https://www.computerhope.com/jargon/c/cpu.htm">computerhope.com/jargon/c/cpu.htm</a></string>
     <string name="per_link"><a href="https://www.computerhope.com/jargon/c/cpu.htm">computerhope.com/jargon/c/cpu.htm</a></string>
     -->
+    <string name="pref_previously_started">false</string>
 </resources>

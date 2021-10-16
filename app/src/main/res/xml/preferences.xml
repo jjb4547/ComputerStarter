@@ -1,33 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <PreferenceCategory
-        android:icon="@drawable/ic_key"
+    <Preference
+        android:icon="@drawable/ic_people"
+        android:minHeight="48dp"
+        android:selectable="true"
         android:title="Account"
         android:visibility="visible"
-        app:iconSpaceReserved="true"></PreferenceCategory>
-    <PreferenceCategory
+        app:iconSpaceReserved="true"
+        android:key="account">
+        <intent android:targetPackage="com.example.computerstarter"
+            android:targetClass="com.example.computerstarter.AccountActivity">
+        </intent>
+    </Preference>
+    <Preference
+        android:key="messages"
         android:icon="@drawable/ic_chat"
-        android:title="Messages"></PreferenceCategory>
-    <PreferenceCategory android:title="Notifications"
-        android:icon="@drawable/ic_notifications">
+        android:title="Messages"></Preference>
+    <PreferenceCategory
+        android:title="App Notifications">
         <SeekBarPreference
             android:key="volume_notifications"
             android:title="Volume"
             app:showSeekBarValue="true"
-            android:defaultValue="100"/>
+            android:defaultValue="100"
+            android:max="100"/>
         <SwitchPreference
             android:key="notifications"
             android:title="Disable Notifications"
             android:summaryOn="You will no longer receive notifications"
             android:summaryOff="You will receive notifications"/>
     </PreferenceCategory>
-    <PreferenceCategory android:title="Help"
-        android:icon="@drawable/ic_help">
-    </PreferenceCategory>
-    <PreferenceCategory android:title="Invite a Friend+"
-        android:icon="@drawable/ic_people">
-    </PreferenceCategory>
+    <Preference
+        android:icon="@drawable/ic_help"
+        android:minHeight="48dp"
+        android:selectable="true"
+        android:title="Help">
+    <intent
+        android:targetPackage="com.example.computerstarter"
+        android:targetClass="com.example.computerstarter.HelpActivity"></intent>>
+    </Preference>
+    <Preference
+        android:title="Invite a Friend+"
+        android:icon="@drawable/ic_people"
+        android:selectable="true"
+        android:key="invite">
+    </Preference>
+    <Preference
+        android:icon="@mipmap/ic_logo"
+        android:title="About Us"
+        android:selectable="true"
+        android:key="aboutactivity">
+        <intent
+        android:targetPackage="com.example.computerstarter"
+            android:targetClass="com.example.computerstarter.AboutActivity">
+    </intent>
+    </Preference>
 
 
 </PreferenceScreen>

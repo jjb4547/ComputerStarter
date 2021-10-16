@@ -6,18 +6,24 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
+import androidx.preference.PreferenceManager;
 
 import android.app.AlarmManager;
+import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -29,6 +35,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        boolean previouslyStarted = pref.getBoolean(getString(R.string.pref_previously_started),false);
+        if(!previouslyStarted){
+            SharedPreferences.Editor editor = pref.edit();
+            editor.putBoolean(getString(R.string.pref_previously_started),true);
+            editor.commit();
+            showAlertDialog();
+            //Intent intent = new Intent(MainActivity.this, Login.class);
+            //startActivity(intent);
+        }
         //createNotificationChannel();
         //addNotification();
 
@@ -68,6 +84,25 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
     };
+    public void showAlertDialog(){
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle("Tutorial");
+        alert.setMessage("Is this your first time using the app?");
+        alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Intent intent = new Intent(MainActivity.this,HelpActivity.class);
+                startActivity(intent);
+            }
+        });
+        alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(MainActivity.this,"Okay!",Toast.LENGTH_SHORT).show();
+            }
+        });
+        alert.create().show();
+    }
     /*private void addNotification(){
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this,"not_cs")
                 .setSmallIcon(R.mipmap.ic_logo)
