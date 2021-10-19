@@ -12,7 +12,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Toast;
+import android.widget.Button;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,6 +22,8 @@ import android.widget.Toast;
  * create an instance of this fragment.
  */
 public class SocialMediaFragment extends Fragment {
+
+    Button button;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -93,6 +97,17 @@ public class SocialMediaFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_forum, container, false);
+        View view = inflater.inflate(R.layout.fragment_forum, container, false);
+        button = view.findViewById(R.id.ButtonCreate);
+        button.setClickable(true);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), SocialMediaActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        return view;
     }
 }

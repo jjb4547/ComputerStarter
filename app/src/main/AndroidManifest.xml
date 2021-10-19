@@ -31,6 +31,7 @@
         <activity android:name=".SettingsActivity" />
         <activity android:name=".AccountActivity" />
         <activity android:name=".MainActivity" />
+        <activity android:name=".SocialMediaActivity"/>
     </application>
 
 </manifest>
