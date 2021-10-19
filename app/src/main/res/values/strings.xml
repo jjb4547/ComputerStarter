@@ -160,6 +160,7 @@
     <string name="stor_link"><a href="https://www.computerhope.com/jargon/s/stordevi.htm">computerhope.com/jargon/s/stordevi.htm</a></string>
     <string name="gpu_link"><a href="https://www.computerhope.com/jargon/v/video-card.htm">computerhope.com/jargon/v/video-card.htm</a></string>
     <string name="psu_link"><a href="https://www.computerhope.com/jargon/p/power-supply.htm">computerhope.com/jargon/p/power-supply.htm</a></string>
+    <string name="button">Button</string>
     <!--
     <string name="rasp_link"><a href="https://www.computerhope.com/jargon/c/cpu.htm">computerhope.com/jargon/c/cpu.htm</a></string>
     <string name="ard_link"><a href="https://www.computerhope.com/jargon/c/cpu.htm">computerhope.com/jargon/c/cpu.htm</a></string>
