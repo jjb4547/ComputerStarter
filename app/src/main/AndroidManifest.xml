@@ -20,18 +20,15 @@
         <activity
             android:name=".real_profile"
             android:exported="true"
-            android:label="@string/title_activity_real_profile"
-            android:theme="@style/Theme.ComputerStarter.NoActionBar" />
+            android:label="@string/title_activity_real_profile" />
         <activity
             android:name=".real_register"
             android:exported="true"
-            android:label="@string/title_activity_real_register"
-            android:theme="@style/Theme.ComputerStarter.NoActionBar" />
+            android:label="@string/title_activity_real_register" />
         <activity
             android:name=".real_login"
             android:exported="true"
-            android:label="@string/title_activity_real_login"
-            android:theme="@style/Theme.ComputerStarter.NoActionBar" />
+            android:label="@string/title_activity_real_login" />
         <activity
             android:name=".SplashActivity"
             android:exported="true">
@@ -46,7 +43,6 @@
         <activity android:name=".SettingsActivity" />
         <activity android:name=".AccountActivity" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".Login"/>
         <activity android:name=".AboutActivity"/>
         <activity android:name=".HelpActivity"/>
         <activity android:name=".SocialMediaActivity"/>

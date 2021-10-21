@@ -19,14 +19,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginStart="5dp"
         android:layout_marginTop="0.5dp"
-        android:text="Build Parts"
-        android:textSize="25sp"
-        android:gravity="center_horizontal"/>
-    <ListView
-        android:id="@+id/lvEdu"
-        android:clickable="true"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:smoothScrollbar="true"/>
+        android:text="Work in Progress"
+        android:textSize="25sp"/>
 
 </LinearLayout>

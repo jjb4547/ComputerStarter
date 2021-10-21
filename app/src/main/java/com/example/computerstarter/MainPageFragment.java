@@ -73,15 +73,6 @@ public class MainPageFragment extends Fragment {
         //my changes to get listView
         //might need its own method
         TextView text = view.findViewById(R.id.title);
-        listView = view.findViewById(R.id.lvEdu);
-        listView.setClickable(true);
-        diffTitles = getResources().getStringArray(R.array.comp_names);
-        ArrayAdapter<String> listViewAdapter = new ArrayAdapter<String>(
-                getActivity(),
-                android.R.layout.simple_list_item_1,
-                diffTitles
-        );
-        listView.setAdapter(listViewAdapter);
         return view;
     }
 

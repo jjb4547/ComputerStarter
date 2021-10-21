@@ -1,6 +1,7 @@
 package com.example.computerstarter;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,18 +15,16 @@ import com.example.computerstarter.databinding.ActivityRealLoginBinding;
 public class real_login extends AppCompatActivity {
 
     private AppBarConfiguration appBarConfiguration;
-    private ActivityRealLoginBinding binding;
     Button bRegisterBtn;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        binding = ActivityRealLoginBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
-        setSupportActionBar(binding.toolbar);
+        setContentView(R.layout.activity_real_login);
+        getSupportActionBar().setTitle("Login");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //setSupportActionBar(binding.toolbar);
 
 //        bRegisterBtn = findViewById(bNewAccount);
 //
@@ -41,11 +40,12 @@ public class real_login extends AppCompatActivity {
 //        binding.fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                .setAction("Action", null).show());
     }
-
     @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_real_login);
-        return NavigationUI.navigateUp(navController, appBarConfiguration)
-                || super.onSupportNavigateUp();
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId()==android.R.id.home) {
+            this.finish();
+            return true;
+        }else
+            return super.onOptionsItemSelected(item);
     }
 }
