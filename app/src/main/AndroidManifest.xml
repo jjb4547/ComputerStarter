@@ -46,6 +46,7 @@
         <activity android:name=".AboutActivity"/>
         <activity android:name=".HelpActivity"/>
         <activity android:name=".SocialMediaActivity"/>
+        <activity android:name=".Build_Activity"/>
 
         <meta-data
             android:name="preloaded_fonts"

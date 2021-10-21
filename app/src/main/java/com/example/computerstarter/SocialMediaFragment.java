@@ -84,4 +84,13 @@ public class SocialMediaFragment extends Fragment {
 
         return view;
     }
+    @Override
+    public void onPrepareOptionsMenu(@NonNull Menu menu) {
+        MenuItem item = menu.findItem(R.id.add);
+        if(item!=null)
+            item.setVisible(false);
+        item = menu.findItem(R.id.action_sort);
+        if(item!=null)
+            item.setVisible(false);
+    }
 }

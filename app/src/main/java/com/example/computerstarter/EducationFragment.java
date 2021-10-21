@@ -201,15 +201,11 @@ public class EducationFragment extends Fragment{
         //return inflater.inflate(R.layout.fragment_education, container, false);
         return view;
     }
-    /*
-    private void partsInfo(){
-        String[] diffTitles ={"CPU","Motherboard","Memory(RAM)","Storage","Video Card(GPU)","Power Supply","Raspberry Pi and Possibilities",
-        "Arduino and Possibilities"};
-        String[] diffPara;
 
+    @Override
+    public void onPrepareOptionsMenu(@NonNull Menu menu) {
+        MenuItem item = menu.findItem(R.id.add);
+        if(item!=null)
+            item.setVisible(false);
     }
-
-     */
-
-
 }

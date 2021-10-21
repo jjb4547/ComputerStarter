@@ -15,4 +15,8 @@
         android:title="Sort"
         app:showAsAction="always"
         android:icon="@drawable/ic_sort_white"/>
+    <item android:id="@+id/add"
+        android:title="Add Build"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_add"/>
 </menu>

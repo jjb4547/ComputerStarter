@@ -1,6 +1,9 @@
 package com.example.computerstarter;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -9,18 +12,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link MainPageFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class MainPageFragment extends Fragment {
     private boolean sortAscending = true;
     private boolean unSorted = true;
@@ -61,6 +61,9 @@ public class MainPageFragment extends Fragment {
                 intent_quiz.putExtra("ID","Building");
                 startActivity(intent_quiz);
                 break;
+            case R.id.add:
+                showAlertDialog();
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -70,10 +73,33 @@ public class MainPageFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_main_page, container, false);
+
         //my changes to get listView
         //might need its own method
-        TextView text = view.findViewById(R.id.title);
         return view;
+    }
+    public void showAlertDialog(){
+        final EditText input = new EditText(getActivity());
+        AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+        alert.setTitle("Enter name");
+        alert.setMessage("Please enter name of build:");
+        alert.setView(input);
+        alert.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                String name = input.getText().toString();
+                Intent intent = new Intent(getActivity(), Build_Activity.class);
+                intent.putExtra("names", name);
+                startActivity(intent);
+            }
+        });
+        alert.create().show();
+    }
+    @Override
+    public void onPrepareOptionsMenu(@NonNull Menu menu) {
+        MenuItem item = menu.findItem(R.id.action_sort);
+        if(item!=null)
+            item.setVisible(false);
     }
 
 }
