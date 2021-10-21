@@ -2,10 +2,6 @@ package com.example.computerstarter;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -13,6 +9,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -72,9 +71,9 @@ public class SocialMediaFragment extends Fragment {
                 Intent intent_settings = new Intent(getActivity(), SettingsActivity.class);
                 startActivity(intent_settings);
                 break;
-            case R.id.account:
-                Toast.makeText(getActivity(), "Account", Toast.LENGTH_SHORT).show();
-                Intent intent_account = new Intent(getActivity(), AccountActivity.class);
+            case R.id.real_login:
+                Toast.makeText(getActivity(), "login", Toast.LENGTH_SHORT).show();
+                Intent intent_account = new Intent(getActivity(), real_login.class);
                 startActivity(intent_account);
                 break;
             case R.id.quiz:
