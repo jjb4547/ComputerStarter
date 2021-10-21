@@ -82,8 +82,10 @@ public class EducationFragment extends Fragment{
         List<String>sortedTitles = Arrays.asList(getResources().getStringArray(R.array.comp_names));
         if(unSorted)
             Collections.sort(sortedTitles);
-        else
+        else {
+            Collections.sort(sortedTitles);
             Collections.reverse(sortedTitles);
+        }
         diffTitles = sortedTitles.toArray(new String[0]);
         sortAscending=!sortAscending;
         unSorted=!unSorted;
@@ -97,6 +99,7 @@ public class EducationFragment extends Fragment{
         View view = inflater.inflate(R.layout.fragment_education, container, false);
         //my changes to get listView
         //might need its own method
+        TextView text = view.findViewById(R.id.title);
         listView = view.findViewById(R.id.lvEdu);
         listView.setClickable(true);
         diffTitles = getResources().getStringArray(R.array.comp_names);

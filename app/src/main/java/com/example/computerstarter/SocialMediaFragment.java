@@ -16,11 +16,9 @@ import android.widget.AdapterView;
 import android.widget.Toast;
 import android.widget.Button;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Login#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+
 public class SocialMediaFragment extends Fragment {
 
     Button button;
@@ -36,24 +34,6 @@ public class SocialMediaFragment extends Fragment {
 
     public SocialMediaFragment() {
         // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment LoginFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static SocialMediaFragment newInstance(String param1, String param2) {
-        SocialMediaFragment fragment = new SocialMediaFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
     }
 
     @Override
@@ -96,12 +76,11 @@ public class SocialMediaFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_forum, container, false);
-        button = view.findViewById(R.id.ButtonCreate);
-        button.setClickable(true);
+        FloatingActionButton button = view.findViewById(R.id.buttonCreate);
+        Intent intent = new Intent(getActivity(),SocialMediaActivity.class);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), SocialMediaActivity.class);
                 startActivity(intent);
             }
         });

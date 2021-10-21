@@ -9,41 +9,41 @@
         android:id="@+id/PostInfForum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="101dp"
         android:text="Post"
-        app:layout_constraintStart_toEndOf="@+id/PictureInfForum"
+        app:layout_constraintEnd_toEndOf="@+id/TextInfForum"
         app:layout_constraintTop_toTopOf="@+id/PictureInfForum" />
 
     <Button
         android:id="@+id/PictureInfForum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginBottom="392dp"
+        android:layout_marginTop="32dp"
         android:text="Pictures"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/TextInfForum"
+        app:layout_constraintTop_toBottomOf="@+id/TextInfForum" />
 
     <EditText
         android:id="@+id/TextInfForum"
         android:layout_width="309dp"
         android:layout_height="204dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="25dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="...What to say?"
-        app:layout_constraintBottom_toTopOf="@+id/PictureInfForum"
+        android:hint="... What to say?"
+        android:inputType="textMultiLine"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/ProfileInfForum" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/ProfileInfForum"
         android:layout_width="38dp"
         android:layout_height="35dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="15dp"
         android:src="@mipmap/ic_logo"
+        app:layout_constraintEnd_toStartOf="@+id/TextInfForum"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/TextInfForum"
         tools:srcCompat="@tools:sample/avatars" />

@@ -66,6 +66,25 @@
                 app:layout_constraintTop_toBottomOf="@id/second_info"
                 app:layout_constraintEnd_toEndOf="@id/second_info"
                 app:layout_constraintStart_toStartOf="@id/second_info"/>
+            <TextView
+                android:id="@+id/useful_links"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@id/image_comp"
+                app:layout_constraintEnd_toEndOf="@id/image_comp"
+                app:layout_constraintStart_toStartOf="@id/image_comp"/>
+            <TextView
+                android:id="@+id/component_links"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@id/useful_links"
+                app:layout_constraintEnd_toEndOf="@id/useful_links"
+                app:layout_constraintStart_toStartOf="@id/useful_links"
+                android:autoLink="web"
+                android:gravity="center"
+                android:paddingBottom="10sp"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
