@@ -18,6 +18,21 @@
             android:name=".EducationActivities"
             android:exported="true" />
         <activity
+            android:name=".real_profile"
+            android:exported="true"
+            android:label="@string/title_activity_real_profile"
+            android:theme="@style/Theme.ComputerStarter.NoActionBar" />
+        <activity
+            android:name=".real_register"
+            android:exported="true"
+            android:label="@string/title_activity_real_register"
+            android:theme="@style/Theme.ComputerStarter.NoActionBar" />
+        <activity
+            android:name=".real_login"
+            android:exported="true"
+            android:label="@string/title_activity_real_login"
+            android:theme="@style/Theme.ComputerStarter.NoActionBar" />
+        <activity
             android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>

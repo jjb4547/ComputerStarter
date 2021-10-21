@@ -57,9 +57,9 @@ public class EducationFragment extends Fragment{
                 Intent intent_settings = new Intent(getActivity(), SettingsActivity.class);
                 startActivity(intent_settings);
                 break;
-            case R.id.login:
-                Toast.makeText(getActivity(), "Login", Toast.LENGTH_SHORT).show();
-                Intent intent_account = new Intent(getActivity(), Login.class);
+            case R.id.real_login:
+                Toast.makeText(getActivity(), "login", Toast.LENGTH_SHORT).show();
+                Intent intent_account = new Intent(getActivity(), real_login.class);
                 startActivity(intent_account);
                 break;
 

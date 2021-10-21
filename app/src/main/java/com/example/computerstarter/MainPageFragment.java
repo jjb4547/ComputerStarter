@@ -2,10 +2,6 @@ package com.example.computerstarter;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,6 +13,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the {@link MainPageFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
 public class MainPageFragment extends Fragment {
     private boolean sortAscending = true;
     private boolean unSorted = true;
@@ -46,9 +50,9 @@ public class MainPageFragment extends Fragment {
                 Intent intent_settings = new Intent(getActivity(), SettingsActivity.class);
                 startActivity(intent_settings);
                 break;
-            case R.id.login:
-                Toast.makeText(getActivity(), "Login", Toast.LENGTH_SHORT).show();
-                Intent intent_account = new Intent(getActivity(), Login.class);
+            case R.id.real_login:
+                Toast.makeText(getActivity(), "real_login", Toast.LENGTH_SHORT).show();
+                Intent intent_account = new Intent(getActivity(), real_login.class);
                 startActivity(intent_account);
                 break;
             case R.id.quiz:

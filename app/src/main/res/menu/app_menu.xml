@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/login"
-        android:title="Login" />
-    <item
         android:id="@+id/quiz"
         android:title="Quiz" />
+    <item
+        android:id="@+id/real_login"
+        android:title="login" />
     <item
         android:id="@+id/settings"
         android:title="Settings" />
