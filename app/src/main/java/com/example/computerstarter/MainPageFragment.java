@@ -26,6 +26,8 @@ public class MainPageFragment extends Fragment {
     private boolean unSorted = true;
     private ListView listView;
     private String[] diffTitles;
+    private boolean addcardview=false;
+    private View view;
     public MainPageFragment() {
         // Required empty public constructor
     }
@@ -72,7 +74,10 @@ public class MainPageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_main_page, container, false);
+        if(addcardview)
+            view = inflater.inflate(R.layout.fragment_main_page, container, false);
+        else
+            view = inflater.inflate(R.layout.fragment_main_page_2,container,false);
 
         //my changes to get listView
         //might need its own method
@@ -84,6 +89,7 @@ public class MainPageFragment extends Fragment {
         alert.setTitle("Enter name");
         alert.setMessage("Please enter name of build:");
         alert.setView(input);
+        addcardview=true;
         alert.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {

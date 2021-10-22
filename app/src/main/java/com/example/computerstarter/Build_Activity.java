@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import org.w3c.dom.Text;
 
@@ -25,14 +26,12 @@ public class Build_Activity extends AppCompatActivity {
         setContentView(R.layout.build_layout);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         TextView textView = findViewById(R.id.title);
-        ListView listView = findViewById(R.id.lvEdu);
-        diffTitles = getResources().getStringArray(R.array.comp_names);
-        ArrayAdapter<String> listViewAdapter = new ArrayAdapter<String>(
-                Build_Activity.this,
-                android.R.layout.simple_list_item_1,
-                diffTitles
-        );
-        listView.setAdapter(listViewAdapter);
+        CardView cpu = findViewById(R.id.cpu);
+        CardView mot = findViewById(R.id.motherboard);
+        CardView mem = findViewById(R.id.memory);
+        CardView vga = findViewById(R.id.vga);
+        CardView psu = findViewById(R.id.psu);
+        CardView stor = findViewById(R.id.stor);
         Intent intent = this.getIntent();
         String name = intent.getExtras().getString("names");
         getSupportActionBar().setTitle(name);

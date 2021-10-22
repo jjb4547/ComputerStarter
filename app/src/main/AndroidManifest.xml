@@ -10,6 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ComputerStarter">
         <activity
+            android:name=".PC_Part_Activity"
+            android:exported="false"
+            android:label="@string/title_activity_pc_part" />
+        <activity
             android:name=".Education_Tabbed"
             android:exported="false"
             android:label="@string/title_activity_education_tabbed"
@@ -43,10 +47,10 @@
         <activity android:name=".SettingsActivity" />
         <activity android:name=".AccountActivity" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".AboutActivity"/>
-        <activity android:name=".HelpActivity"/>
-        <activity android:name=".SocialMediaActivity"/>
-        <activity android:name=".Build_Activity"/>
+        <activity android:name=".AboutActivity" />
+        <activity android:name=".HelpActivity" />
+        <activity android:name=".SocialMediaActivity" />
+        <activity android:name=".Build_Activity" />
 
         <meta-data
             android:name="preloaded_fonts"

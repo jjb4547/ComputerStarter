@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -28,8 +29,6 @@ import java.util.List;
 
 //working on this
 public class EducationFragment extends Fragment{
-    private boolean sortAscending = true;
-    private boolean unSorted = true;
     ListView listView;
     String[] diffTitles;
     public EducationFragment() {
@@ -69,142 +68,34 @@ public class EducationFragment extends Fragment{
                 intent_quiz.putExtra("ID","Education");
                 startActivity(intent_quiz);
                 break;
-            case R.id.action_sort:
-                if(unSorted)
-                    Toast.makeText(getActivity(), "A-Z",Toast.LENGTH_SHORT).show();
-                else
-                    Toast.makeText(getActivity(), "Z-A",Toast.LENGTH_SHORT).show();
-                sortData();
         }
         return super.onOptionsItemSelected(item);
-    }
-    private void sortData(){
-        List<String>sortedTitles = Arrays.asList(getResources().getStringArray(R.array.comp_names));
-        if(unSorted)
-            Collections.sort(sortedTitles);
-        else {
-            Collections.sort(sortedTitles);
-            Collections.reverse(sortedTitles);
-        }
-        diffTitles = sortedTitles.toArray(new String[0]);
-        sortAscending=!sortAscending;
-        unSorted=!unSorted;
-        listView.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1,diffTitles));
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         //changed so that inflated happens first but is still returned at end
-        View view = inflater.inflate(R.layout.fragment_education, container, false);
-        //my changes to get listView
-        //might need its own method
-        TextView text = view.findViewById(R.id.title);
-        listView = view.findViewById(R.id.lvEdu);
-        listView.setClickable(true);
-        diffTitles = getResources().getStringArray(R.array.comp_names);
-        ArrayAdapter<String> listViewAdapter = new ArrayAdapter<String>(
-                getActivity(),
-                android.R.layout.simple_list_item_1,
-                diffTitles
-        );
-        listView.setAdapter(listViewAdapter);
-
-        //handling click events
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        View view = inflater.inflate(R.layout.education_layout, container, false);
+        CardView pc = view.findViewById(R.id.pc_parts);
+        CardView arduino = view.findViewById(R.id.arduinos);
+        CardView rasp = view.findViewById(R.id.rasp_pi);
+        pc.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                //they all open the same thing for now
-                if(position ==0){
-                    //testing
-                    Toast.makeText(getActivity(),diffTitles[0], Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(getActivity(),Education_Tabbed.class);
-                    i.putExtra("component",diffTitles[0]);
-                    startActivity(i);
-                }
-                else if(position == 1){
-                    Toast.makeText(getActivity(),diffTitles[1], Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(getActivity(),Education_Tabbed.class);
-                    i.putExtra("component",diffTitles[1]);
-                    startActivity(i);
-                }
-                else if(position == 2){
-                    Toast.makeText(getActivity(),diffTitles[2], Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(getActivity(),Education_Tabbed.class);
-                    i.putExtra("component",diffTitles[2]);
-                    startActivity(i);
-                }
-                else if(position == 3){
-                    Toast.makeText(getActivity(),diffTitles[3], Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(getActivity(),Education_Tabbed.class);
-                    i.putExtra("component",diffTitles[3]);
-                    startActivity(i);
-                }
-                else if(position == 4){
-                    Toast.makeText(getActivity(),diffTitles[4], Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(getActivity(),Education_Tabbed.class);
-                    i.putExtra("component",diffTitles[4]);
-                    startActivity(i);
-                }
-                else if(position == 5){
-                    Toast.makeText(getActivity(),diffTitles[5], Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(getActivity(),Education_Tabbed.class);
-                    i.putExtra("component",diffTitles[5]);
-                    startActivity(i);
-                }
-                else if(position == 6){
-                    Toast.makeText(getActivity(),diffTitles[6], Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(getActivity(),Education_Tabbed.class);
-                    i.putExtra("component",diffTitles[6]);
-                    startActivity(i);
-                }
-                else if(position == 7){
-                    Toast.makeText(getActivity(),diffTitles[7], Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(getActivity(),Education_Tabbed.class);
-                    i.putExtra("component",diffTitles[7]);
-                    startActivity(i);
-                }
-                else if(position == 8){
-                    Toast.makeText(getActivity(),diffTitles[8], Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(getActivity(),Education_Tabbed.class);
-                    i.putExtra("component",diffTitles[8]);
-                    startActivity(i);
-                }
-                else if(position == 9){
-                    Toast.makeText(getActivity(),diffTitles[9], Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(getActivity(),Education_Tabbed.class);
-                    i.putExtra("component",diffTitles[9]);
-                    startActivity(i);
-                }
-                else if(position == 10){
-                    Toast.makeText(getActivity(),diffTitles[10], Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(getActivity(),Education_Tabbed.class);
-                    i.putExtra("component",diffTitles[10]);
-                    startActivity(i);
-                }
-                else if(position == 11){
-                    Toast.makeText(getActivity(),diffTitles[11], Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(getActivity(),Education_Tabbed.class);
-                    i.putExtra("component",diffTitles[11]);
-                    startActivity(i);
-                }
-                else if(position == 12){
-                    Toast.makeText(getActivity(),diffTitles[12], Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(getActivity(),Education_Tabbed.class);
-                    i.putExtra("component",diffTitles[12]);
-                    startActivity(i);
-                }
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),PC_Part_Activity.class);
+                startActivity(intent);
             }
         });
-
-        // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_education, container, false);
         return view;
     }
 
     @Override
     public void onPrepareOptionsMenu(@NonNull Menu menu) {
         MenuItem item = menu.findItem(R.id.add);
+        if(item!=null)
+            item.setVisible(false);
+        item = menu.findItem(R.id.action_sort);
         if(item!=null)
             item.setVisible(false);
     }
