@@ -51,6 +51,7 @@
         <activity android:name=".HelpActivity" />
         <activity android:name=".SocialMediaActivity" />
         <activity android:name=".Build_Activity" />
+        <activity android:name=".PC_Build_Parts"/>
 
         <meta-data
             android:name="preloaded_fonts"

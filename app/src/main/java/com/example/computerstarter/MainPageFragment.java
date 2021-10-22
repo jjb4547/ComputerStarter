@@ -26,7 +26,7 @@ public class MainPageFragment extends Fragment {
     private boolean unSorted = true;
     private ListView listView;
     private String[] diffTitles;
-    private boolean addcardview=false;
+    public boolean addcardview=false;
     private View view;
     public MainPageFragment() {
         // Required empty public constructor

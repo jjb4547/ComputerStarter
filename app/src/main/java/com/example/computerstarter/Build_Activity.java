@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -23,6 +24,8 @@ public class Build_Activity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        MainPageFragment main = new MainPageFragment();
+        main.addcardview = true;
         setContentView(R.layout.build_layout);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         TextView textView = findViewById(R.id.title);
@@ -35,6 +38,14 @@ public class Build_Activity extends AppCompatActivity {
         Intent intent = this.getIntent();
         String name = intent.getExtras().getString("names");
         getSupportActionBar().setTitle(name);
+        cpu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Build_Activity.this, PC_Build_Parts.class);
+                intent.putExtra("name","CPU");
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
