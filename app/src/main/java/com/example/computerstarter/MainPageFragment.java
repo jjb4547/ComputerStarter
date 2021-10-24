@@ -3,7 +3,6 @@ package com.example.computerstarter;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -11,23 +10,23 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainPageFragment extends Fragment {
     private boolean sortAscending = true;
     private boolean unSorted = true;
     private ListView listView;
     private String[] diffTitles;
-    public boolean addcardview=false;
+    public boolean addcardview;
     private View view;
+    FirebaseAuth mAuth;
     public MainPageFragment() {
         // Required empty public constructor
     }
@@ -89,10 +88,10 @@ public class MainPageFragment extends Fragment {
         alert.setTitle("Enter name");
         alert.setMessage("Please enter name of build:");
         alert.setView(input);
-        addcardview=true;
         alert.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+                addcardview=true;
                 String name = input.getText().toString();
                 Intent intent = new Intent(getActivity(), Build_Activity.class);
                 intent.putExtra("names", name);
@@ -103,9 +102,18 @@ public class MainPageFragment extends Fragment {
     }
     @Override
     public void onPrepareOptionsMenu(@NonNull Menu menu) {
+        mAuth = FirebaseAuth.getInstance();
         MenuItem item = menu.findItem(R.id.action_sort);
         if(item!=null)
             item.setVisible(false);
+        if(mAuth.getCurrentUser()!=null){
+            item = menu.findItem(R.id.real_login);
+            if(item!=null)
+                item.setVisible(false);
+        }else{
+            item = menu.findItem(R.id.real_login);
+            if(item!=null)
+                item.setVisible(true);
+        }
     }
-
 }

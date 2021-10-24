@@ -38,13 +38,35 @@ public class Build_Activity extends AppCompatActivity {
         Intent intent = this.getIntent();
         String name = intent.getExtras().getString("names");
         getSupportActionBar().setTitle(name);
-        cpu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Build_Activity.this, PC_Build_Parts.class);
-                intent.putExtra("name","CPU");
-                startActivity(intent);
-            }
+        cpu.setOnClickListener(view -> {
+            Intent cpu_intent = new Intent(Build_Activity.this, PC_Build_Parts.class);
+            cpu_intent.putExtra("name","CPU");
+            startActivity(cpu_intent);
+        });
+        mot.setOnClickListener(view -> {
+            Intent mot_intent = new Intent(Build_Activity.this, PC_Build_Parts.class);
+            mot_intent.putExtra("name","Motherboards");
+            startActivity(mot_intent);
+        });
+        mem.setOnClickListener(view -> {
+                Intent mem_intent = new Intent(Build_Activity.this, PC_Build_Parts.class);
+                mem_intent.putExtra("name","Memory");
+                startActivity(mem_intent);
+        });
+        vga.setOnClickListener(view -> {
+                Intent vga_intent = new Intent(Build_Activity.this, PC_Build_Parts.class);
+                vga_intent.putExtra("name","Video Cards");
+                startActivity(vga_intent);
+        });
+        psu.setOnClickListener(view -> {
+                Intent psu_intent = new Intent(Build_Activity.this, PC_Build_Parts.class);
+                psu_intent.putExtra("name","Power Supplies");
+                startActivity(psu_intent);
+        });
+        stor.setOnClickListener(view -> {
+                Intent stor_intent = new Intent(Build_Activity.this, PC_Build_Parts.class);
+                stor_intent.putExtra("name","Storage");
+                startActivity(stor_intent);
         });
     }
 

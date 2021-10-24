@@ -38,11 +38,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:background="@color/black">
+
                 <ImageView
                     android:layout_width="120dp"
                     android:layout_height="match_parent"
-                    android:src="@drawable/ic_sort_white"
-                    android:layout_marginLeft="20dp"/>
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/cpu_link" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -77,20 +78,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:background="@color/black">
+
                 <ImageView
-                    android:layout_width="120dp"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/ic_sort_white"
-                    android:layout_marginLeft="20dp"/>
+                    android:layout_width="108dp"
+                    android:layout_height="124dp"
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/motherboard_link" />
+
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="189dp"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
                     android:fontFamily="@font/autour_one"
                     android:padding="25dp"
                     android:text="Motherboard"
-                    android:textSize="30sp"
-                    android:layout_alignParentRight="true"
-                    android:textColor="@color/white"/>
+                    android:textColor="@color/white"
+                    android:textSize="30sp" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -116,12 +119,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:background="@color/black">
+
                 <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/ic_sort_white"
+                    android:layout_width="122dp"
+                    android:layout_height="141dp"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginTop="22dp"/>
+                    android:layout_marginTop="22dp"
+                    android:src="@drawable/memory_link" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -158,11 +162,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:background="@color/black">
+
                 <ImageView
                     android:layout_width="120dp"
                     android:layout_height="match_parent"
-                    android:src="@drawable/ic_sort_white"
-                    android:layout_marginLeft="20dp"/>
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/vga_link" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -197,11 +202,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:background="@color/black">
+
                 <ImageView
                     android:layout_width="120dp"
                     android:layout_height="match_parent"
-                    android:src="@drawable/ic_sort_white"
-                    android:layout_marginLeft="20dp"/>
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/psu_link" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -236,12 +242,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:background="@color/black">
+
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="match_parent"
-                    android:src="@drawable/ic_sort_white"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginTop="22dp"/>
+                    android:layout_marginTop="22dp"
+                    android:src="@drawable/storage_link" />
 
                 <TextView
                     android:layout_width="wrap_content"

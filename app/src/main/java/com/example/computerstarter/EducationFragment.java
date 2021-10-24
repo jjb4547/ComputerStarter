@@ -19,6 +19,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.text.DateFormat;
 import java.text.DateFormatSymbols;
 import java.util.ArrayList;
@@ -31,6 +33,7 @@ import java.util.List;
 public class EducationFragment extends Fragment{
     ListView listView;
     String[] diffTitles;
+    private FirebaseAuth mAuth;
     public EducationFragment() {
         // Required empty public constructor
     }
@@ -92,11 +95,21 @@ public class EducationFragment extends Fragment{
 
     @Override
     public void onPrepareOptionsMenu(@NonNull Menu menu) {
+        mAuth = FirebaseAuth.getInstance();
         MenuItem item = menu.findItem(R.id.add);
         if(item!=null)
             item.setVisible(false);
         item = menu.findItem(R.id.action_sort);
         if(item!=null)
             item.setVisible(false);
+        if(mAuth.getCurrentUser()!=null){
+            item = menu.findItem(R.id.real_login);
+            if(item!=null)
+                item.setVisible(false);
+        }else{
+            item = menu.findItem(R.id.real_login);
+            if(item!=null)
+                item.setVisible(true);
+        }
     }
 }

@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class SocialMediaFragment extends Fragment {
 
@@ -86,11 +87,21 @@ public class SocialMediaFragment extends Fragment {
     }
     @Override
     public void onPrepareOptionsMenu(@NonNull Menu menu) {
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
         MenuItem item = menu.findItem(R.id.add);
         if(item!=null)
             item.setVisible(false);
         item = menu.findItem(R.id.action_sort);
         if(item!=null)
             item.setVisible(false);
+        if(mAuth.getCurrentUser()!=null){
+            item = menu.findItem(R.id.real_login);
+            if(item!=null)
+                item.setVisible(false);
+        }else{
+            item = menu.findItem(R.id.real_login);
+            if(item!=null)
+                item.setVisible(true);
+        }
     }
 }

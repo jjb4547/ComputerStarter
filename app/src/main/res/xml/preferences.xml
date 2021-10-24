@@ -56,6 +56,11 @@
             android:targetClass="com.example.computerstarter.AboutActivity">
     </intent>
     </Preference>
+    <Preference
+        android:title="Sign Out"
+        android:icon="@drawable/ic_logout"
+        android:selectable="true">
+    </Preference>
 
 
 </PreferenceScreen>

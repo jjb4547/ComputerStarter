@@ -16,10 +16,13 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
-//import com.google.firebase.database.DatabaseReference;
-//import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class QuizActivity extends AppCompatActivity {
     private TextView questionTV, questionNumberTV;
@@ -31,12 +34,17 @@ public class QuizActivity extends AppCompatActivity {
     private ArrayList<String> quizAnswers;
     int currentScore =0, questionAttempted = 1, currentPos = 0, num_of_questions =0;
     RelativeLayout layout;
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference databaseReference = database.getReference().child("Users");
+    private HashMap<String,String> userQuiz = new HashMap<>();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.quiz_layout);
+        Intent intent = this.getIntent();
+        final String name = intent.getExtras().getString("ID");
         if(getSupportActionBar()!=null)
             getSupportActionBar().setTitle("Quiz");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -56,11 +64,14 @@ public class QuizActivity extends AppCompatActivity {
         option4Btn = findViewById(R.id.idBtnOption4);
         quizModuleArrayList = new ArrayList<>();
         quizAnswers = new ArrayList<>();
-        num_of_questions = getActivityName(quizModuleArrayList);
+        num_of_questions = getActivityName(quizModuleArrayList,intent, name);
+        quizAnswers.add(name);
         setDataToViews(currentPos,num_of_questions);
         option1Btn.setOnClickListener(view -> {
             quizAnswers.add(quizModuleArrayList.get(currentPos).getQuestion());
             quizAnswers.add(quizModuleArrayList.get(currentPos).getOption1());
+            //userQuiz.put("Question 1",quizModuleArrayList.get(currentPos).getQuestion());
+            //userQuiz.put("Answer 1",quizModuleArrayList.get(currentPos).getOption1());
             questionAttempted++;
             currentPos++;
             setDataToViews(currentPos,num_of_questions);
@@ -68,6 +79,9 @@ public class QuizActivity extends AppCompatActivity {
         option2Btn.setOnClickListener(view -> {
             quizAnswers.add(quizModuleArrayList.get(currentPos).getQuestion());
             quizAnswers.add(quizModuleArrayList.get(currentPos).getOption2());
+            //userQuiz.put("Question 2",quizModuleArrayList.get(currentPos).getQuestion());
+            //userQuiz.put("Answer 2",quizModuleArrayList.get(currentPos).getOption1());
+            databaseReference.setValue(userQuiz);
             questionAttempted++;
             currentPos++;
             setDataToViews(currentPos,num_of_questions);
@@ -75,6 +89,9 @@ public class QuizActivity extends AppCompatActivity {
         option3Btn.setOnClickListener(view -> {
             quizAnswers.add(quizModuleArrayList.get(currentPos).getQuestion());
             quizAnswers.add(quizModuleArrayList.get(currentPos).getOption3());
+            //userQuiz.put("Question 3",quizModuleArrayList.get(currentPos).getQuestion());
+            //userQuiz.put("Answer 3",quizModuleArrayList.get(currentPos).getOption1());
+            //databaseReference.setValue(userQuiz);
             questionAttempted++;
             currentPos++;
             setDataToViews(currentPos,num_of_questions);
@@ -82,36 +99,36 @@ public class QuizActivity extends AppCompatActivity {
         option4Btn.setOnClickListener(view -> {
             quizAnswers.add(quizModuleArrayList.get(currentPos).getQuestion());
             quizAnswers.add(quizModuleArrayList.get(currentPos).getOption4());
+            //userQuiz.put("Question 4",quizModuleArrayList.get(currentPos).getQuestion());
+            //userQuiz.put("Answer 4",quizModuleArrayList.get(currentPos).getOption1());
+            databaseReference.setValue(userQuiz);
             questionAttempted++;
             currentPos++;
             setDataToViews(currentPos,num_of_questions);
         });
-
     }
     private void showBottomSheet(){
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
-        View bottomSheetView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.score_bottom_sheet,findViewById(R.id.idLLScore));
-        Button restartQuizBtn = bottomSheetView.findViewById(R.id.idBtnRestart);
-        Button backButton = bottomSheetView.findViewById(R.id.idBtnBack);
-        Button resultBtn = bottomSheetView.findViewById(R.id.buttonResult);
-        restartQuizBtn.setOnClickListener(view -> {
-            currentPos =0;
-            setDataToViews(currentPos,num_of_questions);
-            questionAttempted =1;
-            currentScore = 0;
-            bottomSheetDialog.dismiss();
+        FirebaseUser current = FirebaseAuth.getInstance().getCurrentUser();
+        User user = new User();
+        user.setQuiz(quizAnswers);
+        bottomSheetDialog.setContentView(R.layout.modal_bottom_sheet);
+        Intent this_intent = this.getIntent();
+        String name = this_intent.getExtras().getString("ID");
+        LinearLayout save = bottomSheetDialog.findViewById(R.id.save);
+        LinearLayout results = bottomSheetDialog.findViewById(R.id.results_quiz);
+        LinearLayout back = bottomSheetDialog.findViewById(R.id.back_quiz);
+        bottomSheetDialog.show();
+        save.setOnClickListener(view ->{
+            databaseReference.child("Users").child(current.getUid()).setValue(user.getQuiz());
         });
-        backButton.setOnClickListener(view -> {
-           finish();
-        });
-        resultBtn.setOnClickListener(view -> {
+        results.setOnClickListener(view -> {
             Intent intent = new Intent(QuizActivity.this,Results_Activity.class);
-            intent.putStringArrayListExtra("List",quizAnswers);
             startActivity(intent);
         });
-        bottomSheetDialog.setCancelable(false);
-        bottomSheetDialog.setContentView(bottomSheetView);
-        bottomSheetDialog.show();
+        back.setOnClickListener(view -> {
+            this.finish();
+        });
     }
 
     private void setDataToViews(int currentPos, int num_of_questions){
@@ -149,11 +166,9 @@ public class QuizActivity extends AppCompatActivity {
         quizModuleArrayList.add(new QuizModule("What kind of computer are you looking to build?", "Gaming","Design","Work", "Engineering","Engineering"));
         quizModuleArrayList.add(new QuizModule("Intel or Ryzen?", "Intel","Ryzen","What are you talking about?", "Arm","Arm"));
     }
-    private int getActivityName(ArrayList<QuizModule> quizModuleArrayList){
-        Intent intent = this.getIntent();
+    private int getActivityName(ArrayList<QuizModule> quizModuleArrayList, Intent intent, String name){
         quizModuleArrayList.clear();
         if(intent!=null){
-            String name = intent.getExtras().getString("ID");
             switch(name){
                 case "Education":
                     getQuizQuestion_Education(quizModuleArrayList);

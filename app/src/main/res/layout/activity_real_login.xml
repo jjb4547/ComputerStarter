@@ -11,11 +11,11 @@
     <TextView
         android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
-        android:text="Username"
+        android:text="Email"
         android:layout_height="wrap_content"/>
 
     <EditText
-        android:id="@+id/etUsername"
+        android:id="@+id/etEmail"
         android:layout_width="match_parent"
         android:layout_margin="10dp"
         android:layout_height="wrap_content"/>
