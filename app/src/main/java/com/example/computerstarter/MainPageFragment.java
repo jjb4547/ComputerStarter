@@ -12,9 +12,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -62,9 +64,6 @@ public class MainPageFragment extends Fragment {
                 intent_quiz.putExtra("ID","Building");
                 startActivity(intent_quiz);
                 break;
-            case R.id.add:
-                showAlertDialog();
-                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -73,32 +72,14 @@ public class MainPageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        if(addcardview)
-            view = inflater.inflate(R.layout.fragment_main_page, container, false);
-        else
-            view = inflater.inflate(R.layout.fragment_main_page_2,container,false);
-
+        view = inflater.inflate(R.layout.fragment_main_page, container, false);
+        CardView builds = view.findViewById(R.id.builds);
+        builds.setOnClickListener(view->{
+            startActivity(new Intent(getActivity(),Build_Activity.class));
+        });
         //my changes to get listView
         //might need its own method
         return view;
-    }
-    public void showAlertDialog(){
-        final EditText input = new EditText(getActivity());
-        AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
-        alert.setTitle("Enter name");
-        alert.setMessage("Please enter name of build:");
-        alert.setView(input);
-        alert.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                addcardview=true;
-                String name = input.getText().toString();
-                Intent intent = new Intent(getActivity(), Build_Activity.class);
-                intent.putExtra("names", name);
-                startActivity(intent);
-            }
-        });
-        alert.create().show();
     }
     @Override
     public void onPrepareOptionsMenu(@NonNull Menu menu) {

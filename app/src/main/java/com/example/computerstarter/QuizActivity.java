@@ -101,7 +101,7 @@ public class QuizActivity extends AppCompatActivity {
             quizAnswers.add(quizModuleArrayList.get(currentPos).getOption4());
             //userQuiz.put("Question 4",quizModuleArrayList.get(currentPos).getQuestion());
             //userQuiz.put("Answer 4",quizModuleArrayList.get(currentPos).getOption1());
-            databaseReference.setValue(userQuiz);
+            //databaseReference.setValue(userQuiz);
             questionAttempted++;
             currentPos++;
             setDataToViews(currentPos,num_of_questions);

@@ -30,14 +30,14 @@ public class Build_Activity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         TextView textView = findViewById(R.id.title);
         CardView cpu = findViewById(R.id.cpu);
-        CardView mot = findViewById(R.id.motherboard);
-        CardView mem = findViewById(R.id.memory);
-        CardView vga = findViewById(R.id.vga);
+        CardView mot = findViewById(R.id.mot);
+        CardView mem = findViewById(R.id.mem);
+        CardView vga = findViewById(R.id.gpu);
         CardView psu = findViewById(R.id.psu);
         CardView stor = findViewById(R.id.stor);
-        Intent intent = this.getIntent();
-        String name = intent.getExtras().getString("names");
-        getSupportActionBar().setTitle(name);
+        CardView mon = findViewById(R.id.mon);
+        CardView cool = findViewById(R.id.cool);
+        CardView pc_case = findViewById(R.id.id_case);
         cpu.setOnClickListener(view -> {
             Intent cpu_intent = new Intent(Build_Activity.this, PC_Build_Parts.class);
             cpu_intent.putExtra("name","CPU");

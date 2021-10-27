@@ -2,15 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/education"
+        android:id="@+id/navigation_education"
         android:title="Education"
         android:icon="@drawable/ic_education" />
     <item
-        android:id="@+id/main_page"
+        android:id="@+id/navigation_main"
         android:title="Main Page"
-        android:icon="@drawable/ic_computer"
+        android:icon="@drawable/ic_home"
        />
-    <item android:id="@+id/forum"
+    <item android:id="@+id/navigation_social"
         android:title="Forum"
         android:icon="@drawable/ic_social"
 

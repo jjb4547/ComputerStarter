@@ -3,26 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/navigation_main">
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.example.computerstarter.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
-
-        <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
-    </fragment>
+        android:id="@+id/navigation_main"
+        android:label="Main Page"
+        tools:layout="@layout/fragment_main_page"
+        android:name="com.example.computerstarter.MainPageFragment"/>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.example.computerstarter.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+        android:id="@+id/navigation_education"
+        android:label="Education"
+        tools:layout="@layout/education_layout"
+        android:name="com.example.computerstarter.EducationFragment"/>
+    <fragment
+        android:id="@+id/navigation_social"
+        android:label="Social Media"
+        tools:layout="@layout/fragment_forum"
+        android:name="com.example.computerstarter.SocialMediaFragment"/>
 
-        <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
-    </fragment>
 </navigation>
