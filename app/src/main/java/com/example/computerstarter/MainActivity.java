@@ -30,15 +30,22 @@ import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.internal.NavigationMenu;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Map;
 import java.util.Objects;
 import java.util.TimerTask;
 
@@ -50,20 +57,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ActionBarDrawerToggle toggle;
     private NavigationView navigationView;
     private FirebaseAuth mAuth;
+    private String[] list;
+    private String quiz;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mAuth = FirebaseAuth.getInstance();
-
+        FirebaseUser user = mAuth.getCurrentUser();
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        boolean previouslyStarted = pref.getBoolean(getString(R.string.pref_previously_started),false);
-        if(!previouslyStarted){
-            SharedPreferences.Editor editor = pref.edit();
-            editor.putBoolean(getString(R.string.pref_previously_started),true);
-            editor.commit();
-            showAlertDialog();
-        }
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         navController = Navigation.findNavController(this,R.id.frame_layout);
         NavigationUI.setupWithNavController(bottomNavigationView,navController);
@@ -74,22 +77,42 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         navigationView.setNavigationItemSelectedListener(this);
+        View headerView = navigationView.getHeaderView(0);
+        TextView name = headerView.findViewById(R.id.myname);
+        TextView email = headerView.findViewById(R.id.email);
+        if(user!=null) {
+            String current = user.getUid();
+            DocumentReference documentReference = db.collection("Users").document(current);
+            documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    if (documentSnapshot.exists()) {
+                        Map<String, Object> user_data = documentSnapshot.getData();
+                        name.setText(user_data.get("Name").toString());
+                        email.setText(user_data.get("Email").toString());
+                    } else {
+                        Toast.makeText(MainActivity.this, "Document Does not Exist", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }else{
+            Toast.makeText(MainActivity.this,"You are not Logged In",Toast.LENGTH_SHORT).show();
+        }
+        //name.setText("Jesus");
     }
     public void showAlertDialog(){
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
-        alert.setTitle("Tutorial");
-        alert.setMessage("Is this your first time using the app?");
-        alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+        alert.setTitle("Build Name");
+        alert.setMessage("Enter Your Build Name");
+        final EditText input = new EditText(MainActivity.this);
+        alert.setView(input);
+        alert.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+                String value = input.getText().toString();
                 Intent intent = new Intent(MainActivity.this,HelpActivity.class);
+                intent.putExtra("Build",value);
                 startActivity(intent);
-            }
-        });
-        alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                Toast.makeText(MainActivity.this,"Okay!",Toast.LENGTH_SHORT).show();
             }
         });
         alert.create().show();
@@ -115,6 +138,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 else
                     Toast.makeText(this,"LOG IN!!!!",Toast.LENGTH_SHORT).show();
                 break;
+            case R.id.quiz:
+                if(mAuth.getCurrentUser()!=null)
+                    showAlertDialogQuiz();
+                else
+                    Toast.makeText(this,"LOG IN!!!",Toast.LENGTH_SHORT).show();
         }
         return true;
     }
@@ -124,15 +152,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if(toggle.onOptionsItemSelected(item)){
             return true;
         }
-        int id = item.getItemId();
-        switch (id){
-            case R.id.quiz:
-                Toast.makeText(MainActivity.this, "Quiz", Toast.LENGTH_SHORT).show();
-                Intent intent_quiz = new Intent(MainActivity.this, QuizActivity.class);
-                intent_quiz.putExtra("ID","Education");
-                startActivity(intent_quiz);
-                break;
+        if(item.getItemId()==R.id.real_login){
+            if(mAuth.getCurrentUser()==null)
+                startActivity(new Intent(MainActivity.this,real_login.class));
         }
-        return super.onOptionsItemSelected(item);
+        return true;
+    }
+    public void showAlertDialogQuiz(){
+        //CharSequence[] charSequences = new CharSequence[]{"Building","Social","Education"};
+        list = getResources().getStringArray(R.array.quiz);
+        AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+        alert.setTitle("Quiz");
+        //alert.setMessage("Please Choose the Quiz");
+        alert.setSingleChoiceItems(list, 0, (dialogInterface, i) -> {
+            quiz = list[i];
+            Intent intent = new Intent(MainActivity.this, QuizActivity.class);
+            intent.putExtra("ID",quiz);
+            startActivity(intent);
+        });
+        alert.create().show();
     }
 }

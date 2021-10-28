@@ -1,5 +1,6 @@
 package com.example.computerstarter;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -50,6 +51,7 @@ public class AccountActivity extends AppCompatActivity {
             if(user!=null) {
                 mAuth.signOut();
                 Toast.makeText(this, user.getEmail() + " Sign Out!", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(AccountActivity.this,real_login.class));
             }else{
                 Toast.makeText(this,"YOU ARE NOT LOGGED IN!!!",Toast.LENGTH_SHORT).show();
             }

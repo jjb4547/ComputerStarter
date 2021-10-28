@@ -12,6 +12,7 @@
         android:layout_height="58dp"
         android:src="@mipmap/ic_logo"></ImageView>
     <TextView
+        android:id="@+id/myname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="name"
@@ -21,7 +22,8 @@
     </TextView>
 
     <TextView
-        android:layout_width="55dp"
+        android:id="@+id/email"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="8dp"
         android:text="email"

@@ -152,11 +152,6 @@ public class QuizActivity extends AppCompatActivity {
         quizModuleArrayList.add(new QuizModule("What kind of computer are you looking to build?", "Gaming","Design","Work", "Engineering","Engineering"));
         quizModuleArrayList.add(new QuizModule("Intel or Ryzen?", "Intel","Ryzen","What are you talking about?", "Arm","Arm"));
     }
-    private void getQuizQuestion_Login(ArrayList<QuizModule> quizModuleArrayList) {
-        quizModuleArrayList.add(new QuizModule("What is your estimated budget?", "0-500","500-1000","1000-2000", "2000+","2000+"));
-        quizModuleArrayList.add(new QuizModule("What kind of computer are you looking to build?", "Gaming","Design","Work", "Engineering","Engineering"));
-        quizModuleArrayList.add(new QuizModule("Intel or Ryzen?", "Intel","Ryzen","What are you talking about?", "Arm","Arm"));
-    }
     private int getActivityName(ArrayList<QuizModule> quizModuleArrayList, Intent intent, String name){
         quizModuleArrayList.clear();
         if(intent!=null){
@@ -169,9 +164,6 @@ public class QuizActivity extends AppCompatActivity {
                     break;
                 case "Social":
                     getQuizQuestion_Social(quizModuleArrayList);
-                    break;
-                case "Login":
-                    getQuizQuestion_Login(quizModuleArrayList);
                     break;
                 default:
                     break;

@@ -28,6 +28,9 @@ public class Build_Activity extends AppCompatActivity {
         main.addcardview = true;
         setContentView(R.layout.build_layout);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Intent intent = getIntent();
+        String name = intent.getExtras().getString("Build");
+        getSupportActionBar().setTitle(name);
         TextView textView = findViewById(R.id.title);
         CardView cpu = findViewById(R.id.cpu);
         CardView mot = findViewById(R.id.mot);

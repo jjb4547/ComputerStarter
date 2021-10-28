@@ -16,7 +16,7 @@
     </item>
     <item android:id="@+id/quiz"
         android:title="Quiz"
-        android:icon="@mipmap/ic_logo">
+        android:icon="@drawable/ic_quiz">
     </item>
 </group>
     <item android:title="Settings">

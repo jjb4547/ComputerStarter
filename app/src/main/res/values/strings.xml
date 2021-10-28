@@ -197,4 +197,9 @@
 
     <string name="navigation_draw_open">open navigation drawer</string>
     <string name="navigation_draw_close">close navigation drawer</string>
+    <string-array name="quiz">
+        <item>Building</item>
+        <item>Social</item>
+        <item>Education</item>
+    </string-array>
 </resources>

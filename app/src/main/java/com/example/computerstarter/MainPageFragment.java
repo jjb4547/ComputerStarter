@@ -64,7 +64,19 @@ public class MainPageFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_main_page, container, false);
         CardView builds = view.findViewById(R.id.builds);
         builds.setOnClickListener(view->{
-            startActivity(new Intent(getActivity(),Build_Activity.class));
+            showAlertDialog();
+        });
+        CardView feat = view.findViewById(R.id.helpful_link);
+        feat.setOnClickListener(view ->{
+            Toast.makeText(getActivity(),"Link to CPUs",Toast.LENGTH_SHORT).show();
+        });
+        CardView feat_1 = view.findViewById(R.id.helpful_link_1);
+        feat.setOnClickListener(view ->{
+            Toast.makeText(getActivity(),"Link to CPUs",Toast.LENGTH_SHORT).show();
+        });
+        CardView feat_2 = view.findViewById(R.id.helpful_link_2);
+        feat.setOnClickListener(view ->{
+
         });
         //my changes to get listView
         //might need its own method
@@ -86,12 +98,16 @@ public class MainPageFragment extends Fragment {
     }
     public void showAlertDialog(){
         AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
-        alert.setTitle("Tutorial");
-        alert.setMessage("Is this your first time using the app?");
+        alert.setTitle("Build Name");
+        alert.setMessage("Enter Your Build Name");
+        final EditText input = new EditText(getActivity());
+        alert.setView(input);
         alert.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Intent intent = new Intent(getActivity(),HelpActivity.class);
+                String value = input.getText().toString();
+                Intent intent = new Intent(getActivity(),Build_Activity.class);
+                intent.putExtra("Build",value);
                 startActivity(intent);
             }
         });
