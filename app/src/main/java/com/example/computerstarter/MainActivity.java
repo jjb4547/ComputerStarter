@@ -34,6 +34,8 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Objects;
 import java.util.TimerTask;
@@ -45,10 +47,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private NavController navController;
     private ActionBarDrawerToggle toggle;
     private NavigationView navigationView;
+    private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mAuth = FirebaseAuth.getInstance();
         //drawerLayout = findViewById(R.id.nav_view);
         //ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.navigation_draw_open,R.string.navigation_draw_close);
         //drawerLayout.addDrawerListener(toggle);
@@ -97,6 +101,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        mAuth = FirebaseAuth.getInstance();
         switch (item.getItemId()){
             case R.id.social:
                 Toast.makeText(this,"Social",Toast.LENGTH_SHORT).show();
@@ -107,6 +112,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.building:
                 Toast.makeText(this,"My Builds",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.logout:
+                if(mAuth.getCurrentUser()!=null) {
+                    item.setVisible(true);
+                    mAuth.signOut();
+                    Toast.makeText(MainActivity.this,"Logged Out",Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(MainActivity.this,real_login.class));
+                }else{
+                    item.setVisible(false);
+                }
+                break;
+            case R.id.login:
+                if(mAuth.getCurrentUser()!=null)
+                    item.setVisible(false);
+                else{
+                    item.setVisible(true);
+                    startActivity(new Intent(MainActivity.this,real_login.class));
+                    Toast.makeText(MainActivity.this,"Logging In",Toast.LENGTH_SHORT).show();
+                }
                 break;
         }
         return true;

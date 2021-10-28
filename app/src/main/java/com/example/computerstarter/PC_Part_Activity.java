@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.view.Menu;
 import android.view.MenuItem;
@@ -32,27 +33,106 @@ public class PC_Part_Activity extends AppCompatActivity {
         TextView text = findViewById(R.id.title);
         getSupportActionBar().setTitle("PC Parts");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        listView = findViewById(R.id.lvEdu);
-        listView.setClickable(true);
         diffTitles = getResources().getStringArray(R.array.comp_names);
-        ArrayAdapter<String> listViewAdapter = new ArrayAdapter<String>(
-                PC_Part_Activity.this,
-                android.R.layout.simple_list_item_1,
-                diffTitles
-        );
-        listView.setAdapter(listViewAdapter);
-
+        CardView cpu = findViewById(R.id.cpu);
+        CardView mot = findViewById(R.id.mot);
+        CardView mem = findViewById(R.id.mem);
+        CardView vga = findViewById(R.id.gpu);
+        CardView psu = findViewById(R.id.psu);
+        CardView stor = findViewById(R.id.stor);
+        CardView mon = findViewById(R.id.mon);
+        CardView cool = findViewById(R.id.cool);
+        CardView pc_case = findViewById(R.id.id_case);
+        cpu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(PC_Part_Activity.this, diffTitles[0], Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(PC_Part_Activity.this, Education_Tabbed.class);
+                i.putExtra("component", diffTitles[0]);
+                startActivity(i);
+            }
+        });
+        mot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(PC_Part_Activity.this, diffTitles[1], Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(PC_Part_Activity.this, Education_Tabbed.class);
+                i.putExtra("component", diffTitles[1]);
+                startActivity(i);
+            }
+        });
+        mem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(PC_Part_Activity.this, diffTitles[2], Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(PC_Part_Activity.this, Education_Tabbed.class);
+                i.putExtra("component", diffTitles[2]);
+                startActivity(i);
+            }
+        });
+        vga.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(PC_Part_Activity.this, diffTitles[3], Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(PC_Part_Activity.this, Education_Tabbed.class);
+                i.putExtra("component", diffTitles[3]);
+                startActivity(i);
+            }
+        });
+        psu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(PC_Part_Activity.this, diffTitles[4], Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(PC_Part_Activity.this, Education_Tabbed.class);
+                i.putExtra("component", diffTitles[4]);
+                startActivity(i);
+            }
+        });
+        stor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(PC_Part_Activity.this, diffTitles[5], Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(PC_Part_Activity.this, Education_Tabbed.class);
+                i.putExtra("component", diffTitles[5]);
+                startActivity(i);
+            }
+        });
+        mon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(PC_Part_Activity.this, diffTitles[6], Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(PC_Part_Activity.this, Education_Tabbed.class);
+                i.putExtra("component", diffTitles[6]);
+                startActivity(i);
+            }
+        });
+        cool.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(PC_Part_Activity.this, diffTitles[7], Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(PC_Part_Activity.this, Education_Tabbed.class);
+                i.putExtra("component", diffTitles[7]);
+                startActivity(i);
+            }
+        });
+        pc_case.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(PC_Part_Activity.this, diffTitles[8], Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(PC_Part_Activity.this, Education_Tabbed.class);
+                i.putExtra("component", diffTitles[8]);
+                startActivity(i);
+            }
+        });
+/*
         //handling click events
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        .setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 //they all open the same thing for now
                 if (position == 0) {
                     //testing
-                    Toast.makeText(PC_Part_Activity.this, diffTitles[0], Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(PC_Part_Activity.this, Education_Tabbed.class);
-                    i.putExtra("component", diffTitles[0]);
-                    startActivity(i);
+
                 } else if (position == 1) {
                     Toast.makeText(PC_Part_Activity.this, diffTitles[1], Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(PC_Part_Activity.this, Education_Tabbed.class);
@@ -116,6 +196,7 @@ public class PC_Part_Activity extends AppCompatActivity {
                 }
             }
         });
+        */
     }
 
     @Override
