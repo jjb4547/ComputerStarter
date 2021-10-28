@@ -54,22 +54,10 @@ public class EducationFragment extends Fragment{
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         switch (id){
-            case R.id.settings:
-                Toast.makeText(getActivity(), "Settings", Toast.LENGTH_SHORT).show();
-                Intent intent_settings = new Intent(getActivity(), SettingsActivity.class);
-                startActivity(intent_settings);
-                break;
             case R.id.real_login:
                 Toast.makeText(getActivity(), "login", Toast.LENGTH_SHORT).show();
                 Intent intent_account = new Intent(getActivity(), real_login.class);
                 startActivity(intent_account);
-                break;
-
-            case R.id.quiz:
-                Toast.makeText(getActivity(), "Quiz", Toast.LENGTH_SHORT).show();
-                Intent intent_quiz = new Intent(getActivity(), QuizActivity.class);
-                intent_quiz.putExtra("ID","Education");
-                startActivity(intent_quiz);
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -97,9 +85,6 @@ public class EducationFragment extends Fragment{
     public void onPrepareOptionsMenu(@NonNull Menu menu) {
         mAuth = FirebaseAuth.getInstance();
         MenuItem item = menu.findItem(R.id.add);
-        if(item!=null)
-            item.setVisible(false);
-        item = menu.findItem(R.id.action_sort);
         if(item!=null)
             item.setVisible(false);
         if(mAuth.getCurrentUser()!=null){

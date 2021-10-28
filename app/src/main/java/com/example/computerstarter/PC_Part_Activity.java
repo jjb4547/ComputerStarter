@@ -203,13 +203,6 @@ public class PC_Part_Activity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         switch (id) {
-            case R.id.action_sort:
-                if (unSorted)
-                    Toast.makeText(PC_Part_Activity.this, "A-Z", Toast.LENGTH_SHORT).show();
-                else
-                    Toast.makeText(PC_Part_Activity.this, "Z-A", Toast.LENGTH_SHORT).show();
-                sortData();
-                break;
             case android.R.id.home:
                     this.finish();
                     break;
@@ -241,7 +234,6 @@ public class PC_Part_Activity extends AppCompatActivity {
         MenuItem item = menu.findItem(R.id.add);
         if(item!=null)
             item.setVisible(false);
-        item = menu.findItem(R.id.settings);
         if(item!=null)
             item.setVisible(false);
         item = menu.findItem(R.id.quiz);

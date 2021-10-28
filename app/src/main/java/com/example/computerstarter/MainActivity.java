@@ -27,12 +27,14 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.internal.NavigationMenu;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -53,10 +55,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mAuth = FirebaseAuth.getInstance();
-        //drawerLayout = findViewById(R.id.nav_view);
-        //ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.navigation_draw_open,R.string.navigation_draw_close);
-        //drawerLayout.addDrawerListener(toggle);
-        //toggle.syncState();
 
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         boolean previouslyStarted = pref.getBoolean(getString(R.string.pref_previously_started),false);
@@ -65,8 +63,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             editor.putBoolean(getString(R.string.pref_previously_started),true);
             editor.commit();
             showAlertDialog();
-            //Intent intent = new Intent(MainActivity.this, Login.class);
-            //startActivity(intent);
         }
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         navController = Navigation.findNavController(this,R.id.frame_layout);
@@ -113,24 +109,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.building:
                 Toast.makeText(this,"My Builds",Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.logout:
-                if(mAuth.getCurrentUser()!=null) {
-                    item.setVisible(true);
-                    mAuth.signOut();
-                    Toast.makeText(MainActivity.this,"Logged Out",Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(MainActivity.this,real_login.class));
-                }else{
-                    item.setVisible(false);
-                }
-                break;
-            case R.id.login:
+            case R.id.account:
                 if(mAuth.getCurrentUser()!=null)
-                    item.setVisible(false);
-                else{
-                    item.setVisible(true);
-                    startActivity(new Intent(MainActivity.this,real_login.class));
-                    Toast.makeText(MainActivity.this,"Logging In",Toast.LENGTH_SHORT).show();
-                }
+                    startActivity(new Intent(MainActivity.this,AccountActivity.class));
+                else
+                    Toast.makeText(this,"LOG IN!!!!",Toast.LENGTH_SHORT).show();
                 break;
         }
         return true;
@@ -141,6 +124,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if(toggle.onOptionsItemSelected(item)){
             return true;
         }
-        return true;
+        int id = item.getItemId();
+        switch (id){
+            case R.id.quiz:
+                Toast.makeText(MainActivity.this, "Quiz", Toast.LENGTH_SHORT).show();
+                Intent intent_quiz = new Intent(MainActivity.this, QuizActivity.class);
+                intent_quiz.putExtra("ID","Education");
+                startActivity(intent_quiz);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

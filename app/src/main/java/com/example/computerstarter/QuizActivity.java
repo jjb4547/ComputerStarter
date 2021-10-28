@@ -20,9 +20,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class QuizActivity extends AppCompatActivity {
     private TextView questionTV, questionNumberTV;
@@ -32,10 +34,10 @@ public class QuizActivity extends AppCompatActivity {
     private Button option4Btn;
     ArrayList<QuizModule> quizModuleArrayList;
     private ArrayList<String> quizAnswers;
+    private FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+    private
     int currentScore =0, questionAttempted = 1, currentPos = 0, num_of_questions =0;
     RelativeLayout layout;
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference databaseReference = database.getReference().child("Users");
     private HashMap<String,String> userQuiz = new HashMap<>();
 
 
@@ -65,13 +67,10 @@ public class QuizActivity extends AppCompatActivity {
         quizModuleArrayList = new ArrayList<>();
         quizAnswers = new ArrayList<>();
         num_of_questions = getActivityName(quizModuleArrayList,intent, name);
-        quizAnswers.add(name);
         setDataToViews(currentPos,num_of_questions);
         option1Btn.setOnClickListener(view -> {
             quizAnswers.add(quizModuleArrayList.get(currentPos).getQuestion());
             quizAnswers.add(quizModuleArrayList.get(currentPos).getOption1());
-            //userQuiz.put("Question 1",quizModuleArrayList.get(currentPos).getQuestion());
-            //userQuiz.put("Answer 1",quizModuleArrayList.get(currentPos).getOption1());
             questionAttempted++;
             currentPos++;
             setDataToViews(currentPos,num_of_questions);
@@ -79,9 +78,6 @@ public class QuizActivity extends AppCompatActivity {
         option2Btn.setOnClickListener(view -> {
             quizAnswers.add(quizModuleArrayList.get(currentPos).getQuestion());
             quizAnswers.add(quizModuleArrayList.get(currentPos).getOption2());
-            //userQuiz.put("Question 2",quizModuleArrayList.get(currentPos).getQuestion());
-            //userQuiz.put("Answer 2",quizModuleArrayList.get(currentPos).getOption1());
-            databaseReference.setValue(userQuiz);
             questionAttempted++;
             currentPos++;
             setDataToViews(currentPos,num_of_questions);
@@ -89,9 +85,6 @@ public class QuizActivity extends AppCompatActivity {
         option3Btn.setOnClickListener(view -> {
             quizAnswers.add(quizModuleArrayList.get(currentPos).getQuestion());
             quizAnswers.add(quizModuleArrayList.get(currentPos).getOption3());
-            //userQuiz.put("Question 3",quizModuleArrayList.get(currentPos).getQuestion());
-            //userQuiz.put("Answer 3",quizModuleArrayList.get(currentPos).getOption1());
-            //databaseReference.setValue(userQuiz);
             questionAttempted++;
             currentPos++;
             setDataToViews(currentPos,num_of_questions);
@@ -99,9 +92,6 @@ public class QuizActivity extends AppCompatActivity {
         option4Btn.setOnClickListener(view -> {
             quizAnswers.add(quizModuleArrayList.get(currentPos).getQuestion());
             quizAnswers.add(quizModuleArrayList.get(currentPos).getOption4());
-            //userQuiz.put("Question 4",quizModuleArrayList.get(currentPos).getQuestion());
-            //userQuiz.put("Answer 4",quizModuleArrayList.get(currentPos).getOption1());
-            //databaseReference.setValue(userQuiz);
             questionAttempted++;
             currentPos++;
             setDataToViews(currentPos,num_of_questions);
@@ -110,17 +100,18 @@ public class QuizActivity extends AppCompatActivity {
     private void showBottomSheet(){
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
         FirebaseUser current = FirebaseAuth.getInstance().getCurrentUser();
-        User user = new User();
-        user.setQuiz(quizAnswers);
+        String current_user = current.getUid();
         bottomSheetDialog.setContentView(R.layout.modal_bottom_sheet);
         Intent this_intent = this.getIntent();
         String name = this_intent.getExtras().getString("ID");
         LinearLayout save = bottomSheetDialog.findViewById(R.id.save);
         LinearLayout results = bottomSheetDialog.findViewById(R.id.results_quiz);
         LinearLayout back = bottomSheetDialog.findViewById(R.id.back_quiz);
+        Map<String,Object> user = new HashMap<>();
+        user.put(name,quizAnswers);
         bottomSheetDialog.show();
         save.setOnClickListener(view ->{
-            databaseReference.child("Users").child(current.getUid()).setValue(user.getQuiz());
+            firestore.collection("Users").document(current_user).update(user);
         });
         results.setOnClickListener(view -> {
             Intent intent = new Intent(QuizActivity.this,Results_Activity.class);

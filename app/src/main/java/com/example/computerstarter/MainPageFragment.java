@@ -48,21 +48,10 @@ public class MainPageFragment extends Fragment {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         switch (id){
-            case R.id.settings:
-                Toast.makeText(getActivity(), "Settings", Toast.LENGTH_SHORT).show();
-                Intent intent_settings = new Intent(getActivity(), SettingsActivity.class);
-                startActivity(intent_settings);
-                break;
             case R.id.real_login:
                 Toast.makeText(getActivity(), "real_login", Toast.LENGTH_SHORT).show();
                 Intent intent_account = new Intent(getActivity(), real_login.class);
                 startActivity(intent_account);
-                break;
-            case R.id.quiz:
-                Toast.makeText(getActivity(), "Quiz", Toast.LENGTH_SHORT).show();
-                Intent intent_quiz = new Intent(getActivity(), QuizActivity.class);
-                intent_quiz.putExtra("ID","Building");
-                startActivity(intent_quiz);
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -84,9 +73,7 @@ public class MainPageFragment extends Fragment {
     @Override
     public void onPrepareOptionsMenu(@NonNull Menu menu) {
         mAuth = FirebaseAuth.getInstance();
-        MenuItem item = menu.findItem(R.id.action_sort);
-        if(item!=null)
-            item.setVisible(false);
+        MenuItem item;
         if(mAuth.getCurrentUser()!=null){
             item = menu.findItem(R.id.real_login);
             if(item!=null)
@@ -96,5 +83,18 @@ public class MainPageFragment extends Fragment {
             if(item!=null)
                 item.setVisible(true);
         }
+    }
+    public void showAlertDialog(){
+        AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+        alert.setTitle("Tutorial");
+        alert.setMessage("Is this your first time using the app?");
+        alert.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Intent intent = new Intent(getActivity(),HelpActivity.class);
+                startActivity(intent);
+            }
+        });
+        alert.create().show();
     }
 }
