@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/navigation_basic"
+        android:title="Basic"
+        android:icon="@drawable/ic_basic"/>
+    <item
+        android:id="@+id/navigation_detail"
+        android:title="Detailed"
+        android:icon="@drawable/ic_detail"/>
+</menu>

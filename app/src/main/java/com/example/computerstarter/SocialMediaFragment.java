@@ -41,24 +41,6 @@ public class SocialMediaFragment extends Fragment {
     }
 
     @Override
-    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        inflater.inflate(R.menu.app_menu, menu);
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-        switch (id){
-            case R.id.real_login:
-                Toast.makeText(getActivity(), "login", Toast.LENGTH_SHORT).show();
-                Intent intent_account = new Intent(getActivity(), real_login.class);
-                startActivity(intent_account);
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -73,21 +55,5 @@ public class SocialMediaFragment extends Fragment {
         });
 
         return view;
-    }
-    @Override
-    public void onPrepareOptionsMenu(@NonNull Menu menu) {
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        MenuItem item = menu.findItem(R.id.add);
-        if(item!=null)
-            item.setVisible(false);
-        if(mAuth.getCurrentUser()!=null){
-            item = menu.findItem(R.id.real_login);
-            if(item!=null)
-                item.setVisible(false);
-        }else{
-            item = menu.findItem(R.id.real_login);
-            if(item!=null)
-                item.setVisible(true);
-        }
     }
 }

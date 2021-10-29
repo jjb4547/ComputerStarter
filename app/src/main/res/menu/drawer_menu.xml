@@ -26,6 +26,9 @@
                 android:id="@+id/account"
                 android:icon="@drawable/ic_people"
                 />
+            <item android:title=""
+                android:id="@+id/log"
+                android:icon="@drawable/ic_logout"/>
         </menu>
     </item>
 </menu>

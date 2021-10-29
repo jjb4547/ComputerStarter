@@ -39,25 +39,6 @@ public class MainPageFragment extends Fragment {
     }
 
     @Override
-    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        inflater.inflate(R.menu.app_menu, menu);
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-    //Comment new
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-        switch (id){
-            case R.id.real_login:
-                Toast.makeText(getActivity(), "real_login", Toast.LENGTH_SHORT).show();
-                Intent intent_account = new Intent(getActivity(), real_login.class);
-                startActivity(intent_account);
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -81,20 +62,6 @@ public class MainPageFragment extends Fragment {
         //my changes to get listView
         //might need its own method
         return view;
-    }
-    @Override
-    public void onPrepareOptionsMenu(@NonNull Menu menu) {
-        mAuth = FirebaseAuth.getInstance();
-        MenuItem item;
-        if(mAuth.getCurrentUser()!=null){
-            item = menu.findItem(R.id.real_login);
-            if(item!=null)
-                item.setVisible(false);
-        }else{
-            item = menu.findItem(R.id.real_login);
-            if(item!=null)
-                item.setVisible(true);
-        }
     }
     public void showAlertDialog(){
         AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());

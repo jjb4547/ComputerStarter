@@ -78,6 +78,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         navigationView.setNavigationItemSelectedListener(this);
         View headerView = navigationView.getHeaderView(0);
+        Menu menu = navigationView.getMenu();
+        MenuItem item_log = menu.findItem(R.id.log);
+        MenuItem item_quiz = menu.findItem(R.id.quiz);
+        MenuItem item_acc = menu.findItem(R.id.account);
+        if(user!=null) {
+            item_log.setTitle("Log Out");
+            item_acc.setVisible(true);
+            item_quiz.setVisible(true);
+        }else {
+            item_log.setTitle("Log In");
+            item_acc.setVisible(false);
+            item_quiz.setVisible(false);
+        }
         TextView name = headerView.findViewById(R.id.myname);
         TextView email = headerView.findViewById(R.id.email);
         if(user!=null) {
@@ -96,31 +109,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
             });
         }else{
-            Toast.makeText(MainActivity.this,"You are not Logged In",Toast.LENGTH_SHORT).show();
+            name.setText("");
+            email.setText("");
+            //Toast.makeText(MainActivity.this,"You are not Logged In",Toast.LENGTH_SHORT).show();
         }
         //name.setText("Jesus");
-    }
-    public void showAlertDialog(){
-        AlertDialog.Builder alert = new AlertDialog.Builder(this);
-        alert.setTitle("Build Name");
-        alert.setMessage("Enter Your Build Name");
-        final EditText input = new EditText(MainActivity.this);
-        alert.setView(input);
-        alert.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                String value = input.getText().toString();
-                Intent intent = new Intent(MainActivity.this,HelpActivity.class);
-                intent.putExtra("Build",value);
-                startActivity(intent);
-            }
-        });
-        alert.create().show();
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         mAuth = FirebaseAuth.getInstance();
+        Menu menu = navigationView.getMenu();
+        MenuItem item_quiz = menu.findItem(R.id.quiz);
+        MenuItem item_acc = menu.findItem(R.id.account);
+        real_login login = new real_login();
         switch (item.getItemId()){
             case R.id.social:
                 Toast.makeText(this,"Social",Toast.LENGTH_SHORT).show();
@@ -139,23 +141,30 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     Toast.makeText(this,"LOG IN!!!!",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.quiz:
-                if(mAuth.getCurrentUser()!=null)
                     showAlertDialogQuiz();
-                else
-                    Toast.makeText(this,"LOG IN!!!",Toast.LENGTH_SHORT).show();
+            case R.id.log:
+                if(mAuth.getCurrentUser()!=null){
+                    mAuth.signOut();
+                    Toast.makeText(MainActivity.this,"Logged Out",Toast.LENGTH_SHORT).show();
+                    item.setTitle("Log In");
+                    login.logged = false;
+                    item_acc.setVisible(false);
+                    item_quiz.setVisible(false);
+                }else{
+                    startActivity(new Intent(MainActivity.this,real_login.class));
+                    if(login.logged)
+                        item.setTitle("Log Out");
+                    else
+                        item.setTitle("Log In");
+                }
         }
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(toggle.onOptionsItemSelected(item)){
+        if(toggle.onOptionsItemSelected(item))
             return true;
-        }
-        if(item.getItemId()==R.id.real_login){
-            if(mAuth.getCurrentUser()==null)
-                startActivity(new Intent(MainActivity.this,real_login.class));
-        }
         return true;
     }
     public void showAlertDialogQuiz(){

@@ -222,26 +222,4 @@ public class PC_Part_Activity extends AppCompatActivity {
         unSorted=!unSorted;
         listView.setAdapter(new ArrayAdapter<String>(PC_Part_Activity.this, android.R.layout.simple_list_item_1,diffTitles));
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.app_menu,menu);
-        return true;
-    }
-
-    @Override
-    public boolean onPrepareOptionsMenu(@NonNull Menu menu) {
-        MenuItem item = menu.findItem(R.id.add);
-        if(item!=null)
-            item.setVisible(false);
-        if(item!=null)
-            item.setVisible(false);
-        item = menu.findItem(R.id.quiz);
-        if(item!=null)
-            item.setVisible(false);
-        item = menu.findItem(R.id.real_login);
-        if(item!=null)
-            item.setVisible(false);
-        return true;
-    }
 }

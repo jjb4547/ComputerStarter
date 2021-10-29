@@ -16,8 +16,7 @@
         <activity
             android:name=".Education_Tabbed"
             android:exported="false"
-            android:label="@string/title_activity_education_tabbed"
-            android:theme="@style/Theme.ComputerStarter.NoActionBar" />
+            android:label="@string/title_activity_education_tabbed" />
         <activity
             android:name=".EducationActivities"
             android:exported="true" />

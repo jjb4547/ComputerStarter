@@ -7,11 +7,16 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.NavigationUI;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.computerstarter.databinding.ActivityEducationTabbedBinding;
 import com.example.computerstarter.ui.main.SectionsPagerAdapter;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 
 public class Education_Tabbed extends AppCompatActivity {
@@ -21,63 +26,54 @@ public class Education_Tabbed extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityEducationTabbedBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
-        ViewPager viewPager = binding.viewPager;
-        viewPager.setAdapter(sectionsPagerAdapter);
-        TabLayout tabs = binding.tabs;
-        tabs.setupWithViewPager(viewPager);
+        setContentView(R.layout.activity_education_tabbed);
         String[] diffTitles = getResources().getStringArray(R.array.comp_names);
-        TextView view = findViewById(R.id.title);
-        ImageButton button = findViewById(R.id.backbutton);
-        button.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                finish();
-            }
-        });
+        BottomNavigationView bottomNavigationView = findViewById(R.id.topNavigationView);
+        NavController navController = Navigation.findNavController(this,R.id.frame_layout_edu);
+        NavigationUI.setupWithNavController(bottomNavigationView,navController);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Bundle bundle = getIntent().getExtras();
         if(bundle!=null){
             String position = bundle.getString("component");
             switch (position){
                 case "CPU":
-                    view.setText(diffTitles[0]);
+                    getSupportActionBar().setTitle(diffTitles[0]);
                     break;
                 case "MotherBoard":
-                    view.setText(diffTitles[1]);
+                    getSupportActionBar().setTitle(diffTitles[1]);
                     break;
                 case "Memory":
-                    view.setText(diffTitles[2]);
+                    getSupportActionBar().setTitle(diffTitles[2]);
                     break;
                 case "Storage":
-                    view.setText(diffTitles[3]);
+                    getSupportActionBar().setTitle(diffTitles[3]);
                     break;
                 case "Video Card":
-                    view.setText(diffTitles[4]);
+                    getSupportActionBar().setTitle(diffTitles[4]);
                     break;
                 case "Power Supply":
-                    view.setText(diffTitles[5]);
+                    getSupportActionBar().setTitle(diffTitles[5]);
                     break;
                 case "Raspberry Pi and More":
-                    view.setText(diffTitles[6]);
+                    getSupportActionBar().setTitle(diffTitles[6]);
                     break;
                 case "Arduino and More":
-                    view.setText(diffTitles[7]);
+                    getSupportActionBar().setTitle(diffTitles[7]);
                     break;
                 case "CPU Cooler":
-                    view.setText(diffTitles[8]);
+                    getSupportActionBar().setTitle(diffTitles[8]);
                     break;
                 case "Case":
-                    view.setText(diffTitles[9]);
+                    getSupportActionBar().setTitle(diffTitles[9]);
                     break;
                 case "OS":
-                    view.setText(diffTitles[10]);
+                    getSupportActionBar().setTitle(diffTitles[10]);
                     break;
                 case "Monitor":
-                    view.setText(diffTitles[11]);
+                    getSupportActionBar().setTitle(diffTitles[11]);
                     break;
                 case "Peripherals":
-                    view.setText(diffTitles[12]);
+                    getSupportActionBar().setTitle(diffTitles[12]);
                     break;
             }
         }

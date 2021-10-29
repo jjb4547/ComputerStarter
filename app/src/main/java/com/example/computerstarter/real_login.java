@@ -26,6 +26,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class real_login extends AppCompatActivity {
     private FirebaseAuth mAuth;
     EditText email, password;
+    boolean logged;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,7 @@ public class real_login extends AppCompatActivity {
         Button register = findViewById(R.id.bNewAccount);
         login.setOnClickListener(view -> {
             loginButtonClicked(view);
+            logged = true;
         });
         register.setOnClickListener(view -> {
             Intent intent = new Intent(real_login.this,real_register.class);
