@@ -71,6 +71,10 @@ public class real_register extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Password too short, enter minimum 6 characters!", Toast.LENGTH_SHORT).show();
             return;
         }
+        if(userage<13){
+            Toast.makeText(getApplicationContext(), "Sorry too young for an account!", Toast.LENGTH_SHORT).show();
+            return;
+        }
         mAuth.createUserWithEmailAndPassword(emailInput,password)
                 .addOnCompleteListener((task) -> {
                     if(task.isSuccessful()){
@@ -81,11 +85,16 @@ public class real_register extends AppCompatActivity {
                         user.put("Name",user_name);
                         user.put("Age",userage);
                         user.put("Email",emailInput);
+                        user.put("Built",false);
+                        user.put("Build 1","build_1");
+                        user.put("Build 2","build_2");
+                        user.put("Build 3","build_3");
+                        user.put("Build 4","build_4");
                         DocumentReference documentReference = db.collection("Users").document(current);
                         documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {
-                                Toast.makeText(real_register.this,"Successfull Database",Toast.LENGTH_LONG).show();
+                                mAuth.signOut();
                             }
                         });
                         startActivity(new Intent(real_register.this,real_login.class));
@@ -97,7 +106,8 @@ public class real_register extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId()==android.R.id.home) {
             // app icon in action bar clicked; goto parent activity.
-            this.finish();
+            Intent intent = new Intent(real_register.this,real_login.class);
+            startActivity(intent);
             return true;
         }else
             return super.onOptionsItemSelected(item);

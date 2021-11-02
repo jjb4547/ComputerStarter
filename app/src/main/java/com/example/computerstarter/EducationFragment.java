@@ -53,12 +53,20 @@ public class EducationFragment extends Fragment{
         CardView pc = view.findViewById(R.id.pc_parts);
         CardView arduino = view.findViewById(R.id.arduinos);
         CardView rasp = view.findViewById(R.id.rasp_pi);
-        pc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),PC_Part_Activity.class);
-                startActivity(intent);
-            }
+        pc.setOnClickListener(view1 -> {
+            Intent intent = new Intent(getActivity(),PC_Part_Activity.class);
+            startActivity(intent);
+        });
+
+        rasp.setOnClickListener(view2 -> {
+            Intent intent = new Intent(getActivity(),Education_Tabbed.class);
+            intent.putExtra("component","Raspberry Pi");
+            startActivity(intent);
+        });
+        arduino.setOnClickListener(view2 -> {
+            Intent intent = new Intent(getActivity(),Education_Tabbed.class);
+            intent.putExtra("component","Arduino");
+            startActivity(intent);
         });
         return view;
     }

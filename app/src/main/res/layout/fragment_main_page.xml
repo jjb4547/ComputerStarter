@@ -162,6 +162,7 @@
             android:layout_margin="8dp"
             app:cardElevation="8dp"
             android:clickable="true"
+            android:focusable="true"
             android:id="@+id/helpful_link_2"
             app:cardCornerRadius="8dp">
             <RelativeLayout
@@ -175,13 +176,13 @@
                     android:layout_alignParentRight="true"
                     android:fontFamily="@font/autour_one"
                     android:padding="25dp"
-                    android:text="Having Trouble with Arduinos or Raspberry Pis"
+                    android:text="Having Trouble with Arduinos"
                     android:textColor="@color/white"
                     android:textSize="25sp" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Click Here"
+                    android:text="Click For Help"
                     android:background="#00000000"
                     android:padding="20dp"
                     android:layout_alignParentBottom="true"

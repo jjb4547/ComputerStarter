@@ -73,9 +73,9 @@ public class PC_Part_Activity extends AppCompatActivity {
         vga.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(PC_Part_Activity.this, diffTitles[3], Toast.LENGTH_SHORT).show();
+                Toast.makeText(PC_Part_Activity.this, diffTitles[7], Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(PC_Part_Activity.this, Education_Tabbed.class);
-                i.putExtra("component", diffTitles[3]);
+                i.putExtra("component", diffTitles[7]);
                 startActivity(i);
             }
         });
@@ -91,9 +91,9 @@ public class PC_Part_Activity extends AppCompatActivity {
         stor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(PC_Part_Activity.this, diffTitles[5], Toast.LENGTH_SHORT).show();
+                Toast.makeText(PC_Part_Activity.this, diffTitles[3], Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(PC_Part_Activity.this, Education_Tabbed.class);
-                i.putExtra("component", diffTitles[5]);
+                i.putExtra("component", diffTitles[3]);
                 startActivity(i);
             }
         });
@@ -109,9 +109,9 @@ public class PC_Part_Activity extends AppCompatActivity {
         cool.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(PC_Part_Activity.this, diffTitles[7], Toast.LENGTH_SHORT).show();
+                Toast.makeText(PC_Part_Activity.this, diffTitles[5], Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(PC_Part_Activity.this, Education_Tabbed.class);
-                i.putExtra("component", diffTitles[7]);
+                i.putExtra("component", diffTitles[5]);
                 startActivity(i);
             }
         });

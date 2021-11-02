@@ -15,7 +15,6 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.computerstarter.databinding.ActivityEducationTabbedBinding;
-import com.example.computerstarter.ui.main.SectionsPagerAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 
@@ -49,31 +48,31 @@ public class Education_Tabbed extends AppCompatActivity {
                     getSupportActionBar().setTitle(diffTitles[3]);
                     break;
                 case "Video Card":
-                    getSupportActionBar().setTitle(diffTitles[4]);
-                    break;
-                case "Power Supply":
-                    getSupportActionBar().setTitle(diffTitles[5]);
-                    break;
-                case "Raspberry Pi and More":
-                    getSupportActionBar().setTitle(diffTitles[6]);
-                    break;
-                case "Arduino and More":
                     getSupportActionBar().setTitle(diffTitles[7]);
                     break;
+                case "Power Supply":
+                    getSupportActionBar().setTitle(diffTitles[4]);
+                    break;
                 case "CPU Cooler":
-                    getSupportActionBar().setTitle(diffTitles[8]);
+                    getSupportActionBar().setTitle(diffTitles[5]);
                     break;
                 case "Case":
-                    getSupportActionBar().setTitle(diffTitles[9]);
+                    getSupportActionBar().setTitle(diffTitles[8]);
                     break;
                 case "OS":
-                    getSupportActionBar().setTitle(diffTitles[10]);
+                    getSupportActionBar().setTitle(diffTitles[11]);
                     break;
                 case "Monitor":
-                    getSupportActionBar().setTitle(diffTitles[11]);
+                    getSupportActionBar().setTitle(diffTitles[6]);
                     break;
                 case "Peripherals":
                     getSupportActionBar().setTitle(diffTitles[12]);
+                    break;
+                case "Raspberry Pi":
+                    getSupportActionBar().setTitle(diffTitles[9]);
+                    break;
+                case "Arduino":
+                    getSupportActionBar().setTitle(diffTitles[10]);
                     break;
             }
         }

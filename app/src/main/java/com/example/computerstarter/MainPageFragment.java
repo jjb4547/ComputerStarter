@@ -45,39 +45,24 @@ public class MainPageFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_main_page, container, false);
         CardView builds = view.findViewById(R.id.builds);
         builds.setOnClickListener(view->{
-            showAlertDialog();
+            startActivity(new Intent(getActivity(),MyBuildActivity.class));
         });
         CardView feat = view.findViewById(R.id.helpful_link);
         feat.setOnClickListener(view ->{
             Toast.makeText(getActivity(),"Link to CPUs",Toast.LENGTH_SHORT).show();
         });
         CardView feat_1 = view.findViewById(R.id.helpful_link_1);
-        feat.setOnClickListener(view ->{
-            Toast.makeText(getActivity(),"Link to CPUs",Toast.LENGTH_SHORT).show();
+        feat_1.setOnClickListener(view ->{
+            Toast.makeText(getActivity(),"Community Builds",Toast.LENGTH_SHORT).show();
         });
         CardView feat_2 = view.findViewById(R.id.helpful_link_2);
-        feat.setOnClickListener(view ->{
-
+        feat_2.setOnClickListener(view ->{
+            Intent intent = new Intent(getActivity(),Education_Tabbed.class);
+            intent.putExtra("component","Arduino");
+            startActivity(intent);
         });
         //my changes to get listView
         //might need its own method
         return view;
-    }
-    public void showAlertDialog(){
-        AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
-        alert.setTitle("Build Name");
-        alert.setMessage("Enter Your Build Name");
-        final EditText input = new EditText(getActivity());
-        alert.setView(input);
-        alert.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                String value = input.getText().toString();
-                Intent intent = new Intent(getActivity(),Build_Activity.class);
-                intent.putExtra("Build",value);
-                startActivity(intent);
-            }
-        });
-        alert.create().show();
     }
 }

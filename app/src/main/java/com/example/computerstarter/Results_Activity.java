@@ -15,7 +15,6 @@ import java.util.ArrayList;
 
 public class Results_Activity extends AppCompatActivity {
     private TextView questions;
-    private Button backbutton;
     private ArrayList<QuizModule> quizModuleArrayList;
     private ArrayList<String> quizanswers;
     private int currentPos;

@@ -138,7 +138,7 @@
                    android:fontFamily="@font/autour_one"
                    android:gravity="right"
                    android:padding="25dp"
-                   android:text="Raspeberry Pi"
+                   android:text="Raspberry Pi"
                    android:textColor="@color/white"
                    android:textSize="30sp" />
                <TextView

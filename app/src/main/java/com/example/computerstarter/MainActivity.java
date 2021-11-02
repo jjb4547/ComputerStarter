@@ -111,9 +111,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }else{
             name.setText("");
             email.setText("");
-            //Toast.makeText(MainActivity.this,"You are not Logged In",Toast.LENGTH_SHORT).show();
         }
-        //name.setText("Jesus");
     }
 
     @Override
@@ -133,6 +131,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.building:
                 Toast.makeText(this,"My Builds",Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(MainActivity.this,MyBuildActivity.class));
                 break;
             case R.id.account:
                 if(mAuth.getCurrentUser()!=null)
@@ -142,10 +141,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.quiz:
                     showAlertDialogQuiz();
+                    break;
             case R.id.log:
                 if(mAuth.getCurrentUser()!=null){
                     mAuth.signOut();
                     Toast.makeText(MainActivity.this,"Logged Out",Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(MainActivity.this,MainActivity.class));
                     item.setTitle("Log In");
                     login.logged = false;
                     item_acc.setVisible(false);
@@ -157,6 +158,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     else
                         item.setTitle("Log In");
                 }
+                break;
         }
         return true;
     }
@@ -173,7 +175,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
         alert.setTitle("Quiz");
         //alert.setMessage("Please Choose the Quiz");
-        alert.setSingleChoiceItems(list, 0, (dialogInterface, i) -> {
+        alert.setSingleChoiceItems(list, -1, (dialogInterface, i) -> {
             quiz = list[i];
             Intent intent = new Intent(MainActivity.this, QuizActivity.class);
             intent.putExtra("ID",quiz);

@@ -137,14 +137,14 @@
         <item>MotherBoard</item>
         <item>Memory</item>
         <item>Storage</item>
-        <item>Video Card</item>
         <item>Power Supply</item>
-        <item>Raspberry Pi and More</item>
-        <item>Arduino and More</item>
         <item>CPU Cooler</item>
-        <item>Case</item>
-        <item>OS</item>
         <item>Monitor</item>
+        <item>Video Card</item>
+        <item>Case</item>
+        <item>Raspberry Pi</item>
+        <item>Arduino</item>
+        <item>OS</item>
         <item>Peripherals</item>
     </string-array>
     <string name="hello_blank_fragment">Hello blank fragment</string>
