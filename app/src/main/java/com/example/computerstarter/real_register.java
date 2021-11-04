@@ -20,6 +20,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -80,11 +82,14 @@ public class real_register extends AppCompatActivity {
                     if(task.isSuccessful()){
                         Toast.makeText(real_register.this,"User Created", Toast.LENGTH_SHORT).show();
                         current = mAuth.getCurrentUser().getUid();
+                        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setDisplayName(user_name).build();
+                        firebaseUser.updateProfile(profileUpdates);
                         Map<String,Object> user = new HashMap<>();
                         user.put("Username",username);
-                        user.put("Name",user_name);
+                        //user.put("Name",user_name);
                         user.put("Age",userage);
-                        user.put("Email",emailInput);
+                        //user.put("Email",emailInput);
                         user.put("Built",false);
                         user.put("Build 1","build_1");
                         user.put("Build 2","build_2");
