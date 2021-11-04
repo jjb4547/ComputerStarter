@@ -87,9 +87,9 @@ public class real_register extends AppCompatActivity {
                         firebaseUser.updateProfile(profileUpdates);
                         Map<String,Object> user = new HashMap<>();
                         user.put("Username",username);
-                        //user.put("Name",user_name);
+                        user.put("Name",user_name);
                         user.put("Age",userage);
-                        //user.put("Email",emailInput);
+                        user.put("Email",emailInput);
                         user.put("Built",false);
                         user.put("Build 1","build_1");
                         user.put("Build 2","build_2");
