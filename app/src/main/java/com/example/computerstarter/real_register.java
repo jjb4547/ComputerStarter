@@ -94,6 +94,13 @@ public class real_register extends AppCompatActivity {
                         documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {
+                                mAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if(task.isSuccessful())
+                                            Log.d("My Tag","Email Sent");
+                                    }
+                                });
                                 mAuth.signOut();
                             }
                         });
