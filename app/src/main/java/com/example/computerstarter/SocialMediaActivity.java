@@ -27,6 +27,7 @@ import android.view.View;
 import android.widget.Button;
 
 import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlarmManager;
@@ -40,12 +41,14 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.File;
+import java.util.ArrayList;
 
 public class SocialMediaActivity extends AppCompatActivity{
 
@@ -57,6 +60,7 @@ public class SocialMediaActivity extends AppCompatActivity{
 
     String[] cameraPermission;
     String[] storagePermission;
+    ArrayList<PostInformation> PI;
     public String photoFileName = "photo.jpg";
     File photoFile;
 
@@ -68,15 +72,18 @@ public class SocialMediaActivity extends AppCompatActivity{
         if(getSupportActionBar()!=null)
             getSupportActionBar().setTitle("Forum Post");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        Button button = (Button) findViewById(R.id.ButtonCreate);
-//        button.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//
-//            }
-//        });
+
+        EditText editText = findViewById(R.id.TextInfForum);
+        String stringText = editText.getText().toString().trim();
+
+        Button button = (Button) findViewById(R.id.PostInfForum);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+            }
+        });
     }
 
-    //RecyclerView recyclerView = findViewById(R.id.RecycleForum);
 
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId()==android.R.id.home) {
@@ -85,6 +92,5 @@ public class SocialMediaActivity extends AppCompatActivity{
         }else
             return super.onOptionsItemSelected(item);
     }
-    
 
 }

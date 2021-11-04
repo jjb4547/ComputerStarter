@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -75,6 +76,9 @@ public class SocialMediaFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_forum, container, false);
         FloatingActionButton button = view.findViewById(R.id.buttonCreate);
         Intent intent = new Intent(getActivity(),SocialMediaActivity.class);
+
+        RecyclerView recyclerViewer = view.findViewById(R.id.RecycleForum);
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -84,4 +88,5 @@ public class SocialMediaFragment extends Fragment {
 
         return view;
     }
+
 }
