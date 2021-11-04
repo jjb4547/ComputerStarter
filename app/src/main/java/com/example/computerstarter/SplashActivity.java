@@ -19,6 +19,10 @@ import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -27,16 +31,16 @@ import java.util.TimerTask;
 import java.util.Scanner;
 
 
-public class SplashActivity extends AppCompatActivity {
+public class SplashActivity extends AppCompatActivity  {
     int counter =0;
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageRef = storage.getReference();
-    StorageReference islandRef = storageRef.child("test.txt");
+    StorageReference islandRef = storageRef.child("prices.txt");
     //File localFile = File.createTempFile("test", "txt");
 
 
 
-    StorageReference gsReference = storage.getReferenceFromUrl("gs://computerstarter-csun22.appspot.com/test.txt");
+    StorageReference gsReference = storage.getReferenceFromUrl("gs://computerstarter-csun22.appspot.com/prices.txt");
     //File localFile;
     final long ONE_MEGABYTE = 1024 * 1024;
     {
@@ -45,6 +49,14 @@ public class SplashActivity extends AppCompatActivity {
             public void onSuccess(byte[] bytes) {
                 // Data for "images/island.jpg" is returns, use this as needed
                 String s = new String(bytes, StandardCharsets.UTF_8);
+                JSONObject jsonObj;
+                try {
+                    jsonObj = new JSONObject(s);
+                    System.out.println("JSON ARRAY: " + jsonObj.getJSONArray("items").getJSONObject(0).getString("url"));
+                    PriceList.jsonObj = jsonObj;
+                } catch(JSONException e) {
+                    System.out.println(e);
+                }
                 System.out.println("FILE OUTPUT: " + s);
             }
         }).addOnFailureListener(new OnFailureListener() {
