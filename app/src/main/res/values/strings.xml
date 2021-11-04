@@ -34,6 +34,9 @@
     <string name="brief_description_per">
         Brief Description of a Power Supply
     </string>
+    <string name="brief_description_ard">
+        Brief Description of a Arduino
+    </string>
 
     <!--Ports Titles-->
     <string name="ports_gpu">
@@ -61,6 +64,14 @@
         The storage component is a piece of hardware that has the capability to hold information
         within a certain time frame or forever.In other words, it is a place to store your data
         either temporarily or permanently.
+    </string>
+    <string name="ard_desc">
+        Arduino is an open source platform which is designed to be easy to use. The Arduino boards
+        can read inputs and turn them into outputs making it a good microcontroller. The Arduino
+        requires a separate computer in order to use the Arduino software, but that software is
+        available on all three major operating systems. The Arduino language is designed to be
+        accessible and the board itself is cheap making it a beginner friendly way to experiment
+        with electronic projects.
     </string>
     <string name="cpu_desc">
         The CPU (central processing unit) is often called the brain of the system because it handles

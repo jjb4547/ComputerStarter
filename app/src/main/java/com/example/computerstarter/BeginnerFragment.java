@@ -107,13 +107,14 @@ public class BeginnerFragment extends Fragment {
                     actual_link.setMovementMethod(LinkMovementMethod.getInstance());
                     actual_link.setLinkTextColor(Color.BLUE);
                     break;
-                case "Raspberry Pi and More":
+                case "Raspberry Pi":
                     //Raspberry Pi
                     brief_desc.setText("Coming Soon!");
                     break;
-                case "Arduino and More":
+                case "Arduino":
                     //Arduino
-                    brief_desc.setText("Coming Soon!");
+                    brief_desc.setText(R.string.brief_description_ard);
+                    info.setText(R.string.ard_desc);
                     break;
                 case "CPU Cooler":
                     //CPU Cooler
