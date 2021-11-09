@@ -132,8 +132,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(new Intent(MainActivity.this,MainActivity.class));
                 break;
             case R.id.building:
-                //Toast.makeText(this,"My Builds",Toast.LENGTH_SHORT).show();
-                Toast.makeText(this,PriceList.getName(0) + " $" + PriceList.getPrice(0),Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"My Builds",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.account:
                 if(mAuth.getCurrentUser()!=null)

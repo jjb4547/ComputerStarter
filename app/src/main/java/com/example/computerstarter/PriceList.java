@@ -28,4 +28,15 @@ public class PriceList {
         return answer;
     }
 
+    public static String getPart(int id)
+    {
+        String answer = "null";
+        try{
+            answer = jsonObj.getJSONArray("items").getJSONObject(id).getString("part");
+        } catch(JSONException e){
+            System.out.println(e);
+        }
+        return answer;
+    }
+
 }
