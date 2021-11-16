@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -75,14 +76,21 @@ public class SocialMediaFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_forum, container, false);
         FloatingActionButton button = view.findViewById(R.id.buttonCreate);
-        Intent intent = new Intent(getActivity(),SocialMediaActivity.class);
+        //Intent intent = new Intent(getActivity(),SocialMediaActivity.class);
 
-        RecyclerView recyclerViewer = view.findViewById(R.id.RecycleForum);
+        //RecyclerView recyclerViewer = view.findViewById(R.id.RecycleForum);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(intent);
+                Fragment frag = new SocialMediaBlogs();
+
+
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.fragment_container, frag);
+                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                ft.addToBackStack(null);
+                ft.commit();
             }
         });
 
