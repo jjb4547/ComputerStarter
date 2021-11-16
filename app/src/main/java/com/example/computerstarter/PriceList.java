@@ -41,7 +41,13 @@ public class PriceList {
 
     public static int getLength()
     {
-        return jsonObj.length();
+        int i = 1;
+        try{
+            i = jsonObj.getJSONArray("items").length();
+        } catch(JSONException e){
+            System.out.println(e);
+        }
+        return i;
     }
 
 }

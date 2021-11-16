@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class PC_Build_Parts extends AppCompatActivity {
     ListView listView;
@@ -34,10 +35,9 @@ public class PC_Build_Parts extends AppCompatActivity {
 
         for(int i = 0; i < PriceList.getLength(); i++)
         {
-            arrayList.add(PriceList.getName(i));
+            if(PriceList.getPart(i).equals(name.toLowerCase()))
+                arrayList.add(PriceList.getName(i));
         }
-        arrayList.add("Test Test");
-        arrayList.add("Test 2");
 
         arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,arrayList);
 
