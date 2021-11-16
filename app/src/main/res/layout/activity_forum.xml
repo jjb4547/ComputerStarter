@@ -32,10 +32,10 @@
             android:id="@+id/PostForum"
             android:layout_width="258dp"
             android:layout_height="244dp"
-            android:layout_marginBottom="16dp"
-            app:layout_constraintBottom_toTopOf="@+id/CommentsForum"
+            android:layout_marginBottom="48dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.817"
+            app:layout_constraintHorizontal_bias="0.827"
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/amd_cpu" />
 
@@ -51,15 +51,15 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/ProfileForum" />
 
-        <TextView
-            android:id="@+id/CommentsForum"
-            android:layout_width="316dp"
-            android:layout_height="20dp"
-            android:layout_marginBottom="16dp"
-            android:text="TextView"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+<!--        <TextView-->
+<!--            android:id="@+id/CommentsForum"-->
+<!--            android:layout_width="316dp"-->
+<!--            android:layout_height="20dp"-->
+<!--            android:layout_marginBottom="16dp"-->
+<!--            android:text="TextView"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
