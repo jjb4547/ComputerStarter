@@ -34,7 +34,7 @@ public class Build_Activity extends AppCompatActivity {
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private FirebaseFirestore firestore = FirebaseFirestore.getInstance();
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private Boolean built_something;
+    private int built_something;
     private Boolean isMenuOpen = false;
     FloatingActionButton floatingActionButton;
     FloatingActionButton saveButton;
@@ -97,18 +97,19 @@ public class Build_Activity extends AppCompatActivity {
         if(mAuth.getCurrentUser()!=null) {
             String current = mAuth.getCurrentUser().getUid();
             DocumentReference documentReference = db.collection("Users").document(current);
-            documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                @Override
-                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                    if (documentSnapshot.exists()) {
-                        Map<String, Object> user_data = documentSnapshot.getData();
-                        built_something = Boolean.parseBoolean(user_data.get("Built").toString());
-                        if(!built_something){
-                            user.put("Build 1",name);
-                        }
-                        //email.setText(user_data.get("Email").toString());
-                    } else {
-                        //Toast.makeText(MainActivity.this, "Document Does not Exist", Toast.LENGTH_SHORT).show();
+            documentReference.get().addOnSuccessListener(documentSnapshot -> {
+                if (documentSnapshot.exists()) {
+                    Map<String, Object> user_data = documentSnapshot.getData();
+                    built_something = Integer.parseInt(user_data.get("Built").toString());
+                    if (built_something == 0) {
+                        user.put("Build 0", name);
+                        built_something++;
+                    } else if (built_something < 5) {
+                        user.put("Build " + built_something, name);
+                        built_something++;
+                        user.put("Built", built_something);
+                    }else{
+                        Toast.makeText(this,"TOO MANY BUILDS",Toast.LENGTH_SHORT);
                     }
                 }
             });
@@ -124,7 +125,7 @@ public class Build_Activity extends AppCompatActivity {
         });
         saveButton.setOnClickListener(view -> {
             if(mAuth.getCurrentUser()!=null){
-                user.put("Built",true);
+                user.put("Built",built_something);
                 firestore.collection("Users").document(mAuth.getCurrentUser().getUid()).update(user);
             }else{
                 Toast.makeText(this,"NOT LOGGED IN, CANNOT SAVE",Toast.LENGTH_SHORT);
@@ -147,7 +148,7 @@ public class Build_Activity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId()==android.R.id.home) {
             // app icon in action bar clicked; goto parent activity.
-            this.finish();
+            startActivity(new Intent(this,MyBuildActivity.class));
             return true;
         }else
             return super.onOptionsItemSelected(item);

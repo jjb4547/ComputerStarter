@@ -35,6 +35,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.getkeepsafe.taptargetview.TapTarget;
+import com.getkeepsafe.taptargetview.TapTargetView;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.internal.NavigationMenu;
@@ -95,14 +97,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         TextView email = headerView.findViewById(R.id.email);
         if(user!=null) {
             String current = user.getUid();
+            name.setText(user.getDisplayName());
+            email.setText(user.getEmail());
             DocumentReference documentReference = db.collection("Users").document(current);
             documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                 @Override
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
                     if (documentSnapshot.exists()) {
                         Map<String, Object> user_data = documentSnapshot.getData();
-                        name.setText(user_data.get("Name").toString());
-                        email.setText(user_data.get("Email").toString());
+                        //name.setText(user_data.get("Name").toString());
+                        //email.setText(user_data.get("Email").toString());
                     } else {
                         Toast.makeText(MainActivity.this, "Document Does not Exist", Toast.LENGTH_SHORT).show();
                     }

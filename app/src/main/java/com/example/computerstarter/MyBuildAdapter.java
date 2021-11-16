@@ -11,13 +11,22 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import org.w3c.dom.Text;
 
-public class MyBuildAdapter extends RecyclerView.Adapter<MyBuildAdapter.ViewHolder>{
-    Build_Data[] build_data;
-    Context context;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
-    public MyBuildAdapter(Build_Data[] build_data, MyBuildActivity activity) {
+public class MyBuildAdapter extends RecyclerView.Adapter<MyBuildAdapter.ViewHolder>{
+    ArrayList<Build_Data> build_data;
+    Context context;
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+    public MyBuildAdapter(ArrayList<Build_Data> build_data, MyBuildActivity activity) {
         this.build_data = build_data;
         this.context = activity;
     }
@@ -34,7 +43,7 @@ public class MyBuildAdapter extends RecyclerView.Adapter<MyBuildAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        final Build_Data build_data_list = build_data[position];
+        Build_Data build_data_list = build_data.get(position);
         holder.tbuildName.setText(build_data_list.getBuild_name());
         holder.tbuildDate.setText(build_data_list.getBuild_date());
         holder.buildImage.setImageResource(build_data_list.getBuild_image());
@@ -42,7 +51,7 @@ public class MyBuildAdapter extends RecyclerView.Adapter<MyBuildAdapter.ViewHold
 
     @Override
     public int getItemCount() {
-        return build_data.length;
+        return build_data.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

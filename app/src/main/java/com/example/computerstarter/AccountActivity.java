@@ -64,6 +64,7 @@ public class AccountActivity extends AppCompatActivity {
             }
         });
         if(user!=null) {
+            etName.setText(user.getDisplayName());
             String current = user.getUid();
             DocumentReference documentReference = db.collection("Users").document(current);
             documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -71,7 +72,7 @@ public class AccountActivity extends AppCompatActivity {
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
                     if (documentSnapshot.exists()) {
                         Map<String, Object> user_data = documentSnapshot.getData();
-                        etName.setText(user_data.get("Name").toString());
+                        //etName.setText(user_data.get("Name").toString());
                         etAge.setText(user_data.get("Age").toString());
                         etUsername.setText(user_data.get("Username").toString());
                     } else {
