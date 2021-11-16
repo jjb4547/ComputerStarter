@@ -24,7 +24,9 @@
             android:id="@+id/imagep"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:layout_marginTop="15dp" />
+            android:layout_marginTop="15dp"
+            android:background="@drawable/amd_cpu"
+            />
 
         <EditText
             android:id="@+id/pdes"
@@ -37,6 +39,12 @@
             android:minHeight="120dp"
             android:padding="10dp"
             android:singleLine="true" />
+
+        <Button
+            android:id="@+id/blogPicture"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="PICTURE" />
 
         <Button
             android:id="@+id/pupload"

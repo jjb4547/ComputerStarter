@@ -1,6 +1,7 @@
 package com.example.computerstarter;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
@@ -9,6 +10,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -23,6 +25,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
@@ -57,8 +60,8 @@ public class SocialMediaBlogs extends Fragment {
     EditText title, des;
     private static final int CAMERA_REQUEST = 100;
     private static final int STORAGE_REQUEST = 200;
-    String cameraPermission[];
-    String storagePermission[];
+    String[] cameraPermission;
+    String[] storagePermission;
     ProgressDialog pd;
     ImageView image;
     String edititle, editdes, editimage;
@@ -69,6 +72,7 @@ public class SocialMediaBlogs extends Fragment {
     String name, email, uid, dp;
     DatabaseReference databaseReference;
     Button upload;
+    Button blogPicture;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -80,6 +84,7 @@ public class SocialMediaBlogs extends Fragment {
         des = view.findViewById(R.id.pdes);
         image = view.findViewById(R.id.imagep);
         upload = view.findViewById(R.id.pupload);
+        blogPicture = view.findViewById(R.id.blogPicture);
         pd = new ProgressDialog(getContext());
         pd.setCanceledOnTouchOutside(false);
         Intent intent = getActivity().getIntent();
@@ -107,8 +112,8 @@ public class SocialMediaBlogs extends Fragment {
         cameraPermission = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
         storagePermission = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
-        // After click on image we will be selecting an image
-        image.setOnClickListener(new View.OnClickListener() {
+        // After click on button we will be selecting an image
+        blogPicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showImagePicDialog();
@@ -136,10 +141,9 @@ public class SocialMediaBlogs extends Fragment {
                     return;
                 }
 
-                // If empty show error
+                 //If empty show error
                 if (imageuri == null) {
                     Toast.makeText(getContext(), "Select an Image", Toast.LENGTH_LONG).show();
-                    return;
                 } else {
                     uploadData(titl, description);
                 }
@@ -149,7 +153,7 @@ public class SocialMediaBlogs extends Fragment {
     }
 
     private void showImagePicDialog() {
-        String options[] = {"Camera", "Gallery"};
+        String[] options = {"Camera", "Gallery"};
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Pick Image From");
         builder.setItems(options, new DialogInterface.OnClickListener() {
@@ -222,16 +226,16 @@ public class SocialMediaBlogs extends Fragment {
         requestPermissions(storagePermission, STORAGE_REQUEST);
     }
 
+    // request for permission to click photo using camera in app
+    private void requestCameraPermission() {
+        requestPermissions(cameraPermission, CAMERA_REQUEST);
+    }
+
     // check camera permission to click picture using camera
     private Boolean checkCameraPermission() {
         boolean result = ContextCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA) == (PackageManager.PERMISSION_GRANTED);
         boolean result1 = ContextCompat.checkSelfPermission(getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == (PackageManager.PERMISSION_GRANTED);
         return result && result1;
-    }
-
-    // request for permission to click photo using camera in app
-    private void requestCameraPermission() {
-        requestPermissions(cameraPermission, CAMERA_REQUEST);
     }
 
     // if access is given then pick image from camera and then put
@@ -324,7 +328,7 @@ public class SocialMediaBlogs extends Fragment {
     // Here we are getting data from image
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (resultCode == getActivity().RESULT_OK) {
+        if (resultCode == Activity.RESULT_OK) {
             if (requestCode == IMAGEPICK_GALLERY_REQUEST) {
                 imageuri = data.getData();
                 image.setImageURI(imageuri);
