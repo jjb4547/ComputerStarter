@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -50,7 +51,7 @@ import java.util.HashMap;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SocialMediaBlogs extends Fragment {
+public class SocialMediaBlogs extends AppCompatActivity {
 
     public SocialMediaBlogs() {
         // Required empty public constructor
@@ -75,19 +76,21 @@ public class SocialMediaBlogs extends Fragment {
     Button blogPicture;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         // Inflate the layout for this fragment
         firebaseAuth = FirebaseAuth.getInstance();
-        View view = inflater.inflate(R.layout.fragment_add_blogs, container, false);
+        //View view = inflater.inflate(R.layout.fragment_add_blogs, container, false);
+        setContentView(R.layout.fragment_add_blogs);
 
-        title = view.findViewById(R.id.ptitle);
-        des = view.findViewById(R.id.pdes);
-        image = view.findViewById(R.id.imagep);
-        upload = view.findViewById(R.id.pupload);
-        blogPicture = view.findViewById(R.id.blogPicture);
-        pd = new ProgressDialog(getContext());
+        title = findViewById(R.id.ptitle);
+        des = findViewById(R.id.pdes);
+        image = findViewById(R.id.imagep);
+        upload = findViewById(R.id.pupload);
+        blogPicture = findViewById(R.id.blogPicture);
+        pd = new ProgressDialog(this);
         pd.setCanceledOnTouchOutside(false);
-        Intent intent = getActivity().getIntent();
+        Intent intent = this.getIntent();
 
         // Retrieving the user data like name ,email and profile pic using query
         databaseReference = FirebaseDatabase.getInstance().getReference("Users");
@@ -130,31 +133,32 @@ public class SocialMediaBlogs extends Fragment {
                 // If empty set error
                 if (TextUtils.isEmpty(titl)) {
                     title.setError("Title Cant be empty");
-                    Toast.makeText(getContext(), "Title can't be left empty", Toast.LENGTH_LONG).show();
+                    Toast.makeText(SocialMediaBlogs.this, "Title can't be left empty", Toast.LENGTH_LONG).show();
                     return;
                 }
 
                 // If empty set error
                 if (TextUtils.isEmpty(description)) {
                     des.setError("Description Cant be empty");
-                    Toast.makeText(getContext(), "Description can't be left empty", Toast.LENGTH_LONG).show();
+                    Toast.makeText(SocialMediaBlogs.this, "Description can't be left empty", Toast.LENGTH_LONG).show();
                     return;
                 }
 
                  //If empty show error
-                if (imageuri == null) {
-                    Toast.makeText(getContext(), "Select an Image", Toast.LENGTH_LONG).show();
-                } else {
-                    uploadData(titl, description);
-                }
+//                if (imageuri == null) {
+//                    Toast.makeText(SocialMediaBlogs.this, "Select an Image", Toast.LENGTH_LONG).show();
+//                } else {
+//                    uploadData(titl, description);
+//                }
+                uploadData(titl, description);
             }
         });
-        return view;
+
     }
 
     private void showImagePicDialog() {
         String[] options = {"Camera", "Gallery"};
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        AlertDialog.Builder builder = new AlertDialog.Builder(SocialMediaBlogs.this);
         builder.setTitle("Pick Image From");
         builder.setItems(options, new DialogInterface.OnClickListener() {
             @Override
@@ -181,13 +185,14 @@ public class SocialMediaBlogs extends Fragment {
 
     // check for storage permission
     private Boolean checkStoragePermission() {
-        boolean result = ContextCompat.checkSelfPermission(getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        boolean result = ContextCompat.checkSelfPermission(SocialMediaBlogs.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 == (PackageManager.PERMISSION_GRANTED);
         return result;
     }
 
     // if not given then request for permission after that check if request is given or not
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
             case CAMERA_REQUEST: {
                 if (grantResults.length > 0) {
@@ -198,7 +203,7 @@ public class SocialMediaBlogs extends Fragment {
                     if (camera_accepted && writeStorageaccepted) {
                         pickFromCamera();
                     } else {
-                        Toast.makeText(getContext(), "Please Enable Camera and Storage Permissions", Toast.LENGTH_LONG).show();
+                        Toast.makeText(SocialMediaBlogs.this, "Please Enable Camera and Storage Permissions", Toast.LENGTH_LONG).show();
                     }
                 }
             }
@@ -213,7 +218,7 @@ public class SocialMediaBlogs extends Fragment {
                     if (writeStorageaccepted) {
                         pickFromGallery();
                     } else {
-                        Toast.makeText(getContext(), "Please Enable Storage Permissions", Toast.LENGTH_LONG).show();
+                        Toast.makeText(SocialMediaBlogs.this, "Please Enable Storage Permissions", Toast.LENGTH_LONG).show();
                     }
                 }
             }
@@ -223,18 +228,18 @@ public class SocialMediaBlogs extends Fragment {
 
     // request for permission to write data into storage
     private void requestStoragePermission() {
-        requestPermissions(storagePermission, STORAGE_REQUEST);
+        ActivityCompat.requestPermissions(SocialMediaBlogs.this, storagePermission, STORAGE_REQUEST);
     }
 
     // request for permission to click photo using camera in app
     private void requestCameraPermission() {
-        requestPermissions(cameraPermission, CAMERA_REQUEST);
+        ActivityCompat.requestPermissions(SocialMediaBlogs.this, cameraPermission, CAMERA_REQUEST);
     }
 
     // check camera permission to click picture using camera
     private Boolean checkCameraPermission() {
-        boolean result = ContextCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA) == (PackageManager.PERMISSION_GRANTED);
-        boolean result1 = ContextCompat.checkSelfPermission(getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == (PackageManager.PERMISSION_GRANTED);
+        boolean result = ContextCompat.checkSelfPermission(SocialMediaBlogs.this, Manifest.permission.CAMERA) == (PackageManager.PERMISSION_GRANTED);
+        boolean result1 = ContextCompat.checkSelfPermission(SocialMediaBlogs.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == (PackageManager.PERMISSION_GRANTED);
         return result && result1;
     }
 
@@ -244,7 +249,7 @@ public class SocialMediaBlogs extends Fragment {
         ContentValues contentValues = new ContentValues();
         contentValues.put(MediaStore.Images.Media.TITLE, "Temp_pic");
         contentValues.put(MediaStore.Images.Media.DESCRIPTION, "Temp Description");
-        imageuri = getActivity().getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
+        imageuri = SocialMediaBlogs.this.getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
         Intent camerIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         camerIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageuri);
         startActivityForResult(camerIntent, IMAGE_PICKCAMERA_REQUEST);
@@ -264,9 +269,9 @@ public class SocialMediaBlogs extends Fragment {
         pd.show();
         final String timestamp = String.valueOf(System.currentTimeMillis());
         String filepathname = "Posts/" + "post" + timestamp;
-        Bitmap bitmap = ((BitmapDrawable) image.getDrawable()).getBitmap();
+        //Bitmap bitmap = ((BitmapDrawable) image.getDrawable()).getBitmap();
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+        //bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
         byte[] data = byteArrayOutputStream.toByteArray();
 
         // initialising the storage reference for updating the data
@@ -299,19 +304,19 @@ public class SocialMediaBlogs extends Fragment {
                                 @Override
                                 public void onSuccess(Void aVoid) {
                                     pd.dismiss();
-                                    Toast.makeText(getContext(), "Published", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(SocialMediaBlogs.this, "Published", Toast.LENGTH_LONG).show();
                                     title.setText("");
                                     des.setText("");
                                     image.setImageURI(null);
                                     imageuri = null;
-                                    startActivity(new Intent(getContext(), SocialMediaFragment.class));
-                                    getActivity().finish();
+                                    startActivity(new Intent(SocialMediaBlogs.this, SocialMediaFragment.class));
+                                    SocialMediaBlogs.this.finish();
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             pd.dismiss();
-                            Toast.makeText(getContext(), "Failed", Toast.LENGTH_LONG).show();
+                            Toast.makeText(SocialMediaBlogs.this, "Failed", Toast.LENGTH_LONG).show();
                         }
                     });
                 }
@@ -320,7 +325,7 @@ public class SocialMediaBlogs extends Fragment {
             @Override
             public void onFailure(@NonNull Exception e) {
                 pd.dismiss();
-                Toast.makeText(getContext(), "Failed", Toast.LENGTH_LONG).show();
+                Toast.makeText(SocialMediaBlogs.this, "Failed", Toast.LENGTH_LONG).show();
             }
         });
     }

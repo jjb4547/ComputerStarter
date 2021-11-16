@@ -52,6 +52,7 @@
         <activity android:name=".Build_Activity" />
         <activity android:name=".PC_Build_Parts"/>
         <activity android:name=".MyBuildActivity"/>
+        <activity android:name=".SocialMediaBlogs"/>
 
         <meta-data
             android:name="preloaded_fonts"
