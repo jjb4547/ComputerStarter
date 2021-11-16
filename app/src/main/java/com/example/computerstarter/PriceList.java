@@ -39,4 +39,9 @@ public class PriceList {
         return answer;
     }
 
+    public static int getLength()
+    {
+        return jsonObj.length();
+    }
+
 }
