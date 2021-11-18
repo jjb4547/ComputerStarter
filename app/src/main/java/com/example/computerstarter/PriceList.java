@@ -17,6 +17,14 @@ public class PriceList {
         return answer;
     }
 
+    public static String getPriceAsString(int id)
+    {
+        double answer = getPrice(id);
+        String answerStr = "$" + answer;
+
+        return answerStr;
+    }
+
     public static String getName(int id)
     {
         String answer = "null";
