@@ -44,7 +44,12 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_menu"
         app:itemTextAppearance="?android:attr/textAppearanceMedium"
-        android:layout_gravity= "start">
+        android:layout_gravity= "start"
+        android:background="@color/blue_gray"
+        app:itemTextColor="@color/white"
+        app:itemIconTint="@color/pistachio">
+
+
     </com.google.android.material.navigation.NavigationView>
     </androidx.drawerlayout.widget.DrawerLayout>
 

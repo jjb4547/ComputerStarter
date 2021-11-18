@@ -19,13 +19,12 @@
         android:icon="@drawable/ic_quiz">
     </item>
 </group>
-    <item android:title="Settings">
+    <item android:title="SETTINGS">
         <menu>
             <item
                 android:title="Account"
                 android:id="@+id/account"
-                android:icon="@drawable/ic_people"
-                />
+                android:icon="@drawable/ic_people" />
             <item android:title=""
                 android:id="@+id/log"
                 android:icon="@drawable/ic_logout"/>

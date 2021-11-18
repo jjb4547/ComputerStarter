@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -81,6 +82,7 @@ public class SocialMediaBlogs extends AppCompatActivity {
         // Inflate the layout for this fragment
         firebaseAuth = FirebaseAuth.getInstance();
         //View view = inflater.inflate(R.layout.fragment_add_blogs, container, false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.fragment_add_blogs);
 
         title = findViewById(R.id.ptitle);
@@ -344,5 +346,16 @@ public class SocialMediaBlogs extends AppCompatActivity {
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId()==android.R.id.home) {
+            // app icon in action bar clicked; goto parent activity.
+            startActivity(new Intent(this,MyBuildActivity.class));
+            return true;
+        }else
+            return super.onOptionsItemSelected(item);
+    }
+
 }
 

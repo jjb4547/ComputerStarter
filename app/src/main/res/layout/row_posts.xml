@@ -8,12 +8,14 @@
     app:cardCornerRadius="3dp"
     app:cardElevation="3dp"
     app:cardUseCompatPadding="true"
-    app:contentPadding="5dp">
+    app:contentPaddingBottom="1dp"
+    android:background="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="#1B273E">
 
         <LinearLayout
             android:id="@+id/profilelayout"
@@ -27,7 +29,8 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_people" />
+                android:src="@drawable/ic_people"
+                />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -40,13 +43,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Name"
+                    android:textColor="@color/white"
                     android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/utimetv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="33 min" />
+                    android:text="33 min"
+                    android:textColor="@color/white" />
 
             </LinearLayout>
 
@@ -63,19 +68,25 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Title"
+            android:textColor="@color/white"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_marginLeft="15dp"
+            />
 
         <TextView
             android:id="@+id/descript"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Description" />
+            android:layout_marginLeft="15dp"
+            android:text="Description"
+            android:textColor="@color/white"/>
 
         <ImageView
             android:id="@+id/pimagetv"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:background="@color/silver"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -87,7 +98,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="1.2K Likes" />
+                android:text="1.2K Likes"
+                android:textColor="@color/white"/>
 
             <TextView
                 android:id="@+id/pcommentco"
@@ -95,13 +107,13 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="1.2K Comment"
-                android:textAlignment="textEnd" />
+                android:textAlignment="textEnd"
+                android:textColor="@color/white"/>
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#F5F0F0" />
+            android:layout_height="1dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -111,22 +123,24 @@
 
             <Button
                 android:id="@+id/like"
-                android:layout_width="wrap_content"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_marginRight="70dp"
                 android:autoLink="all"
                 android:padding="5dp"
-                android:text="Like" />
+                android:text="Like"
+                android:backgroundTint="#62b680"
+               />
 
             <Button
                 android:id="@+id/comment"
-                android:layout_width="wrap_content"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:autoLink="all"
-                android:background="@color/white"
                 android:padding="5dp"
-                android:text="COMMENT" />
+                android:text="COMMENT"
+                android:backgroundTint="#62b680"
+                />
         </LinearLayout>
 
     </LinearLayout>
