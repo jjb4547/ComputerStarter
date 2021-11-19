@@ -311,7 +311,7 @@ public class SocialMediaBlogs extends AppCompatActivity {
                                     des.setText("");
                                     image.setImageURI(null);
                                     imageuri = null;
-                                    startActivity(new Intent(SocialMediaBlogs.this, SocialMediaFragment.class));
+                                    //startActivity(new Intent(SocialMediaBlogs.this, SocialMediaFragment.class));
                                     SocialMediaBlogs.this.finish();
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
@@ -351,7 +351,7 @@ public class SocialMediaBlogs extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId()==android.R.id.home) {
             // app icon in action bar clicked; goto parent activity.
-            startActivity(new Intent(this,MyBuildActivity.class));
+            this.finish();
             return true;
         }else
             return super.onOptionsItemSelected(item);

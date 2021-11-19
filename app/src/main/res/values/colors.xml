@@ -3,6 +3,8 @@
     <color name="blue_gray">#1B273E</color>
     <color name="blue_gray_darker">#111927</color>
     <color name="pistachio">#62b680</color>
+    <color name="pistachio_dark">#499d67</color>
+    <color name="pistachio_darker">#2f834d</color>
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>

@@ -2,5 +2,9 @@
 <resources>
     <array name="preloaded_fonts" translatable="false">
         <item>@font/autour_one</item>
+        <item>@font/bungee</item>
+        <item>@font/chango</item>
+        <item>@font/krona_one</item>
+        <item>@font/limelight</item>
     </array>
 </resources>

@@ -32,8 +32,10 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:background="?android:attr/windowBackground"
-            app:labelVisibilityMode="selected"/>
+            android:background="@color/blue_gray_darker"
+            app:labelVisibilityMode="selected"
+            app:itemIconTint="@color/pistachio"
+            app:itemTextColor="@color/pistachio"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.navigation.NavigationView

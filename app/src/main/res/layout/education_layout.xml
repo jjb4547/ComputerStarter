@@ -41,20 +41,18 @@
                android:layout_height="150dp"
                android:background="@color/pistachio">
 
-               <ImageView
-                   android:layout_width="120dp"
-                   android:layout_height="match_parent"
-                   android:layout_marginLeft="20dp"
-                   android:src="@drawable/pc_build_link" />
                <TextView
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
+                   android:layout_width="326dp"
+                   android:layout_height="112dp"
+                   android:layout_alignParentRight="true"
+                   android:layout_marginRight="11dp"
                    android:fontFamily="@font/autour_one"
+                   android:gravity="center"
                    android:padding="25dp"
                    android:text="PC Parts"
-                   android:textSize="30sp"
-                   android:layout_alignParentRight="true"
-                   android:textColor="@color/white"/>
+                   android:textColor="@color/black"
+                   android:textSize="40sp" />
+
                <TextView
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
@@ -83,29 +81,25 @@
                android:background="@color/pistachio">
 
                <ImageView
-                   android:layout_width="120dp"
-                   android:layout_height="match_parent"
+                   android:layout_width="250dp"
+                   android:layout_height="141dp"
                    android:layout_marginLeft="20dp"
-                   android:src="@drawable/arduino_link" />
+                   android:layout_marginTop="5dp"
+                   android:layout_marginRight="20dp"
+                   android:layout_marginBottom="5dp"
+                   android:src="@drawable/arduino_logo"
+                   android:foregroundGravity="center"/>
+
                <TextView
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                   android:fontFamily="@font/autour_one"
-                   android:padding="25dp"
-                   android:text="Arduinos"
-                   android:textSize="30sp"
                    android:layout_alignParentRight="true"
-                   android:textColor="@color/white"/>
-               <TextView
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:text="Expand"
-                   android:background="#00000000"
-                   android:padding="20dp"
                    android:layout_alignParentBottom="true"
-                   android:layout_alignParentRight="true"
+                   android:background="#00000000"
                    android:fontFamily="@font/autour_one"
-                   android:textColor="@color/white"/>
+                   android:padding="20dp"
+                   android:text="Expand"
+                   android:textColor="@color/white" />
 
            </RelativeLayout>
        </androidx.cardview.widget.CardView>
@@ -124,23 +118,15 @@
                android:background="@color/pistachio">
 
                <ImageView
-                   android:layout_width="110dp"
-                   android:layout_height="94dp"
+                   android:layout_width="301dp"
+                   android:layout_height="102dp"
                    android:layout_alignParentBottom="true"
                    android:layout_marginLeft="20dp"
                    android:layout_marginTop="22dp"
-                   android:src="@drawable/rasp_link" />
+                   android:layout_marginRight="20dp"
+                   android:layout_marginBottom="27dp"
+                   android:src="@drawable/rasp_logo" />
 
-               <TextView
-                   android:layout_width="277dp"
-                   android:layout_height="119dp"
-                   android:layout_alignParentRight="true"
-                   android:fontFamily="@font/autour_one"
-                   android:gravity="right"
-                   android:padding="25dp"
-                   android:text="Raspberry Pi"
-                   android:textColor="@color/white"
-                   android:textSize="30sp" />
                <TextView
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
