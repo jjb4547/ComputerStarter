@@ -41,7 +41,7 @@ public class MyBuildActivity extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     //private DocumentReference documentReference = db.collection("Users").
     FloatingActionButton floatingActionButton;
-    MyBuildAdapter myBuildAdapter;
+    private MyBuildAdapter myBuildAdapter;
     int built;
     ArrayList<Build_Data> build_data= new ArrayList<>();
 
@@ -70,22 +70,13 @@ public class MyBuildActivity extends AppCompatActivity {
                         new ItemTouchHelper(swipeController).attachToRecyclerView(recyclerView);
                         Map<String, Object> user_data = documentSnapshot.getData();
                         built = Integer.parseInt(user_data.get("Built").toString());
-                        MyBuildAdapter myBuildAdapter;
-                        int counter = 0;
-                        while (counter<built) {
-                            String name = user_data.get("Build "+counter).toString();
-                            if(name.compareTo("build_"+counter)!=0) {
-                                Date c = Calendar.getInstance().getTime();
-                                SimpleDateFormat df = new SimpleDateFormat("dd MMM yyyy", Locale.getDefault());
-                                String formattedDate = df.format(c);
-                                build_data.add(new Build_Data(name, formattedDate, R.mipmap.ic_logo,0));
-                                myBuildAdapter = new MyBuildAdapter(build_data, MyBuildActivity.this);
-                                recyclerView.setAdapter(myBuildAdapter);
-                                myBuildAdapter.notifyDataSetChanged();
-                                counter++;
-                            }
-                        }if (built == 0) {
+                        ArrayList<Build_Data> data = (ArrayList<Build_Data>) user_data.get("Build_1");
+                        if (built == 0) {
                             helper();
+                        }else{
+                            Object[] build_data = data.toArray();
+                            //myBuildAdapter = new MyBuildAdapter(build_data[0].toString(),MyBuildActivity.this);
+                            //myBuildAdapter.notifyDataSetChanged();
                         }
                     }
                 }

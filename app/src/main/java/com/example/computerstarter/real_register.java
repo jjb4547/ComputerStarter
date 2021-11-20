@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -26,6 +27,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,6 +38,7 @@ public class real_register extends AppCompatActivity {
     private DatabaseReference mData;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private String current;
+    private ArrayList<Build_Data> build_data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +52,7 @@ public class real_register extends AppCompatActivity {
         user = findViewById(R.id.etUsername);
         age = findViewById(R.id.etAge);
         name = findViewById(R.id.etName);
+        build_data = new ArrayList<>();
     }
 
     public void onRegisterClicked(View view){
@@ -80,6 +84,7 @@ public class real_register extends AppCompatActivity {
         mAuth.createUserWithEmailAndPassword(emailInput,password)
                 .addOnCompleteListener((task) -> {
                     if(task.isSuccessful()){
+                        //ArrayList<Build_Activity> build_data = new ArrayList<>();
                         Toast.makeText(real_register.this,"User Created", Toast.LENGTH_SHORT).show();
                         current = mAuth.getCurrentUser().getUid();
                         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -89,6 +94,7 @@ public class real_register extends AppCompatActivity {
                         user.put("Username",username);
                         user.put("Age",userage);
                         user.put("Built",0);
+                        //user.put("Builds",build_data);
                         DocumentReference documentReference = db.collection("Users").document(current);
                         documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override

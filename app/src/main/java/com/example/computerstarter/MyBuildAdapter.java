@@ -46,7 +46,7 @@ public class MyBuildAdapter extends RecyclerView.Adapter<MyBuildAdapter.ViewHold
         Build_Data build_data_list = build_data.get(position);
         holder.tbuildName.setText(build_data_list.getBuild_name());
         holder.tbuildDate.setText(build_data_list.getBuild_date());
-        holder.buildImage.setImageResource(build_data_list.getBuild_image());
+        //holder.buildImage.setImageResource(build_data_list.getBuild_image());
     }
 
     @Override
@@ -60,7 +60,7 @@ public class MyBuildAdapter extends RecyclerView.Adapter<MyBuildAdapter.ViewHold
         TextView tbuildDate;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            buildImage = itemView.findViewById(R.id.image_item);
+            //buildImage = itemView.findViewById(R.id.image_item);
             tbuildName = itemView.findViewById(R.id.build_name);
             tbuildDate = itemView.findViewById(R.id.date_started);
         }
