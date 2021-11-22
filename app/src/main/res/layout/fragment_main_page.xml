@@ -39,7 +39,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:background="@color/pistachio_dark">
+                android:background="#273e1b">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -93,7 +93,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:background="@color/pistachio_dark">
+                android:background="@color/blue_gray_complement">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -132,7 +132,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:background="@color/pistachio_dark">
+                android:background="@color/blue_gray_complement">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -172,7 +172,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:background="@color/pistachio_dark"
+                android:background="@color/blue_gray_complement"
                 android:paddingBottom="10dp">
 
                 <TextView

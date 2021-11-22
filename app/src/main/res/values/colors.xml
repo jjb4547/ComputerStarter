@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="blue_gray_complement">#3e321b</color>
     <color name="blue_gray">#1B273E</color>
-    <color name="blue_gray_darker">#111927</color>
+    <color name="blue_gray_darker">#131c2c</color>
     <color name="pistachio">#62b680</color>
     <color name="pistachio_dark">#499d67</color>
     <color name="pistachio_darker">#2f834d</color>
