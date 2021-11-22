@@ -64,6 +64,10 @@ public class PriceList {
                 return R.drawable.evga;
             case "wd":
                 return R.drawable.wd;
+            case "t-force":
+                return R.drawable.t_force;
+            case "zotac":
+                return R.drawable.zotac;
             default:
                 return R.drawable.amd_cpu;
         }
