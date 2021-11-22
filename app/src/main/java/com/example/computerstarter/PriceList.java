@@ -36,6 +36,39 @@ public class PriceList {
         return answer;
     }
 
+    public static String getBrand(int id)
+    {
+        String answer = "null";
+        try{
+            answer = jsonObj.getJSONArray("items").getJSONObject(id).getString("icon");
+        } catch(JSONException e){
+            System.out.println(e);
+        }
+        return answer;
+    }
+
+    public static int getIcon(int id)
+    {
+        String brand = getBrand(id);
+        switch(brand)
+        {
+            case "ryzen":
+                return R.drawable.ryzen;
+            case "nvidia":
+                return R.drawable.nvidia;
+            case "samsung":
+                return R.drawable.samsung;
+            case "corsair":
+                return R.drawable.corsair;
+            case "evga":
+                return R.drawable.evga;
+            case "wd":
+                return R.drawable.wd;
+            default:
+                return R.drawable.amd_cpu;
+        }
+    }
+
     public static String getPart(int id)
     {
         String answer = "null";

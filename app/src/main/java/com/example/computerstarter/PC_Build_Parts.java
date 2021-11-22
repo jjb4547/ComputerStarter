@@ -30,8 +30,9 @@ public class PC_Build_Parts extends AppCompatActivity {
     //String mDesc[] = {"D1", "D2", "D3", "D4", "D5"};
     String mTitle[] = new String[10];
     String mDesc[] = new String[10];
-    int images[] = {R.drawable.amd_cpu, R.drawable.amd_cpu, R.drawable.amd_cpu, R.drawable.amd_cpu, R.drawable.amd_cpu,
-            R.drawable.amd_cpu, R.drawable.amd_cpu, R.drawable.amd_cpu, R.drawable.amd_cpu, R.drawable.amd_cpu};
+    //int images[] = {R.drawable.amd_cpu, R.drawable.amd_cpu, R.drawable.amd_cpu, R.drawable.amd_cpu, R.drawable.amd_cpu,
+            //R.drawable.amd_cpu, R.drawable.amd_cpu, R.drawable.amd_cpu, R.drawable.amd_cpu, R.drawable.amd_cpu};
+    int images[] = new int[10];
 
     //ArrayAdapter arrayAdapter;
     @Override
@@ -49,6 +50,7 @@ public class PC_Build_Parts extends AppCompatActivity {
             if(PriceList.getPart(i).equals(name.toLowerCase()) && counter < 11) {
                 mTitle[counter] = PriceList.getName(i);
                 mDesc[counter] = PriceList.getPriceAsString(i);
+                images[counter] = PriceList.getIcon(i);
                 counter++;
             }
         }
