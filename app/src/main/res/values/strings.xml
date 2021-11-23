@@ -37,6 +37,9 @@
     <string name="brief_description_rasp">
         Brief Description of a Raspberry Pi
     </string>
+    <string name="rasp_example">
+        Raspberry Pi Humidity Sensor using the DHT22 step by step
+    </string>
     <string name="brief_description_ard">
         Brief Description of a Arduino
     </string>
