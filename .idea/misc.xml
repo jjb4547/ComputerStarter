@@ -55,6 +55,7 @@
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/menu/bottom_menu.xml" value="0.20512820512820512" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3880208333333333" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/xml/preferences.xml" value="0.33" />
+        <entry key="..\:/Users/Ryain/AndroidStudioProjects/ComputerStarter/app/src/main/res/xml/preferences.xml" value="0.23541666666666666" />
         <entry key="..\:/Users/bjesu/StudioProjects/ComputerStarter/app/src/main/res/layout/account_layout.xml" value="0.23072916666666668" />
         <entry key="..\:/Users/bjesu/StudioProjects/ComputerStarter/app/src/main/res/layout/activity_education_activities.xml" value="0.23072916666666668" />
         <entry key="..\:/Users/bjesu/StudioProjects/ComputerStarter/app/src/main/res/layout/activity_education_tabbed.xml" value="0.1" />
@@ -71,7 +72,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

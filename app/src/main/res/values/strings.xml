@@ -20,19 +20,22 @@
         Brief Description of a Power Supply
     </string>
     <string name="brief_description_cpucool">
-        Brief Description of a Power Supply
+        Brief Description of the CPU cooler
     </string>
     <string name="brief_description_case">
-        Brief Description of a Power Supply
+        Brief Description of the Case
     </string>
     <string name="brief_description_os">
-        Brief Description of a Power Supply
+        Brief Description of the Operating System
     </string>
     <string name="brief_description_mon">
-        Brief Description of a Power Supply
+        Brief Description of the Monitor
     </string>
     <string name="brief_description_per">
-        Brief Description of a Power Supply
+        Brief Description of the Peripherals
+    </string>
+    <string name="brief_description_rasp">
+        Brief Description of a Raspberry Pi
     </string>
     <string name="brief_description_ard">
         Brief Description of a Arduino
@@ -52,10 +55,124 @@
         Ports of a Memory
     </string>
     <string name="ports_stor">
-        Ports of a Storage
+        Types of Storage Devices
     </string>
     <string name="ports_psu">
         Ports of a Power Supply Unit
+    </string>
+    <string name="ports_cpucool">
+        Types of Coolers
+    </string>
+    <string name="ports_case">
+        Types of Cases
+    </string>
+    <string name="ports_os">
+        Types of Operating Systems
+    </string>
+    <string name="ports_mon">
+        Monitor Features
+    </string>
+    <string name="ports_per">
+        Examples of Peripherals
+    </string>
+
+    <!--Basic Component Descriptions-->
+    <string name="gpu_desc_basic">
+        The GPU or the video card is one component most associated with gamers. It is an optional
+        expansion to the computer used most commonly to run video games. Some CPUs have integrated
+        graphics that allow them to be used like a GPU with limitations.
+    </string>
+    <string name="cpu_desc_basic">
+        The CPU is the core of any computer as it handles instructions and executes them while interacting
+        with both hardware and software.
+    </string>
+    <string name="mot_desc_basic">
+        The motherboard is where all the components live on top of. Every part of the computer will connect
+        to it someway and will coordinate with them.
+    </string>
+    <string name="mem_desc_basic">
+        The memory or RAM is the short term memory of the computer. It allows the computer to do tasks
+        at higher speeds and can be as small as 8 GBs to 128 GBs.
+    </string>
+    <string name="stor_desc_basic">
+        The storage is the component that holds all your personal data and anything else the computer
+        stores long term.
+    </string>
+    <string name="psu_desc_basic">
+        The power supply is what powers the entire system.
+    </string>
+    <string name="cpucool_desc_basic">
+        The CPU cooler makes sure the CPU is running at a safe cool temperature.
+    </string>
+    <string name="case_desc_basic">
+        The case houses the computer’s components.
+    </string>
+    <string name="os_desc_basic">
+        An operating system is a necessary piece of software that allows you to interface with a computer.
+    </string>
+    <string name="mon_desc_basic">
+        The monitor allows you to view what is happening on your computer.
+    </string>
+    <string name="per_desc_basic">
+        The peripherals are the accessories that you can plug into the computer. They add functionality
+        to a computer.
+    </string>
+
+    <!--Basic Ports Description-->
+    <string name="gpu_ports_description_basic">
+        Newer GPUs usually come with a variety of ports for monitors like HDMI or display ports or even
+        DVI or VGA ports.
+    </string>
+    <string name="cpu_ports_description_basic">
+        The two choices you will have are AMD and Intel.More cores and a higher clock speed (GHz or MHz)
+        will help your system run better.
+    </string>
+    <string name="mem_ports_description_basic">
+    </string>
+    <string name="stor_ports_description_basic">
+        Ram is a short term storage different from the storage discussed here. Storage usually comes down
+        to either HDD(Hard Drive Disk) or SSD(Solid State Drive).
+    </string>
+    <string name="mot_ports_description_basic">
+        The board has many ports and sockets for each part to attach to. The CPU socket needs attention
+        because it will decide the type of CPU you can get. The ports exposed to the outside will be for
+        the many accessories like keyboards, mice, and more
+    </string>
+    <string name="psu_ports_description_basic">
+        The power supply comes with plugs for all components to maintain their power. It has a power
+        switch accessible from the outside to turn it on or off.
+    </string>
+    <string name="cpucool_ports_description_basic">
+        The options for cooling are heat sinks with fan or liquid cooling. The first uses a dab of
+        thermal paste to cool the CPU. Liquid cooling is more complicated and expensive to safely use
+        liquid to cool components more efficiently.
+    </string>
+    <string name="case_ports_description_basic">
+        Full Tower is the large case.
+	    Mid Tower is the medium size of the case.
+	    Micro-ATX is the small.
+	    Mini-ITX is the smallest size.
+        Check with each part to make sure that they are compatible with whichever you choose.
+
+    </string>
+    <string name="os_ports_description_basic">
+        Windows is the most widely used operating system and will work with most software.MacOS is only
+        available for Apple laptops and will have specific software that is able to run on it. It is possible
+        to run on other machines, but it will take some work.Linux is a free and open source operating system.
+        It’s not very beginner friendly, but it is the most customizable operating system with many branches of
+        it with specific uses in mind.
+
+    </string>
+    <string name="mon_ports_description_basic">
+        Size is just how big the screen is.Resolution is the number of pixels on the monitor which can affect the
+        image quality. Refresh rate matters mostly to only gamers because it involves fast movements and how often
+        the screen refreshes with new information.
+    </string>
+    <string name="per_ports_description_basic">
+        Mouse and keyboard are the most common and help to navigate a computer.Speakers are also common since
+        most monitors do not come with speakers built in. Printers are the last example and help export
+        documents to the real world.
+
     </string>
 
     <!--Component Descriptions-->
@@ -72,6 +189,13 @@
         available on all three major operating systems. The Arduino language is designed to be
         accessible and the board itself is cheap making it a beginner friendly way to experiment
         with electronic projects.
+    </string>
+    <string name="rasp_desc">
+        A raspberry pi is a low price, credit card sized computer that can do most of anything that
+        a full sized computer can do. Once a keyboard, mouse, and screen are plugged in then it can
+        be used like a regular computer. It’s small size allows it to be used in projects that
+        require a brain to direct commands. It can connect to the internet and can be used to teach
+        many things such as how to program in Python to building smart mirrors.
     </string>
     <string name="cpu_desc">
         The CPU (central processing unit) is often called the brain of the system because it handles
@@ -111,6 +235,38 @@
     <string name="psu_desc">
         Gives power to all the components in the PC.
     </string>
+    <string name="cpucool_desc">
+        The CPU cooler job to make sure the CPU has the proper cooling it needs. By keeping the CPU
+        cool, the computer is able to run more efficiently. The CPU could reach unsafe temperatures
+        which could damage it. There are two main ways to cool a CPU.
+    </string>
+    <string name="case_desc">
+        The case houses all the computer’s components. It protects everything inside and influences
+        the airflow in the case. There are four main types when choosing a computer case. When choosing
+        the right case it’s important to check the components that may have trouble fitting in the case.
+        The motherboard, the length of the GPU, air CPU cooler height, and liquid cooling radiator size
+        are some common compatibility issues. The last two factors when choosing the right case is the
+        aesthetics and the cooling possibilities it provides. The aesthetics are composed of the outside
+        like color, but also the kind of cable management options it offers. The cooling possibilities
+        are important since more areas for fans or better airflow will make for cooler components that
+        will last you longer.
+    </string>
+    <string name="os_desc">
+        An operating system is installed on the computer’s hard drive which allows the user to operate
+        other software. It manages all peripherals connected as well as the hardware connected. There are
+        a lot of operating systems and branches of them, but here will discuss the main three options for
+        desktop computers.
+    </string>
+    <string name="mon_desc">
+        The monitor is the display of the system. It will display any and everything you want to do with
+        the computer. It is important to figure out what you will be using the system for to then decide
+        which size, resolution, and refresh rate.
+    </string>
+    <string name="per_desc">
+        The peripherals are the many accessories that one can plug into a computer. It will add functionality
+        and need a computer to function. They commonly connect using USB, but may use different ports or more
+        than one.
+    </string>
 
     <!--Ports Description-->
     <string name="gpu_ports_description">
@@ -131,6 +287,10 @@
     <string name="mem_ports_description">
     </string>
     <string name="stor_ports_description">
+        When you store information for a short amount of time the PC will normally store it in the RAM(Memory),
+        if you would like to learn more about the Memory component please click on the Memory page. The second
+        place in which information is stored is the HDD(Hard Drive Disk) or SSD(Solid State Drive). These
+        components are the
     </string>
     <string name="mot_ports_description">
         The back panel of the motherboard holds many of the ports needed to attach peripherals to interact
@@ -141,6 +301,68 @@
         Connection for the power cord to the computer, the fan that pulls out the heat from the internal
         of the PSU, a switch to change the voltage provided and a rocker switch to turn the power supply
         on and off.
+    </string>
+    <string name="cpucool_ports_description">
+        The typical method of cooling is a heat sink or heat sink with a fan. The cooler is
+        placed with a pea sized drop of thermal paste to help cool it. The heat is moved away from
+        the CPU and the fan can push it out. Additional case fans can help with the general air flow
+        in the computer. This cooling type is typically inexpensive and even is included with some
+        CPUs.
+        Another method of cooling is liquid cooling. It is a more advanced, more expensive type of
+        cooling that generally makes the CPU cooler than it would be with the heat sink combo. It is not
+        recommended for CPUs that are not prone to overheating because the first heating type would
+        be enough. Liquid cooling is more quiet than the fan method with the potential to cool other
+        parts of the system like the GPU. Overall, the system will end up quieter, but any potential
+        mistake may be expensive.
+    </string>
+    <string name="case_ports_description">
+        Full Tower is the large case.
+	    Mid Tower is the medium size of the case.
+	    Micro-ATX is the small.
+	    Mini-ITX is the smallest size.
+        Overall all these cases need to be checked against the motherboard the customer is picking
+        since different cases have different dimensions. Finding the right motherboard for your case
+        should not be difficult with the case spec sheet listing what motherboard sizes it will be
+        compatible with. This is also true for the other three parts listed above where it is important
+        to check specs of the component and the case to see if they will fit the case.
+    </string>
+    <string name="os_ports_description">
+        Windows is the most common operating system with many versions with the latest being Windows 11
+        recently. Windows being the most popular also comes with many types of viruses and malware
+        targeting it, but with smart internet uses users do not need to worry. It is favored among gamers
+        because most if not all games made for PC will run on windows.This goes for many other pieces of
+        software because it’s popularity, most companies will make sure it is able to run on windows first.
+        MacOS is another popular operating system used on Apple laptops and desktops. Outside of the Apple
+        ecosystem of products it is less commonly seen because it requires more knowledge and work to get a
+        working “Hackintosh”. MacOS was made for only Apple products so building a computer and trying to
+        use this operating system will take work. If you get an Apple product or “Hackintosh” then you will
+        notice a smaller selection of software options. An Apple laptop is also limited in upgradeability a
+        lot of work which will void warranties. Being less popular means that less viruses are made for it
+        which makes it safer. Many games can be played on MacOS, but the options will be limited and may
+        vary in run quality because of the dependence on the laptop specs.Linux is a free and open source
+        operating system. The open source allows many distributions to be available with specialized functions
+        such as servers. It also allows users to escape the corporate operating systems to a more open source
+        environment. It can be customized to one’s desire.The amount of customizability can be intimidating
+        leaving users unfamiliar with command line confused. Gaming will be very limited on it and same for
+        software. If learned, one could take advantage of its full potential.
+    </string>
+    <string name="mon_ports_description">
+        Size is just the screen size. It is labeled in inches and it is listed as the diagonal length when
+        purchasing a monitor. Which you pick will depend on how big of a screen you like.Resolution is
+        the number of pixels that make up a screen. The more pixels means the higher resolution which makes
+        for a sharper image. The more common resolution you will see is Full HD (FHD) which is 1920x1080,
+        but it can go as high as 5k which is 5120 x 2880. It is important to make sure your system can
+        handle a 4k monitor before purchasing one.Refresh rate is a feature that only really matters to
+        gamers. It is measured in hertz(Hz) and is the number of times the monitor updates with new
+        information per second. The high refresh rate then the less choppy an image. It can matter for
+        high paced gameplay, but for office or home use then any monitor should work fine.
+    </string>
+    <string name="per_ports_description">
+        Mouse helps in controlling the computer by clicking where a user decides they want to go.Keyboard
+        is also important because it allows for more interactions on a computer. Typing allows users to search
+        and make documents.Speakers are often an accessory because most monitors do not come with built in
+        speakers. It allows the users to listen to music and video over their system.Printer is the last
+        common peripheral you will find. It allows you to print out documents and any other pages one chooses.
     </string>
 
     <string-array name="comp_names">
@@ -191,6 +413,11 @@
     <string name="stor_link"><a href="https://www.computerhope.com/jargon/s/stordevi.htm">computerhope.com/jargon/s/stordevi.htm</a></string>
     <string name="gpu_link"><a href="https://www.computerhope.com/jargon/v/video-card.htm">computerhope.com/jargon/v/video-card.htm</a></string>
     <string name="psu_link"><a href="https://www.computerhope.com/jargon/p/power-supply.htm">computerhope.com/jargon/p/power-supply.htm</a></string>
+    <string name="cpucool_link"><a href="https://www.newegg.com/insider/how-to-choose-the-right-cpu-cooler-pc-radiator-for-you/">newegg.com/insider/how-to-choose-the-right-cpu-cooler-pc-radiator-for-you/</a></string>
+    <string name="case_link"><a href="https://techguided.com/how-to-choose-a-pc-case/">techguided.com/how-to-choose-a-pc-case/</a></string>
+    <string name="os_link"><a href="https://www.computerhope.com/jargon/c/cpu.htm">computerhope.com/jargon/c/cpu.htm</a></string>
+    <string name="mon_link"><a href="https://www.newegg.com/insider/how-to-choose-the-best-computer-monitor-buying-guide/">newegg.com/insider/how-to-choose-the-best-computer-monitor-buying-guide/</a></string>
+    <string name="per_link"><a href="https://www.computerhope.com/jargon/p/peripher.htm">computerhope.com/jargon/p/peripher.htm</a></string>
     <string name="button">Button</string>
     <!--
     <string name="rasp_link"><a href="https://www.computerhope.com/jargon/c/cpu.htm">computerhope.com/jargon/c/cpu.htm</a></string>

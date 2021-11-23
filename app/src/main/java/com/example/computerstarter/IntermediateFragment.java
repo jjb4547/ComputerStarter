@@ -3,15 +3,14 @@ package com.example.computerstarter;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
 
 public class IntermediateFragment extends Fragment {
     public IntermediateFragment() {
@@ -117,23 +116,63 @@ public class IntermediateFragment extends Fragment {
                     break;
                 case "CPU Cooler":
                     //CPU Cooler
-                    brief_desc.setText("Coming Soon!");
+                    brief_desc.setText(getString(R.string.brief_description_cpucool));
+                    info.setText(getString(R.string.cpucool_desc));
+                    info_desc.setText(getString(R.string.cpucool_ports_description));
+                    ports_desc.setText(getString(R.string.ports_cpucool));
+                    //imageView.setImageResource(R.drawable.amd_cpu); //need image
+                    link_title.setText(getString(R.string.link_title));
+                    actual_link.setText(getString(R.string.cpucool_link));
+                    actual_link.setMovementMethod(LinkMovementMethod.getInstance());
+                    actual_link.setLinkTextColor(Color.BLUE);
                     break;
                 case "Case":
                     //Case
-                    brief_desc.setText("Coming Soon!");
+                    brief_desc.setText(getString(R.string.brief_description_case));
+                    info.setText(getString(R.string.case_desc));
+                    info_desc.setText(getString(R.string.case_ports_description));
+                    ports_desc.setText(getString(R.string.ports_case));
+                    //imageView.setImageResource(R.drawable.amd_cpu); //need image
+                    link_title.setText(getString(R.string.link_title));
+                    actual_link.setText(getString(R.string.case_link));
+                    actual_link.setMovementMethod(LinkMovementMethod.getInstance());
+                    actual_link.setLinkTextColor(Color.BLUE);
                     break;
                 case "OS":
                     //OS
-                    brief_desc.setText("Coming Soon!");
+                    brief_desc.setText(getString(R.string.brief_description_os));
+                    info.setText(getString(R.string.os_desc));
+                    info_desc.setText(getString(R.string.os_ports_description));
+                    ports_desc.setText(getString(R.string.ports_os));
+                    //imageView.setImageResource(R.drawable.amd_cpu); //need image
+                    link_title.setText(getString(R.string.link_title));
+                    actual_link.setText(getString(R.string.os_link));
+                    actual_link.setMovementMethod(LinkMovementMethod.getInstance());
+                    actual_link.setLinkTextColor(Color.BLUE);
                     break;
                 case "Monitor":
                     //Monitor
-                    brief_desc.setText("Coming Soon!");
+                    brief_desc.setText(getString(R.string.brief_description_mon));
+                    info.setText(getString(R.string.mon_desc));
+                    info_desc.setText(getString(R.string.mon_ports_description));
+                    ports_desc.setText(getString(R.string.ports_mon));
+                    //imageView.setImageResource(R.drawable.amd_cpu); //need image
+                    link_title.setText(getString(R.string.link_title));
+                    actual_link.setText(getString(R.string.mon_link));
+                    actual_link.setMovementMethod(LinkMovementMethod.getInstance());
+                    actual_link.setLinkTextColor(Color.BLUE);
                     break;
                 case "Peripherals":
                     //Peripherals
-                    brief_desc.setText("Coming Soon!");
+                    brief_desc.setText(getString(R.string.brief_description_per));
+                    info.setText(getString(R.string.per_desc));
+                    info_desc.setText(getString(R.string.per_ports_description));
+                    ports_desc.setText(getString(R.string.ports_per));
+                    //imageView.setImageResource(R.drawable.amd_cpu); //need image
+                    link_title.setText(getString(R.string.link_title));
+                    actual_link.setText(getString(R.string.per_link));
+                    actual_link.setMovementMethod(LinkMovementMethod.getInstance());
+                    actual_link.setLinkTextColor(Color.BLUE);
                     break;
             }
         }
