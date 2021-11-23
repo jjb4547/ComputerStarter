@@ -10,22 +10,23 @@
     android:orientation="vertical"
     android:gravity="center"
     android:padding="2dp"
-    android:background="@color/blue_gray">
+    android:background="#efefef">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:orientation="vertical">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Welcome"
-            android:textSize="30sp"
-            android:fontFamily="@font/bungee"
-            android:textAllCaps="true"
+            android:fontFamily="@font/francois_one"
             android:padding="10dp"
-            android:textColor="@color/white"/>
+            android:text="Welcome"
+            android:textAllCaps="true"
+            android:textColor="#5a5a5a"
+            android:textSize="30sp" />
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -39,11 +40,11 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:background="#273e1b">
+                android:background="#586f72">
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="139dp"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
@@ -52,10 +53,10 @@
                     android:layout_marginStart="0dp"
                     android:layout_marginTop="0dp"
                     android:layout_marginEnd="0dp"
-                    android:layout_marginBottom="49dp"
-                    android:fontFamily="@font/bungee"
+                    android:layout_marginBottom="11dp"
+                    android:fontFamily="@font/halant_bold"
                     android:gravity="center_horizontal"
-                    android:padding="25dp"
+                    android:padding="40dp"
                     android:text="My Builds"
                     android:textColor="@color/white"
                     android:textSize="30sp" />
@@ -66,8 +67,8 @@
                     android:layout_alignParentRight="true"
                     android:layout_alignParentBottom="true"
                     android:background="#00000000"
-                    android:fontFamily="@font/autour_one"
-                    android:padding="20dp"
+                    android:fontFamily="@font/halant_light"
+                    android:padding="30dp"
                     android:text="Expand"
                     android:textColor="@color/white" />
 
@@ -80,7 +81,7 @@
             android:textSize="25sp"
             android:padding="10dp"
             android:fontFamily="@font/bungee"
-            android:textColor="@color/white"/>
+            android:textColor="#5a5a5a"/>
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -93,13 +94,13 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:background="@color/blue_gray_complement">
+                android:background="#33494e">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="113dp"
+                    android:layout_width="369dp"
+                    android:layout_height="120dp"
                     android:layout_alignParentRight="true"
-                    android:fontFamily="@font/bungee"
+                    android:fontFamily="@font/halant_bold"
                     android:gravity="center_horizontal"
                     android:padding="25dp"
                     android:text="Newest CPUs in the Market"
@@ -112,7 +113,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_alignParentBottom="true"
                     android:background="#00000000"
-                    android:fontFamily="@font/autour_one"
+                    android:fontFamily="@font/halant_light"
                     android:padding="20dp"
                     android:text="See the Latest Ones"
                     android:textColor="@color/white" />
@@ -132,13 +133,13 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:background="@color/blue_gray_complement">
+                android:background="#33494e">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:fontFamily="@font/bungee"
+                    android:fontFamily="@font/halant_bold"
                     android:gravity="center_horizontal"
                     android:padding="25dp"
                     android:text="Builds From the Community"
@@ -151,7 +152,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_alignParentBottom="true"
                     android:background="#00000000"
-                    android:fontFamily="@font/autour_one"
+                    android:fontFamily="@font/halant_light"
                     android:padding="20dp"
                     android:text="Expand"
                     android:textColor="@color/white" />
@@ -172,28 +173,29 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:background="@color/blue_gray_complement"
+                android:background="#33494e"
                 android:paddingBottom="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:fontFamily="@font/bungee"
+                    android:fontFamily="@font/halant_bold"
                     android:padding="25dp"
                     android:text="Having Trouble with Arduinos"
                     android:textColor="@color/white"
                     android:textSize="22sp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Click For Help"
-                    android:background="#00000000"
-                    android:padding="20dp"
-                    android:layout_alignParentBottom="true"
                     android:layout_alignParentRight="true"
-                    android:fontFamily="@font/autour_one"
-                    android:textColor="@color/white"/>
+                    android:layout_alignParentBottom="true"
+                    android:background="#00000000"
+                    android:fontFamily="@font/halant_light"
+                    android:padding="20dp"
+                    android:text="Click For Help"
+                    android:textColor="@color/white" />
 
             </RelativeLayout>
         </androidx.cardview.widget.CardView>

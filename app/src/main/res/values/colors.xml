@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <color name="blue_gray_complement">#3e321b</color>
     <color name="blue_gray">#1B273E</color>
     <color name="blue_gray_darker">#131c2c</color>
