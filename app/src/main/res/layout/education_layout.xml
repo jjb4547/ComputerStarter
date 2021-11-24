@@ -10,7 +10,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:padding="16dp"
-    android:background="@color/blue_gray">
+    android:background="@color/background_color">
 
    <LinearLayout
        android:layout_width="match_parent"
@@ -25,7 +25,7 @@
            android:fontFamily="@font/autour_one"
            android:textAllCaps="true"
            android:padding="10dp"
-           android:textColor="@color/white"/>
+           android:textColor="#5a5a5a"/>
        <androidx.cardview.widget.CardView
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
@@ -39,7 +39,7 @@
            <RelativeLayout
                android:layout_width="match_parent"
                android:layout_height="150dp"
-               android:background="@color/pistachio">
+               android:background="@color/cardview_light">
 
                <TextView
                    android:layout_width="326dp"
@@ -78,7 +78,7 @@
            <RelativeLayout
                android:layout_width="match_parent"
                android:layout_height="150dp"
-               android:background="@color/pistachio">
+               android:background="@color/cardview_light">
 
                <ImageView
                    android:layout_width="250dp"
@@ -115,7 +115,7 @@
            <RelativeLayout
                android:layout_width="match_parent"
                android:layout_height="150dp"
-               android:background="@color/pistachio">
+               android:background="@color/cardview_light">
 
                <ImageView
                    android:layout_width="301dp"

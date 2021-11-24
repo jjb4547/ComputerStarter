@@ -24,9 +24,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 
 import org.w3c.dom.Document;
 
+import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -43,7 +45,7 @@ public class MyBuildActivity extends AppCompatActivity {
     FloatingActionButton floatingActionButton;
     private MyBuildAdapter myBuildAdapter;
     int built;
-    ArrayList<Build_Data> build_data= new ArrayList<>();
+    private Build_Data build_data;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -61,26 +63,16 @@ public class MyBuildActivity extends AppCompatActivity {
         });
         if(mAuth.getCurrentUser()!=null) {
             String current =mAuth.getCurrentUser().getUid();
-            DocumentReference documentReference = db.collection("Users").document(current);
-            documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                @Override
-                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                    if (documentSnapshot.exists()) {
-                        SwipeController swipeController = new SwipeController();
-                        new ItemTouchHelper(swipeController).attachToRecyclerView(recyclerView);
-                        Map<String, Object> user_data = documentSnapshot.getData();
-                        built = Integer.parseInt(user_data.get("Built").toString());
-                        ArrayList<Build_Data> data = (ArrayList<Build_Data>) user_data.get("Build_1");
-                        if (built == 0) {
-                            helper();
-                        }else{
-                            Object[] build_data = data.toArray();
-                            //myBuildAdapter = new MyBuildAdapter(build_data[0].toString(),MyBuildActivity.this);
-                            //myBuildAdapter.notifyDataSetChanged();
-                        }
-                    }
-                }
+            DocumentReference documentReference = firestore.collection("Users").document(current);
+            documentReference.get().addOnSuccessListener(documentSnapshot -> {
+                build_data = documentSnapshot.toObject(Build_Data.class);
+                ArrayList<Build_Data> build = new ArrayList<>();
+                build.add(build_data);
+                myBuildAdapter = new MyBuildAdapter(build,this);
+                recyclerView.setAdapter(myBuildAdapter);
             });
+
+
         }
     }
 

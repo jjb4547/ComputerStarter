@@ -93,8 +93,7 @@ public class real_register extends AppCompatActivity {
                         Map<String,Object> user = new HashMap<>();
                         user.put("Username",username);
                         user.put("Age",userage);
-                        user.put("Built",0);
-                        //user.put("Builds",build_data);
+                        user.put("numOfBuilds",0);
                         DocumentReference documentReference = db.collection("Users").document(current);
                         documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override

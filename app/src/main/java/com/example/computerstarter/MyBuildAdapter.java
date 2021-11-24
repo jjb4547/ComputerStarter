@@ -37,13 +37,13 @@ public class MyBuildAdapter extends RecyclerView.Adapter<MyBuildAdapter.ViewHold
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.build_items,parent,false);
         ViewHolder viewHolder = new ViewHolder(view);
-
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Build_Data build_data_list = build_data.get(position);
+        //System.out.println(build_data.get(position).getBuild_name());
         holder.tbuildName.setText(build_data_list.getBuild_name());
         holder.tbuildDate.setText(build_data_list.getBuild_date());
         //holder.buildImage.setImageResource(build_data_list.getBuild_image());

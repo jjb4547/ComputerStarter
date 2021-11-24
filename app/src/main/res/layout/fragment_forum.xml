@@ -9,7 +9,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/RecycleForum"
-        android:background="#1B273E"
+        android:background="@color/background_color"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="0dp"
@@ -25,6 +25,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="SpeakableTextPresentCheck"
-        android:backgroundTint="#62b680"/>
+        android:backgroundTint="@color/cardview_light"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

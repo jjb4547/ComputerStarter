@@ -28,6 +28,7 @@
         android:rowCount="3"
         android:columnCount="3">
         <androidx.cardview.widget.CardView
+            android:backgroundTint="@color/cardview_light"
             android:id="@+id/cpu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -59,6 +60,7 @@
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
             android:id="@+id/mot"
+            android:backgroundTint="@color/cardview_light"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_row="0"
@@ -88,6 +90,7 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
+            android:backgroundTint="@color/cardview_light"
             android:id="@+id/mem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -118,6 +121,7 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
+            android:backgroundTint="@color/cardview_light"
             android:id="@+id/stor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -148,6 +152,7 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
+            android:backgroundTint="@color/cardview_light"
             android:id="@+id/psu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -178,6 +183,7 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
+            android:backgroundTint="@color/cardview_light"
             android:id="@+id/cool"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -208,6 +214,7 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
+            android:backgroundTint="@color/cardview_light"
             android:id="@+id/mon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -238,6 +245,7 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
+            android:backgroundTint="@color/cardview_light"
             android:id="@+id/gpu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -268,6 +276,7 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
+            android:backgroundTint="@color/cardview_light"
             android:id="@+id/id_case"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
