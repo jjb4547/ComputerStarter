@@ -10,7 +10,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:padding="2dp"
-    android:background="#efefef">
+    android:background="#272727">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,7 +25,7 @@
             android:padding="10dp"
             android:text="Welcome"
             android:textAllCaps="true"
-            android:textColor="#5a5a5a"
+            android:textColor="@color/text_darkmode"
             android:textSize="30sp" />
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -40,7 +40,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:background="@color/cardview_light">
+                android:background="@color/cardview_darkmode">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -81,7 +81,7 @@
             android:textSize="25sp"
             android:padding="10dp"
             android:fontFamily="@font/francois_one"
-            android:textColor="#5a5a5a"/>
+            android:textColor="@color/text_darkmode"/>
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -94,7 +94,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:background="@color/cardview_dark">
+                android:background="@color/cardview_darkmode">
 
                 <TextView
                     android:layout_width="369dp"
@@ -133,7 +133,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:background="@color/cardview_dark">
+                android:background="#67927c">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -181,6 +181,7 @@
                     android:layout_alignParentRight="true"
                     android:fontFamily="@font/halant_bold"
                     android:padding="25dp"
+                    android:gravity="center"
                     android:text="Having Trouble with Arduinos"
                     android:textColor="@color/white"
                     android:textSize="22sp" />

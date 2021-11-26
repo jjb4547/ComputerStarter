@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="background_color_dark">#1f2933</color>
+    <color name="text_darkmode">#d9e2ec</color>
+    <color name="cardview_darkmode">#7f9a74</color>
     <color name="background_color">#efefef</color>
     <color name="cardview_light">#586f72</color>
     <color name="cardview_dark">#33494e</color>

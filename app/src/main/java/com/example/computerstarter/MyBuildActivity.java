@@ -3,39 +3,23 @@ package com.example.computerstarter;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetView;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 
-import org.w3c.dom.Document;
-
-import java.lang.reflect.Array;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
 
 public class MyBuildActivity extends AppCompatActivity {
     private FirebaseFirestore firestore = FirebaseFirestore.getInstance();
@@ -65,11 +49,18 @@ public class MyBuildActivity extends AppCompatActivity {
             String current =mAuth.getCurrentUser().getUid();
             DocumentReference documentReference = firestore.collection("Users").document(current);
             documentReference.get().addOnSuccessListener(documentSnapshot -> {
-                build_data = documentSnapshot.toObject(Build_Data.class);
-                ArrayList<Build_Data> build = new ArrayList<>();
-                build.add(build_data);
-                myBuildAdapter = new MyBuildAdapter(build,this);
-                recyclerView.setAdapter(myBuildAdapter);
+                int builds = Integer.parseInt(documentSnapshot.get("numOfBuilds").toString());
+                if(builds>0) {
+                    build_data = documentSnapshot.toObject(Build_Data.class);
+                    ArrayList<Build_Data> build = new ArrayList<>();
+                    for(int i=0;i<build_data.getBuild_name().size();i++) {
+                        build.add(new Build_Data(build_data.getBuild_name().get(i),build_data.getBuild_date().get(i),build_data.getPrice().get(0)));
+                    }
+                    myBuildAdapter = new MyBuildAdapter(build, this);
+                    recyclerView.setAdapter(myBuildAdapter);
+                }else{
+                    helper();
+                }
             });
 
 
@@ -104,7 +95,7 @@ public class MyBuildActivity extends AppCompatActivity {
     }
     public void helper(){
         TapTargetView.showFor(this, TapTarget.forView(floatingActionButton,"Build your First PC")
-                .outerCircleColor(R.color.dodger_blue)
+                .outerCircleColor(R.color.cardview_dark)
                 .outerCircleAlpha(0.96f)
                 .titleTextSize(70)
                 .titleTextColor(R.color.white)

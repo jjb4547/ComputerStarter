@@ -44,8 +44,9 @@ public class MyBuildAdapter extends RecyclerView.Adapter<MyBuildAdapter.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Build_Data build_data_list = build_data.get(position);
         //System.out.println(build_data.get(position).getBuild_name());
-        holder.tbuildName.setText(build_data_list.getBuild_name());
-        holder.tbuildDate.setText(build_data_list.getBuild_date());
+        holder.tbuildName.setText(build_data_list.getBuildName());
+        holder.tbuildDate.setText(build_data_list.getBuildDate());
+        holder.tbuildPrice.setText("Price: $"+build_data_list.getBuildPrice().toString());
         //holder.buildImage.setImageResource(build_data_list.getBuild_image());
     }
 
@@ -58,11 +59,13 @@ public class MyBuildAdapter extends RecyclerView.Adapter<MyBuildAdapter.ViewHold
         ImageView buildImage;
         TextView tbuildName;
         TextView tbuildDate;
+        TextView tbuildPrice;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             //buildImage = itemView.findViewById(R.id.image_item);
             tbuildName = itemView.findViewById(R.id.build_name);
             tbuildDate = itemView.findViewById(R.id.date_started);
+            tbuildPrice = itemView.findViewById(R.id.price);
         }
     }
 }

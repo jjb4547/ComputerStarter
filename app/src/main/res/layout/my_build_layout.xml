@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:background="@color/cardview_dark_background">
+    android:background="@color/background_color">
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
@@ -15,15 +15,18 @@
         android:layout_margin="2dp"
         android:layout_marginBottom="10dp"
         android:layout_marginStart="10dp"/>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_build"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_margin="16dp"
-        android:backgroundTint="@color/design_default_color_primary"
-        android:src="@drawable/ic_add"
-        android:id="@+id/fab_build"
-        />
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/cardview_light"
+        android:src="@drawable/ic_add" />
 
 </RelativeLayout>

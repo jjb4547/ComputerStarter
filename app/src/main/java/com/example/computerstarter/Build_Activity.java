@@ -127,9 +127,10 @@ public class Build_Activity extends AppCompatActivity {
             return true;
         }else if(id==R.id.save_button){
             if(mAuth.getCurrentUser()!=null){
-                build_ref.update("build_name",name);
-                build_ref.update("build_date",currentDateandTime);
-                build_ref.update("price",0);
+                build_ref.update("build_name",FieldValue.arrayUnion(name));
+                build_ref.update("build_date",FieldValue.arrayUnion(currentDateandTime));
+                build_ref.update("price",FieldValue.arrayUnion(built_something));
+                build_ref.update("numOfBuilds",built_something+1);
                 firestore.collection("Users").document(mAuth.getCurrentUser().getUid()).update(user);
             }else{
                 Toast.makeText(this,"NOT LOGGED IN, CANNOT SAVE",Toast.LENGTH_SHORT);

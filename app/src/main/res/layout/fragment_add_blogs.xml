@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue_gray">
+    android:background="@color/background_color">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,7 +20,7 @@
             android:minHeight="80dp"
             android:padding="10dp"
             android:singleLine="true"
-            android:textColor="@color/white"/>
+            android:textColor="@color/black"/>
 
         <ImageView
             android:id="@+id/imagep"
@@ -40,14 +40,14 @@
             android:minHeight="120dp"
             android:padding="10dp"
             android:singleLine="true"
-            android:textColor="@color/white"/>
+            android:textColor="@color/black"/>
 
         <Button
             android:id="@+id/blogPicture"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="PICTURE"
-            android:backgroundTint="@color/pistachio"/>
+            android:backgroundTint="@color/cardview_light"/>
 
         <Button
             android:id="@+id/pupload"
@@ -55,7 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20sp"
             android:text="Upload"
-            android:backgroundTint="@color/pistachio"/>
+            android:backgroundTint="@color/cardview_light"/>
     </LinearLayout>
 
 </ScrollView>

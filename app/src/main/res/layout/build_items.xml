@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/background_color">
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="10dp"
         app:cardElevation="10dp"
         app:cardCornerRadius="10dp"
-        app:cardBackgroundColor="#FFFFFF">
+        app:cardBackgroundColor="@color/cardview_dark">
 
         <LinearLayout
             android:orientation="horizontal"
@@ -46,6 +47,12 @@
                     android:id="@+id/date_started"
                     android:layout_margin="10dp"
                     android:text="Date Started"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/price"
+                    android:layout_margin="10dp"
+                    android:text="Money"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
