@@ -38,7 +38,9 @@ public class real_register extends AppCompatActivity {
     private DatabaseReference mData;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private String current;
-    private ArrayList<Build_Data> build_data;
+    private ArrayList<String> build_name;
+    private ArrayList<String> build_date;
+    private ArrayList<Integer> price;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +54,9 @@ public class real_register extends AppCompatActivity {
         user = findViewById(R.id.etUsername);
         age = findViewById(R.id.etAge);
         name = findViewById(R.id.etName);
-        build_data = new ArrayList<>();
+        build_name = new ArrayList<>();
+        build_date = new ArrayList<>();
+        price = new ArrayList<>();
     }
 
     public void onRegisterClicked(View view){
@@ -93,7 +97,9 @@ public class real_register extends AppCompatActivity {
                         Map<String,Object> user = new HashMap<>();
                         user.put("Username",username);
                         user.put("Age",userage);
-                        user.put("numOfBuilds",0);
+                        user.put("build_date",build_date);
+                        user.put("build_name",build_name);
+                        user.put("price",price);
                         DocumentReference documentReference = db.collection("Users").document(current);
                         documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override

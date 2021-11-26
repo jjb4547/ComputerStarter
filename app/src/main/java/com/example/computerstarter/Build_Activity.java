@@ -1,15 +1,9 @@
 package com.example.computerstarter;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,24 +11,17 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import org.w3c.dom.Text;
-
-import java.sql.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Build_Activity extends AppCompatActivity {
     private String[] diffTitles;
@@ -43,15 +30,16 @@ public class Build_Activity extends AppCompatActivity {
     DocumentReference build_ref = firestore.collection("Users").document(mAuth.getCurrentUser().getUid());
     private int built_something;
     private Boolean isMenuOpen = false;
-    private ArrayList<Build_Data> build_data = new ArrayList<>();
-    FloatingActionButton floatingActionButton;
-    FloatingActionButton saveButton;
+    private Build_Data build_data;
+    private String current;
+    private int size;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         MainPageFragment main = new MainPageFragment();
-        //build_data = new ArrayList<>();
+        current = mAuth.getCurrentUser().getUid();
+        size=0;
         main.addcardview = true;
         setContentView(R.layout.build_layout);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -99,18 +87,6 @@ public class Build_Activity extends AppCompatActivity {
             stor_intent.putExtra("name","Storage");
             startActivity(stor_intent);
         });
-        if(mAuth.getCurrentUser()!=null) {
-            String current = mAuth.getCurrentUser().getUid();
-            DocumentReference documentReference = firestore.collection("Users").document(current);
-            documentReference.get().addOnSuccessListener(documentSnapshot -> {
-                if (documentSnapshot.exists()) {
-                    Map<String, Object> user_data = documentSnapshot.getData();
-                    built_something = Integer.parseInt(user_data.get("numOfBuilds").toString());
-                    //final String timestamp = String.valueOf(System.currentTimeMillis());
-                }
-            });
-
-        }
     }
 
     @Override
@@ -126,14 +102,24 @@ public class Build_Activity extends AppCompatActivity {
             startActivity(new Intent(this,MyBuildActivity.class));
             return true;
         }else if(id==R.id.save_button){
-            if(mAuth.getCurrentUser()!=null){
-                build_ref.update("build_name",FieldValue.arrayUnion(name));
-                build_ref.update("build_date",FieldValue.arrayUnion(currentDateandTime));
-                build_ref.update("price",FieldValue.arrayUnion(built_something));
-                build_ref.update("numOfBuilds",built_something+1);
-                firestore.collection("Users").document(mAuth.getCurrentUser().getUid()).update(user);
+            if(checkAuth()){
+                build_ref.get().addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        build_data = documentSnapshot.toObject(Build_Data.class);
+                        if (build_data.getBuild_name().size() < 5) {
+                            build_ref.update("build_name", FieldValue.arrayUnion(name));
+                            build_ref.update("build_date", FieldValue.arrayUnion(currentDateandTime));
+                            build_ref.update("price", FieldValue.arrayUnion(built_something));
+                            firestore.collection("Users").document(mAuth.getCurrentUser().getUid()).update(user);
+                            Intent build_intent = new Intent(Build_Activity.this, MyBuildActivity.class);
+                            startActivity(build_intent);
+                        } else {
+                            Toast.makeText(Build_Activity.this, "TOO MANY BUILDS, DELETE ONE!!!!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
             }else{
-                Toast.makeText(this,"NOT LOGGED IN, CANNOT SAVE",Toast.LENGTH_SHORT);
+                Toast.makeText(this,"NOT LOGGED IN, CANNOT SAVE",Toast.LENGTH_SHORT).show();
             }
         }
         return super.onOptionsItemSelected(item);
@@ -144,4 +130,21 @@ public class Build_Activity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.save_menu,menu);
         return super.onCreateOptionsMenu(menu);
     }
+    public boolean checkAuth(){
+        if(mAuth.getCurrentUser()!=null)
+            return true;
+        else
+            return false;
+    }
+    public AtomicInteger getData(){
+        AtomicInteger buildSize = new AtomicInteger();
+        build_ref.get().addOnSuccessListener(documentSnapshot -> {
+            if (documentSnapshot.exists()) {
+                build_data = documentSnapshot.toObject(Build_Data.class);
+                buildSize.set(build_data.getBuild_name().size());
+            }
+        });
+        return buildSize;
+    }
+
 }
