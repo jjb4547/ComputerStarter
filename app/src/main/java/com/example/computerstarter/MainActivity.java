@@ -68,7 +68,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
-        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         navController = Navigation.findNavController(this,R.id.frame_layout);
         NavigationUI.setupWithNavController(bottomNavigationView,navController);
