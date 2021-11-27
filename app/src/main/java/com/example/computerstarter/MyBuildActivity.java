@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
@@ -28,15 +29,12 @@ import java.util.Map;
 public class MyBuildActivity extends AppCompatActivity {
     private FirebaseFirestore firestore = FirebaseFirestore.getInstance();
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
-    //private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    //private DocumentReference documentReference = db.collection("Users").
     FloatingActionButton floatingActionButton;
     private MyBuildAdapter myBuildAdapter;
-    int built;
     private Build_Data build_data;
     private ArrayList<Build_Data> build;
-    private int built_something;
-    DocumentReference build_ref = firestore.collection("Users").document(mAuth.getCurrentUser().getUid());
+    private DocumentReference build_ref = firestore.collection("Users").document(mAuth.getCurrentUser().getUid());
+    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,7 +43,7 @@ public class MyBuildActivity extends AppCompatActivity {
         setContentView(R.layout.my_build_layout);
         getSupportActionBar().setTitle("My Builds");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        RecyclerView recyclerView = findViewById(R.id.recyclcer_builds);
+        recyclerView = findViewById(R.id.recyclcer_builds);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         floatingActionButton = findViewById(R.id.fab_build);
@@ -61,10 +59,10 @@ public class MyBuildActivity extends AppCompatActivity {
                     for(int i=0;i<build_data.getBuild_name().size();i++) {
                         build.add(new Build_Data(build_data.getBuild_name().get(i),build_data.getBuild_date().get(i),build_data.getPrice().get(0)));
                     }
-                    myBuildAdapter = new MyBuildAdapter(build, this);
-                    recyclerView.setAdapter(myBuildAdapter);
                     ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
                     itemTouchHelper.attachToRecyclerView(recyclerView);
+                    myBuildAdapter = new MyBuildAdapter(build, this);
+                    recyclerView.setAdapter(myBuildAdapter);
                 }else{
                     helper();
                 }
@@ -95,6 +93,7 @@ public class MyBuildActivity extends AppCompatActivity {
                 String value = input.getText().toString();
                 Intent intent = new Intent(MyBuildActivity.this,Build_Activity.class);
                 intent.putExtra("Build",value);
+                intent.putExtra("Time",build.size());
                 startActivity(intent);
             }
         });
@@ -107,7 +106,7 @@ public class MyBuildActivity extends AppCompatActivity {
                 .titleTextSize(70)
                 .titleTextColor(R.color.white)
                 .drawShadow(true)
-                .cancelable(true)
+                .cancelable(false)
                 .tintTarget(true)
                 .transparentTarget(true)
                 .targetRadius(60), new TapTargetView.Listener(){
@@ -128,23 +127,17 @@ public class MyBuildActivity extends AppCompatActivity {
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
             int position = viewHolder.getAdapterPosition();
             if(mAuth.getCurrentUser()!=null) {
-                String current = mAuth.getCurrentUser().getUid();
-                DocumentReference documentReference = firestore.collection("Users").document(current);
-                documentReference.get().addOnSuccessListener(documentSnapshot -> {
-                    if (documentSnapshot.exists()) {
-                        Map<String, Object> user_data = documentSnapshot.getData();
-                        built_something = Integer.parseInt(user_data.get("numOfBuilds").toString());
+                    switch (direction) {
+                        case ItemTouchHelper.LEFT:
+                            build_ref.update("build_name", FieldValue.arrayRemove(build.get(position).getBuildName()));
+                            build_ref.update("build_date", FieldValue.arrayRemove(build.get(position).getBuildDate()));
+                            build.remove(position);
+                            myBuildAdapter.notifyDataSetChanged();
+                            if(build.size()==0){
+                                helper();
+                            }
+                            break;
                     }
-                });
-                switch(direction) {
-                    case ItemTouchHelper.LEFT:
-                        //System.out.println(build.get(position).);
-                        build_ref.update("build_name", FieldValue.arrayRemove(build.get(position).getBuildName()));
-                        build_ref.update("build_date", FieldValue.arrayRemove(build.get(position).getBuildDate()));
-                        //build_ref.update("price", FieldValue.arrayRemove(build.get(position).getBuildPrice()));
-                        //build_ref.update("numOfBuilds", built_something);
-                        break;
-                }
             }
         }
     };
