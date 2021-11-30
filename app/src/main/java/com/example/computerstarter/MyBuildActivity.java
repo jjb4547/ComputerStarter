@@ -106,7 +106,7 @@ public class MyBuildActivity extends AppCompatActivity {
                 .titleTextSize(70)
                 .titleTextColor(R.color.white)
                 .drawShadow(true)
-                .cancelable(true)
+                .cancelable(false)
                 .tintTarget(true)
                 .transparentTarget(true)
                 .targetRadius(60), new TapTargetView.Listener(){
