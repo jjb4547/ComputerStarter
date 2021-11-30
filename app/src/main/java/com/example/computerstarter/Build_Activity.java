@@ -30,15 +30,11 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Build_Activity extends AppCompatActivity {
-    private String[] diffTitles;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private FirebaseFirestore firestore = FirebaseFirestore.getInstance();
-    private DocumentReference build_ref = firestore.collection("Users").document(mAuth.getCurrentUser().getUid());
-    private int built_something;
+    private DocumentReference build_ref;
     private Boolean isMenuOpen = false;
     private Build_Data build_data;
-    private String current;
-    private int size;
     private CardView cpu;
     private CardView mot;
     private CardView mem;
@@ -54,7 +50,7 @@ public class Build_Activity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         MainPageFragment main = new MainPageFragment();
-        current = mAuth.getCurrentUser().getUid();
+        build_ref= firestore.collection("Users").document(mAuth.getCurrentUser().getUid());
         main.addcardview = true;
         setContentView(R.layout.build_layout);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -70,7 +66,7 @@ public class Build_Activity extends AppCompatActivity {
         Intent intent = getIntent();
         String name = intent.getExtras().getString("Build");
         int id = item.getItemId();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy G 'at' HH:mm:ss z");
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy 'at' HH:mm:ss z");
         String currentDateandTime = sdf.format(new Date());
         if (item.getItemId()==android.R.id.home) {
             // app icon in action bar clicked; goto parent activity.
@@ -80,7 +76,7 @@ public class Build_Activity extends AppCompatActivity {
                     if (build_data.getBuild_name().size() < 5) {
                         build_ref.update("build_name", FieldValue.arrayUnion(name));
                         build_ref.update("build_date", FieldValue.arrayUnion(currentDateandTime));
-                        build_ref.update("price", FieldValue.arrayUnion(built_something));
+                        build_ref.update("price", FieldValue.arrayUnion(0));
                         Intent build_intent = new Intent(Build_Activity.this, MyBuildActivity.class);
                         startActivity(build_intent);
                     } else {
@@ -98,7 +94,7 @@ public class Build_Activity extends AppCompatActivity {
                         if (build_data.getBuild_name().size() < 5) {
                             build_ref.update("build_name", FieldValue.arrayUnion(name));
                             build_ref.update("build_date", FieldValue.arrayUnion(currentDateandTime));
-                            build_ref.update("price", FieldValue.arrayUnion(built_something));
+                            build_ref.update("price", FieldValue.arrayUnion(0));
                             Intent build_intent = new Intent(Build_Activity.this, MyBuildActivity.class);
                             startActivity(build_intent);
                         } else {

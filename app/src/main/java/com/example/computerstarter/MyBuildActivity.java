@@ -33,7 +33,7 @@ public class MyBuildActivity extends AppCompatActivity {
     private MyBuildAdapter myBuildAdapter;
     private Build_Data build_data;
     private ArrayList<Build_Data> build;
-    private DocumentReference build_ref = firestore.collection("Users").document(mAuth.getCurrentUser().getUid());
+    private DocumentReference build_ref;
     private RecyclerView recyclerView;
 
     @Override
@@ -51,9 +51,8 @@ public class MyBuildActivity extends AppCompatActivity {
             showAlertDialog();
         });
         if(mAuth.getCurrentUser()!=null) {
-            String current =mAuth.getCurrentUser().getUid();
-            DocumentReference documentReference = firestore.collection("Users").document(current);
-            documentReference.get().addOnSuccessListener(documentSnapshot -> {
+            build_ref = firestore.collection("Users").document(mAuth.getCurrentUser().getUid());
+            build_ref.get().addOnSuccessListener(documentSnapshot -> {
                 build_data = documentSnapshot.toObject(Build_Data.class);
                 if(build_data.getBuild_name().size()>0||build_data.getBuildName()!=null) {
                     for(int i=0;i<build_data.getBuild_name().size();i++) {

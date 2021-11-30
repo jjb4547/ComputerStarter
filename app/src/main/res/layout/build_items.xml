@@ -47,12 +47,14 @@
                     android:id="@+id/date_started"
                     android:layout_margin="10dp"
                     android:text="Date Started"
+                    android:textSize="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
                     android:id="@+id/price"
                     android:layout_margin="10dp"
                     android:text="Money"
+                    android:textSize="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
