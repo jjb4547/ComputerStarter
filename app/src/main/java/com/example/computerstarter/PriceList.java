@@ -68,6 +68,8 @@ public class PriceList {
                 return R.drawable.t_force;
             case "zotac":
                 return R.drawable.zotac;
+            case "intel":
+                return R.drawable.intelicon;
             default:
                 return R.drawable.amd_cpu;
         }
