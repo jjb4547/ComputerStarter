@@ -60,7 +60,6 @@ public class Build_Activity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Intent intent = getIntent();
         String name_action_bar = intent.getExtras().getString("Build");
-
         getSupportActionBar().setTitle(name_action_bar);
         save = findViewById(R.id.save_button);
         init();
