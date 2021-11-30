@@ -49,12 +49,9 @@ public class MainPageFragment extends Fragment {
         });
         CardView feat_2 = view.findViewById(R.id.helpful_link_2);
         feat_2.setOnClickListener(view ->{
-            Intent intent = new Intent(getActivity(),Education_Tabbed.class);
-            intent.putExtra("component","Arduino");
-            startActivity(intent);
+            //Intent intent = new Intent(getActivity(),Arduino_Projects.class);
+            //startActivity(intent);
         });
-        //my changes to get listView
-        //might need its own method
         return view;
     }
 }

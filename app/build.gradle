@@ -67,4 +67,5 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth'
     implementation 'com.google.firebase:firebase-core'
     implementation 'com.getkeepsafe.taptargetview:taptargetview:1.13.0'
+    implementation 'com.tbuonomo:dotsindicator:4.2'
 }

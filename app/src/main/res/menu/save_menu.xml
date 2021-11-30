@@ -6,5 +6,5 @@
         android:title=""
         android:icon="@drawable/ic_save"
         app:showAsAction="always"
-        android:iconTint="@color/pistachio"/>
+        android:iconTint="@color/cardview_light"/>
 </menu>

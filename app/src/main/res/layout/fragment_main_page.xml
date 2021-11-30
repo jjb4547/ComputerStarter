@@ -10,7 +10,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:padding="2dp"
-    android:background="#272727">
+    android:background="@color/background_color">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,7 +25,7 @@
             android:padding="10dp"
             android:text="Welcome"
             android:textAllCaps="true"
-            android:textColor="@color/text_darkmode"
+            android:textColor="@color/black"
             android:textSize="30sp" />
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -40,7 +40,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:background="@color/cardview_darkmode">
+                android:background="@color/cardview_light">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -81,7 +81,7 @@
             android:textSize="25sp"
             android:padding="10dp"
             android:fontFamily="@font/francois_one"
-            android:textColor="@color/text_darkmode"/>
+            android:textColor="@color/black"/>
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -94,7 +94,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:background="@color/cardview_darkmode">
+                android:background="@color/cardview_dark">
 
                 <TextView
                     android:layout_width="369dp"
@@ -133,7 +133,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:background="#67927c">
+                android:background="@color/cardview_dark">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -176,15 +176,15 @@
                 android:background="@color/cardview_dark">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:fontFamily="@font/halant_bold"
-                    android:padding="25dp"
                     android:gravity="center"
-                    android:text="Having Trouble with Arduinos"
+                    android:padding="25dp"
+                    android:text="Raspberry Pi Projects"
                     android:textColor="@color/white"
-                    android:textSize="22sp" />
+                    android:textSize="35sp" />
 
                 <TextView
                     android:layout_width="wrap_content"

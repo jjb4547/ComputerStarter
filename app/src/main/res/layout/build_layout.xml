@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cardview_dark_background">
+    android:background="@color/background_color">
 
     <TextView
         android:id="@+id/welcome"
@@ -18,7 +18,7 @@
         android:gravity="center_horizontal"
         android:text="Parts List"
         android:textAlignment="center"
-        android:textColor="@color/white"
+        android:textColor="@color/gray"
         android:textSize="40sp" />
 
     <GridLayout
@@ -38,7 +38,8 @@
             android:layout_columnWeight="1"
             android:layout_margin="8dp"
             app:cardCornerRadius="8dp"
-            app:cardElevation="8dp">
+            app:cardElevation="8dp"
+            android:backgroundTint="@color/cardview_light">
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -69,7 +70,8 @@
             android:layout_columnWeight="1"
             android:layout_margin="8dp"
             app:cardCornerRadius="8dp"
-            app:cardElevation="8dp">
+            app:cardElevation="8dp"
+            android:backgroundTint="@color/cardview_light">
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -99,7 +101,8 @@
             android:layout_columnWeight="1"
             android:layout_margin="8dp"
             app:cardCornerRadius="8dp"
-            app:cardElevation="8dp">
+            app:cardElevation="8dp"
+            android:backgroundTint="@color/cardview_light">
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -129,7 +132,8 @@
             android:layout_columnWeight="1"
             android:layout_margin="8dp"
             app:cardCornerRadius="8dp"
-            app:cardElevation="8dp">
+            app:cardElevation="8dp"
+            android:backgroundTint="@color/cardview_light">
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -159,7 +163,8 @@
             android:layout_columnWeight="1"
             android:layout_margin="8dp"
             app:cardCornerRadius="8dp"
-            app:cardElevation="8dp">
+            app:cardElevation="8dp"
+            android:backgroundTint="@color/cardview_light">
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -189,7 +194,8 @@
             android:layout_columnWeight="1"
             android:layout_margin="8dp"
             app:cardCornerRadius="8dp"
-            app:cardElevation="8dp">
+            app:cardElevation="8dp"
+            android:backgroundTint="@color/cardview_light">
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -219,7 +225,8 @@
             android:layout_columnWeight="1"
             android:layout_margin="8dp"
             app:cardCornerRadius="8dp"
-            app:cardElevation="8dp">
+            app:cardElevation="8dp"
+            android:backgroundTint="@color/cardview_light">
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -249,7 +256,8 @@
             android:layout_columnWeight="1"
             android:layout_margin="8dp"
             app:cardCornerRadius="8dp"
-            app:cardElevation="8dp">
+            app:cardElevation="8dp"
+            android:backgroundTint="@color/cardview_light">
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -279,7 +287,8 @@
             android:layout_columnWeight="1"
             android:layout_margin="8dp"
             app:cardCornerRadius="8dp"
-            app:cardElevation="8dp">
+            app:cardElevation="8dp"
+            android:backgroundTint="@color/cardview_light">
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
