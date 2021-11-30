@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -310,6 +311,8 @@ public class Build_Activity extends AppCompatActivity {
         mon = findViewById(R.id.mon);
         cool = findViewById(R.id.cool);
         pc_case = findViewById(R.id.id_case);
+        //ImageView imageView = findViewById(R.id.cpu_link_image);
+        //imageView.setImageResource(R.drawable.evga);
         cpu.setOnClickListener(view -> {
             Intent cpu_intent = new Intent(Build_Activity.this, PC_Build_Parts.class);
             cpu_intent.putExtra("name","CPU");
@@ -340,6 +343,22 @@ public class Build_Activity extends AppCompatActivity {
             stor_intent.putExtra("name","Storage");
             startActivity(stor_intent);
         });
+        cool.setOnClickListener(view -> {
+            Intent cool_intent = new Intent(Build_Activity.this, PC_Build_Parts.class);
+            cool_intent.putExtra("name","CPU Cooler");
+            startActivity(cool_intent);
+        });
+        mon.setOnClickListener(view -> {
+            Intent mon_intent = new Intent(Build_Activity.this, PC_Build_Parts.class);
+            mon_intent.putExtra("name","Monitor");
+            startActivity(mon_intent);
+        });
+        pc_case.setOnClickListener(view -> {
+            Intent pc_case_intent = new Intent(Build_Activity.this, PC_Build_Parts.class);
+            pc_case_intent.putExtra("name","Cases");
+            startActivity(pc_case_intent);
+        });
+
     }
 
 }
