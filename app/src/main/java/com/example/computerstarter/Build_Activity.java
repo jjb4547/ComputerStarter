@@ -1,14 +1,10 @@
 package com.example.computerstarter;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -25,11 +21,7 @@ import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class Build_Activity extends AppCompatActivity {
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -56,7 +48,10 @@ public class Build_Activity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         MainPageFragment main = new MainPageFragment();
-        build_ref= firestore.collection("Users").document(mAuth.getCurrentUser().getUid());
+        if(mAuth.getCurrentUser()!=null)
+            build_ref= firestore.collection("Users").document(mAuth.getCurrentUser().getUid());
+        else
+            Toast.makeText(this, "YOU ARE NOT LOGGED IN, WILL NOT SAVE!!!",Toast.LENGTH_SHORT).show();
         main.addcardview = true;
         setContentView(R.layout.build_layout);
         Build_Data build_data = new Build_Data();
@@ -82,20 +77,23 @@ public class Build_Activity extends AppCompatActivity {
         String currentDateandTime = sdf.format(new Date());
         if (item.getItemId()==android.R.id.home) {
             // app icon in action bar clicked; goto parent activity.
-            build_ref.get().addOnSuccessListener(documentSnapshot -> {
-                if (documentSnapshot.exists()) {
-                    build_data = documentSnapshot.toObject(Build_Data.class);
-                    if (build_data.getBuild_name().size() < 5) {
-                        build_ref.update("build_name", FieldValue.arrayUnion(name));
-                        build_ref.update("build_date", FieldValue.arrayUnion(currentDateandTime));
-                        build_ref.update("price", FieldValue.arrayUnion(getPriceSum()));
-                        Intent build_intent = new Intent(Build_Activity.this, MyBuildActivity.class);
-                        startActivity(build_intent);
-                    } else {
-                        Toast.makeText(Build_Activity.this, "TOO MANY BUILDS, DELETE ONE!!!!", Toast.LENGTH_SHORT).show();
+            if(checkAuth()) {
+                build_ref.get().addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        build_data = documentSnapshot.toObject(Build_Data.class);
+                        if (build_data.getBuild_name().size() < 5) {
+                            build_ref.update("build_name", FieldValue.arrayUnion(name));
+                            build_ref.update("build_date", FieldValue.arrayUnion(currentDateandTime));
+                            build_ref.update("price", FieldValue.arrayUnion(getPriceSum()));
+                            Intent build_intent = new Intent(Build_Activity.this, MyBuildActivity.class);
+                            startActivity(build_intent);
+                        } else {
+                            Toast.makeText(Build_Activity.this, "TOO MANY BUILDS, DELETE ONE!!!!", Toast.LENGTH_SHORT).show();
+                        }
                     }
-                }
-            });
+                });
+            }else
+                Toast.makeText(this,"NOT SAVED",Toast.LENGTH_SHORT).show();
             startActivity(new Intent(this,MyBuildActivity.class));
             return true;
         }else if(id==R.id.save_button){
