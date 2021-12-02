@@ -35,6 +35,7 @@ public class MyBuildActivity extends AppCompatActivity {
     private ArrayList<Build_Data> build;
     private DocumentReference build_ref;
     private RecyclerView recyclerView;
+    private double[] parts=new double[9];
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,6 +44,8 @@ public class MyBuildActivity extends AppCompatActivity {
         setContentView(R.layout.my_build_layout);
         getSupportActionBar().setTitle("My Builds");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        for(int i=0;i<parts.length;i++)
+            parts[i]=0;
         recyclerView = findViewById(R.id.recyclcer_builds);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -56,7 +59,7 @@ public class MyBuildActivity extends AppCompatActivity {
                 build_data = documentSnapshot.toObject(Build_Data.class);
                 if(build_data.getBuild_name().size()>0||build_data.getBuildName()!=null) {
                     for(int i=0;i<build_data.getBuild_name().size();i++) {
-                        build.add(new Build_Data(build_data.getBuild_name().get(i),build_data.getBuild_date().get(i),build_data.getPrice().get(0)));
+                        build.add(new Build_Data(build_data.getBuild_name().get(i),build_data.getBuild_date().get(i),build_data.getPrice().get(i)));
                     }
                     ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
                     itemTouchHelper.attachToRecyclerView(recyclerView);
@@ -66,8 +69,6 @@ public class MyBuildActivity extends AppCompatActivity {
                     helper();
                 }
             });
-
-
         }
     }
 
@@ -93,6 +94,7 @@ public class MyBuildActivity extends AppCompatActivity {
                 Intent intent = new Intent(MyBuildActivity.this,Build_Activity.class);
                 intent.putExtra("Build",value);
                 intent.putExtra("Time",build.size());
+                intent.putExtra("Parts",parts);
                 startActivity(intent);
             }
         });
@@ -130,6 +132,7 @@ public class MyBuildActivity extends AppCompatActivity {
                         case ItemTouchHelper.LEFT:
                             build_ref.update("build_name", FieldValue.arrayRemove(build.get(position).getBuildName()));
                             build_ref.update("build_date", FieldValue.arrayRemove(build.get(position).getBuildDate()));
+                            build_ref.update("price", FieldValue.arrayRemove(build.get(position).getBuildPrice()));
                             build.remove(position);
                             myBuildAdapter.notifyDataSetChanged();
                             if(build.size()==0){

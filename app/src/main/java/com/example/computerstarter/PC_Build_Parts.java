@@ -31,19 +31,21 @@ public class PC_Build_Parts extends AppCompatActivity {
     String mTitle[] = new String[10];
     String mDesc[] = new String[10];
     //int images[] = {R.drawable.amd_cpu, R.drawable.amd_cpu, R.drawable.amd_cpu, R.drawable.amd_cpu, R.drawable.amd_cpu,
-            //R.drawable.amd_cpu, R.drawable.amd_cpu, R.drawable.amd_cpu, R.drawable.amd_cpu, R.drawable.amd_cpu};
+    //R.drawable.amd_cpu, R.drawable.amd_cpu, R.drawable.amd_cpu, R.drawable.amd_cpu, R.drawable.amd_cpu};
     int images[] = new int[10];
-
-    //ArrayAdapter arrayAdapter;
+    int ids[] = new int[10];
+    double[] partsId;
+    String action;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent = this.getIntent();
         String name = intent.getExtras().getString("name");
+        partsId = intent.getDoubleArrayExtra("Parts");
+        action = intent.getExtras().getString("Build");
         setContentView(R.layout.activity_pc_part_build);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(name);
-
         int counter = 0;
         for(int i = 0; i < PriceList.getLength(); i++)
         {
@@ -51,6 +53,7 @@ public class PC_Build_Parts extends AppCompatActivity {
                 mTitle[counter] = PriceList.getName(i);
                 mDesc[counter] = PriceList.getPriceAsString(i);
                 images[counter] = PriceList.getIcon(i);
+                ids[counter]=i;
                 counter++;
             }
         }
@@ -62,9 +65,41 @@ public class PC_Build_Parts extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                if (i == 0) {
-                    Toast.makeText(PC_Build_Parts.this, "Example Text 1", Toast.LENGTH_SHORT).show();
+                Intent buildIntent = new Intent(PC_Build_Parts.this,Build_Activity.class);
+                buildIntent.putExtra("Name",name);
+                buildIntent.putExtra("Build",action);
+                Toast.makeText(PC_Build_Parts.this, PriceList.getPriceAsString(ids[i]), Toast.LENGTH_SHORT).show();
+                switch (name){
+                    case "CPU":
+                        partsId[0]=PriceList.getPrice(ids[i]);
+                        break;
+                    case "Motherboards":
+                        partsId[1] = PriceList.getPrice(ids[i]);
+                        break;
+                    case "Memory":
+                        partsId[2] = PriceList.getPrice(ids[i]);
+                        break;
+                    case "Storage":
+                        partsId[3] = PriceList.getPrice(ids[i]);
+                        break;
+                    case "Power Supplies":
+                        partsId[4] = PriceList.getPrice(ids[i]);
+                        break;
+                    case "CPU Cooler":
+                        partsId[5] = PriceList.getPrice(ids[i]);
+                        break;
+                    case "Monitor":
+                        partsId[6] = PriceList.getPrice(ids[i]);
+                        break;
+                    case "Video Cards":
+                        partsId[7] = PriceList.getPrice(ids[i]);
+                        break;
+                    case "Cases":
+                        partsId[8] = PriceList.getPrice(ids[i]);
+                        break;
                 }
+                buildIntent.putExtra("Parts",partsId);
+                startActivity(buildIntent);
             }
         });
 

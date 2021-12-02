@@ -6,25 +6,27 @@ public class Build_Data{
     private ArrayList<String> build_name;
     private ArrayList<String> build_date;
     //private Integer build_image;
-    private ArrayList<Integer> price;
+    private ArrayList<Double> price;
     private String buildName;
     private String buildDate;
-    private Integer buildPrice;
-
+    private Double buildPrice;
+    private Integer cpuid;
+    private ArrayList<Integer> partIDS;
+    private int motid;
 
     public Build_Data(){}
-    public Build_Data(ArrayList<String> build_name, ArrayList<String> build_date, ArrayList<Integer> price){
+    public Build_Data(ArrayList<String> build_name, ArrayList<String> build_date, ArrayList<Double> price){
         this.build_date = build_date;
         //this.build_image = build_image;
         this.build_name = build_name;
         this.price = price;
+        this.partIDS = partIDS;
     }
-    public Build_Data(String buildName, String buildDate, Integer buildPrice){
+    public Build_Data(String buildName, String buildDate, Double buildPrice){
         this.buildDate = buildDate;
         this.buildName = buildName;
         this.buildPrice = buildPrice;
     }
-
     public String getBuildName() {
         return buildName;
     }
@@ -41,11 +43,11 @@ public class Build_Data{
         this.buildDate = buildDate;
     }
 
-    public Integer getBuildPrice() {
+    public Double getBuildPrice() {
         return buildPrice;
     }
 
-    public void setBuildPrice(Integer buildPrice) {
+    public void setBuildPrice(Double buildPrice) {
         this.buildPrice = buildPrice;
     }
 
@@ -61,17 +63,18 @@ public class Build_Data{
         this.build_date = build_date;
     }
 
-    public ArrayList<Integer> getPrice() {
+    public ArrayList<Double> getPrice() {
         return price;
     }
 
-    public void setPrice(ArrayList<Integer> price) {
+    public void setPrice(ArrayList<Double> price) {
         this.price = price;
     }
 
     public void setBuild_name(ArrayList<String> build_name) {
         this.build_name = build_name;
     }
+    
 
     /*public Integer getBuild_image() {
         return build_image;
