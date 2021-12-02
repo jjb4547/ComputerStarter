@@ -17,14 +17,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 public class MyBuildActivity extends AppCompatActivity {
     private FirebaseFirestore firestore = FirebaseFirestore.getInstance();
@@ -36,6 +34,7 @@ public class MyBuildActivity extends AppCompatActivity {
     private DocumentReference build_ref;
     private RecyclerView recyclerView;
     private double[] parts=new double[9];
+    private boolean first = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -95,6 +94,7 @@ public class MyBuildActivity extends AppCompatActivity {
                 intent.putExtra("Build",value);
                 intent.putExtra("Time",build.size());
                 intent.putExtra("Parts",parts);
+                first = true;
                 startActivity(intent);
             }
         });
@@ -107,7 +107,7 @@ public class MyBuildActivity extends AppCompatActivity {
                 .titleTextSize(70)
                 .titleTextColor(R.color.white)
                 .drawShadow(true)
-                .cancelable(false)
+                .cancelable(first)
                 .tintTarget(true)
                 .transparentTarget(true)
                 .targetRadius(60), new TapTargetView.Listener(){
@@ -135,9 +135,8 @@ public class MyBuildActivity extends AppCompatActivity {
                             build_ref.update("price", FieldValue.arrayRemove(build.get(position).getBuildPrice()));
                             build.remove(position);
                             myBuildAdapter.notifyDataSetChanged();
-                            if(build.size()==0){
+                            if(build.size()==0)
                                 helper();
-                            }
                             break;
                     }
             }

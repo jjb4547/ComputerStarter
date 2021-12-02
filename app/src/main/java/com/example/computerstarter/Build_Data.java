@@ -5,22 +5,16 @@ import java.util.ArrayList;
 public class Build_Data{
     private ArrayList<String> build_name;
     private ArrayList<String> build_date;
-    //private Integer build_image;
     private ArrayList<Double> price;
     private String buildName;
     private String buildDate;
     private Double buildPrice;
-    private Integer cpuid;
-    private ArrayList<Integer> partIDS;
-    private int motid;
 
     public Build_Data(){}
     public Build_Data(ArrayList<String> build_name, ArrayList<String> build_date, ArrayList<Double> price){
         this.build_date = build_date;
-        //this.build_image = build_image;
         this.build_name = build_name;
         this.price = price;
-        this.partIDS = partIDS;
     }
     public Build_Data(String buildName, String buildDate, Double buildPrice){
         this.buildDate = buildDate;
