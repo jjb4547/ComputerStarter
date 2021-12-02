@@ -19,8 +19,14 @@ public class PriceList {
 
     public static String getPriceAsString(int id)
     {
+        String answerStr = "";
         double answer = getPrice(id);
-        String answerStr = "$" + answer;
+        if(answer == 0.00)
+        {
+            answerStr = "Out of stock.";
+            return answerStr;
+        }
+        answerStr = "$" + answer;
 
         return answerStr;
     }
