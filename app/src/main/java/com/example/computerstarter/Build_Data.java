@@ -8,7 +8,7 @@ public class Build_Data{
     private ArrayList<Double> price;
     private String buildName;
     private String buildDate;
-    private Double buildPrice;
+    private double buildPrice;
 
     public Build_Data(){}
     public Build_Data(ArrayList<String> build_name, ArrayList<String> build_date, ArrayList<Double> price){
@@ -16,7 +16,7 @@ public class Build_Data{
         this.build_name = build_name;
         this.price = price;
     }
-    public Build_Data(String buildName, String buildDate, Double buildPrice){
+    public Build_Data(String buildName, String buildDate, double buildPrice){
         this.buildDate = buildDate;
         this.buildName = buildName;
         this.buildPrice = buildPrice;
@@ -37,11 +37,11 @@ public class Build_Data{
         this.buildDate = buildDate;
     }
 
-    public Double getBuildPrice() {
+    public double getBuildPrice() {
         return buildPrice;
     }
 
-    public void setBuildPrice(Double buildPrice) {
+    public void setBuildPrice(double buildPrice) {
         this.buildPrice = buildPrice;
     }
 

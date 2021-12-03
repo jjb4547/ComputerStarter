@@ -46,7 +46,7 @@ public class MyBuildAdapter extends RecyclerView.Adapter<MyBuildAdapter.ViewHold
         //System.out.println(build_data.get(position).getBuild_name());
         holder.tbuildName.setText(build_data_list.getBuildName());
         holder.tbuildDate.setText(build_data_list.getBuildDate());
-        holder.tbuildPrice.setText("Price: $"+build_data_list.getBuildPrice().toString());
+        holder.tbuildPrice.setText("Price: $"+build_data_list.getBuildPrice());
         //holder.buildImage.setImageResource(build_data_list.getBuild_image());
     }
 
