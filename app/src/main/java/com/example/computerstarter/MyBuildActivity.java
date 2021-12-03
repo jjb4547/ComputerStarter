@@ -34,6 +34,8 @@ public class MyBuildActivity extends AppCompatActivity {
     private DocumentReference build_ref;
     private RecyclerView recyclerView;
     private double[] parts=new double[9];
+    private String[] titles = new String[9];
+    private int[] images = new int[9];
     private boolean first = false;
 
     @Override
@@ -45,6 +47,8 @@ public class MyBuildActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         for(int i=0;i<parts.length;i++)
             parts[i]=0;
+        addTitles();
+        addImages();
         recyclerView = findViewById(R.id.recyclcer_builds);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -58,7 +62,7 @@ public class MyBuildActivity extends AppCompatActivity {
                 build_data = documentSnapshot.toObject(Build_Data.class);
                 if(build_data.getBuild_name().size()>0||build_data.getBuildName()!=null) {
                     for(int i=0;i<build_data.getBuild_name().size();i++) {
-                        build.add(new Build_Data(build_data.getBuild_name().get(i),build_data.getBuild_date().get(i),build_data.getPrice().get(i)));
+                        build.add(new Build_Data(build_data.getBuild_name().get(i),build_data.getBuild_date().get(i),(double) build_data.getPrice().get(i)));
                     }
                     ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
                     itemTouchHelper.attachToRecyclerView(recyclerView);
@@ -94,6 +98,8 @@ public class MyBuildActivity extends AppCompatActivity {
                 intent.putExtra("Build",value);
                 intent.putExtra("Time",build.size());
                 intent.putExtra("Parts",parts);
+                intent.putExtra("Titles",titles);
+                intent.putExtra("Images",images);
                 first = true;
                 startActivity(intent);
             }
@@ -142,4 +148,26 @@ public class MyBuildActivity extends AppCompatActivity {
             }
         }
     };
+    public void addTitles(){
+        titles[0]= "CPU";
+        titles[1]= "Motherboard";
+        titles[2] = "Memory";
+        titles[3] = "Storage";
+        titles[4] = "PSU";
+        titles[5] = "CPU Cooler";
+        titles[6] = "Monitor";
+        titles[7] = "Video Card";
+        titles[8] = "Cases";
+    }
+    public void addImages(){
+        images[0] = R.drawable.cpu_link;
+        images[1] = R.drawable.motherboard_link;
+        images[2] = R.drawable.memory_link;
+        images[3] = R.drawable.storage_link;
+        images[4] = R.drawable.psu_link;
+        images[5] = R.drawable.cpu_cooler_link;
+        images[6] = R.drawable.monitor_link;
+        images[7] = R.drawable.vga_link;
+        images[8] = R.drawable.pc_case_link;
+    }
 }
