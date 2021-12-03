@@ -22,6 +22,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -473,11 +474,15 @@ public class Build_Activity extends AppCompatActivity {
         super.onRestoreInstanceState(savedInstanceState);
         parts = savedInstanceState.getDoubleArray("Parts");
     }
-    public Double getPriceSum(){
-        Double price=0.0;
+    public double getPriceSum(){
+        double price=0.0;
+        NumberFormat nf = NumberFormat.getInstance();
+        nf.setMaximumFractionDigits(2);
         for(int i=0;i<parts.length;i++) {
             price = price+parts[i];
+            System.out.println(price);
         }
+        price = Math.floor(price*100)/100;
         return price;
     }
 }
