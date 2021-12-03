@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -40,9 +42,29 @@ public class Build_Activity extends AppCompatActivity {
     private CardView pc_case;
     private MenuItem save;
     private boolean first=true;
+    private TextView cpuTitle;
+    private TextView motTitle;
+    private TextView memTitle;
+    private TextView storTitle;
+    private TextView psuTitle;
+    private TextView coolTitle;
+    private TextView monTitle;
+    private TextView vgaTitle;
+    private TextView caseTitle;
+    private ImageView cpuImage;
+    private ImageView motImage;
+    private ImageView memImage;
+    private ImageView storImage;
+    private ImageView psuImage;
+    private ImageView coolImage;
+    private ImageView monImage;
+    private ImageView vgaImage;
+    private ImageView caseImage;
     double[] parts;
     String name;
     String name_action_bar;
+    String[] titles;
+    int[] images;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -60,6 +82,8 @@ public class Build_Activity extends AppCompatActivity {
         name_action_bar = intent.getExtras().getString("Build");
         name = intent.getExtras().getString("Name");
         parts = intent.getDoubleArrayExtra("Parts");
+        titles = intent.getStringArrayExtra("Titles");
+        images = intent.getIntArrayExtra("Images");
         getSupportActionBar().setTitle(name_action_bar);
         save = findViewById(R.id.save_button);
         init();
@@ -321,11 +345,49 @@ public class Build_Activity extends AppCompatActivity {
         mon = findViewById(R.id.mon);
         cool = findViewById(R.id.cool);
         pc_case = findViewById(R.id.id_case);
+        cpuTitle = findViewById(R.id.cpuText);
+        motTitle = findViewById(R.id.motText);
+        memTitle = findViewById(R.id.memText);
+        storTitle = findViewById(R.id.storText);
+        psuTitle = findViewById(R.id.psuText);
+        coolTitle = findViewById(R.id.coolText);
+        monTitle = findViewById(R.id.monText);
+        vgaTitle = findViewById(R.id.vgaText);
+        caseTitle = findViewById(R.id.caseText);
+        cpuImage = findViewById(R.id.cpu_link_image);
+        motImage = findViewById(R.id.mot_link_image);
+        memImage = findViewById(R.id.mem_link_image);
+        storImage = findViewById(R.id.stor_link_image);
+        psuImage = findViewById(R.id.psu_link_image);
+        coolImage = findViewById(R.id.cool_link_image);
+        monImage = findViewById(R.id.mon_link_image);
+        vgaImage = findViewById(R.id.vga_link_image);
+        caseImage = findViewById(R.id.case_link_image);
+        cpuTitle.setText(titles[0]+"\n$"+parts[0]);
+        motTitle.setText(titles[1]+"\n$"+parts[1]);
+        memTitle.setText(titles[2]+"\n$"+parts[2]);
+        storTitle.setText(titles[3]+"\n$"+parts[3]);
+        psuTitle.setText(titles[4]+"\n$"+parts[4]);
+        coolTitle.setText(titles[5]+"\n$"+parts[5]);
+        monTitle.setText(titles[6]+"\n$"+parts[6]);
+        vgaTitle.setText(titles[7]+"\n$"+parts[7]);
+        caseTitle.setText(titles[8]+"\n$"+parts[8]);
+        cpuImage.setImageResource(images[0]);
+        motImage.setImageResource(images[1]);
+        memImage.setImageResource(images[2]);
+        storImage.setImageResource(images[3]);
+        psuImage.setImageResource(images[4]);
+        coolImage.setImageResource(images[5]);
+        monImage.setImageResource(images[6]);
+        vgaImage.setImageResource(images[7]);
+        caseImage.setImageResource(images[8]);
         cpu.setOnClickListener(view -> {
             Intent cpu_intent = new Intent(Build_Activity.this, PC_Build_Parts.class);
             cpu_intent.putExtra("name","CPU");
             cpu_intent.putExtra("Parts",parts);
             cpu_intent.putExtra("Build",name_action_bar);
+            cpu_intent.putExtra("Titles",titles);
+            cpu_intent.putExtra("Images",images);
             startActivity(cpu_intent);
         });
         mot.setOnClickListener(view -> {
@@ -333,6 +395,8 @@ public class Build_Activity extends AppCompatActivity {
             mot_intent.putExtra("name","Motherboards");
             mot_intent.putExtra("Parts",parts);
             mot_intent.putExtra("Build",name_action_bar);
+            mot_intent.putExtra("Titles",titles);
+            mot_intent.putExtra("Images",images);
             startActivity(mot_intent);
         });
         mem.setOnClickListener(view -> {
@@ -340,6 +404,8 @@ public class Build_Activity extends AppCompatActivity {
             mem_intent.putExtra("name","Memory");
             mem_intent.putExtra("Parts",parts);
             mem_intent.putExtra("Build",name_action_bar);
+            mem_intent.putExtra("Titles",titles);
+            mem_intent.putExtra("Images",images);
             startActivity(mem_intent);
         });
         vga.setOnClickListener(view -> {
@@ -347,6 +413,8 @@ public class Build_Activity extends AppCompatActivity {
             vga_intent.putExtra("name","Video Cards");
             vga_intent.putExtra("Parts",parts);
             vga_intent.putExtra("Build",name_action_bar);
+            vga_intent.putExtra("Titles",titles);
+            vga_intent.putExtra("Images",images);
             startActivity(vga_intent);
         });
         psu.setOnClickListener(view -> {
@@ -354,6 +422,8 @@ public class Build_Activity extends AppCompatActivity {
             psu_intent.putExtra("name","Power Supplies");
             psu_intent.putExtra("Parts",parts);
             psu_intent.putExtra("Build",name_action_bar);
+            psu_intent.putExtra("Titles",titles);
+            psu_intent.putExtra("Images",images);
             startActivity(psu_intent);
         });
         stor.setOnClickListener(view -> {
@@ -361,6 +431,8 @@ public class Build_Activity extends AppCompatActivity {
             stor_intent.putExtra("name","Storage");
             stor_intent.putExtra("Parts",parts);
             stor_intent.putExtra("Build",name_action_bar);
+            stor_intent.putExtra("Titles",titles);
+            stor_intent.putExtra("Images",images);
             startActivity(stor_intent);
         });
         cool.setOnClickListener(view -> {
@@ -368,6 +440,8 @@ public class Build_Activity extends AppCompatActivity {
             cool_intent.putExtra("name","CPU Cooler");
             cool_intent.putExtra("Parts",parts);
             cool_intent.putExtra("Build",name_action_bar);
+            cool_intent.putExtra("Titles",titles);
+            cool_intent.putExtra("Images",images);
             startActivity(cool_intent);
         });
         mon.setOnClickListener(view -> {
@@ -375,6 +449,8 @@ public class Build_Activity extends AppCompatActivity {
             mon_intent.putExtra("name","Monitor");
             mon_intent.putExtra("Parts",parts);
             mon_intent.putExtra("Build",name_action_bar);
+            mon_intent.putExtra("Titles",titles);
+            mon_intent.putExtra("Images",images);
             startActivity(mon_intent);
         });
         pc_case.setOnClickListener(view -> {
@@ -382,6 +458,8 @@ public class Build_Activity extends AppCompatActivity {
             pc_case_intent.putExtra("name","Cases");
             pc_case_intent.putExtra("Parts",parts);
             pc_case_intent.putExtra("Build",name_action_bar);
+            pc_case_intent.putExtra("Titles",titles);
+            pc_case_intent.putExtra("Images",images);
             startActivity(pc_case_intent);
         });
 
@@ -398,8 +476,8 @@ public class Build_Activity extends AppCompatActivity {
         super.onRestoreInstanceState(savedInstanceState);
         parts = savedInstanceState.getDoubleArray("Parts");
     }
-    public double getPriceSum(){
-        double price=0;
+    public Double getPriceSum(){
+        Double price=0.0;
         for(int i=0;i<parts.length;i++) {
             price = price+parts[i];
         }

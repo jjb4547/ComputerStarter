@@ -35,7 +35,9 @@ public class PC_Build_Parts extends AppCompatActivity {
     int images[] = new int[10];
     int ids[] = new int[10];
     double[] partsId;
+    String[] titles;
     String action;
+    int[] componentImages;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +45,8 @@ public class PC_Build_Parts extends AppCompatActivity {
         String name = intent.getExtras().getString("name");
         partsId = intent.getDoubleArrayExtra("Parts");
         action = intent.getExtras().getString("Build");
+        titles = intent.getStringArrayExtra("Titles");
+        componentImages = intent.getIntArrayExtra("Images");
         setContentView(R.layout.activity_pc_part_build);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(name);
@@ -72,33 +76,53 @@ public class PC_Build_Parts extends AppCompatActivity {
                 switch (name){
                     case "CPU":
                         partsId[0]=PriceList.getPrice(ids[i]);
+                        titles[0]=PriceList.getName(ids[i]);
+                        componentImages[0] = PriceList.getIcon(ids[i]);
                         break;
                     case "Motherboards":
                         partsId[1] = PriceList.getPrice(ids[i]);
+                        titles[1]=PriceList.getName(ids[i]);
+                        componentImages[1] = PriceList.getIcon(ids[i]);
                         break;
                     case "Memory":
                         partsId[2] = PriceList.getPrice(ids[i]);
+                        titles[2]=PriceList.getName(ids[i]);
+                        componentImages[2] = PriceList.getIcon(ids[i]);
                         break;
                     case "Storage":
                         partsId[3] = PriceList.getPrice(ids[i]);
+                        titles[3]=PriceList.getName(ids[i]);
+                        componentImages[3] = PriceList.getIcon(ids[i]);
                         break;
                     case "Power Supplies":
                         partsId[4] = PriceList.getPrice(ids[i]);
+                        titles[4]=PriceList.getName(ids[i]);
+                        componentImages[4] = PriceList.getIcon(ids[i]);
                         break;
                     case "CPU Cooler":
                         partsId[5] = PriceList.getPrice(ids[i]);
+                        titles[5]=PriceList.getName(ids[i]);
+                        componentImages[5] = PriceList.getIcon(ids[i]);
                         break;
                     case "Monitor":
                         partsId[6] = PriceList.getPrice(ids[i]);
+                        titles[6]=PriceList.getName(ids[i]);
+                        componentImages[6] = PriceList.getIcon(ids[i]);
                         break;
                     case "Video Cards":
                         partsId[7] = PriceList.getPrice(ids[i]);
+                        titles[7]=PriceList.getName(ids[i]);
+                        componentImages[7] = PriceList.getIcon(ids[i]);
                         break;
                     case "Cases":
                         partsId[8] = PriceList.getPrice(ids[i]);
+                        titles[8]=PriceList.getName(ids[i]);
+                        componentImages[8] = PriceList.getIcon(ids[i]);
                         break;
                 }
                 buildIntent.putExtra("Parts",partsId);
+                buildIntent.putExtra("Titles",titles);
+                buildIntent.putExtra("Images",componentImages);
                 startActivity(buildIntent);
             }
         });
