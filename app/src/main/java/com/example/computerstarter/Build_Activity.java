@@ -87,9 +87,6 @@ public class Build_Activity extends AppCompatActivity {
         getSupportActionBar().setTitle(name_action_bar);
         save = findViewById(R.id.save_button);
         init();
-        for(int i =0;i<parts.length;i++){
-            System.out.println("Part"+i+": "+parts[i]);
-        }
     }
 
     @Override

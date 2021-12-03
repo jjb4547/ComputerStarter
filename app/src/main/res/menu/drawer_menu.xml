@@ -19,7 +19,7 @@
         android:icon="@drawable/ic_quiz">
     </item>
 </group>
-    <item android:title="SETTINGS">
+    <item android:title="">
         <menu>
             <item
                 android:title="Account"
