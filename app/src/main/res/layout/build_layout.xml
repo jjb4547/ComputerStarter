@@ -54,10 +54,17 @@
                 <TextView
                     android:id="@+id/cpuText"
                     android:layout_width="100dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:text="CPU"
                     android:textStyle="bold"
                     android:textAlignment="center"/>
+                <TextView
+                    android:id="@+id/cpu_Price"
+                    android:layout_width="100dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
@@ -87,10 +94,17 @@
                 <TextView
                     android:id="@+id/motText"
                     android:layout_width="100dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:text="Motherboard"
                     android:textStyle="bold"
                     android:textAlignment="center"/>
+                <TextView
+                    android:id="@+id/mot_Price"
+                    android:layout_width="100dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
@@ -120,10 +134,17 @@
                 <TextView
                     android:id="@+id/memText"
                     android:layout_width="100dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:text="Memory"
                     android:textStyle="bold"
                     android:textAlignment="center"/>
+                <TextView
+                    android:id="@+id/mem_Price"
+                    android:layout_width="100dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
@@ -153,10 +174,17 @@
                 <TextView
                     android:id="@+id/storText"
                     android:layout_width="100dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:text="Storage"
                     android:textStyle="bold"
                     android:textAlignment="center"/>
+                <TextView
+                    android:id="@+id/stor_Price"
+                    android:layout_width="100dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
@@ -186,10 +214,17 @@
                 <TextView
                     android:id="@+id/psuText"
                     android:layout_width="100dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:text="PSU"
                     android:textStyle="bold"
                     android:textAlignment="center"/>
+                <TextView
+                    android:id="@+id/psu_Price"
+                    android:layout_width="100dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
@@ -219,10 +254,17 @@
                 <TextView
                     android:id="@+id/coolText"
                     android:layout_width="100dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:text="CPU Cooler"
                     android:textStyle="bold"
                     android:textAlignment="center"/>
+                <TextView
+                    android:id="@+id/cool_Price"
+                    android:layout_width="100dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
@@ -252,10 +294,17 @@
                 <TextView
                     android:id="@+id/monText"
                     android:layout_width="100dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:text="Monitor"
                     android:textStyle="bold"
                     android:textAlignment="center"/>
+                <TextView
+                    android:id="@+id/mon_Price"
+                    android:layout_width="100dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
@@ -285,10 +334,17 @@
                 <TextView
                     android:id="@+id/vgaText"
                     android:layout_width="100dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:text="Video Card"
                     android:textStyle="bold"
                     android:textAlignment="center"/>
+                <TextView
+                    android:id="@+id/vga_Price"
+                    android:layout_width="100dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
@@ -318,10 +374,17 @@
                 <TextView
                     android:id="@+id/caseText"
                     android:layout_width="100dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:text="Case"
                     android:textStyle="bold"
                     android:textAlignment="center"/>
+                <TextView
+                    android:id="@+id/case_Price"
+                    android:layout_width="100dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
     </GridLayout>

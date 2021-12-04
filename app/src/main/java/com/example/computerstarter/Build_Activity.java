@@ -22,7 +22,6 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -361,15 +360,33 @@ public class Build_Activity extends AppCompatActivity {
         monImage = findViewById(R.id.mon_link_image);
         vgaImage = findViewById(R.id.vga_link_image);
         caseImage = findViewById(R.id.case_link_image);
-        cpuTitle.setText(titles[0]+"\n$"+parts[0]);
-        motTitle.setText(titles[1]+"\n$"+parts[1]);
-        memTitle.setText(titles[2]+"\n$"+parts[2]);
-        storTitle.setText(titles[3]+"\n$"+parts[3]);
-        psuTitle.setText(titles[4]+"\n$"+parts[4]);
-        coolTitle.setText(titles[5]+"\n$"+parts[5]);
-        monTitle.setText(titles[6]+"\n$"+parts[6]);
-        vgaTitle.setText(titles[7]+"\n$"+parts[7]);
-        caseTitle.setText(titles[8]+"\n$"+parts[8]);
+        TextView cpuPrice = findViewById(R.id.cpu_Price);
+        TextView motPrice = findViewById(R.id.mot_Price);
+        TextView memPrice = findViewById(R.id.mem_Price);
+        TextView storPrice = findViewById(R.id.stor_Price);
+        TextView psuPrice = findViewById(R.id.psu_Price);
+        TextView coolPrice = findViewById(R.id.cool_Price);
+        TextView monPrice = findViewById(R.id.mon_Price);
+        TextView vgaPrice = findViewById(R.id.vga_Price);
+        TextView casePrice = findViewById(R.id.case_Price);
+        cpuTitle.setText(titles[0]);
+        cpuPrice.setText("$"+parts[0]);
+        motTitle.setText(titles[1]);
+        motPrice.setText("$"+parts[1]);
+        memTitle.setText(titles[2]);
+        memPrice.setText("$"+parts[2]);
+        storTitle.setText(titles[3]);
+        storPrice.setText("$"+parts[3]);
+        psuTitle.setText(titles[4]);
+        psuPrice.setText("$"+parts[4]);
+        coolTitle.setText(titles[5]);
+        coolPrice.setText("$"+parts[5]);
+        monTitle.setText(titles[6]);
+        monPrice.setText("$"+parts[6]);
+        vgaTitle.setText(titles[7]);
+        vgaPrice.setText("$"+parts[7]);
+        caseTitle.setText(titles[8]);
+        casePrice.setText("$"+parts[8]);
         cpuImage.setImageResource(images[0]);
         motImage.setImageResource(images[1]);
         memImage.setImageResource(images[2]);
@@ -476,8 +493,6 @@ public class Build_Activity extends AppCompatActivity {
     }
     public double getPriceSum(){
         double price=0.0;
-        NumberFormat nf = NumberFormat.getInstance();
-        nf.setMaximumFractionDigits(2);
         for(int i=0;i<parts.length;i++) {
             price = price+parts[i];
             System.out.println(price);
