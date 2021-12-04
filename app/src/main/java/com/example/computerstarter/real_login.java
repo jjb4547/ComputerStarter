@@ -3,7 +3,6 @@ package com.example.computerstarter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -12,16 +11,11 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class real_login extends AppCompatActivity {
     private FirebaseAuth mAuth;
@@ -79,9 +73,8 @@ public class real_login extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (!task.isSuccessful()) {
                             // there was an error
-                            Toast.makeText(real_login.this, "Authentication failed." + task.getException(),
-                                    Toast.LENGTH_LONG).show();
-                            Log.e("MyTag", task.getException().toString());
+                            Toast.makeText(real_login.this, "Authentication failed. \nWRONG EMAIL/PASSWORD!!!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(real_login.this,"WRONG EMAIL/PASSWORD!!!",Toast.LENGTH_SHORT).show();
                         } else {
                             Intent intent = new Intent(real_login.this, MainActivity.class);
                             startActivity(intent);
