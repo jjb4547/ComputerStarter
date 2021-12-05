@@ -2,7 +2,6 @@ package com.example.computerstarter;
 
 import android.app.AlertDialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,18 +16,13 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
-import androidx.preference.PreferenceManager;
 
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.Map;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -66,11 +60,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if(user!=null) {
             item_log.setTitle("Log Out");
             item_acc.setVisible(true);
-            item_quiz.setVisible(true);
+            //item_quiz.setVisible(true);
         }else {
             item_log.setTitle("Log In");
             item_acc.setVisible(false);
-            item_quiz.setVisible(false);
+            //item_quiz.setVisible(false);
         }
         TextView name = headerView.findViewById(R.id.myname);
         TextView email = headerView.findViewById(R.id.email);
@@ -94,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         real_login login = new real_login();
         switch (item.getItemId()){
             case R.id.social:
-                Toast.makeText(this,"Social",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"Future Improvement",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.home:
                 Toast.makeText(this,"Main Page",Toast.LENGTH_SHORT).show();
@@ -111,7 +105,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     Toast.makeText(this,"LOG IN!!!!",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.quiz:
-                    showAlertDialogQuiz();
+                    //showAlertDialogQuiz();
+                    Toast.makeText(this,"Future Improvement",Toast.LENGTH_SHORT).show();
                     break;
             case R.id.log:
                 if(mAuth.getCurrentUser()!=null){

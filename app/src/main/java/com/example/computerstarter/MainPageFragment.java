@@ -41,14 +41,15 @@ public class MainPageFragment extends Fragment {
         });
         CardView feat = view.findViewById(R.id.helpful_link);
         feat.setOnClickListener(view ->{
-            Toast.makeText(getActivity(),"Link to CPUs",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(),"Future Improvement",Toast.LENGTH_SHORT).show();
         });
         CardView feat_1 = view.findViewById(R.id.helpful_link_1);
         feat_1.setOnClickListener(view ->{
-            Toast.makeText(getActivity(),"Community Builds",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(),"Future Improvement",Toast.LENGTH_SHORT).show();
         });
         CardView feat_2 = view.findViewById(R.id.helpful_link_2);
         feat_2.setOnClickListener(view ->{
+            Toast.makeText(getActivity(),"Future Improvement",Toast.LENGTH_SHORT).show();
             //Intent intent = new Intent(getActivity(),Arduino_Projects.class);
             //startActivity(intent);
         });
