@@ -2,6 +2,7 @@ package com.example.computerstarter;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,6 +17,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
+import androidx.preference.PreferenceManager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -118,7 +120,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     item_acc.setVisible(false);
                     item_quiz.setVisible(false);
                 }else{
-                    startActivity(new Intent(MainActivity.this,real_login.class));
+                    startActivity(new Intent(MainActivity.this,Login_SignUpActivity.class));
+                    overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                     if(login.logged)
                         item.setTitle("Log Out");
                     else
@@ -148,5 +151,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(intent);
         });
         alert.create().show();
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        boolean previouslyStarted = prefs.getBoolean(getString(R.string.pref_previously_started),false);
+        if(!previouslyStarted){
+            SharedPreferences.Editor edit = prefs.edit();
+            edit.putBoolean(getString(R.string.pref_previously_started_login),Boolean.TRUE);
+            edit.commit();
+            startActivity(new Intent(MainActivity.this,Login_SignUpActivity.class));
+            overridePendingTransition(R.anim.slide_in_left,R.anim.stay);
+        }
+
     }
 }

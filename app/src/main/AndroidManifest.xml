@@ -37,7 +37,6 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -53,6 +52,8 @@
         <activity android:name=".PC_Build_Parts"/>
         <activity android:name=".MyBuildActivity"/>
         <activity android:name=".SocialMediaBlogs"/>
+        <activity android:name=".Login_SignUpActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <meta-data
             android:name="preloaded_fonts"

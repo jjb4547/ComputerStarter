@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue_gray">
+    android:background="@color/blue_gray"
+    app:layoutDescription="@xml/splash_scene">
 
     <TextView
         android:id="@+id/splash_text"
@@ -41,13 +42,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="88dp"
         android:gravity="center_horizontal"
-        android:text="Hello"
+        android:text="Loading..."
+        android:textColor="@color/white"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        android:textColor="@color/white"/>
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -61,4 +62,4 @@
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="@+id/percent"
         app:layout_constraintTop_toBottomOf="@+id/percent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.motion.widget.MotionLayout>

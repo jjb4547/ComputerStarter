@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.transition.Transition;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -114,16 +116,15 @@ public class SplashActivity extends AppCompatActivity  {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            textView.setText("Loading");
+                            textView.setText("Loading...");
                         }
                     });
                     progressBar.setProgress(counter);
                     counter++;
                 }else{
                     timer.cancel();
-                    Intent intent = new Intent(SplashActivity.this,MainActivity.class);
-                    startActivity(intent);
-                    finish();
+                    startActivity(new Intent(SplashActivity.this,MainActivity.class));
+                    overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 }
             }
         },0,period);
