@@ -31,26 +31,10 @@ public class Build_Activity extends AppCompatActivity {
     private DocumentReference build_ref;
     private Boolean isMenuOpen = false;
     private Build_Data build_data;
-    private CardView cpu;
-    private CardView mot;
-    private CardView mem;
-    private CardView vga;
-    private CardView psu;
-    private CardView stor;
-    private CardView mon;
-    private CardView cool;
-    private CardView pc_case;
+    private CardView cpu, mot,mem,vga,psu,stor,mon,cool,pc_case;
     private MenuItem save;
     private boolean first=true;
-    private TextView cpuTitle;
-    private TextView motTitle;
-    private TextView memTitle;
-    private TextView storTitle;
-    private TextView psuTitle;
-    private TextView coolTitle;
-    private TextView monTitle;
-    private TextView vgaTitle;
-    private TextView caseTitle;
+    private TextView cpuTitle,motTitle,memTitle,storTitle,psuTitle,coolTitle,monTitle,vgaTitle,caseTitle;
     private ImageView cpuImage;
     private ImageView motImage;
     private ImageView memImage;
@@ -106,8 +90,8 @@ public class Build_Activity extends AppCompatActivity {
                             build_ref.update("build_name", FieldValue.arrayUnion(name));
                             build_ref.update("build_date", FieldValue.arrayUnion(currentDateandTime));
                             build_ref.update("price", FieldValue.arrayUnion(getPriceSum()));
-                            Intent build_intent = new Intent(Build_Activity.this, MyBuildActivity.class);
-                            startActivity(build_intent);
+                            startActivity(new Intent(Build_Activity.this, MyBuildActivity.class));
+                            overridePendingTransition(R.anim.slide_in_left,R.anim.stay);
                         } else {
                             Toast.makeText(Build_Activity.this, "TOO MANY BUILDS, DELETE ONE!!!!", Toast.LENGTH_SHORT).show();
                         }
@@ -116,6 +100,7 @@ public class Build_Activity extends AppCompatActivity {
             }else
                 Toast.makeText(this,"NOT SAVED",Toast.LENGTH_SHORT).show();
             startActivity(new Intent(this,MyBuildActivity.class));
+            overridePendingTransition(R.anim.slide_in_left,R.anim.stay);
             return true;
         }else if(id==R.id.save_button){
             if(checkAuth()){
@@ -126,8 +111,7 @@ public class Build_Activity extends AppCompatActivity {
                             build_ref.update("build_name", FieldValue.arrayUnion(name));
                             build_ref.update("build_date", FieldValue.arrayUnion(currentDateandTime));
                             build_ref.update("price", FieldValue.arrayUnion(getPriceSum()));
-                            Intent build_intent = new Intent(Build_Activity.this, MyBuildActivity.class);
-                            startActivity(build_intent);
+                            startActivity(new Intent(Build_Activity.this, MyBuildActivity.class));
                         } else {
                             Toast.makeText(Build_Activity.this, "TOO MANY BUILDS, DELETE ONE!!!!", Toast.LENGTH_SHORT).show();
                         }

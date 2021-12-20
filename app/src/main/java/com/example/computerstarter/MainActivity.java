@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +40,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private String[] list;
     private String quiz;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private TextView log;
+    private ImageView logBut;
+    private MenuItem item_log;
+    private MenuItem item_quiz;
+    private MenuItem item_acc;
+    private real_login login = new real_login();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,15 +64,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
         View headerView = navigationView.getHeaderView(0);
         Menu menu = navigationView.getMenu();
-        MenuItem item_log = menu.findItem(R.id.log);
-        MenuItem item_quiz = menu.findItem(R.id.quiz);
-        MenuItem item_acc = menu.findItem(R.id.account);
+        item_quiz = menu.findItem(R.id.quiz);
+        item_acc = menu.findItem(R.id.account);
+        log = findViewById(R.id.log_Text);
+        logBut = findViewById(R.id.logButtton);
         if(user!=null) {
-            item_log.setTitle("Log Out");
+            log.setText("Log Out");
             item_acc.setVisible(true);
             //item_quiz.setVisible(true);
         }else {
-            item_log.setTitle("Log In");
+            log.setText("Log In");
             item_acc.setVisible(false);
             //item_quiz.setVisible(false);
         }
@@ -79,6 +88,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             name.setText("");
             email.setText("");
         }
+        log.setOnClickListener(view->{
+            if(mAuth.getCurrentUser()!=null){
+                mAuth.signOut();
+                Toast.makeText(MainActivity.this,"Logged Out",Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(MainActivity.this,MainActivity.class));
+                log.setText("Log In");
+                login.logged = false;
+                item_acc.setVisible(false);
+                item_quiz.setVisible(false);
+            }else{
+                startActivity(new Intent(MainActivity.this,Login_SignUpActivity.class));
+                overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
+                if(login.logged)
+                    log.setText("Log Out");
+                else
+                    log.setText("Log In");
+            }
+        });
     }
 
     @Override
@@ -87,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Menu menu = navigationView.getMenu();
         MenuItem item_quiz = menu.findItem(R.id.quiz);
         MenuItem item_acc = menu.findItem(R.id.account);
-        real_login login = new real_login();
+        //real_login login = new real_login();
         switch (item.getItemId()){
             case R.id.social:
                 Toast.makeText(this,"Future Improvement",Toast.LENGTH_SHORT).show();
@@ -110,24 +137,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     //showAlertDialogQuiz();
                     Toast.makeText(this,"Future Improvement",Toast.LENGTH_SHORT).show();
                     break;
-            case R.id.log:
-                if(mAuth.getCurrentUser()!=null){
-                    mAuth.signOut();
-                    Toast.makeText(MainActivity.this,"Logged Out",Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(MainActivity.this,MainActivity.class));
-                    item.setTitle("Log In");
-                    login.logged = false;
-                    item_acc.setVisible(false);
-                    item_quiz.setVisible(false);
-                }else{
-                    startActivity(new Intent(MainActivity.this,Login_SignUpActivity.class));
-                    overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
-                    if(login.logged)
-                        item.setTitle("Log Out");
-                    else
-                        item.setTitle("Log In");
-                }
-                break;
         }
         return true;
     }

@@ -247,7 +247,9 @@
                 android:layout_gravity="center"
                 app:shapeAppearanceOverlay="@style/Button5"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:background="@drawable/rounded_corners" />
             <TextView
                 android:id="@+id/home"
                 android:layout_marginTop="15dp"

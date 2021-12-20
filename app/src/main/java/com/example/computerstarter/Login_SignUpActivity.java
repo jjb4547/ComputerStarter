@@ -1,6 +1,7 @@
 package com.example.computerstarter;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -115,7 +117,6 @@ public class Login_SignUpActivity extends AppCompatActivity {
                         } else {
                             Intent intent = new Intent(Login_SignUpActivity.this, MainActivity.class);
                             startActivity(intent);
-                            finish();
                         }
                     }
                 });

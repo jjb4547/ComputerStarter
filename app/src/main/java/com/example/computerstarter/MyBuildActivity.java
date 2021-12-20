@@ -80,6 +80,7 @@ public class MyBuildActivity extends AppCompatActivity {
         if (item.getItemId()==android.R.id.home) {
             // app icon in action bar clicked; goto parent activity.
             startActivity(new Intent(this,MainActivity.class));
+            overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
             return true;
         }else
             return super.onOptionsItemSelected(item);
@@ -94,14 +95,8 @@ public class MyBuildActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 String value = input.getText().toString();
-                Intent intent = new Intent(MyBuildActivity.this,Build_Activity.class);
-                intent.putExtra("Build",value);
-                intent.putExtra("Time",build.size());
-                intent.putExtra("Parts",parts);
-                intent.putExtra("Titles",titles);
-                intent.putExtra("Images",images);
-                first = true;
-                startActivity(intent);
+                startActivity(new Intent(MyBuildActivity.this,Build_Activity.class)
+                .putExtra("Build",value).putExtra("Time",build.size()).putExtra("Parts",parts).putExtra("Titles",titles).putExtra("Images",images));
             }
         });
         alert.create().show();

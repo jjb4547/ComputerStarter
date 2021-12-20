@@ -1,47 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="10dp"
-    android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="vertical">
+       <RelativeLayout
+           android:layout_width="match_parent"
+           android:layout_height="250dp"
+           android:background="@color/cardview_light">
+           <ImageView
+               android:layout_width="150dp"
+               android:layout_height="150dp"
+               android:id="@+id/profileImage"
+               android:layout_centerInParent="true"
+               android:background="@mipmap/ic_logo"/>
 
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="10dp"
-    android:orientation="vertical">
+           <TextView
+               android:id="@+id/usersName"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_below="@id/profileImage"
+               android:layout_centerHorizontal="true"
+               android:layout_marginTop="5dp"
+               android:hint="Name"
+               android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+               android:textColor="@color/white" />
+       </RelativeLayout>
+       <RelativeLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:padding="15dp"
+           android:layout_margin="15dp"
+           android:background="@color/white">
+           <ImageView
+               android:layout_width="25dp"
+               android:layout_height="25dp"
+               android:id="@+id/profile"
+               android:background="@drawable/ic_people"
+               android:backgroundTint="@color/cardview_light"/>
 
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="wrap_content"
-        android:text="Name"
-        android:layout_height="wrap_content"/>
-    <TextView
-        android:id="@+id/etName"
-        android:layout_width="match_parent"
-        android:layout_margin="10dp"
-        android:layout_height="wrap_content"/>
-    <TextView
-        android:id="@+id/age"
-        android:layout_width="wrap_content"
-        android:text="Age"
-        android:layout_height="wrap_content"/>
-    <TextView
-        android:id="@+id/etAge"
-        android:layout_width="match_parent"
-        android:layout_margin="10dp"
-        android:layout_height="wrap_content"/>
+           <TextView
+               android:id="@+id/Name"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignStart="@id/profile"
+               android:layout_marginStart="50dp"
+               android:hint="Loading..."
+               android:textColor="@color/black"
+               android:textSize="18sp" />
+           <View
+               android:layout_width="match_parent"
+               android:layout_height="1dp"
+               android:layout_marginTop="20dp"
+               android:layout_below="@id/Name"
+               android:background = "@color/dark_gray"
+               android:id="@+id/divider"/>
 
-    <TextView
-        android:id="@+id/username"
-        android:layout_width="wrap_content"
-        android:text="Username"
-        android:layout_height="wrap_content"/>
+           <ImageView
+               android:id="@+id/email"
+               android:layout_width="25dp"
+               android:layout_height="25dp"
+               android:layout_below="@+id/divider"
+               android:layout_marginTop="20dp"
+               android:background="@drawable/ic_email"
+               android:backgroundTint="@color/cardview_light" />
 
-    <TextView
-        android:id="@+id/etUsername"
-        android:layout_width="match_parent"
-        android:layout_margin="10dp"
-        android:layout_height="wrap_content"/>
+           <TextView
+               android:id="@+id/text_Email"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_below="@id/divider"
+               android:layout_alignStart="@id/profile"
+               android:layout_marginStart="50dp"
+               android:layout_marginTop="20dp"
+               android:hint="Loading..."
+               android:textColor="@color/black"
+               android:textSize="18sp" />
+           <View
+               android:layout_width="match_parent"
+               android:layout_height="1dp"
+               android:layout_marginTop="20dp"
+               android:layout_below="@id/text_Email"
+               android:background = "@color/dark_gray"
+               android:id="@+id/divider_2"
+               />
 
-</LinearLayout>
+           <ImageView
+               android:id="@+id/Age"
+               android:layout_width="25dp"
+               android:layout_height="25dp"
+               android:layout_below="@+id/divider_2"
+               android:layout_marginTop="20dp"
+               android:background="@drawable/ic_baseline_cake_24"
+               android:backgroundTint="@color/cardview_light" />
+
+           <TextView
+               android:id="@+id/text_Age"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_below="@id/divider_2"
+               android:layout_alignStart="@id/profile"
+               android:layout_marginStart="50dp"
+               android:layout_marginTop="20dp"
+               android:hint="Loading..."
+               android:textColor="@color/black"
+               android:textSize="18sp" />
+
+           <View
+               android:id="@+id/divider_3"
+               android:layout_width="match_parent"
+               android:layout_height="1dp"
+               android:layout_below="@id/text_Age"
+               android:layout_marginTop="20dp"
+               android:background="@color/dark_gray" />
+
+       </RelativeLayout>
+
+       <RelativeLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+           <Button
+               android:id="@+id/logOut"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:backgroundTint="@color/cardview_light"
+               android:text="Log Out"
+               android:layout_centerInParent="true"
+               android:gravity="center"
+               app:shapeAppearanceOverlay = "@style/Button5"
+               android:elevation="15dp"
+               />
+       </RelativeLayout>
+   </LinearLayout>
+
+</ScrollView>

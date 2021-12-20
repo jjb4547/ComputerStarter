@@ -62,8 +62,10 @@ public class SocialMediaBlogs extends AppCompatActivity {
     EditText title, des;
     private static final int CAMERA_REQUEST = 100;
     private static final int STORAGE_REQUEST = 200;
-    String[] cameraPermission;
-    String[] storagePermission;
+    private static final int CAMERA_PERMISSION_CODE =112;
+    private static final int STORAGE_PERMISSION_CODE =113;
+    private boolean cameraPermission = false;
+    private boolean storagePermission = false;
     ProgressDialog pd;
     ImageView image;
     String edititle, editdes, editimage;
@@ -114,8 +116,6 @@ public class SocialMediaBlogs extends AppCompatActivity {
         });
 
         // Initialising camera and storage permission
-        cameraPermission = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
-        storagePermission = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
         // After click on button we will be selecting an image
         blogPicture.setOnClickListener(new View.OnClickListener() {
@@ -124,6 +124,8 @@ public class SocialMediaBlogs extends AppCompatActivity {
                 showImagePicDialog();
             }
         });
+
+
 
         // Now we will upload out blog
         upload.setOnClickListener(new View.OnClickListener() {
@@ -168,101 +170,31 @@ public class SocialMediaBlogs extends AppCompatActivity {
                 // check for the camera and storage permission if
                 // not given the request for permission
                 if (which == 0) {
-                    if (!checkCameraPermission()) {
-                        requestCameraPermission();
-                    } else {
-                        pickFromCamera();
-                    }
+                    checkPermission(Manifest.permission.CAMERA,CAMERA_PERMISSION_CODE);
                 } else if (which == 1) {
-                    if (!checkStoragePermission()) {
-                        requestStoragePermission();
-                    } else {
-                        pickFromGallery();
-                    }
+                    checkPermission(Manifest.permission.READ_EXTERNAL_STORAGE,STORAGE_PERMISSION_CODE);
                 }
             }
         });
         builder.create().show();
     }
 
-    // check for storage permission
-    private Boolean checkStoragePermission() {
-        boolean result = ContextCompat.checkSelfPermission(SocialMediaBlogs.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                == (PackageManager.PERMISSION_GRANTED);
-        return result;
-    }
-
-    // if not given then request for permission after that check if request is given or not
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode) {
-            case CAMERA_REQUEST: {
-                if (grantResults.length > 0) {
-                    boolean camera_accepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
-                    boolean writeStorageaccepted = grantResults[1] == PackageManager.PERMISSION_GRANTED;
-
-                    // if request access given the pick data
-                    if (camera_accepted && writeStorageaccepted) {
-                        pickFromCamera();
-                    } else {
-                        Toast.makeText(SocialMediaBlogs.this, "Please Enable Camera and Storage Permissions", Toast.LENGTH_LONG).show();
-                    }
-                }
-            }
-
-            // function end
-            break;
-            case STORAGE_REQUEST: {
-                if (grantResults.length > 0) {
-                    boolean writeStorageaccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
-
-                    // if request access given the pick data
-                    if (writeStorageaccepted) {
-                        pickFromGallery();
-                    } else {
-                        Toast.makeText(SocialMediaBlogs.this, "Please Enable Storage Permissions", Toast.LENGTH_LONG).show();
-                    }
-                }
-            }
-            break;
-        }
-    }
-
-    // request for permission to write data into storage
-    private void requestStoragePermission() {
-        ActivityCompat.requestPermissions(SocialMediaBlogs.this, storagePermission, STORAGE_REQUEST);
-    }
-
-    // request for permission to click photo using camera in app
-    private void requestCameraPermission() {
-        ActivityCompat.requestPermissions(SocialMediaBlogs.this, cameraPermission, CAMERA_REQUEST);
-    }
-
-    // check camera permission to click picture using camera
-    private Boolean checkCameraPermission() {
-        boolean result = ContextCompat.checkSelfPermission(SocialMediaBlogs.this, Manifest.permission.CAMERA) == (PackageManager.PERMISSION_GRANTED);
-        boolean result1 = ContextCompat.checkSelfPermission(SocialMediaBlogs.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == (PackageManager.PERMISSION_GRANTED);
-        return result && result1;
-    }
-
     // if access is given then pick image from camera and then put
     // the imageuri in intent extra and pass to startactivityforresult
     private void pickFromCamera() {
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(MediaStore.Images.Media.TITLE, "Temp_pic");
-        contentValues.put(MediaStore.Images.Media.DESCRIPTION, "Temp Description");
-        imageuri = SocialMediaBlogs.this.getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
-        Intent camerIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        camerIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageuri);
-        startActivityForResult(camerIntent, IMAGE_PICKCAMERA_REQUEST);
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if(intent.resolveActivity(getPackageManager())!=null){
+            startActivityForResult(intent,1);
+        }
     }
 
     // if access is given then pick image from gallery
     private void pickFromGallery() {
         Intent galleryIntent = new Intent(Intent.ACTION_PICK);
         galleryIntent.setType("image/*");
-        startActivityForResult(galleryIntent, IMAGEPICK_GALLERY_REQUEST);
+        startActivityForResult(galleryIntent, 2);
     }
+
 
     // Upload the value of blog data into firebase
     private void uploadData(final String titl, final String description) {
@@ -335,17 +267,20 @@ public class SocialMediaBlogs extends AppCompatActivity {
     // Here we are getting data from image
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK) {
-            if (requestCode == IMAGEPICK_GALLERY_REQUEST) {
-                imageuri = data.getData();
-                image.setImageURI(imageuri);
+            if (requestCode == 2) {
+                Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+                image.setImageBitmap(bitmap);
             }
-            if (requestCode == IMAGE_PICKCAMERA_REQUEST) {
-                image.setImageURI(imageuri);
+            if (requestCode == 1) {
+                Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+                image.setImageBitmap(bitmap);
             }
         }
-        super.onActivityResult(requestCode, resultCode, data);
+
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -356,6 +291,42 @@ public class SocialMediaBlogs extends AppCompatActivity {
         }else
             return super.onOptionsItemSelected(item);
     }
+
+    public void checkPermission(String permission, int requestCode){
+        //Checking if permission granted or not
+        if(ContextCompat.checkSelfPermission(SocialMediaBlogs.this,permission)==PackageManager.PERMISSION_DENIED){
+            //Take Permission
+            ActivityCompat.requestPermissions(SocialMediaBlogs.this,new String[]{permission},requestCode);
+        }else{
+            Toast.makeText(this,"Permission already Granted",Toast.LENGTH_SHORT).show();
+            if(permission.compareTo(Manifest.permission.CAMERA)==0){
+                pickFromCamera();
+            }else if(permission.compareTo(Manifest.permission.READ_EXTERNAL_STORAGE)==0){
+                pickFromGallery();
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(requestCode==CAMERA_PERMISSION_CODE){
+            if (grantResults.length>0 && grantResults[0]==PackageManager.PERMISSION_GRANTED){
+                Toast.makeText(this,"Permission Granted",Toast.LENGTH_SHORT).show();
+                cameraPermission =true;
+            }else{
+                Toast.makeText(this,"Permission Not Granted",Toast.LENGTH_SHORT).show();
+            }
+        }else if(requestCode==STORAGE_PERMISSION_CODE){
+            if (grantResults.length>0 && grantResults[0]==PackageManager.PERMISSION_GRANTED){
+                Toast.makeText(this,"Permission Granted",Toast.LENGTH_SHORT).show();
+                storagePermission=true;
+            }else{
+                Toast.makeText(this,"Permission Not Granted",Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
 
 }
 

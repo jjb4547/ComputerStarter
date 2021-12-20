@@ -89,7 +89,6 @@ public class SocialMediaFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_forum, container, false);
         FloatingActionButton button = view.findViewById(R.id.buttonCreate);
-
         recyclerView = view.findViewById(R.id.RecycleForum);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
