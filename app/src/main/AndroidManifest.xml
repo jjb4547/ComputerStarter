@@ -22,18 +22,6 @@
             android:name=".EducationActivities"
             android:exported="true" />
         <activity
-            android:name=".real_profile"
-            android:exported="true"
-            android:label="@string/title_activity_real_profile" />
-        <activity
-            android:name=".real_register"
-            android:exported="true"
-            android:label="@string/title_activity_real_register" />
-        <activity
-            android:name=".real_login"
-            android:exported="true"
-            android:label="@string/title_activity_real_login" />
-        <activity
             android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>

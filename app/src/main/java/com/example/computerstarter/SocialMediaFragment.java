@@ -3,23 +3,20 @@ package com.example.computerstarter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,30 +27,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SocialMediaFragment extends Fragment {
-
     Button button;
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public SocialMediaFragment() {
-        // Required empty public constructor
-    }
-
-
     FirebaseAuth firebaseAuth;
+    FirebaseUser user;
     String myuid;
     RecyclerView recyclerView;
     List<SocialMediaModel> posts;
     SocialMediaAdapter adapterPosts;
-
-
+    public SocialMediaFragment() {
+        // Required empty public constructor
+    }
 
     private void loadPosts() {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Posts");
@@ -81,6 +64,8 @@ public class SocialMediaFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         setHasOptionsMenu(true);
         super.onCreate(savedInstanceState);
+        firebaseAuth = FirebaseAuth.getInstance();
+        user = firebaseAuth.getCurrentUser();
     }
 
     @Override
@@ -88,7 +73,7 @@ public class SocialMediaFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_forum, container, false);
-        FloatingActionButton button = view.findViewById(R.id.buttonCreate);
+        //FloatingActionButton button = view.findViewById(R.id.buttonCreate);
         recyclerView = view.findViewById(R.id.RecycleForum);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
@@ -96,9 +81,20 @@ public class SocialMediaFragment extends Fragment {
         layoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(layoutManager);
         posts = new ArrayList<>();
-        loadPosts();
-
-        button.setOnClickListener(new View.OnClickListener() {
+        ImageView profile = view.findViewById(R.id.profilePic);
+        Button text = view.findViewById(R.id.textSome);
+        if(user!=null) {
+            loadPosts();
+            //profile.setImageURI(user.getPhotoUrl());
+            text.setOnClickListener(view1 -> {
+                startActivity(new Intent(getContext(), SocialMediaBlogs.class));
+            });
+        }else{
+            Toast.makeText(getContext(),"PLEASE LOGIN TO VIEW POSTS",Toast.LENGTH_SHORT).show();
+            profile.setVisibility(View.GONE);
+            text.setVisibility(View.GONE);
+        }
+        /*button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 //                Fragment frag = new SocialMediaBlogs();
@@ -111,10 +107,10 @@ public class SocialMediaFragment extends Fragment {
 //                ft.commit();
                 Intent intent = new Intent(getContext(),SocialMediaBlogs.class);
                 startActivity(intent);
-
             }
         });
 
+         */
         return view;
     }
 

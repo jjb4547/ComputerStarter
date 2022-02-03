@@ -4,13 +4,16 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3880208333333333" />
+        <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/drawable/edit.xml" value="0.153" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/drawable/ic_account.xml" value="0.22447916666666667" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/drawable/ic_back.xml" value="0.31851851851851853" />
+        <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/drawable/ic_baseline_drive_file_rename_outline_24.xml" value="0.1495" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/drawable/ic_building.xml" value="0.21458333333333332" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/drawable/ic_chat.xml" value="0.22083333333333333" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/drawable/ic_computer.xml" value="0.21458333333333332" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/drawable/ic_education.xml" value="0.21458333333333332" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/drawable/ic_help.xml" value="0.22083333333333333" />
+        <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/drawable/ic_images.xml" value="0.153" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/drawable/ic_key.xml" value="0.22083333333333333" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3880208333333333" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/drawable/ic_logo_background.xml" value="0.3880208333333333" />
@@ -19,18 +22,23 @@
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/drawable/ic_people.xml" value="0.22083333333333333" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/drawable/ic_quiz.xml" value="0.22447916666666667" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/about_layout.xml" value="0.33" />
-        <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/account_layout.xml" value="0.17572463768115942" />
+        <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/account_layout.xml" value="0.2344763670064875" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/activity_education_activities.xml" value="0.14012738853503184" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/activity_education_tabbed.xml" value="0.5" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/activity_forum.xml" value="0.1" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/activity_forum_information.xml" value="0.33" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/activity_main.xml" value="0.20833333333333334" />
+        <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/activity_pc_part.xml" value="0.3416666666666667" />
+        <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/activity_pc_part_build.xml" value="0.3625" />
+        <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/activity_postdetails.xml" value="0.3625" />
+        <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/activity_postlikedby.xml" value="0.3625" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/activity_real_login.xml" value="0.19114583333333332" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/activity_real_profile.xml" value="0.19114583333333332" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/activity_real_register.xml" value="0.19114583333333332" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/content_real_login.xml" value="0.19114583333333332" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/content_real_profile.xml" value="0.19114583333333332" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/content_real_register.xml" value="0.19114583333333332" />
+        <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/fragment_add_blogs.xml" value="0.23072916666666668" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/fragment_beginner.xml" value="0.1" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/fragment_education.xml" value="0.12162162162162163" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/fragment_education__tabbed.xml" value="0.18034447821681865" />
@@ -45,14 +53,20 @@
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/fragment_quiz.xml" value="0.20833333333333334" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/help_layout.xml" value="0.2552083333333333" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/login_layout.xml" value="0.17401215805471124" />
+        <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/my_build_layout.xml" value="0.3416666666666667" />
+        <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/nav_menu.xml" value="0.23958333333333334" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/quiz_layout.xml" value="0.22" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/result_layout.xml" value="0.33796296296296297" />
+        <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/row.xml" value="0.3625" />
+        <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/row_comments.xml" value="0.3625" />
+        <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/row_posts.xml" value="0.23072916666666668" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/score_bottom_sheet.xml" value="0.33" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/settings_layout.xml" value="0.17572463768115942" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/splash.xml" value="0.25" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/toolbar.xml" value="0.17572463768115942" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/menu/app_menu.xml" value="0.37083333333333335" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/menu/bottom_menu.xml" value="0.20512820512820512" />
+        <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/menu/drawer_menu.xml" value="0.23958333333333334" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3880208333333333" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/xml/preferences.xml" value="0.33" />
         <entry key="..\:/Users/bjesu/StudioProjects/ComputerStarter/app/src/main/res/drawable/ic_logout.xml" value="0.382051282051282" />

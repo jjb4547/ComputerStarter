@@ -1,5 +1,7 @@
 package com.example.computerstarter;
 
+import android.net.Uri;
+
 public class SocialMediaModel {
     public SocialMediaModel() {
     }
@@ -96,7 +98,7 @@ public class SocialMediaModel {
         this.pcomments = pcomments;
     }
 
-    public SocialMediaModel(String description, String pid, String ptime, String pcomments, String title, String udp, String uemail, String uid, String uimage, String uname, String plike) {
+    public SocialMediaModel(String description, String pid, String ptime, String pcomments, String title, String udp, String uemail, String uid, String uimage, String uname, String plike, Uri profile) {
         this.description = description;
         this.pid = pid;
         this.ptime = ptime;
@@ -108,6 +110,15 @@ public class SocialMediaModel {
         this.uimage = uimage;
         this.uname = uname;
         this.plike = plike;
+        this.profile = profile;
+    }
+
+    public Uri getProfile() {
+        return profile;
+    }
+
+    public void setProfile(Uri profile) {
+        this.profile = profile;
     }
 
     String ptime, pcomments;
@@ -120,5 +131,6 @@ public class SocialMediaModel {
     String uimage;
 
     String uname, plike;
+    Uri profile;
 
 }

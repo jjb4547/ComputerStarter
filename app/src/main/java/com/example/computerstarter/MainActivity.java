@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private MenuItem item_log;
     private MenuItem item_quiz;
     private MenuItem item_acc;
-    private real_login login = new real_login();
+    //private real_login login = new real_login();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,22 +70,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if(user!=null) {
             log.setText("Log Out");
             item_acc.setVisible(true);
-            //item_quiz.setVisible(true);
+            item_quiz.setVisible(true);
         }else {
             log.setText("Log In");
             item_acc.setVisible(false);
-            //item_quiz.setVisible(false);
+            item_quiz.setVisible(false);
         }
         TextView name = headerView.findViewById(R.id.myname);
         TextView email = headerView.findViewById(R.id.email);
+        ImageView profile = headerView.findViewById(R.id.myimage);
         if(user!=null) {
             String current = user.getUid();
             name.setText(user.getDisplayName());
             email.setText(user.getEmail());
-
+            //profile.setImageURI(user.getPhotoUrl()); //bugging out not sure why but only on the emulator
         }else{
-            name.setText("");
-            email.setText("");
+            name.setText("Guest");
+            email.setText("Guest Not Signed In");
         }
         log.setOnClickListener(view->{
             if(mAuth.getCurrentUser()!=null){
@@ -94,16 +94,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(MainActivity.this,"Logged Out",Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(MainActivity.this,MainActivity.class));
                 log.setText("Log In");
-                login.logged = false;
+                //login.logged = false;
                 item_acc.setVisible(false);
                 item_quiz.setVisible(false);
             }else{
                 startActivity(new Intent(MainActivity.this,Login_SignUpActivity.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
-                if(login.logged)
-                    log.setText("Log Out");
-                else
-                    log.setText("Log In");
+                //log.setText("Log Out");
             }
         });
     }

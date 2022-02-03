@@ -8,6 +8,7 @@
     android:background="@color/blue_gray_darker">
 
     <ImageView
+        android:id="@+id/myimage"
         android:layout_width="60dp"
         android:layout_height="58dp"
         android:src="@mipmap/ic_logo"></ImageView>

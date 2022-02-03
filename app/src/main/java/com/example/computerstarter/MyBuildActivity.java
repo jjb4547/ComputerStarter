@@ -80,7 +80,7 @@ public class MyBuildActivity extends AppCompatActivity {
         if (item.getItemId()==android.R.id.home) {
             // app icon in action bar clicked; goto parent activity.
             startActivity(new Intent(this,MainActivity.class));
-            overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
+            overridePendingTransition(R.anim.slide_in_top,R.anim.stay);
             return true;
         }else
             return super.onOptionsItemSelected(item);

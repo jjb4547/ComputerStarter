@@ -3,6 +3,7 @@ package com.example.computerstarter;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.text.format.DateFormat;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -49,6 +50,7 @@ public class SocialMediaAdapter extends RecyclerView.Adapter<com.example.compute
         this.context = context;
         this.modelPosts = modelPosts;
         myuid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        Uri profile = FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl();
         liekeref = FirebaseDatabase.getInstance().getReference().child("Likes");
         postref = FirebaseDatabase.getInstance().getReference().child("Posts");
     }
@@ -66,6 +68,7 @@ public class SocialMediaAdapter extends RecyclerView.Adapter<com.example.compute
     public void onBindViewHolder(@NonNull final MyHolder holder, final int position) {
         final String uid = modelPosts.get(position).getUid();
         String nameh = modelPosts.get(position).getUname();
+        //Uri profile = modelPosts.get(position).getProfile();
         final String titlee = modelPosts.get(position).getTitle();
         final String descri = modelPosts.get(position).getDescription();
         final String ptime = modelPosts.get(position).getPtime();
@@ -84,6 +87,7 @@ public class SocialMediaAdapter extends RecyclerView.Adapter<com.example.compute
         holder.time.setText(timedate);
         holder.like.setText(plike + " Likes");
         holder.comments.setText(comm + " Comments");
+        //holder.picture.setImageURI(profile);
         setLikes(holder, ptime);
         try {
             Glide.with(context).load(dp).into(holder.picture);

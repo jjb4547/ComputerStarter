@@ -11,12 +11,24 @@
            android:layout_width="match_parent"
            android:layout_height="250dp"
            android:background="@color/cardview_light">
+
            <ImageView
+               android:id="@+id/profileImage"
                android:layout_width="150dp"
                android:layout_height="150dp"
-               android:id="@+id/profileImage"
                android:layout_centerInParent="true"
-               android:background="@mipmap/ic_logo"/>
+               android:src="@mipmap/ic_logo" />
+
+           <ImageView
+               android:id="@+id/change_profile"
+               android:layout_width="50dp"
+               android:layout_height="50dp"
+               android:layout_alignRight="@+id/profileImage"
+               android:layout_alignBottom="@+id/profileImage"
+               android:layout_centerInParent="true"
+               android:backgroundTint="@color/cardview_light"
+               android:src="@drawable/change_image"
+               android:clickable="true"/>
 
            <TextView
                android:id="@+id/usersName"
