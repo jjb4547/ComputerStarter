@@ -2,17 +2,16 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph2"
     app:startDestination="@id/navigation_basic">
 
     <fragment
         android:id="@+id/navigation_detail"
-        android:name="com.example.computerstarter.IntermediateFragment"
+        android:name="com.example.computerstarter.Education.Education_IntermediateFragment"
         android:label="Intermediate"
         tools:layout="@layout/fragment_intermediate"/>
     <fragment
         android:id="@+id/navigation_basic"
-        android:name="com.example.computerstarter.BeginnerFragment"
+        android:name="com.example.computerstarter.Education.Education_BeginnerFragment"
         android:label="Basic"
         tools:layout="@layout/fragment_beginner"/>
 </navigation>

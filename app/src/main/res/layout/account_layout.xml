@@ -101,7 +101,6 @@
                />
 
            <ImageView
-               android:id="@+id/Age"
                android:layout_width="25dp"
                android:layout_height="25dp"
                android:layout_below="@+id/divider_2"
@@ -122,7 +121,6 @@
                android:textSize="18sp" />
 
            <View
-               android:id="@+id/divider_3"
                android:layout_width="match_parent"
                android:layout_height="1dp"
                android:layout_below="@id/text_Age"
@@ -140,12 +138,23 @@
                android:layout_height="wrap_content"
                android:backgroundTint="@color/cardview_light"
                android:text="Log Out"
-               android:layout_centerInParent="true"
+               android:layout_centerHorizontal="true"
+               android:layout_alignParentTop="true"
                android:gravity="center"
                app:shapeAppearanceOverlay = "@style/Button5"
-               android:elevation="15dp"
-               />
+               android:elevation="15dp" />
+
        </RelativeLayout>
+       <TextView
+           android:id="@+id/home"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_above="@+id/logOut"
+           android:layout_marginBottom="10dp"
+           android:layout_gravity="center"
+           android:textSize="30dp"
+           android:textColor="@color/cardview_light"
+           android:text="Return Home" />
    </LinearLayout>
 
 </ScrollView>

@@ -37,7 +37,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/ProfileInfForum"
         android:layout_width="38dp"
         android:layout_height="35dp"
         android:layout_marginStart="20dp"

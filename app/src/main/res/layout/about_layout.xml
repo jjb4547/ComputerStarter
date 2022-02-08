@@ -136,7 +136,6 @@
         app:srcCompat="@mipmap/ic_school_round" />
 
     <TextView
-        android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/csun_logo"

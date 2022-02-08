@@ -22,7 +22,6 @@
             <ImageView
                 android:layout_margin="10dp"
                 android:src="@mipmap/ic_logo"
-                android:id="@+id/image_item"
                 android:layout_width="120dp"
                 android:layout_height="150dp"/>
 
