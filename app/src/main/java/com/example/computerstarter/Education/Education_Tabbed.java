@@ -21,10 +21,14 @@ public class Education_Tabbed extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_education_tabbed);
+        String from = getIntent().getExtras().getString("from");
         String[] diffTitles = getResources().getStringArray(R.array.comp_names);
         BottomNavigationView bottomNavigationView = findViewById(R.id.topNavigationView);
         NavController navController = Navigation.findNavController(this,R.id.frame_layout_edu);
         NavigationUI.setupWithNavController(bottomNavigationView,navController);
+        if(from.compareTo("Intermediate")==0){
+            navController.navigate(R.id.action_navigation_basic_to_navigation_detail);
+        }
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Bundle bundle = getIntent().getExtras();
         if(bundle!=null){

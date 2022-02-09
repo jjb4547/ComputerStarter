@@ -69,7 +69,7 @@ public class RaspberryPi_Guide_Supplies_Activity extends AppCompatActivity {
         });
         exit.setOnClickListener(view->{
             startActivity(new Intent(this, RaspberryPi_Guides_Activity.class));
-            overridePendingTransition(R.anim.slide_in_top,R.anim.stay);
+            overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
             finish();
         });
     }

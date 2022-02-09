@@ -69,7 +69,7 @@ public class PC_Guide_Supplies_Activity extends AppCompatActivity {
         });
         exit.setOnClickListener(view->{
             startActivity(new Intent(this, PC_Building_Guide_Activity.class));
-            overridePendingTransition(R.anim.slide_in_top,R.anim.stay);
+            overridePendingTransition(R.anim.slide_in_left,R.anim.stay);
             finish();
         });
     }

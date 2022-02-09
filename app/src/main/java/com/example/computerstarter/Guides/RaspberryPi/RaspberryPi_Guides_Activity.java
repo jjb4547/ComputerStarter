@@ -20,7 +20,7 @@ public class RaspberryPi_Guides_Activity extends AppCompatActivity {
         TextView home = findViewById(R.id.home);
         home.setOnClickListener(view->{
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
-            overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
+            overridePendingTransition(R.anim.slide_in_top,R.anim.stay);
         });
         CardView supplies = findViewById(R.id.supplies);
         CardView installation = findViewById(R.id.installation);

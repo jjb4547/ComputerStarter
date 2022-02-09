@@ -8,10 +8,18 @@
         android:id="@+id/navigation_detail"
         android:name="com.example.computerstarter.Education.Education_IntermediateFragment"
         android:label="Intermediate"
-        tools:layout="@layout/fragment_intermediate"/>
+        tools:layout="@layout/fragment_intermediate">
+        <action
+            android:id="@+id/action_navigation_detail_to_navigation_basic"
+            app:destination="@id/navigation_basic" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_basic"
         android:name="com.example.computerstarter.Education.Education_BeginnerFragment"
         android:label="Basic"
-        tools:layout="@layout/fragment_beginner"/>
+        tools:layout="@layout/fragment_beginner">
+        <action
+            android:id="@+id/action_navigation_basic_to_navigation_detail"
+            app:destination="@id/navigation_detail" />
+    </fragment>
 </navigation>

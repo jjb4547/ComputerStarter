@@ -11,9 +11,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ComputerStarter">
         <activity
-            android:name=".Build.PC_Part_Activity"
-            android:exported="false"
-            android:label="@string/title_activity_pc_part" />
+            android:name=".Education.PC_Part_Activity"
+            android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
         <activity
             android:name=".Education.Education_Tabbed"
             android:exported="false"
@@ -30,56 +29,57 @@
         <activity android:name=".Quiz.QuizActivity" />
         <activity android:name=".Settings.SettingsActivity" />
         <activity android:name=".Others.AccountActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
         <activity android:name=".app.MainActivity" />
         <activity android:name=".Others.AboutActivity" />
         <activity android:name=".Others.HelpActivity" />
         <activity android:name=".SocialMedia.SocialMediaActivity" />
         <activity android:name=".Build.Build_Activity" />
-        <activity android:name=".Build.PC_Build_Parts"/>
+        <activity android:name=".Build.PC_Build_Parts" />
         <activity android:name=".Build.MyBuildActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
         <activity android:name=".SocialMedia.SocialMediaBlogs"/>
         <activity android:name=".Login.Login_SignUpActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
         <activity android:name=".Guides.Community.Community_Builds_Activity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-
+            android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
+        <activity android:name=".Education.Education_Choosing_Activity"
+            android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
         <!--PC Guides -->
         <activity android:name=".Guides.PC.PC_Building_Guide_Activity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
         <activity android:name=".Guides.PC.PC_Guide_Supplies_Activity"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
+            android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
         <activity android:name=".Guides.PC.PC_Guide_Installation_Activity"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
+            android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
         <activity android:name=".Guides.PC.PC_Guide_Setup_Activity"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
+            android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
 
         <!-- Arduino Guides -->
         <activity android:name=".Guides.Arduino.Arduino_Guides_Activity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
         <activity android:name=".Guides.Arduino.Arduino_Guide_Supplies_Activity"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
+            android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
         <activity android:name=".Guides.Arduino.Arduino_Guide_Installation_Activity"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
+            android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
         <activity android:name=".Guides.Arduino.Arduino_Guide_Setup_Activity"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
+            android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
 
         <!-- Raspberry Pi Guides -->
         <activity android:name=".Guides.RaspberryPi.RaspberryPi_Guides_Activity"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
+            android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
         <activity android:name=".Guides.RaspberryPi.RaspberryPi_Guide_Supplies_Activity"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
+            android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
         <activity android:name=".Guides.RaspberryPi.RaspberryPi_Guide_Installation_Activity"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
+            android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
         <activity android:name=".Guides.RaspberryPi.RaspberryPi_Guide_Setup_Activity"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
+            android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
         <activity android:name=".Guides.RaspberryPi.Projects.RaspberryPi_Projects"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
+            android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
         <activity android:name=".Guides.RaspberryPi.Projects.HumiditySensor.RaspberryPi_Humidity_Sensor"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
+            android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
         <activity android:name=".Guides.RaspberryPi.Projects.HumiditySensor.RaspberryPi_Humidity_Sensor_Supplies"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
+            android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
 
 
         <!-- Fonts -->

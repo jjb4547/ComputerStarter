@@ -60,11 +60,13 @@ public class MainPageFragment extends Fragment {
         feat_2.setOnClickListener(view ->{
             Toast.makeText(getActivity(),"Raspberry Pi Guides",Toast.LENGTH_SHORT).show();
             startActivity(new Intent(getContext(), RaspberryPi_Guides_Activity.class));
+            getActivity().overridePendingTransition(R.anim.slide_in_bottom,R.anim.stay);
         });
         CardView feat_3 = view.findViewById(R.id.helpful_link_3);
         feat_3.setOnClickListener(view ->{
             Toast.makeText(getActivity(),"Arduino Guides",Toast.LENGTH_SHORT).show();
             startActivity(new Intent(getContext(), Arduino_Guides_Activity.class));
+            getActivity().overridePendingTransition(R.anim.slide_in_bottom,R.anim.stay);
         });
         return view;
     }

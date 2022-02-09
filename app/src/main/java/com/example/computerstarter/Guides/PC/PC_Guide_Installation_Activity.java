@@ -34,6 +34,7 @@ public class PC_Guide_Installation_Activity extends AppCompatActivity {
         WindowCompat.setDecorFitsSystemWindows(getWindow(),true);
         setContentView(R.layout.onboard_layout);
         ConstraintLayout gradient = findViewById(R.id.gradient);
+        gradient.setBackground(getResources().getDrawable(R.drawable.gradient_animation_installation));
         AnimationDrawable animationDrawable = (AnimationDrawable) gradient.getBackground();
         animationDrawable.setEnterFadeDuration(10);
         animationDrawable.setExitFadeDuration(5000);

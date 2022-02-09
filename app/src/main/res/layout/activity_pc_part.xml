@@ -22,9 +22,10 @@
         android:textSize="35sp" />
 
     <GridLayout
+        android:id="@+id/grid_layout"
         android:layout_below="@+id/welcome"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="500dp"
         android:rowCount="3"
         android:columnCount="3">
         <androidx.cardview.widget.CardView
@@ -307,4 +308,17 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
     </GridLayout>
+
+    <TextView
+        android:id="@+id/home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/grid_layout"
+        android:layout_centerHorizontal="true"
+        android:padding="8dp"
+        android:text="Return Home"
+        android:textSize="35dp"
+        android:clickable="true"
+        android:textColor="@color/cardview_dark"/>
+
 </RelativeLayout>

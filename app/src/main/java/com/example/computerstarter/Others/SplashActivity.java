@@ -1,6 +1,7 @@
 package com.example.computerstarter.Others;
 
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -8,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.motion.widget.MotionLayout;
 
 import com.example.computerstarter.Build.PriceList;
 import com.example.computerstarter.R;
@@ -95,11 +97,17 @@ public class SplashActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash);
         getSupportActionBar().hide();
+        MotionLayout gradient = findViewById(R.id.gradient);
+        gradient.setBackground(getResources().getDrawable(R.drawable.gradient_animation_splash));
+        AnimationDrawable animationDrawable = (AnimationDrawable) gradient.getBackground();
+        animationDrawable.setEnterFadeDuration(10);
+        animationDrawable.setExitFadeDuration(2000);
+        animationDrawable.start();
         ProgressBar progressBar = findViewById(R.id.progressBar);
         progressBar.setProgress(0);
         TextView textView = findViewById(R.id.percent);
         textView.setText("");
-        final long period = 50;
+        final long period = 55;
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override

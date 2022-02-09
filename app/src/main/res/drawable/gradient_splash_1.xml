@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
-    <gradient android:angle="315"
-        android:startColor="@color/cardview_dark"
-        android:centerColor="@color/cardview_light"
+    <gradient android:angle="45"
+        android:startColor="@color/blue_gray_darker"
+        android:centerColor="@color/blue_gray"
         android:endColor="@color/white"
         android:type="linear"/>
 </shape>

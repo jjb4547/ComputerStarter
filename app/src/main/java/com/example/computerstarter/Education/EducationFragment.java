@@ -10,7 +10,6 @@ import android.widget.ListView;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
-import com.example.computerstarter.Build.PC_Part_Activity;
 import com.example.computerstarter.R;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -43,14 +42,13 @@ public class EducationFragment extends Fragment{
             Intent intent = new Intent(getActivity(), PC_Part_Activity.class);
             startActivity(intent);
         });
-
         rasp.setOnClickListener(view2 -> {
-            Intent intent = new Intent(getActivity(),Education_Tabbed.class);
+            Intent intent = new Intent(getActivity(),Education_Choosing_Activity.class);
             intent.putExtra("component","Raspberry Pi");
             startActivity(intent);
         });
         arduino.setOnClickListener(view2 -> {
-            Intent intent = new Intent(getActivity(),Education_Tabbed.class);
+            Intent intent = new Intent(getActivity(),Education_Choosing_Activity.class);
             intent.putExtra("component","Arduino");
             startActivity(intent);
         });
