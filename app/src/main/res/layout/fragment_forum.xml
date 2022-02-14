@@ -6,43 +6,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <RelativeLayout
-        android:id="@+id/addpost"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/background_color">
-
-        <ImageView
-            android:id="@+id/profilePic"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_alignParentLeft="true"
-            android:layout_centerInParent="true"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp"
-            android:src="@mipmap/ic_logo" />
-
-        <Button
-            android:id="@+id/textSome"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/profilePic"
-            android:backgroundTint="@color/background_color"
-            android:text="Post"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:theme="@style/Button5"/>
-    </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/RecycleForum"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/addpost"
         android:background="@color/background_color" />
 
-<!--
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/buttonCreate"
         android:layout_width="wrap_content"
@@ -56,6 +26,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="SpeakableTextPresentCheck" />
-        -->
 
 </RelativeLayout>

@@ -79,11 +79,10 @@ public class PC_Guide_Setup_Activity extends AppCompatActivity {
         List<OnboardingItem> onboardingItemPcGuideActivityList = new ArrayList<>();
         OnboardingItem item_Intro = new OnboardingItem();
         item_Intro.setTitle("Welcome to the Setup Guide");
-        item_Intro.setDescription("Here is where you will be able find out what components will be needed " +
-                "to build a computer and be able to achieve that life long dream of building a computer.");
+        item_Intro.setDescription("You just installed everything into your computer. Now lets get the PC booting and installing the OS.");
         item_Intro.setImage(R.drawable.pc_build_link);
 
-        OnboardingItem item_CPU = new OnboardingItem();
+        /*OnboardingItem item_CPU = new OnboardingItem();
         item_CPU.setTitle("CPU");
         item_CPU.setDescription("First thing you need to get is the CPU");
         item_CPU.setImage(R.drawable.cpu_link);
@@ -106,7 +105,7 @@ public class PC_Guide_Setup_Activity extends AppCompatActivity {
         OnboardingItem item_GPU = new OnboardingItem();
         item_GPU.setTitle("GPU(VGA)");
         item_GPU.setDescription("GET YOUR RAM");
-        item_GPU.setImage(R.drawable.vga_link);
+        item_GPU.setImage(R.drawable.vga_link);*/
 
         OnboardingItem item_STORAGE = new OnboardingItem();
         item_STORAGE.setTitle("CONGRATULATIONS");
@@ -114,11 +113,11 @@ public class PC_Guide_Setup_Activity extends AppCompatActivity {
         item_STORAGE.setImage(R.drawable.storage_link);;
 
         onboardingItemPcGuideActivityList.add(item_Intro);
-        onboardingItemPcGuideActivityList.add(item_CPU);
+        /*onboardingItemPcGuideActivityList.add(item_CPU);
         onboardingItemPcGuideActivityList.add(item_motherboard);
         onboardingItemPcGuideActivityList.add(item_RAM);
         onboardingItemPcGuideActivityList.add(item_CPUCOOL);
-        onboardingItemPcGuideActivityList.add(item_GPU);
+        onboardingItemPcGuideActivityList.add(item_GPU);*/
         onboardingItemPcGuideActivityList.add(item_STORAGE);
         onboardingAdapterPcGuide = new OnboardingAdapter(onboardingItemPcGuideActivityList);
     }

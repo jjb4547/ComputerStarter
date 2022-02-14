@@ -3,8 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/background_color">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,11 +15,11 @@
             android:id="@+id/ptitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/edit"
             android:hint="Enter Title"
             android:minHeight="80dp"
             android:padding="10dp"
-            android:singleLine="true"
-            android:textColor="@color/black"/>
+            android:singleLine="true" />
 
         <ImageView
             android:id="@+id/imagep"
@@ -28,35 +27,29 @@
             android:layout_height="200dp"
             android:layout_marginTop="15dp"
             android:background="@drawable/edit"
-            android:src="@drawable/amd_cpu"/>
+            android:src="@drawable/ic_images" />
 
         <EditText
             android:id="@+id/pdes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
+            android:background="@drawable/edit"
             android:gravity="start"
             android:hint="Enter Description"
             android:inputType="textCapSentences|textMultiLine"
             android:minHeight="120dp"
             android:padding="10dp"
-            android:singleLine="true"
-            android:textColor="@color/black"/>
-
-        <Button
-            android:id="@+id/blogPicture"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="PICTURE"
-            android:backgroundTint="@color/cardview_light"/>
+            android:singleLine="true" />
 
         <Button
             android:id="@+id/pupload"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20sp"
             android:text="Upload"
-            android:backgroundTint="@color/cardview_light"/>
+            android:textAlignment="center" />
     </LinearLayout>
 
 </ScrollView>

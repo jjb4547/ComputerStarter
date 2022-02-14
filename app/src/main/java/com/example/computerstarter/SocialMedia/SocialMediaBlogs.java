@@ -199,9 +199,9 @@ public class SocialMediaBlogs extends AppCompatActivity {
         final String timestamp = String.valueOf(System.currentTimeMillis());
         String filepathname = "Posts/" + "post" + timestamp;
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap = ((BitmapDrawable) image.getDrawable()).getBitmap();
+        Bitmap bitmap = ((BitmapDrawable) image.getDrawable()).getBitmap();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
-        data = byteArrayOutputStream.toByteArray();
+        byte[] data = byteArrayOutputStream.toByteArray();
         // initialising the storage reference for updating the data
         StorageReference storageReference1 = FirebaseStorage.getInstance().getReference().child(filepathname);
         storageReference1.putBytes(data).addOnSuccessListener(taskSnapshot -> {
@@ -273,8 +273,6 @@ public class SocialMediaBlogs extends AppCompatActivity {
                 Toast.makeText(this, "Camera Upload Done",Toast.LENGTH_SHORT).show();
                 Bitmap imageBit = (Bitmap) data.getExtras().get("data");
                 image.setImageBitmap(imageBit);
-            }else{
-                image.setImageURI(null);
             }
         }
     }

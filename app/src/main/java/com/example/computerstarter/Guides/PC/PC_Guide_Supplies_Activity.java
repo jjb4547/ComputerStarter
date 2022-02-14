@@ -14,6 +14,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.view.WindowCompat;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.example.computerstarter.Education.PC_Part_Activity;
 import com.example.computerstarter.Guides.OnboardHolder.OnboardingAdapter;
 import com.example.computerstarter.Guides.OnboardHolder.OnboardingItem;
 import com.example.computerstarter.R;
@@ -26,7 +27,7 @@ public class PC_Guide_Supplies_Activity extends AppCompatActivity {
 
     private OnboardingAdapter onboardingAdapterPcGuide;
     private LinearLayout layoutOnboardingIndicators;
-    private MaterialButton buttonOnboardingAction, exit;
+    private MaterialButton buttonOnboardingAction, exit, help;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,6 +43,7 @@ public class PC_Guide_Supplies_Activity extends AppCompatActivity {
         layoutOnboardingIndicators = findViewById(R.id.layoutOnboardingIndicators);
         buttonOnboardingAction = findViewById(R.id.buttonOnboardingAction);
         exit = findViewById(R.id.exit);
+        help = findViewById(R.id.help);
 
         setupOnboardingItems();
 
@@ -72,6 +74,9 @@ public class PC_Guide_Supplies_Activity extends AppCompatActivity {
             overridePendingTransition(R.anim.slide_in_left,R.anim.stay);
             finish();
         });
+        help.setOnClickListener(view -> {
+            startActivity(new Intent(this, PC_Part_Activity.class));
+        });
     }
 
     private void setupOnboardingItems(){
@@ -86,6 +91,7 @@ public class PC_Guide_Supplies_Activity extends AppCompatActivity {
         item_CPU.setTitle("CPU");
         item_CPU.setDescription("First thing you need to get is the CPU");
         item_CPU.setImage(R.drawable.cpu_link);
+        item_Intro.setLearn("Learn More Click on Help");
 
         OnboardingItem item_motherboard = new OnboardingItem();
         item_motherboard.setTitle("Motherboard");
@@ -99,18 +105,48 @@ public class PC_Guide_Supplies_Activity extends AppCompatActivity {
 
         OnboardingItem item_CPUCOOL = new OnboardingItem();
         item_CPUCOOL.setTitle("CPU COOLER");
-        item_CPUCOOL.setDescription("GET YOUR RAM");
+        item_CPUCOOL.setDescription("GET YOUR CPU Cooler");
         item_CPUCOOL.setImage(R.drawable.cpu_cooler_link);
 
         OnboardingItem item_GPU = new OnboardingItem();
         item_GPU.setTitle("GPU(VGA)");
-        item_GPU.setDescription("GET YOUR RAM");
+        item_GPU.setDescription("GET YOUR VGA");
         item_GPU.setImage(R.drawable.vga_link);
 
         OnboardingItem item_STORAGE = new OnboardingItem();
         item_STORAGE.setTitle("STORAGE");
         item_STORAGE.setDescription("GET YOUR STORAGE");
-        item_STORAGE.setImage(R.drawable.storage_link);;
+        item_STORAGE.setImage(R.drawable.storage_link);
+
+        OnboardingItem item_PSU = new OnboardingItem();
+        item_PSU.setTitle("Power Supply Unit (PSU)");
+        item_PSU.setDescription("GET YOUR STORAGE");
+        item_PSU.setImage(R.drawable.psu_link);
+
+        OnboardingItem item_Case = new OnboardingItem();
+        item_Case.setTitle("Case");
+        item_Case.setDescription("Go get your case, just be aware that " +
+                "some cases are designed for different sized motherboards, " +
+                "so they need to be compatible.");
+        item_Case.setImage(R.drawable.pc_case_link);
+
+        OnboardingItem item_os = new OnboardingItem();
+        item_os.setTitle("Operating System");
+        item_os.setDescription("So many choices for an OS. ");
+        item_os.setImage(R.drawable.os_pc);
+
+        OnboardingItem item_others = new OnboardingItem();
+        item_others.setTitle("Peripherals");
+        item_others.setDescription("You will need a mouse, keyboard, and monitor to access and use the computer.");
+        item_others.setImage(R.drawable.key_mouse);
+
+        OnboardingItem item_tools = new OnboardingItem();
+        item_tools.setTitle("Tools");
+        item_tools.setDescription("The tools needed will be a philips head screwdriver and an empty usb drive to download the OS. " +
+                "You will also need an anti-static bracelet since you do not want to ruin your components.\n" +
+                "You are now ready to start building your PC");
+        item_tools.setImage(R.drawable.tools_pc);
+
 
         onboardingItemPcGuideActivityList.add(item_Intro);
         onboardingItemPcGuideActivityList.add(item_CPU);
@@ -119,6 +155,11 @@ public class PC_Guide_Supplies_Activity extends AppCompatActivity {
         onboardingItemPcGuideActivityList.add(item_CPUCOOL);
         onboardingItemPcGuideActivityList.add(item_GPU);
         onboardingItemPcGuideActivityList.add(item_STORAGE);
+        onboardingItemPcGuideActivityList.add(item_PSU);
+        onboardingItemPcGuideActivityList.add(item_Case);
+        onboardingItemPcGuideActivityList.add(item_os);
+        onboardingItemPcGuideActivityList.add(item_others);
+        onboardingItemPcGuideActivityList.add(item_tools);
         onboardingAdapterPcGuide = new OnboardingAdapter(onboardingItemPcGuideActivityList);
     }
 

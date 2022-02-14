@@ -6,8 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.computerstarter.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -74,7 +73,7 @@ public class SocialMediaFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_forum, container, false);
-        //FloatingActionButton button = view.findViewById(R.id.buttonCreate);
+        FloatingActionButton button = view.findViewById(R.id.buttonCreate);
         recyclerView = view.findViewById(R.id.RecycleForum);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
@@ -82,36 +81,20 @@ public class SocialMediaFragment extends Fragment {
         layoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(layoutManager);
         posts = new ArrayList<>();
-        ImageView profile = view.findViewById(R.id.profilePic);
-        Button text = view.findViewById(R.id.textSome);
-        if(user!=null) {
-            loadPosts();
-            //profile.setImageURI(user.getPhotoUrl());
-            text.setOnClickListener(view1 -> {
-                startActivity(new Intent(getContext(), SocialMediaBlogs.class));
-            });
-        }else{
-            Toast.makeText(getContext(),"PLEASE LOGIN TO VIEW POSTS",Toast.LENGTH_SHORT).show();
-            profile.setVisibility(View.GONE);
-            text.setVisibility(View.GONE);
-        }
-        /*button.setOnClickListener(new View.OnClickListener() {
+        loadPosts();
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Fragment frag = new SocialMediaBlogs();
-//
-//
-//                FragmentTransaction ft = getFragmentManager().beginTransaction();
-//                ft.replace(R.id.fragment_container, frag);
-//                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-//                ft.addToBackStack(null);
-//                ft.commit();
+                /*Fragment frag = new SocialMediaBlogs();
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.fragment_container, frag);
+                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                ft.addToBackStack(null);
+                ft.commit();*/
                 Intent intent = new Intent(getContext(),SocialMediaBlogs.class);
                 startActivity(intent);
             }
         });
-
-         */
         return view;
     }
 

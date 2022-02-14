@@ -2,8 +2,18 @@ package com.example.computerstarter.Guides.OnboardHolder;
 
 public class OnboardingItem {
     private int image;
-    private String title;
-    private String description;
+    private String title,description,learn;
+
+    public String getLearn() {
+        return learn;
+    }
+
+    public void setLearn(String learn) {
+        this.learn = learn;
+    }
+
+    public OnboardingItem() {
+    }
 
     public int getImage() {
         return image;

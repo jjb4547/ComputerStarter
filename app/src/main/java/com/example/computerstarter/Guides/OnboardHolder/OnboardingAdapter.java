@@ -45,17 +45,20 @@ public class OnboardingAdapter extends RecyclerView.Adapter<OnboardingAdapter.On
         private TextView textTitle;
         private TextView textDescription;
         private ImageView imageOnboarding;
+        private TextView textLearn;
 
         OnboardingViewHolder(@NonNull View itemView) {
             super(itemView);
             textTitle= itemView.findViewById(R.id.textTitle);
             textDescription = itemView.findViewById(R.id.textDescription);
             imageOnboarding = itemView.findViewById(R.id.imageOnBoarding);
+            textLearn = itemView.findViewById(R.id.learn);
         }
         void setOnboardingData(OnboardingItem onboardingItem){
             textTitle.setText(onboardingItem.getTitle());
             textDescription.setText(onboardingItem.getDescription());
             imageOnboarding.setImageResource(onboardingItem.getImage());
+            textLearn.setText(onboardingItem.getLearn());
         }
     }
 }

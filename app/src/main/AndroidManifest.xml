@@ -81,7 +81,6 @@
         <activity android:name=".Guides.RaspberryPi.Projects.HumiditySensor.RaspberryPi_Humidity_Sensor_Supplies"
             android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
 
-
         <!-- Fonts -->
         <meta-data
             android:name="preloaded_fonts"

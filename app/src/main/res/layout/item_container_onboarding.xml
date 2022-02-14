@@ -16,9 +16,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold" />
+
     <ImageView
         android:id="@+id/imageOnBoarding"
         android:layout_width="260dp"
@@ -33,6 +35,14 @@
         android:gravity="center"
         android:textColor="@color/black"
         android:textSize="18sp"/>
+    <TextView
+        android:id="@+id/learn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text=""
+        android:textSize="25sp"
+        android:layout_marginTop="10dp"/>
 
 
 </LinearLayout>
