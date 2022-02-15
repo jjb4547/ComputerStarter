@@ -85,6 +85,16 @@ public class PC_Guide_Installation_Activity extends AppCompatActivity {
         item_Intro.setDescription("Here is where you will learn where all those components will go.");
         item_Intro.setImage(R.drawable.pc_build_link);
 
+        OnboardingItem item_precaut = new OnboardingItem();
+        item_precaut.setTitle("Precautions (things to avoid) when Installing");
+        item_precaut.setDescription("• Make sure you are never working on components of your computer while " +
+                "it is plugged in and possibly powered.\n\n • The static bags that contain the motherboard, hardware, etc " +
+                "can damage the hardware after being removed, so keep them away from exposed hardware after taking the hardware " +
+                "it contains out. Static is a big problem that can destroy parts of your computer, so taking any steps to keep static " +
+                "away is ideal.\n\n • Keep your hands clean and dry. Try to prevent touching the surface of the CPU. Hold the CPU by the sides " +
+                "avoid grease on it to keep best cooling and operation.");
+        item_precaut.setImage(R.drawable.amd_cpu);
+
         OnboardingItem item_mot = new OnboardingItem();
         item_mot.setTitle("Motherboard Preparation");
         item_mot.setDescription("Take the motherboard and extras out of the box, but do not throw anything out." +
@@ -128,25 +138,84 @@ public class PC_Guide_Installation_Activity extends AppCompatActivity {
         item_M2.setDescription("If you have a M.2 SSD then you will need to locate the place in which the M.2 SSD will be installed if your motherboard has this capability.");
         item_M2.setImage(R.drawable.storage_link);
 
-        OnboardingItem item_GPU = new OnboardingItem();
-        item_GPU.setTitle("GPU(VGA)");
-        item_GPU.setDescription("GET YOUR RAM");
-        item_GPU.setImage(R.drawable.vga_link);
+        OnboardingItem item_thermal = new OnboardingItem();
+        item_thermal.setTitle("Cooler and thermal paste application");
+        item_thermal.setDescription("Most coolers come with the thermal paste already applied. If not then use your tube of thermal paste to apply a pea sized dot in the center of the CPU. " +
+                "Then placing the cooler on top of the CPU will evenly distribute the thermal paste. Use 99% isopropyl alcohol to clean up any extra thermal paste or if you need to reapply " +
+                "thermal paste.\n" +
+                "To install the cooler you will want to line up the holes in the motherboard with the cooler. Use a screwdriver to screw in the cooler in a crisscross pattern. The cooler " +
+                "will have a cable to power the fan that must be plugged into the CPU cooler port that is usually labeled CPU fan. After that try to manage the cable and try to tuck it in so that " +
+                "it doesn't stick out.");
+        item_thermal.setImage(R.drawable.cpu_cooler_link);
 
-        OnboardingItem item_STORAGE = new OnboardingItem();
-        item_STORAGE.setTitle("STORAGE");
-        item_STORAGE.setDescription("GET YOUR STORAGE");
-        item_STORAGE.setImage(R.drawable.storage_link);;
+        OnboardingItem item_mot_inst = new OnboardingItem();
+        item_mot_inst.setTitle("Motherboard Installation");
+        item_mot_inst.setDescription("If the I/O shield is not pre-attached to the motherboard then you will need to install it first." +
+                "Find the rectangular hole in the back of your computer case and install it from the inside. Make sure it's in the right " +
+                "orientation and then push it in on all four corners. You will want to locate your motherboard installation screws in preparation " +
+                "to insert the motherboard. You will need a screw and standoff for each hole in the motherboard. Make sure your case " +
+                "is flat on your build surface and place the motherboard down gently while aligning the holes in the motherboard with the standoffs." +
+                "Carefully screw in the motherboard with the motherboard screws.");
+        item_mot_inst.setImage(R.drawable.vga_link);
+
+        OnboardingItem item_fan = new OnboardingItem();
+        item_fan.setTitle("Fans(Optional)");
+        item_fan.setDescription("Some fans may already be installed onto your computer case. If you have the space and ability to add extra " +
+                "fans then follow these steps. Otherwise continue to the next section. First select the location on your case that you want to install your " +
+                "fan. The idea is to pull heat out of your computer case, so putting it in a place where your case will have nothing next to it is ideal to " +
+                "prevent blocked air flow. Next you should screw in the fan securely to the case with the provided screws. Finally you will connect the wires " +
+                "either to your power supply with the 4 pin connector, or using an adapter connect it to the motherboard according to the manual.");
+        item_fan.setImage(R.drawable.storage_link);
+
+        OnboardingItem item_psu = new OnboardingItem();
+        item_psu.setTitle("Power Supply Unit (PSU) Installation");
+        item_psu.setDescription("Non-modular power supplies will come with all cables pre-connected to the power supply which means it will take some cable management to hide them. " +
+                "If you have a modular power supply then the cables you will need are 24 pin atx cable(to power motherboard), eps cable (to power CPU), PCIe(to power Graphics card), and " +
+                "the rest are optional depending on extra accessories you buy. The power supply cables will be clearly labeled with the words \"psu\" or \"type\"  signaling " +
+                "the end that plugs into the power supply, unless already connected.");
+        item_psu.setImage(R.drawable.psu_link);
+        item_psu.setLearn("Continues on the next page.");
+
+        OnboardingItem item_psu_cont = new OnboardingItem();
+        item_psu_cont.setTitle("Power Supply Unit (PSU) Installation Continued");
+        item_psu_cont.setDescription("After your power supply is ready remove the rear panel if removable and if not install it by pushing it into the side. The power supply should " +
+                "be inserted with the fan facing down so it can pull in cool air. The power supply should then be secured with screws from the back.");
+        item_psu_cont.setImage(R.drawable.psu_link);
+
+        OnboardingItem item_storage = new OnboardingItem();
+        item_storage.setTitle("Storage Installation");
+        item_storage.setDescription("The three options for storage when building a computer are hard disk drive (HDD), solid state drives (SSD), and M.2 SSDs. The more commonly " +
+                "used hard drives and solid-state drives follow a very similar set up. First locate your hard drive cage which should have tabs that when pushed release the mounting " +
+                "tray. Then align the four holes on the tray with the holes in the hard drive or solid-state drive and screw them together. Solid-state drives can also be installed " +
+                "with SSD trays which are smaller trays that function the same as the hard drive cage trays except cases may come or may not come with them available. There is a second " +
+                "method available for hard drives only due to their size which involves inserting the hard drive into pegs located on the side walls of the tray. The should be holes on the " +
+                "sides which when lined up correctly secure the hard drive securely. Make sure the storage is facing the back of the computer for cable management purposes. " +
+                "The tray should slide easily back into the hard drive cage.\n Both the hard drive and the solid-state drive plug in fairly easily with a SATA cable in the smaller plug " +
+                "and a larger SATA power cable plugs into the bigger plug.");
+        item_psu.setImage(R.drawable.storage_link);
+
+        OnboardingItem item_plug = new OnboardingItem();
+        item_plug.setTitle("Plugging in the cables");
+        item_plug.setDescription("In-Progress");
+        item_plug.setImage(R.drawable.psu_link);
+
+
 
         onboardingItemPcGuideActivityList.add(item_Intro);
+        onboardingItemPcGuideActivityList.add(item_precaut);
         onboardingItemPcGuideActivityList.add(item_mot);
         onboardingItemPcGuideActivityList.add(item_CPU);
         onboardingItemPcGuideActivityList.add(item_AMD);
         onboardingItemPcGuideActivityList.add(item_Intel);
         onboardingItemPcGuideActivityList.add(item_mem);
         onboardingItemPcGuideActivityList.add(item_M2);
-        //onboardingItemPcGuideActivityList.add(item_GPU);
-        //onboardingItemPcGuideActivityList.add(item_STORAGE);
+        onboardingItemPcGuideActivityList.add(item_thermal);
+        onboardingItemPcGuideActivityList.add(item_mot_inst);
+        onboardingItemPcGuideActivityList.add(item_fan);
+        onboardingItemPcGuideActivityList.add(item_psu);
+        onboardingItemPcGuideActivityList.add(item_psu_cont);
+        onboardingItemPcGuideActivityList.add(item_storage);
+        onboardingItemPcGuideActivityList.add(item_plug);
         onboardingAdapterPcGuide = new OnboardingAdapter(onboardingItemPcGuideActivityList);
     }
 

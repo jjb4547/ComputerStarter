@@ -3,6 +3,7 @@ package com.example.computerstarter.Guides.PC;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -26,7 +27,7 @@ public class PC_Guide_Setup_Activity extends AppCompatActivity {
 
     private OnboardingAdapter onboardingAdapterPcGuide;
     private LinearLayout layoutOnboardingIndicators;
-    private MaterialButton buttonOnboardingAction, exit;
+    private MaterialButton buttonOnboardingAction, exit, help;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,6 +44,7 @@ public class PC_Guide_Setup_Activity extends AppCompatActivity {
         layoutOnboardingIndicators = findViewById(R.id.layoutOnboardingIndicators);
         buttonOnboardingAction = findViewById(R.id.buttonOnboardingAction);
         exit = findViewById(R.id.exit);
+        help = findViewById(R.id.help);
 
         setupOnboardingItems();
 
@@ -73,6 +75,7 @@ public class PC_Guide_Setup_Activity extends AppCompatActivity {
             overridePendingTransition(R.anim.slide_in_top,R.anim.stay);
             finish();
         });
+        help.setVisibility(View.GONE);
     }
 
     private void setupOnboardingItems(){
@@ -82,42 +85,12 @@ public class PC_Guide_Setup_Activity extends AppCompatActivity {
         item_Intro.setDescription("You just installed everything into your computer. Now lets get the PC booting and installing the OS.");
         item_Intro.setImage(R.drawable.pc_build_link);
 
-        /*OnboardingItem item_CPU = new OnboardingItem();
-        item_CPU.setTitle("CPU");
-        item_CPU.setDescription("First thing you need to get is the CPU");
-        item_CPU.setImage(R.drawable.cpu_link);
-
-        OnboardingItem item_motherboard = new OnboardingItem();
-        item_motherboard.setTitle("Motherboard");
-        item_motherboard.setDescription("Second is the motherboard");
-        item_motherboard.setImage(R.drawable.motherboard_link);
-
-        OnboardingItem item_RAM = new OnboardingItem();
-        item_RAM.setTitle("RAM (Memory)");
-        item_RAM.setDescription("GET YOUR RAM");
-        item_RAM.setImage(R.drawable.memory_link);
-
-        OnboardingItem item_CPUCOOL = new OnboardingItem();
-        item_CPUCOOL.setTitle("CPU COOLER");
-        item_CPUCOOL.setDescription("GET YOUR RAM");
-        item_CPUCOOL.setImage(R.drawable.cpu_cooler_link);
-
-        OnboardingItem item_GPU = new OnboardingItem();
-        item_GPU.setTitle("GPU(VGA)");
-        item_GPU.setDescription("GET YOUR RAM");
-        item_GPU.setImage(R.drawable.vga_link);*/
-
         OnboardingItem item_STORAGE = new OnboardingItem();
         item_STORAGE.setTitle("CONGRATULATIONS");
         item_STORAGE.setDescription("You Just Built Your First PC");
         item_STORAGE.setImage(R.drawable.storage_link);;
 
         onboardingItemPcGuideActivityList.add(item_Intro);
-        /*onboardingItemPcGuideActivityList.add(item_CPU);
-        onboardingItemPcGuideActivityList.add(item_motherboard);
-        onboardingItemPcGuideActivityList.add(item_RAM);
-        onboardingItemPcGuideActivityList.add(item_CPUCOOL);
-        onboardingItemPcGuideActivityList.add(item_GPU);*/
         onboardingItemPcGuideActivityList.add(item_STORAGE);
         onboardingAdapterPcGuide = new OnboardingAdapter(onboardingItemPcGuideActivityList);
     }
