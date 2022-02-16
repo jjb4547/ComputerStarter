@@ -26,7 +26,7 @@ public class EducationFragment extends Fragment{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        String[] diffTitles = getResources().getStringArray(R.array.comp_names);
+        //String[] diffTitles = getResources().getStringArray(R.array.comp_names);
     }
 
 
@@ -39,20 +39,18 @@ public class EducationFragment extends Fragment{
         CardView arduino = view.findViewById(R.id.arduinos);
         CardView rasp = view.findViewById(R.id.rasp_pi);
         pc.setOnClickListener(view1 -> {
-            Intent intent = new Intent(getActivity(), PC_Part_Activity.class);
-            startActivity(intent.putExtra("Act","Edu"));
+            startActivity(new Intent(getActivity(),PC_Part_Activity.class)
+                    .putExtra("Act","Edu"));
         });
         rasp.setOnClickListener(view2 -> {
-            Intent intent = new Intent(getActivity(),Education_Choosing_Activity.class);
-            intent.putExtra("component","Raspberry Pi")
-                    .putExtra("Act","Edu");
-            startActivity(intent);
+            startActivity(new Intent(getActivity(), Education_Choosing_Activity.class)
+                    .putExtra("component","Raspberry Pi")
+                    .putExtra("Act","Edu"));
         });
         arduino.setOnClickListener(view2 -> {
-            Intent intent = new Intent(getActivity(),Education_Choosing_Activity.class);
-            intent.putExtra("component","Arduino")
-                    .putExtra("Act", "Edu");
-            startActivity(intent);
+            startActivity(new Intent(getActivity(), Education_Choosing_Activity.class)
+                    .putExtra("component","Arduino")
+                    .putExtra("Act","Edu"));
         });
         return view;
     }
