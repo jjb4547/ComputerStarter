@@ -75,7 +75,8 @@ public class PC_Guide_Supplies_Activity extends AppCompatActivity {
             finish();
         });
         help.setOnClickListener(view -> {
-            startActivity(new Intent(this, PC_Part_Activity.class).putExtra("Act","Guide"));
+            startActivity(new Intent(this, PC_Part_Activity.class)
+                    .putExtra("Act","Guide"));
         });
     }
 

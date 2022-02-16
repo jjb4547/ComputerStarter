@@ -315,10 +315,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/grid_layout"
         android:layout_centerHorizontal="true"
+        android:clickable="true"
         android:padding="8dp"
         android:text="Return Home"
-        android:textSize="35dp"
-        android:clickable="true"
-        android:textColor="@color/cardview_dark"/>
+        android:textColor="@color/cardview_dark"
+        android:textSize="35dp" />
 
 </RelativeLayout>

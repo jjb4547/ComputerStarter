@@ -1,5 +1,6 @@
 package com.example.computerstarter.Education;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,7 +16,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Education_Tabbed extends AppCompatActivity {
 
-    private ActivityEducationTabbedBinding binding;
+    //private ActivityEducationTabbedBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,55 +33,17 @@ public class Education_Tabbed extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Bundle bundle = getIntent().getExtras();
         if(bundle!=null){
-            String position = bundle.getString("component");
-            switch (position){
-                case "CPU":
-                    getSupportActionBar().setTitle(diffTitles[0]);
-                    break;
-                case "MotherBoard":
-                    getSupportActionBar().setTitle(diffTitles[1]);
-                    break;
-                case "Memory":
-                    getSupportActionBar().setTitle(diffTitles[2]);
-                    break;
-                case "Storage":
-                    getSupportActionBar().setTitle(diffTitles[3]);
-                    break;
-                case "Video Card":
-                    getSupportActionBar().setTitle(diffTitles[7]);
-                    break;
-                case "Power Supply":
-                    getSupportActionBar().setTitle(diffTitles[4]);
-                    break;
-                case "CPU Cooler":
-                    getSupportActionBar().setTitle(diffTitles[5]);
-                    break;
-                case "Case":
-                    getSupportActionBar().setTitle(diffTitles[8]);
-                    break;
-                case "OS":
-                    getSupportActionBar().setTitle(diffTitles[11]);
-                    break;
-                case "Monitor":
-                    getSupportActionBar().setTitle(diffTitles[6]);
-                    break;
-                case "Peripherals":
-                    getSupportActionBar().setTitle(diffTitles[12]);
-                    break;
-                case "Raspberry Pi":
-                    getSupportActionBar().setTitle(diffTitles[9]);
-                    break;
-                case "Arduino":
-                    getSupportActionBar().setTitle(diffTitles[10]);
-                    break;
-            }
+            //String position = bundle.getString("component");
+            getSupportActionBar().setTitle(getIntent().getExtras().getString("component"));
         }
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId()==android.R.id.home) {
             // app icon in action bar clicked; goto parent activity.
-            this.finish();
+            startActivity(new Intent(this, Education_Choosing_Activity.class)
+                    .putExtra("component",getIntent().getExtras().getString("component"))
+                    .putExtra("Act", getIntent().getExtras().getString("Act")));
             return true;
         }else
             return super.onOptionsItemSelected(item);

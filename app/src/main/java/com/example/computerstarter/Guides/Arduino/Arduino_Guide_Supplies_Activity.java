@@ -14,6 +14,8 @@ import androidx.core.content.ContextCompat;
 import androidx.core.view.WindowCompat;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.example.computerstarter.Education.Education_Choosing_Activity;
+import com.example.computerstarter.Education.PC_Part_Activity;
 import com.example.computerstarter.Guides.OnboardHolder.OnboardingAdapter;
 import com.example.computerstarter.Guides.OnboardHolder.OnboardingItem;
 import com.example.computerstarter.R;
@@ -26,7 +28,7 @@ public class Arduino_Guide_Supplies_Activity extends AppCompatActivity {
 
     private OnboardingAdapter onboardingAdapterPcGuide;
     private LinearLayout layoutOnboardingIndicators;
-    private MaterialButton buttonOnboardingAction, exit;
+    private MaterialButton buttonOnboardingAction, exit,help;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,6 +44,7 @@ public class Arduino_Guide_Supplies_Activity extends AppCompatActivity {
         layoutOnboardingIndicators = findViewById(R.id.layoutOnboardingIndicators);
         buttonOnboardingAction = findViewById(R.id.buttonOnboardingAction);
         exit = findViewById(R.id.exit);
+        help = findViewById(R.id.help);
 
         setupOnboardingItems();
 
@@ -71,6 +74,10 @@ public class Arduino_Guide_Supplies_Activity extends AppCompatActivity {
             startActivity(new Intent(this, Arduino_Guides_Activity.class));
             overridePendingTransition(R.anim.slide_in_top,R.anim.stay);
             finish();
+        });
+        help.setOnClickListener(view -> {
+            startActivity(new Intent(this, Education_Choosing_Activity.class)
+                    .putExtra("Act","Guide").putExtra("component","Arduino"));
         });
     }
 

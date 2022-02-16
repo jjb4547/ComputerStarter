@@ -135,7 +135,9 @@ public class PC_Guide_Installation_Activity extends AppCompatActivity {
 
         OnboardingItem item_M2 = new OnboardingItem();
         item_M2.setTitle("M.2 installation(Optional)");
-        item_M2.setDescription("If you have a M.2 SSD then you will need to locate the place in which the M.2 SSD will be installed if your motherboard has this capability.");
+        item_M2.setDescription("If you have a motherboard that supports an M.2 drive, follow these simple steps. " +
+                "First find the slot on your motherboard that is angled parallel to the motherboard. Unscrew the Phillips screw head located in the front of the slot. Take your M.2 drive " +
+                "and insert it in a 30 degree angle to the motherboard. Finally make sure it is flat to the motherboard, then secure it with the phillips screw you removed earlier.");
         item_M2.setImage(R.drawable.storage_link);
 
         OnboardingItem item_thermal = new OnboardingItem();
@@ -191,15 +193,39 @@ public class PC_Guide_Installation_Activity extends AppCompatActivity {
                 "method available for hard drives only due to their size which involves inserting the hard drive into pegs located on the side walls of the tray. The should be holes on the " +
                 "sides which when lined up correctly secure the hard drive securely. Make sure the storage is facing the back of the computer for cable management purposes. " +
                 "The tray should slide easily back into the hard drive cage.\n Both the hard drive and the solid-state drive plug in fairly easily with a SATA cable in the smaller plug " +
-                "and a larger SATA power cable plugs into the bigger plug.");
+                "and a larger SATA power cable which plugs into the bigger plug. The other side of the SATA cable will plug into the SATA port of your motherboard.");
         item_psu.setImage(R.drawable.storage_link);
 
         OnboardingItem item_plug = new OnboardingItem();
         item_plug.setTitle("Plugging in the cables");
-        item_plug.setDescription("In-Progress");
+        item_plug.setDescription("First start off by plugging in the cable for the usb ports on the front of the case " +
+                "which plugs into the usb header on your motherboard labeled usb3 or something similar. " +
+                "Additional usb cables may come labeled usb near the tip and also plug into the motherboard " +
+                "header in either port labeled usb1 or usb2. Next plug in the cable labeled audio which will " +
+                "enable the mic and audio ports on the front of your case. The connector will connect to the " +
+                "motherboard in a place labeled jaud1 or something similar. Make sure to plug the cable all the way in, but careful " +
+                "not to bend the pins. If you have any usb c ports on your case make sure to plug it into the motherboard in a spot labeled " +
+                "usb3.1 or u31. If you have any fans they will go into any of the headers labeled cha_fan, opt_fan, sys_fan, or something " +
+                "similar.");
         item_plug.setImage(R.drawable.psu_link);
 
+        OnboardingItem item_conn_psu = new OnboardingItem();
+        item_conn_psu.setTitle("Connecting the PSU");
+        item_conn_psu.setDescription("Start off with the 24 pin cable which will connect to a large socket on the motherboard. Make sure to fully " +
+                "connect the cable so that it locks into place. Next to connect are the cpu cable which plugs into an eight pin " +
+                "socket usually located near the top of the motherboard. Sometimes you will have another four pin port which you may plug your extra " +
+                "cpu cable into, but it is not required.");
+        item_conn_psu.setImage(R.drawable.psu_link);
 
+        OnboardingItem item_gpu_inst = new OnboardingItem();
+        item_gpu_inst.setTitle("GPU installation");
+        item_gpu_inst.setDescription("First make sure you are installing your graphics card on the highest pci slot for best performance. " +
+                "Next remove the pci bracket that corresponds with the pci slot you're using and you may have to remove multiple depending on the " +
+                "thickness of your graphics card. Now remove any covers the graphics card might have in preparation for plugging it in. Gently " +
+                "raise the graphics card close to the pci slot and then slide it into it until it clicks or until the clip locks into place. If your " +
+                "graphics card is sagging then you can hold it up with one hand and tighten the screws with the other. To plug in the graphics card must " +
+                "match the number of pins of the graphics card to match the pci cable you will be plugging in.");
+        item_gpu_inst.setImage(R.drawable.psu_link);
 
         onboardingItemPcGuideActivityList.add(item_Intro);
         onboardingItemPcGuideActivityList.add(item_precaut);
@@ -216,6 +242,8 @@ public class PC_Guide_Installation_Activity extends AppCompatActivity {
         onboardingItemPcGuideActivityList.add(item_psu_cont);
         onboardingItemPcGuideActivityList.add(item_storage);
         onboardingItemPcGuideActivityList.add(item_plug);
+        onboardingItemPcGuideActivityList.add(item_conn_psu);
+        onboardingItemPcGuideActivityList.add(item_gpu_inst);
         onboardingAdapterPcGuide = new OnboardingAdapter(onboardingItemPcGuideActivityList);
     }
 

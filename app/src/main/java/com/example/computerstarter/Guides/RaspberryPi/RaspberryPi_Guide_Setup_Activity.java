@@ -3,6 +3,7 @@ package com.example.computerstarter.Guides.RaspberryPi;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -26,7 +27,7 @@ public class RaspberryPi_Guide_Setup_Activity extends AppCompatActivity {
 
     private OnboardingAdapter onboardingAdapterPcGuide;
     private LinearLayout layoutOnboardingIndicators;
-    private MaterialButton buttonOnboardingAction, exit;
+    private MaterialButton buttonOnboardingAction, exit,help;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,6 +43,7 @@ public class RaspberryPi_Guide_Setup_Activity extends AppCompatActivity {
         layoutOnboardingIndicators = findViewById(R.id.layoutOnboardingIndicators);
         buttonOnboardingAction = findViewById(R.id.buttonOnboardingAction);
         exit = findViewById(R.id.exit);
+        help = findViewById(R.id.help);
 
         setupOnboardingItems();
 
@@ -72,6 +74,7 @@ public class RaspberryPi_Guide_Setup_Activity extends AppCompatActivity {
             overridePendingTransition(R.anim.slide_in_top,R.anim.stay);
             finish();
         });
+        help.setVisibility(View.GONE);
     }
 
     private void setupOnboardingItems(){

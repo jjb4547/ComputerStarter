@@ -86,8 +86,14 @@ public class PC_Guide_Setup_Activity extends AppCompatActivity {
         item_Intro.setImage(R.drawable.pc_build_link);
 
         OnboardingItem item_STORAGE = new OnboardingItem();
-        item_STORAGE.setTitle("CONGRATULATIONS");
-        item_STORAGE.setDescription("You Just Built Your First PC");
+        item_STORAGE.setTitle("Startup and Organization");
+        item_STORAGE.setDescription("Congratulations your PC has been put together, but we now need to make sure it is working properly and your " +
+                "wires are neatly organized. Your case may not be put back together, but that's fine for now. Plug in your power cable to an outlet, and " +
+                "switch the power switch on the back of your computer on. Make sure your computer is upright before pressing the power button on the front of your computer. " +
+                "(Remember, computers should not be moved or worked on when powered on.) Refer to Troubleshooting and problems if it does not power on. Now that we " +
+                "know it works, power off the computer and flip the power switch on the power supply and remove power from the wall. Now that the computer " +
+                "is safe to work on, gather the cables orderly, and put them together, securing them with zip ties. Now you can put your case back together and power up your computer " +
+                "for the next step.");
         item_STORAGE.setImage(R.drawable.storage_link);;
 
         onboardingItemPcGuideActivityList.add(item_Intro);
