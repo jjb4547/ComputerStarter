@@ -151,7 +151,11 @@
         <entry key="app/src/main/res/layout/activity_pc_part.xml" value="0.1" />
         <entry key="app/src/main/res/layout/education_choosing_layout.xml" value="0.1" />
         <entry key="app/src/main/res/layout/education_layout.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/item_container_onboarding.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/onboard_layout.xml" value="0.14719202898550723" />
         <entry key="app/src/main/res/layout/pc_building_guides_layout.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/raspberrypi_projects_layout.xml" value="0.14719202898550723" />
+        <entry key="app/src/main/res/layout/splash.xml" value="0.1" />
       </map>
     </option>
   </component>

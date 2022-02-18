@@ -104,7 +104,8 @@
                     android:textColor="@color/white" />
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
-        <!--<androidx.cardview.widget.CardView
+        <!--
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -124,7 +125,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:fontFamily="@font/halant_bold"
-                    android:text="Setup"
+                    android:text="Learn"
                     android:textColor="@color/white"
                     android:textSize="50sp" />
 
@@ -139,6 +140,7 @@
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
+            android:id="@+id/tutorials"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -157,7 +159,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:fontFamily="@font/halant_bold"
-                    android:text="Troubleshoot"
+                    android:text="Tutorials"
                     android:textColor="@color/white"
                     android:textSize="50sp" />
                 <TextView

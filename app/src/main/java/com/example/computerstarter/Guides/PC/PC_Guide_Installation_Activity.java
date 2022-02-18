@@ -112,7 +112,7 @@ public class PC_Guide_Installation_Activity extends AppCompatActivity {
 
         OnboardingItem item_AMD = new OnboardingItem();
         item_AMD.setTitle("AMD Installation");
-        item_AMD.setDescription("Grab the CPU by its sides and locate the golden triangle on the CPU and the motherboard socket." +
+        item_AMD.setDescription("Grab the CPU by its sides and locate the golden triangle on the CPU and the motherboard socket. " +
                 "Match these triangles together and get ready to insert the CPU. Lift the lever on the motherboard and gently let " +
                 "the CPU fall into the right place. No force on the top will be needed for this and could damage the components if forcefully " +
                 "inserted. Make sure the CPU is evenly in the socket and pull the lever down.");
@@ -120,14 +120,14 @@ public class PC_Guide_Installation_Activity extends AppCompatActivity {
 
         OnboardingItem item_Intel = new OnboardingItem();
         item_Intel.setTitle("Intel Installation");
-        item_Intel.setDescription("Grab the CPU by its side and locate the golden triangle on the CPU and the motherboard socket. Match these triangles" +
-                "together and get ready to insert the CPU. Slide the lever up to open the socket and carefully allow the CPU to fall onto the pins. Lower the flap" +
+        item_Intel.setDescription("Grab the CPU by its side and locate the golden triangle on the CPU and the motherboard socket. Match these triangles " +
+                "together and get ready to insert the CPU. Slide the lever up to open the socket and carefully allow the CPU to fall onto the pins. Lower the flap " +
                 "slowly and then you may lowe the lever if all seems right.");
         item_Intel.setImage(R.drawable.intelicon);
 
         OnboardingItem item_mem = new OnboardingItem();
         item_mem.setTitle("Memory Installation (RAM)");
-        item_mem.setDescription("Most motherboards have four memory slots or DIMM slots. If you are only installing two of the four then one must refer to the manual" +
+        item_mem.setDescription("Most motherboards have four memory slots or DIMM slots. If you are only installing two of the four then one must refer to the manual " +
                 "or motherboard to know on which slots to use to take advantage of dual channel memory. To install the memory, open the tabs  of each slot you plan to fill. " +
                 "Each stick of memory has a gap on the bottom which lines up with the notch on the slot. Now just lower the memory into the slot and apply enough pressure to " +
                 "trigger the tabs on the side to lock the memory into place.");

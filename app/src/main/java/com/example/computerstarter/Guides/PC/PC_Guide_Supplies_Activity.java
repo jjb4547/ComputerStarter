@@ -182,16 +182,14 @@ public class PC_Guide_Supplies_Activity extends AppCompatActivity {
     }
 
     private void setCurrentOnboardingIndicators(int index){
-        int childCount = layoutOnboardingIndicators.getChildCount();
-        for (int i=0;i<childCount;i++){
+        for (int i=0;i<layoutOnboardingIndicators.getChildCount();i++) {
             ImageView imageView = (ImageView) layoutOnboardingIndicators.getChildAt(i);
-            if(i==index){
+            if (i == index) {
                 imageView.setImageDrawable(
-                        ContextCompat.getDrawable(getApplicationContext(),R.drawable.onboarding_indicator_active)
+                        ContextCompat.getDrawable(getApplicationContext(), R.drawable.onboarding_indicator_active)
                 );
-            }else{
-                imageView.setImageDrawable(
-                        ContextCompat.getDrawable(getApplicationContext(),R.drawable.onboarding_indicator_inactive)
+            } else {
+                imageView.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.onboarding_indicator_inactive)
                 );
             }
         }
