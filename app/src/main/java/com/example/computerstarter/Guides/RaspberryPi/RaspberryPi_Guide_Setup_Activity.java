@@ -81,47 +81,11 @@ public class RaspberryPi_Guide_Setup_Activity extends AppCompatActivity {
         List<OnboardingItem> onboardingItemPcGuideActivityList = new ArrayList<>();
         OnboardingItem item_Intro = new OnboardingItem();
         item_Intro.setTitle("Welcome to the Setup Guide");
-        item_Intro.setDescription("Here is where you will be able find out what components will be needed " +
-                "to build a computer and be able to achieve that life long dream of building a computer.");
+        item_Intro.setDescription("");
         item_Intro.setImage(R.drawable.pc_build_link);
 
-        OnboardingItem item_CPU = new OnboardingItem();
-        item_CPU.setTitle("CPU");
-        item_CPU.setDescription("First thing you need to get is the CPU");
-        item_CPU.setImage(R.drawable.cpu_link);
-
-        OnboardingItem item_motherboard = new OnboardingItem();
-        item_motherboard.setTitle("Motherboard");
-        item_motherboard.setDescription("Second is the motherboard");
-        item_motherboard.setImage(R.drawable.motherboard_link);
-
-        OnboardingItem item_RAM = new OnboardingItem();
-        item_RAM.setTitle("RAM (Memory)");
-        item_RAM.setDescription("GET YOUR RAM");
-        item_RAM.setImage(R.drawable.memory_link);
-
-        OnboardingItem item_CPUCOOL = new OnboardingItem();
-        item_CPUCOOL.setTitle("CPU COOLER");
-        item_CPUCOOL.setDescription("GET YOUR RAM");
-        item_CPUCOOL.setImage(R.drawable.cpu_cooler_link);
-
-        OnboardingItem item_GPU = new OnboardingItem();
-        item_GPU.setTitle("GPU(VGA)");
-        item_GPU.setDescription("GET YOUR RAM");
-        item_GPU.setImage(R.drawable.vga_link);
-
-        OnboardingItem item_STORAGE = new OnboardingItem();
-        item_STORAGE.setTitle("CONGRATULATIONS");
-        item_STORAGE.setDescription("You Just Built Your First PC");
-        item_STORAGE.setImage(R.drawable.storage_link);;
 
         onboardingItemPcGuideActivityList.add(item_Intro);
-        onboardingItemPcGuideActivityList.add(item_CPU);
-        onboardingItemPcGuideActivityList.add(item_motherboard);
-        onboardingItemPcGuideActivityList.add(item_RAM);
-        onboardingItemPcGuideActivityList.add(item_CPUCOOL);
-        onboardingItemPcGuideActivityList.add(item_GPU);
-        onboardingItemPcGuideActivityList.add(item_STORAGE);
         onboardingAdapterPcGuide = new OnboardingAdapter(onboardingItemPcGuideActivityList);
     }
 

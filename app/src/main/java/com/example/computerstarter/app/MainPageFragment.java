@@ -12,9 +12,7 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.example.computerstarter.Build.MyBuildActivity;
-import com.example.computerstarter.Guides.Arduino.Arduino_Guides_Activity;
 import com.example.computerstarter.Guides.PC.PC_Building_Guide_Activity;
-import com.example.computerstarter.Guides.RaspberryPi.RaspberryPi_Guides_Activity;
 import com.example.computerstarter.R;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -56,7 +54,7 @@ public class MainPageFragment extends Fragment {
         feat_1.setOnClickListener(view ->{
             Toast.makeText(getActivity(),"Community Builds",Toast.LENGTH_SHORT).show();
         });
-        CardView feat_2 = view.findViewById(R.id.helpful_link_2);
+        /*CardView feat_2 = view.findViewById(R.id.helpful_link_2);
         feat_2.setOnClickListener(view ->{
             Toast.makeText(getActivity(),"Raspberry Pi Guides",Toast.LENGTH_SHORT).show();
             startActivity(new Intent(getContext(), RaspberryPi_Guides_Activity.class));
@@ -68,6 +66,8 @@ public class MainPageFragment extends Fragment {
             startActivity(new Intent(getContext(), Arduino_Guides_Activity.class));
             getActivity().overridePendingTransition(R.anim.slide_in_bottom,R.anim.stay);
         });
+
+         */
         return view;
     }
 }

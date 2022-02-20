@@ -42,7 +42,7 @@
             app:cardElevation="8dp"
             android:clickable="true"
             app:cardPreventCornerOverlap="false"
-            android:id="@+id/supplies"
+            android:id="@+id/prep"
             app:cardCornerRadius="8dp"
             android:foreground="?android:attr/selectableItemBackground">
             <RelativeLayout
@@ -55,7 +55,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:fontFamily="@font/halant_bold"
-                    android:text="Supplies"
+                    android:text="Preparation"
                     android:textColor="@color/white"
                     android:textSize="50sp" />
 
@@ -76,7 +76,7 @@
             app:cardElevation="8dp"
             android:clickable="true"
             app:cardPreventCornerOverlap="false"
-            android:id="@+id/installation"
+            android:id="@+id/setup"
             app:cardCornerRadius="8dp"
             android:foreground="?android:attr/selectableItemBackground">
             <RelativeLayout
@@ -89,7 +89,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:fontFamily="@font/halant_bold"
-                    android:text="Installation"
+                    android:text="Setup"
                     android:textColor="@color/white"
                     android:textSize="50sp" />
 
@@ -103,6 +103,7 @@
                     android:textColor="@color/white" />
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
+        <!--
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -137,7 +138,9 @@
                     android:textColor="@color/white" />
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
+        -->
         <androidx.cardview.widget.CardView
+            android:id="@+id/troubleshoot"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -169,6 +172,7 @@
                     android:textColor="@color/white"/>
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
+        <!--
         <androidx.cardview.widget.CardView
             android:id="@+id/projects"
             android:layout_width="match_parent"
@@ -201,8 +205,10 @@
                     android:layout_marginBottom="15dp"
                     android:text="Fun Projects to do with your Raspberry Pi"
                     android:textColor="@color/white" />
+
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
+        -->
 
         <TextView
             android:id="@+id/home"
@@ -211,7 +217,7 @@
             android:layout_marginBottom="10dp"
             android:textAlignment="center"
             android:textColor="@color/cardview_light"
-            android:text="Return Home"
+            android:text="Return Back"
             android:textStyle="bold"
             android:gravity="center"
             android:layout_gravity="center"

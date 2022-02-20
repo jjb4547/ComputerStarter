@@ -3,7 +3,6 @@ package com.example.computerstarter.Guides.RaspberryPi;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -15,6 +14,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.view.WindowCompat;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.example.computerstarter.Education.Education_Choosing_Activity;
 import com.example.computerstarter.Guides.OnboardHolder.OnboardingAdapter;
 import com.example.computerstarter.Guides.OnboardHolder.OnboardingItem;
 import com.example.computerstarter.R;
@@ -23,7 +23,7 @@ import com.google.android.material.button.MaterialButton;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RaspberryPi_Guide_Installation_Activity extends AppCompatActivity {
+public class RaspberryPi_Guide_Troubleshoot_Activity extends AppCompatActivity {
 
     private OnboardingAdapter onboardingAdapterPcGuide;
     private LinearLayout layoutOnboardingIndicators;
@@ -64,23 +64,26 @@ public class RaspberryPi_Guide_Installation_Activity extends AppCompatActivity {
             if(onboardingViewPager.getCurrentItem()+1< onboardingAdapterPcGuide.getItemCount()){
                 onboardingViewPager.setCurrentItem(onboardingViewPager.getCurrentItem()+1);
             }else{
-                startActivity(new Intent(this, RaspberryPi_Guide_Setup_Activity.class));
+                startActivity(new Intent(this, RaspberryPi_Guide_Prep_Activity.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 finish();
             }
         });
         exit.setOnClickListener(view->{
             startActivity(new Intent(this, RaspberryPi_Guides_Activity.class));
-            overridePendingTransition(R.anim.slide_in_top,R.anim.stay);
+            overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
             finish();
         });
-        help.setVisibility(View.GONE);
+        help.setOnClickListener(view -> {
+            startActivity(new Intent(this, Education_Choosing_Activity.class)
+                    .putExtra("Act","Guide").putExtra("component","Raspberry Pi"));
+        });
     }
 
     private void setupOnboardingItems(){
         List<OnboardingItem> onboardingItemPcGuideActivityList = new ArrayList<>();
         OnboardingItem item_Intro = new OnboardingItem();
-        item_Intro.setTitle("Welcome to the Installation Guide");
+        item_Intro.setTitle("Welcome to the Supplies Guide");
         item_Intro.setDescription("Here is where you will be able find out what components will be needed " +
                 "to build a computer and be able to achieve that life long dream of building a computer.");
         item_Intro.setImage(R.drawable.pc_build_link);
@@ -157,7 +160,7 @@ public class RaspberryPi_Guide_Installation_Activity extends AppCompatActivity {
             }
         }
         if (index== onboardingAdapterPcGuide.getItemCount()-1){
-            buttonOnboardingAction.setText("Setup");
+            buttonOnboardingAction.setText("Finish");
         }else{
             buttonOnboardingAction.setText("Next");
         }

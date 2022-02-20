@@ -161,6 +161,7 @@
 
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
+        <!--
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -184,7 +185,7 @@
                     android:fontFamily="@font/halant_bold"
                     android:gravity="center"
                     android:padding="25dp"
-                    android:text="Raspberry Pi Guides"
+                    android:text="Raspberry Pi Projects"
                     android:textColor="@color/white"
                     android:textSize="35sp" />
 
@@ -225,7 +226,7 @@
                     android:fontFamily="@font/halant_bold"
                     android:gravity="center"
                     android:padding="25dp"
-                    android:text="Arduino Guides"
+                    android:text="Arduino Projects"
                     android:textColor="@color/white"
                     android:textSize="35sp" />
 
@@ -242,6 +243,7 @@
 
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
+        -->
     </LinearLayout>
 
 </ScrollView>

@@ -3,6 +3,7 @@ package com.example.computerstarter.Guides.RaspberryPi;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -14,7 +15,6 @@ import androidx.core.content.ContextCompat;
 import androidx.core.view.WindowCompat;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.example.computerstarter.Education.Education_Choosing_Activity;
 import com.example.computerstarter.Guides.OnboardHolder.OnboardingAdapter;
 import com.example.computerstarter.Guides.OnboardHolder.OnboardingItem;
 import com.example.computerstarter.R;
@@ -23,7 +23,7 @@ import com.google.android.material.button.MaterialButton;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RaspberryPi_Guide_Supplies_Activity extends AppCompatActivity {
+public class RaspberryPi_Guide_Prep_Activity extends AppCompatActivity {
 
     private OnboardingAdapter onboardingAdapterPcGuide;
     private LinearLayout layoutOnboardingIndicators;
@@ -64,67 +64,52 @@ public class RaspberryPi_Guide_Supplies_Activity extends AppCompatActivity {
             if(onboardingViewPager.getCurrentItem()+1< onboardingAdapterPcGuide.getItemCount()){
                 onboardingViewPager.setCurrentItem(onboardingViewPager.getCurrentItem()+1);
             }else{
-                startActivity(new Intent(this, RaspberryPi_Guide_Installation_Activity.class));
+                startActivity(new Intent(this, RaspberryPi_Guide_Setup_Activity.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 finish();
             }
         });
         exit.setOnClickListener(view->{
             startActivity(new Intent(this, RaspberryPi_Guides_Activity.class));
-            overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
+            overridePendingTransition(R.anim.slide_in_top,R.anim.stay);
             finish();
         });
-        help.setOnClickListener(view -> {
-            startActivity(new Intent(this, Education_Choosing_Activity.class)
-                    .putExtra("Act","Guide").putExtra("component","Raspberry Pi"));
-        });
+        help.setVisibility(View.GONE);
     }
 
     private void setupOnboardingItems(){
         List<OnboardingItem> onboardingItemPcGuideActivityList = new ArrayList<>();
         OnboardingItem item_Intro = new OnboardingItem();
-        item_Intro.setTitle("Welcome to the Supplies Guide");
-        item_Intro.setDescription("Here is where you will be able find out what components will be needed " +
-                "to build a computer and be able to achieve that life long dream of building a computer.");
+        item_Intro.setTitle("Welcome to the Prep Guide");
+        item_Intro.setDescription("Designing");
         item_Intro.setImage(R.drawable.pc_build_link);
 
-        OnboardingItem item_CPU = new OnboardingItem();
-        item_CPU.setTitle("CPU");
-        item_CPU.setDescription("First thing you need to get is the CPU");
-        item_CPU.setImage(R.drawable.cpu_link);
 
-        OnboardingItem item_motherboard = new OnboardingItem();
-        item_motherboard.setTitle("Motherboard");
-        item_motherboard.setDescription("Second is the motherboard");
-        item_motherboard.setImage(R.drawable.motherboard_link);
+        OnboardingItem item_1 = new OnboardingItem();
+        item_1.setTitle("Supplies");
+        item_1.setDescription("• First and foremost you will need a Raspberry Pi which comes in many different models. " +
+                "Depending if you bought the Pi alone or as a kit then you might need to buy additional supplies. Most Raspberry " +
+                "Pis require a micro usb cord and block, but the newest model takes usb c so be sure to check which model you have." +
+                "\n• Next you will need a MicroSD card with at least a 8gb capacity to store the OS and all files you use. Some kits and " +
+                "specific vendors will sell the microSD cards preloaded with Raspberry Pi OS, but any microSD will work. You might also need " +
+                "an SD card reader if your computer does not have one since you will need it to add the OS to your microSD. \n• A wired keyboard and " +
+                "mouse is required for initial setup, but after that you may switch to bluetooth peripherals if you'd like. You will need a TV or monitor " +
+                "that takes HDMI in order to view and interact with the Raspberry Pi. You will also need an HDMI cable to connect your screen to your Raspberry " +
+                "Pi or adapters if your screen has different ports. \n• Lastly, you will need an ethernet cable depending if your Raspberry Pi has wireless capabilities or not. " +
+                "A case and headphones or speakers are optional, but may give your Pi some protection and sound.");
+        item_1.setImage(R.drawable.pc_build_link);
 
-        OnboardingItem item_RAM = new OnboardingItem();
-        item_RAM.setTitle("RAM (Memory)");
-        item_RAM.setDescription("GET YOUR RAM");
-        item_RAM.setImage(R.drawable.memory_link);
-
-        OnboardingItem item_CPUCOOL = new OnboardingItem();
-        item_CPUCOOL.setTitle("CPU COOLER");
-        item_CPUCOOL.setDescription("GET YOUR RAM");
-        item_CPUCOOL.setImage(R.drawable.cpu_cooler_link);
-
-        OnboardingItem item_GPU = new OnboardingItem();
-        item_GPU.setTitle("GPU(VGA)");
-        item_GPU.setDescription("GET YOUR RAM");
-        item_GPU.setImage(R.drawable.vga_link);
-
-        OnboardingItem item_STORAGE = new OnboardingItem();
-        item_STORAGE.setTitle("STORAGE");
-        item_STORAGE.setDescription("GET YOUR STORAGE");
-        item_STORAGE.setImage(R.drawable.storage_link);;
+        OnboardingItem item_2 = new OnboardingItem();
+        item_2.setTitle("MicroSD setup");
+        item_2.setDescription("  There are many OS options, but as a beginner the best place to start is the Raspberry Pi OS which can serve most needs. You will want to navigate " +
+                "to https://www.raspberrypi.com/software/ on your computer to download the Raspberry Pi OS. You will then want to insert your microSD card into your computer " +
+                "or use your SD card reader. When you launch the installer your system may try to warn you, but make sure to run it anyway. Select Raspberry Pi OS and the SD card you " +
+                "inserted then select WRITE. Once it's done you can eject your SD card from your computer and prepare for the next steps.");
+        item_2.setImage(R.drawable.pc_build_link);
 
         onboardingItemPcGuideActivityList.add(item_Intro);
-        onboardingItemPcGuideActivityList.add(item_CPU);
-        onboardingItemPcGuideActivityList.add(item_motherboard);
-        onboardingItemPcGuideActivityList.add(item_RAM);
-        onboardingItemPcGuideActivityList.add(item_CPUCOOL);
-        onboardingItemPcGuideActivityList.add(item_GPU);
-        onboardingItemPcGuideActivityList.add(item_STORAGE);
+        onboardingItemPcGuideActivityList.add(item_1);
+        onboardingItemPcGuideActivityList.add(item_2);
         onboardingAdapterPcGuide = new OnboardingAdapter(onboardingItemPcGuideActivityList);
     }
 
@@ -160,7 +145,7 @@ public class RaspberryPi_Guide_Supplies_Activity extends AppCompatActivity {
             }
         }
         if (index== onboardingAdapterPcGuide.getItemCount()-1){
-            buttonOnboardingAction.setText("Finish");
+            buttonOnboardingAction.setText("Setup");
         }else{
             buttonOnboardingAction.setText("Next");
         }

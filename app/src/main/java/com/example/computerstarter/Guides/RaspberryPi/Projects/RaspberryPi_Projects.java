@@ -8,8 +8,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import com.example.computerstarter.Education.Education_Choosing_Activity;
 import com.example.computerstarter.Guides.RaspberryPi.Projects.HumiditySensor.RaspberryPi_Humidity_Sensor;
-import com.example.computerstarter.Guides.RaspberryPi.RaspberryPi_Guides_Activity;
 import com.example.computerstarter.R;
 
 public class RaspberryPi_Projects extends AppCompatActivity {
@@ -25,7 +25,8 @@ public class RaspberryPi_Projects extends AppCompatActivity {
             startActivity(new Intent(this, RaspberryPi_Humidity_Sensor.class));
         });
         home.setOnClickListener(view->{
-            startActivity(new Intent(getApplicationContext(), RaspberryPi_Guides_Activity.class));
+            startActivity(new Intent(getApplicationContext(), Education_Choosing_Activity.class)
+                    .putExtra("component", "Raspberry Pi"));
             overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
         });
     }
