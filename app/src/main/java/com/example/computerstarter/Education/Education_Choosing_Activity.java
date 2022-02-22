@@ -2,7 +2,6 @@ package com.example.computerstarter.Education;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -30,7 +29,7 @@ public class Education_Choosing_Activity extends AppCompatActivity {
             if(comp.equals("Raspberry Pi")||comp.equals("Arduino")){
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
             }else {
-                startActivity(new Intent(getApplicationContext(), PC_Part_Activity.class));
+                startActivity(new Intent(getApplicationContext(), PC_Part_Activity.class).putExtra("Act",getIntent().getExtras().getString("Act")));
             }
             overridePendingTransition(R.anim.slide_in_top, R.anim.stay);
         });
@@ -43,7 +42,7 @@ public class Education_Choosing_Activity extends AppCompatActivity {
         basic.setOnClickListener(view->{
             if(!(comp.equals("Arduino")||comp.equals("Raspberry Pi"))) {
                 startActivity(new Intent(getApplicationContext(), Education_Tabbed.class).putExtra("from", "Beginner")
-                        .putExtra("component", comp));
+                        .putExtra("component", comp).putExtra("Act","Edu"));
             }else if(comp.equals("Arduino")){
                 startActivity(new Intent(getApplicationContext(), Arduino_Guides_Activity.class));
             }else if(comp.equals("Raspberry Pi")){

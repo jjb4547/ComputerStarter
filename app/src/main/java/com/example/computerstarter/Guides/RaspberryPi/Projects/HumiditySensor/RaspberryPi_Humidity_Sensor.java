@@ -20,6 +20,14 @@ public class RaspberryPi_Humidity_Sensor extends AppCompatActivity {
         supplies.setOnClickListener(view -> {
             startActivity(new Intent(this, RaspberryPi_Humidity_Sensor_Supplies.class));
         });
+        CardView wiring = findViewById(R.id.installation);
+        wiring.setOnClickListener(view -> {
+            startActivity(new Intent(this, RaspberryPi_Humidity_Sensor_Wiring.class));
+        });
+        CardView coding = findViewById(R.id.setup);
+        coding.setOnClickListener(view -> {
+            startActivity(new Intent(this, RaspberryPi_Humidity_Sensor_Coding.class));
+        });
         TextView home = findViewById(R.id.home);
         home.setOnClickListener(view->{
             startActivity(new Intent(getApplicationContext(), RaspberryPi_Projects.class));

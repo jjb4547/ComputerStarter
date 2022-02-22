@@ -22,9 +22,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Raspberry Pi Projects"
+            android:fontFamily="@font/francois_one"
             android:layout_gravity="center"
             android:gravity="center"
-            android:textSize="35dp"
+            android:textSize="30sp"
             android:textStyle="bold"
             android:textColor="@color/black"/>
         <TextView
@@ -51,21 +52,26 @@
                 android:background="@color/cardview_light">
 
                 <TextView
+                    android:id="@+id/titleText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:fontFamily="@font/halant_bold"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="35dp"
+                    android:fontFamily="@font/francois_one"
                     android:text="Humidity Sensor"
+                    android:textAlignment="center"
+                    android:gravity="center"
                     android:textColor="@color/white"
-                    android:textSize="40sp" />
+                    android:textSize="30sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/titleText"
                     android:layout_alignParentBottom="true"
-                    android:layout_centerInParent="true"
                     android:layout_marginBottom="15dp"
-                    android:gravity="center"
+                    android:layout_centerHorizontal="true"
+                    android:textAlignment="center"
                     android:text="Raspberry Pi Humidity Sensor using the DHT22 step by step"
                     android:textColor="@color/white" />
             </RelativeLayout>
@@ -218,6 +224,7 @@
             android:gravity="center"
             android:layout_gravity="center"
             android:clickable="true"
+            android:fontFamily="@font/francois_one"
             android:textSize="30sp"/>
     </LinearLayout>
 </ScrollView>

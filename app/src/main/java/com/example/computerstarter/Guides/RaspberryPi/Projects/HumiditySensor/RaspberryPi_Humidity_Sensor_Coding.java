@@ -3,6 +3,7 @@ package com.example.computerstarter.Guides.RaspberryPi.Projects.HumiditySensor;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -26,7 +27,7 @@ public class RaspberryPi_Humidity_Sensor_Coding extends AppCompatActivity {
 
     private OnboardingAdapter onboardingAdapterPcGuide;
     private LinearLayout layoutOnboardingIndicators;
-    private MaterialButton buttonOnboardingAction, exit;
+    private MaterialButton buttonOnboardingAction, exit,help;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,6 +43,8 @@ public class RaspberryPi_Humidity_Sensor_Coding extends AppCompatActivity {
         layoutOnboardingIndicators = findViewById(R.id.layoutOnboardingIndicators);
         buttonOnboardingAction = findViewById(R.id.buttonOnboardingAction);
         exit = findViewById(R.id.exit);
+        help = findViewById(R.id.help);
+        help.setVisibility(View.GONE);
 
         setupOnboardingItems();
 
@@ -77,47 +80,27 @@ public class RaspberryPi_Humidity_Sensor_Coding extends AppCompatActivity {
     private void setupOnboardingItems(){
         List<OnboardingItem> onboardingItemPcGuideActivityList = new ArrayList<>();
         OnboardingItem item_Intro = new OnboardingItem();
-        item_Intro.setTitle("Welcome to the Supplies Guide");
-        item_Intro.setDescription("These are the supplies you will need for this project.");
+        item_Intro.setTitle("Welcome to the Coding Guide");
+        item_Intro.setDescription("We will now be coding the Pi");
         item_Intro.setImage(R.drawable.rasp_logo);
 
-        OnboardingItem item_rasp = new OnboardingItem();
-        item_rasp.setTitle("Raspberry Pi");
-        item_rasp.setDescription("Get your Raspberry Pi.");
-        item_rasp.setImage(R.drawable.raspberry_pi);
-
-        OnboardingItem item_sdcard = new OnboardingItem();
-        item_sdcard.setTitle("8GB SD or MicroSD");
-        item_sdcard.setDescription("Depends on which Raspberry Pi you are using.");
-        item_sdcard.setImage(R.drawable.sd_card);
-
-        OnboardingItem item_breadboard = new OnboardingItem();
-        item_breadboard.setTitle("Breadboard and Jumper Wires");
-        item_breadboard.setDescription("Make sure you have a breadboard and some jumper wires. " +
-                "The colors do not matter but as a recommendation make sure that the voltage are red " +
-                "and any ground wires are black.");
-        item_breadboard.setImage(R.drawable.breadboard);
-
-        OnboardingItem item_ohm = new OnboardingItem();
-        item_ohm.setTitle("10k Ohm Resistor");
-        item_ohm.setDescription("Make sure it is the Brown, Black, Orange, Gold type.");
-        item_ohm.setImage(R.drawable.k_ohm_resistor);
-
-        OnboardingItem item_dht22 = new OnboardingItem();
-        item_dht22.setTitle("DHT22");
-        item_dht22.setDescription("Pin 1 is VCC (Power Supply/Voltage)\n" +
-                "Pin 2 is DATA (The signal pin)\n" +
-                "Pin 3 is NULL (DO NOT CONNECT)\n" +
-                "Pin 4 is GND (Ground)");
-        item_dht22.setImage(R.drawable.dht22);
+        OnboardingItem item_prep = new OnboardingItem();
+        item_prep.setTitle("Preparing the Raspberry Pi");
+        item_prep.setDescription("1.) Check for updates using these two commands\n" +
+                "\t a.) sudo apt-get update\n" +
+                "\t b.) sudo apt-get upgrade\n" +
+                "2.) Install python 3 and pip to interact with the humidity sensor\n" +
+                "\t a.) sudo apt-get install python3-dev python3-pip\n" +
+                "3.) Check for the latest versions of setuptools,wheel, and pip python packages\n" +
+                "\t a.) sudo python3 -m pip install --upgrade pip setuptoos wheel\n" +
+                "4.) Using pip, install Adafruit's DHT library\n" +
+                "\t a.) sudo pip3 install Adafruit_DHT\n" +
+                "5.) Next we will use a python script to talk to the DHT22 sensor");
+        item_prep.setImage(R.drawable.rasp_logo);
 
 
         onboardingItemPcGuideActivityList.add(item_Intro);
-        onboardingItemPcGuideActivityList.add(item_rasp);
-        onboardingItemPcGuideActivityList.add(item_sdcard);
-        onboardingItemPcGuideActivityList.add(item_breadboard);
-        onboardingItemPcGuideActivityList.add(item_ohm);
-        onboardingItemPcGuideActivityList.add(item_dht22);
+        onboardingItemPcGuideActivityList.add(item_prep);
         onboardingAdapterPcGuide = new OnboardingAdapter(onboardingItemPcGuideActivityList);
     }
 

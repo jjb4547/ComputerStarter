@@ -176,7 +176,6 @@ public class PC_Guide_Installation_Activity extends AppCompatActivity {
                 "the rest are optional depending on extra accessories you buy. The power supply cables will be clearly labeled with the words \"psu\" or \"type\"  signaling " +
                 "the end that plugs into the power supply, unless already connected.");
         item_psu.setImage(R.drawable.psu_link);
-        item_psu.setLearn("Continues on the next page.");
 
         OnboardingItem item_psu_cont = new OnboardingItem();
         item_psu_cont.setTitle("Power Supply Unit (PSU) Installation Continued");

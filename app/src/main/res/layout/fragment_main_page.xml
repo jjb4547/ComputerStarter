@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    tools:layout_editor_absoluteX="24dp"
-    tools:layout_editor_absoluteY="24dp"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:padding="2dp"
     android:background="@color/background_color">
 
     <LinearLayout
@@ -55,7 +49,7 @@
                     android:layout_marginTop="0dp"
                     android:layout_marginEnd="0dp"
                     android:layout_marginBottom="11dp"
-                    android:fontFamily="@font/halant_bold"
+                    android:fontFamily="@font/francois_one"
                     android:gravity="center_horizontal"
                     android:padding="40dp"
                     android:text="My Builds"
@@ -84,6 +78,17 @@
             android:padding="10dp"
             android:fontFamily="@font/francois_one"
             android:textColor="@color/black"/>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@color/background_color">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -104,7 +109,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:fontFamily="@font/halant_bold"
+                    android:fontFamily="@font/francois_one"
                     android:gravity="center_horizontal"
                     android:padding="25dp"
                     android:text="Builds From the Community"
@@ -142,7 +147,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:fontFamily="@font/halant_bold"
+                    android:fontFamily="@font/francois_one"
                     android:padding="25dp"
                     android:text="PC Building Guides"
                     android:textColor="@color/white"
@@ -161,6 +166,8 @@
 
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
+            </LinearLayout>
+        </ScrollView>
         <!--
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -246,4 +253,4 @@
         -->
     </LinearLayout>
 
-</ScrollView>
+</LinearLayout>

@@ -13,10 +13,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="My Builds"
-        android:textColor="@color/black"
-        android:textSize="35sp"
         android:layout_marginTop="10dp"
+        android:text="My Builds"
+        android:fontFamily="@font/francois_one"
+        android:textColor="@color/black"
+        android:textSize="30sp"
         android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -35,10 +36,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
+        android:layout_marginBottom="10dp"
         android:text="Return Home"
+        android:fontFamily="@font/francois_one"
         android:textColor="@color/cardview_light"
-        android:textSize="30dp"
-        android:layout_marginBottom="10dp"/>
+        android:textSize="30dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_build"

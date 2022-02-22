@@ -25,9 +25,10 @@
             android:text="Default Title"
             android:layout_gravity="center"
             android:gravity="center"
-            android:textSize="35dp"
+            android:textSize="30sp"
             android:textStyle="bold"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            android:fontFamily="@font/francois_one"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -56,10 +57,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:fontFamily="@font/halant_bold"
+                    android:fontFamily="@font/francois_one"
                     android:text="Basic"
                     android:textColor="@color/white"
-                    android:textSize="50sp" />
+                    android:textSize="30sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -91,10 +92,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:fontFamily="@font/halant_bold"
+                    android:fontFamily="@font/francois_one"
                     android:text="Detailed"
                     android:textColor="@color/white"
-                    android:textSize="50sp" />
+                    android:textSize="30sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -220,6 +221,7 @@
             android:textStyle="bold"
             android:gravity="center"
             android:layout_gravity="center"
+            android:fontFamily="@font/francois_one"
             android:clickable="true"
             android:textSize="30sp"/>
     </LinearLayout>

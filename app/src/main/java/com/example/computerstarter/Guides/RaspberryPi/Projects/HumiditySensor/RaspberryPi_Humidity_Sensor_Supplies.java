@@ -3,6 +3,7 @@ package com.example.computerstarter.Guides.RaspberryPi.Projects.HumiditySensor;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -26,7 +27,7 @@ public class RaspberryPi_Humidity_Sensor_Supplies extends AppCompatActivity {
 
     private OnboardingAdapter onboardingAdapterPcGuide;
     private LinearLayout layoutOnboardingIndicators;
-    private MaterialButton buttonOnboardingAction, exit;
+    private MaterialButton buttonOnboardingAction, exit,help;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,6 +43,8 @@ public class RaspberryPi_Humidity_Sensor_Supplies extends AppCompatActivity {
         layoutOnboardingIndicators = findViewById(R.id.layoutOnboardingIndicators);
         buttonOnboardingAction = findViewById(R.id.buttonOnboardingAction);
         exit = findViewById(R.id.exit);
+        help = findViewById(R.id.help);
+        help.setVisibility(View.GONE);
 
         setupOnboardingItems();
 
@@ -62,7 +65,7 @@ public class RaspberryPi_Humidity_Sensor_Supplies extends AppCompatActivity {
             if(onboardingViewPager.getCurrentItem()+1< onboardingAdapterPcGuide.getItemCount()){
                 onboardingViewPager.setCurrentItem(onboardingViewPager.getCurrentItem()+1);
             }else{
-                startActivity(new Intent(this, RaspberryPi_Humidity_Sensor.class));
+                startActivity(new Intent(this, RaspberryPi_Humidity_Sensor_Wiring.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 finish();
             }
@@ -153,7 +156,7 @@ public class RaspberryPi_Humidity_Sensor_Supplies extends AppCompatActivity {
             }
         }
         if (index== onboardingAdapterPcGuide.getItemCount()-1){
-            buttonOnboardingAction.setText("Finish");
+            buttonOnboardingAction.setText("Wiring");
         }else{
             buttonOnboardingAction.setText("Next");
         }
