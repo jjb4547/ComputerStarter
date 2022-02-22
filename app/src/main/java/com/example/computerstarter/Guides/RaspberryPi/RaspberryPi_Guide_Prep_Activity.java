@@ -82,7 +82,7 @@ public class RaspberryPi_Guide_Prep_Activity extends AppCompatActivity {
         OnboardingItem item_Intro = new OnboardingItem();
         item_Intro.setTitle("Welcome to the Prep Guide");
         item_Intro.setDescription("Designing");
-        item_Intro.setImage(R.drawable.pc_build_link);
+        item_Intro.setImage(R.drawable.rasp_logo);
 
 
         OnboardingItem item_1 = new OnboardingItem();
@@ -97,7 +97,7 @@ public class RaspberryPi_Guide_Prep_Activity extends AppCompatActivity {
                 "that takes HDMI in order to view and interact with the Raspberry Pi. You will also need an HDMI cable to connect your screen to your Raspberry " +
                 "Pi or adapters if your screen has different ports. \n• Lastly, you will need an ethernet cable depending if your Raspberry Pi has wireless capabilities or not. " +
                 "A case and headphones or speakers are optional, but may give your Pi some protection and sound.");
-        item_1.setImage(R.drawable.pc_build_link);
+        item_1.setImage(R.drawable.raspberry_pi);
 
         OnboardingItem item_2 = new OnboardingItem();
         item_2.setTitle("MicroSD setup");
@@ -105,7 +105,7 @@ public class RaspberryPi_Guide_Prep_Activity extends AppCompatActivity {
                 "to https://www.raspberrypi.com/software/ on your computer to download the Raspberry Pi OS. You will then want to insert your microSD card into your computer " +
                 "or use your SD card reader. When you launch the installer your system may try to warn you, but make sure to run it anyway. Select Raspberry Pi OS and the SD card you " +
                 "inserted then select WRITE. Once it's done you can eject your SD card from your computer and prepare for the next steps.");
-        item_2.setImage(R.drawable.pc_build_link);
+        item_2.setImage(R.drawable.sd_card);
 
         onboardingItemPcGuideActivityList.add(item_Intro);
         onboardingItemPcGuideActivityList.add(item_1);

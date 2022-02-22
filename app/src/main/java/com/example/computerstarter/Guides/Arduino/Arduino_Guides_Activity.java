@@ -3,6 +3,7 @@ package com.example.computerstarter.Guides.Arduino;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,16 +26,19 @@ public class Arduino_Guides_Activity extends AppCompatActivity {
         CardView installation = findViewById(R.id.installation);
         CardView setup = findViewById(R.id.setup);
         supplies.setOnClickListener(view->{
-            startActivity(new Intent(this, Arduino_Guide_Supplies_Activity.class));
-            overridePendingTransition(R.anim.slide_in_left,R.anim.stay);
+            Toast.makeText(this,"Future Improvement",Toast.LENGTH_SHORT).show();
+            //startActivity(new Intent(this, Arduino_Guide_Supplies_Activity.class));
+            //overridePendingTransition(R.anim.slide_in_left,R.anim.stay);
         });
         installation.setOnClickListener(view -> {
-            startActivity(new Intent(this, Arduino_Guide_Installation_Activity.class));
-            overridePendingTransition(R.anim.slide_in_left,R.anim.stay);
+            Toast.makeText(this,"Future Improvement",Toast.LENGTH_SHORT).show();
+            //startActivity(new Intent(this, Arduino_Guide_Installation_Activity.class));
+            //overridePendingTransition(R.anim.slide_in_left,R.anim.stay);
         });
         setup.setOnClickListener(view -> {
-            startActivity(new Intent(this, Arduino_Guide_Setup_Activity.class));
-            overridePendingTransition(R.anim.slide_in_left,R.anim.stay);
+            Toast.makeText(this,"Future Improvement",Toast.LENGTH_SHORT).show();
+            //startActivity(new Intent(this, Arduino_Guide_Setup_Activity.class));
+            //overridePendingTransition(R.anim.slide_in_left,R.anim.stay);
         });
 
     }

@@ -93,7 +93,7 @@ public class PC_Guide_Installation_Activity extends AppCompatActivity {
                 "it contains out. Static is a big problem that can destroy parts of your computer, so taking any steps to keep static " +
                 "away is ideal.\n\n • Keep your hands clean and dry. Try to prevent touching the surface of the CPU. Hold the CPU by the sides " +
                 "avoid grease on it to keep best cooling and operation.");
-        item_precaut.setImage(R.drawable.amd_cpu);
+        item_precaut.setImage(R.drawable.caution);
 
         OnboardingItem item_mot = new OnboardingItem();
         item_mot.setTitle("Motherboard Preparation");
@@ -158,7 +158,7 @@ public class PC_Guide_Installation_Activity extends AppCompatActivity {
                 "to insert the motherboard. You will need a screw and standoff for each hole in the motherboard. Make sure your case " +
                 "is flat on your build surface and place the motherboard down gently while aligning the holes in the motherboard with the standoffs." +
                 "Carefully screw in the motherboard with the motherboard screws.");
-        item_mot_inst.setImage(R.drawable.vga_link);
+        item_mot_inst.setImage(R.drawable.motherboard_link);
 
         OnboardingItem item_fan = new OnboardingItem();
         item_fan.setTitle("Fans(Optional)");
@@ -167,7 +167,7 @@ public class PC_Guide_Installation_Activity extends AppCompatActivity {
                 "fan. The idea is to pull heat out of your computer case, so putting it in a place where your case will have nothing next to it is ideal to " +
                 "prevent blocked air flow. Next you should screw in the fan securely to the case with the provided screws. Finally you will connect the wires " +
                 "either to your power supply with the 4 pin connector, or using an adapter connect it to the motherboard according to the manual.");
-        item_fan.setImage(R.drawable.storage_link);
+        item_fan.setImage(R.drawable.pc_fans);
 
         OnboardingItem item_psu = new OnboardingItem();
         item_psu.setTitle("Power Supply Unit (PSU) Installation");
@@ -193,7 +193,7 @@ public class PC_Guide_Installation_Activity extends AppCompatActivity {
                 "sides which when lined up correctly secure the hard drive securely. Make sure the storage is facing the back of the computer for cable management purposes. " +
                 "The tray should slide easily back into the hard drive cage.\n Both the hard drive and the solid-state drive plug in fairly easily with a SATA cable in the smaller plug " +
                 "and a larger SATA power cable which plugs into the bigger plug. The other side of the SATA cable will plug into the SATA port of your motherboard.");
-        item_psu.setImage(R.drawable.storage_link);
+        item_storage.setImage(R.drawable.old_ssd);
 
         OnboardingItem item_plug = new OnboardingItem();
         item_plug.setTitle("Plugging in the cables");
@@ -206,7 +206,7 @@ public class PC_Guide_Installation_Activity extends AppCompatActivity {
                 "not to bend the pins. If you have any usb c ports on your case make sure to plug it into the motherboard in a spot labeled " +
                 "usb3.1 or u31. If you have any fans they will go into any of the headers labeled cha_fan, opt_fan, sys_fan, or something " +
                 "similar.");
-        item_plug.setImage(R.drawable.psu_link);
+        item_plug.setImage(R.drawable.pc_cables);
 
         OnboardingItem item_conn_psu = new OnboardingItem();
         item_conn_psu.setTitle("Connecting the PSU");
@@ -214,7 +214,7 @@ public class PC_Guide_Installation_Activity extends AppCompatActivity {
                 "connect the cable so that it locks into place. Next to connect are the cpu cable which plugs into an eight pin " +
                 "socket usually located near the top of the motherboard. Sometimes you will have another four pin port which you may plug your extra " +
                 "cpu cable into, but it is not required.");
-        item_conn_psu.setImage(R.drawable.psu_link);
+        item_conn_psu.setImage(R.drawable.psu_cables);
 
         OnboardingItem item_gpu_inst = new OnboardingItem();
         item_gpu_inst.setTitle("GPU installation");
@@ -224,7 +224,7 @@ public class PC_Guide_Installation_Activity extends AppCompatActivity {
                 "raise the graphics card close to the pci slot and then slide it into it until it clicks or until the clip locks into place. If your " +
                 "graphics card is sagging then you can hold it up with one hand and tighten the screws with the other. To plug in the graphics card must " +
                 "match the number of pins of the graphics card to match the pci cable you will be plugging in.");
-        item_gpu_inst.setImage(R.drawable.psu_link);
+        item_gpu_inst.setImage(R.drawable.vga_link);
 
         onboardingItemPcGuideActivityList.add(item_Intro);
         onboardingItemPcGuideActivityList.add(item_precaut);

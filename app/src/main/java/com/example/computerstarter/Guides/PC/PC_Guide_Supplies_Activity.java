@@ -98,31 +98,37 @@ public class PC_Guide_Supplies_Activity extends AppCompatActivity {
         item_motherboard.setTitle("Motherboard");
         item_motherboard.setDescription("Second is the motherboard");
         item_motherboard.setImage(R.drawable.motherboard_link);
+        item_Intro.setLearn("Learn More Click on Help");
 
         OnboardingItem item_RAM = new OnboardingItem();
         item_RAM.setTitle("RAM (Memory)");
         item_RAM.setDescription("GET YOUR RAM");
         item_RAM.setImage(R.drawable.memory_link);
+        item_Intro.setLearn("Learn More Click on Help");
 
         OnboardingItem item_CPUCOOL = new OnboardingItem();
         item_CPUCOOL.setTitle("CPU COOLER");
         item_CPUCOOL.setDescription("GET YOUR CPU Cooler");
         item_CPUCOOL.setImage(R.drawable.cpu_cooler_link);
+        item_Intro.setLearn("Learn More Click on Help");
 
         OnboardingItem item_GPU = new OnboardingItem();
         item_GPU.setTitle("GPU(VGA)");
         item_GPU.setDescription("GET YOUR VGA");
         item_GPU.setImage(R.drawable.vga_link);
+        item_Intro.setLearn("Learn More Click on Help");
 
         OnboardingItem item_STORAGE = new OnboardingItem();
         item_STORAGE.setTitle("STORAGE");
         item_STORAGE.setDescription("GET YOUR STORAGE");
         item_STORAGE.setImage(R.drawable.storage_link);
+        item_Intro.setLearn("Learn More Click on Help");
 
         OnboardingItem item_PSU = new OnboardingItem();
         item_PSU.setTitle("Power Supply Unit (PSU)");
         item_PSU.setDescription("GET YOUR STORAGE");
         item_PSU.setImage(R.drawable.psu_link);
+        item_Intro.setLearn("Learn More Click on Help");
 
         OnboardingItem item_Case = new OnboardingItem();
         item_Case.setTitle("Case");
@@ -130,20 +136,23 @@ public class PC_Guide_Supplies_Activity extends AppCompatActivity {
                 "some cases are designed for different sized motherboards, " +
                 "so they need to be compatible.");
         item_Case.setImage(R.drawable.pc_case_link);
+        item_Intro.setLearn("Learn More Click on Help");
 
         OnboardingItem item_os = new OnboardingItem();
         item_os.setTitle("Operating System");
         item_os.setDescription("So many choices for an OS. ");
         item_os.setImage(R.drawable.os_pc);
+        item_Intro.setLearn("Learn More Click on Help");
 
         OnboardingItem item_others = new OnboardingItem();
         item_others.setTitle("Peripherals");
         item_others.setDescription("You will need a mouse, keyboard, and monitor to access and use the computer.");
         item_others.setImage(R.drawable.key_mouse);
+        item_Intro.setLearn("Learn More Click on Help");
 
         OnboardingItem item_tools = new OnboardingItem();
         item_tools.setTitle("Tools");
-        item_tools.setDescription("The tools needed will be a philips head screwdriver and an empty usb drive to download the OS. " +
+        item_tools.setDescription("The tools needed will be a phillips head screwdriver and an empty usb drive to download the OS. " +
                 "You will also need an anti-static bracelet since you do not want to ruin your components.\n" +
                 "You are now ready to start building your PC");
         item_tools.setImage(R.drawable.tools_pc);

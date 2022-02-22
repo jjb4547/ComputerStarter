@@ -94,7 +94,7 @@ public class PC_Guide_Setup_Activity extends AppCompatActivity {
                 "know it works, power off the computer and flip the power switch on the power supply and remove power from the wall. Now that the computer " +
                 "is safe to work on, gather the cables orderly, and put them together, securing them with zip ties. Now you can put your case back together and power up your computer " +
                 "for the next step.");
-        item_STORAGE.setImage(R.drawable.storage_link);;
+        item_STORAGE.setImage(R.drawable.bios);;
 
         onboardingItemPcGuideActivityList.add(item_Intro);
         onboardingItemPcGuideActivityList.add(item_STORAGE);

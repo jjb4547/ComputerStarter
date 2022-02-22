@@ -82,7 +82,7 @@ public class RaspberryPi_Guide_Setup_Activity extends AppCompatActivity {
         OnboardingItem item_Intro = new OnboardingItem();
         item_Intro.setTitle("Welcome to the Setup Guide");
         item_Intro.setDescription("");
-        item_Intro.setImage(R.drawable.pc_build_link);
+        item_Intro.setImage(R.drawable.rasp_logo);
 
 
         onboardingItemPcGuideActivityList.add(item_Intro);
