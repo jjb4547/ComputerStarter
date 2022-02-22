@@ -52,7 +52,7 @@ public class Education_Choosing_Activity extends AppCompatActivity {
         intermediate.setOnClickListener(view -> {
             if(!(comp.equals("Arduino")||comp.equals("Raspberry Pi"))) {
                 startActivity(new Intent(getApplicationContext(), Education_Tabbed.class).putExtra("from", "Intermediate")
-                        .putExtra("component", comp));
+                        .putExtra("component", comp).putExtra("Act","Edu"));
             }else if(comp.equals("Arduino")){
                 startActivity(new Intent(getApplicationContext(), Arduino_Guides_Activity.class));
             }else if(comp.equals("Raspberry Pi")){
