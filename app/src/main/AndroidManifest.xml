@@ -45,6 +45,8 @@
             android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
         <activity android:name=".Education.Education_Choosing_Activity"
             android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
+        <activity android:name=".Education.RaspberryPi_Education"
+            android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
         <!--PC Guides -->
         <activity android:name=".Guides.PC.PC_Building_Guide_Activity"
             android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
