@@ -94,10 +94,20 @@ public class PC_Guide_Setup_Activity extends AppCompatActivity {
                 "know it works, power off the computer and flip the power switch on the power supply and remove power from the wall. Now that the computer " +
                 "is safe to work on, gather the cables orderly, and put them together, securing them with zip ties. Now you can put your case back together and power up your computer " +
                 "for the next step.");
-        item_STORAGE.setImage(R.drawable.bios);;
+        item_STORAGE.setImage(R.drawable.bios);
+
+        OnboardingItem item_OS = new OnboardingItem();
+        item_OS.setTitle("Installing Operating System");
+        item_OS.setDescription("To start off with, you will need an empty 4 GB flash drive to download either Linux or Windows Operating Systems. First " +
+                "you need to download the linux or windows system. There are many versions of linux that you may choose; our recommendation is Ubuntu (\"https://ubuntu.com/download.\" For windows " +
+                "we recommend the newest version from here (\"https://www.microsoft.com/en-us/software-download/\". Make sure when downloading it is set to install on your USB flash drive. Now " +
+                "that you have the OS, plug it into your computer and power it on. Press either f12/f8/f1/f2/del/esc to get to the boot menu. Select your OS and start it. On your computer you should " +
+                "see a disk install application. Click it and run through the steps until you are finished. After it is done, restart your computer and your OS should be installed and ready to go.");
+        item_OS.setImage(R.drawable.os_pc);
 
         onboardingItemPcGuideActivityList.add(item_Intro);
         onboardingItemPcGuideActivityList.add(item_STORAGE);
+        onboardingItemPcGuideActivityList.add(item_OS);
         onboardingAdapterPcGuide = new OnboardingAdapter(onboardingItemPcGuideActivityList);
     }
 
