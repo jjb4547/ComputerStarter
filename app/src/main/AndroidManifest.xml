@@ -70,10 +70,8 @@
             android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
         <activity android:name=".Guides.RaspberryPi.RaspberryPi_Guide_Setup_Activity"
             android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
-        <activity android:name=".Guides.RaspberryPi.Projects.RaspberryPi_Projects"
-            android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
-        <activity android:name=".Guides.RaspberryPi.Projects.HumiditySensor.RaspberryPi_Humidity_Sensor"
-            android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
+        <activity android:name=".Guides.RaspberryPi.Projects.RaspberryPi_Projects"/>
+        <activity android:name=".Guides.RaspberryPi.Projects.HumiditySensor.RaspberryPi_Humidity_Sensor"/>
         <activity android:name=".Guides.RaspberryPi.Projects.HumiditySensor.RaspberryPi_Humidity_Sensor_Supplies"
             android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
         <activity android:name=".Guides.RaspberryPi.Projects.HumiditySensor.RaspberryPi_Humidity_Sensor_Wiring"

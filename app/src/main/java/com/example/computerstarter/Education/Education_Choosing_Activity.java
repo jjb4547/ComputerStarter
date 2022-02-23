@@ -138,7 +138,7 @@ public class Education_Choosing_Activity extends AppCompatActivity implements Na
         basic.setOnClickListener(view->{
             if(!(comp.equals("Arduino")||comp.equals("Raspberry Pi"))) {
                 startActivity(new Intent(getApplicationContext(), Education_Tabbed.class).putExtra("from", "Beginner")
-                        .putExtra("component", comp).putExtra("Act","Edu"));
+                        .putExtra("component", comp).putExtra("Act",getIntent().getExtras().getString("Act")));
             }else if(comp.equals("Arduino")){
                 startActivity(new Intent(getApplicationContext(), Arduino_Guides_Activity.class));
             }else if(comp.equals("Raspberry Pi")){
@@ -148,7 +148,7 @@ public class Education_Choosing_Activity extends AppCompatActivity implements Na
         intermediate.setOnClickListener(view -> {
             if(!(comp.equals("Arduino")||comp.equals("Raspberry Pi"))) {
                 startActivity(new Intent(getApplicationContext(), Education_Tabbed.class).putExtra("from", "Intermediate")
-                        .putExtra("component", comp).putExtra("Act","Edu"));
+                        .putExtra("component", comp).putExtra("Act",getIntent().getExtras().getString("Act")));
             }else if(comp.equals("Arduino")){
                 //startActivity(new Intent(getApplicationContext(), Arduino_Guides_Activity.class));
             }else if(comp.equals("Raspberry Pi")){

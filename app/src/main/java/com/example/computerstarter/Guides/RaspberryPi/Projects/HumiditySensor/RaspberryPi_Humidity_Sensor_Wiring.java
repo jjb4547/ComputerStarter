@@ -80,6 +80,11 @@ public class RaspberryPi_Humidity_Sensor_Wiring extends AppCompatActivity {
     private void setupOnboardingItems(){
         List<OnboardingItem> onboardingItemPcGuideActivityList = new ArrayList<>();
 
+        OnboardingItem item_intro = new OnboardingItem();
+        item_intro.setTitle("Welcome to the Wiring Section");
+        item_intro.setDescription("You will learn to wire up the whole system");
+        item_intro.setImage(R.drawable.rasp_logo);
+
         OnboardingItem item_circuit = new OnboardingItem();
         item_circuit.setTitle("DHT22 Circuit");
         item_circuit.setDescription("• Place a 10k resistor between Pin 1 and Pin 2 of the DHT22\n" +
@@ -88,6 +93,7 @@ public class RaspberryPi_Humidity_Sensor_Wiring extends AppCompatActivity {
                 "• Wire Pin 4 of the DHT22 to Physical Pin 6 (GND) on the Pi");
         item_circuit.setImage(R.drawable.circuit);
 
+        onboardingItemPcGuideActivityList.add(item_intro);
         onboardingItemPcGuideActivityList.add(item_circuit);
         onboardingAdapterPcGuide = new OnboardingAdapter(onboardingItemPcGuideActivityList);
     }

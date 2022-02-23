@@ -151,8 +151,9 @@
            android:layout_height="wrap_content"
            android:layout_above="@+id/logOut"
            android:layout_marginBottom="10dp"
+           android:fontFamily="@font/francois_one"
            android:layout_gravity="center"
-           android:textSize="30dp"
+           android:textSize="30sp"
            android:textColor="@color/cardview_light"
            android:text="Return Home" />
    </LinearLayout>

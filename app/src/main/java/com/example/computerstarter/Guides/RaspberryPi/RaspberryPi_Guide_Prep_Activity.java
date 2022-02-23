@@ -81,7 +81,7 @@ public class RaspberryPi_Guide_Prep_Activity extends AppCompatActivity {
         List<OnboardingItem> onboardingItemPcGuideActivityList = new ArrayList<>();
         OnboardingItem item_Intro = new OnboardingItem();
         item_Intro.setTitle("Welcome to the Prep Guide");
-        item_Intro.setDescription("Designing");
+        item_Intro.setDescription("This is where you will learn what you will need for this project.");
         item_Intro.setImage(R.drawable.rasp_logo);
 
 

@@ -15,16 +15,13 @@
     <TextView
         android:id="@+id/welcome"
         android:layout_width="wrap_content"
-        android:layout_height="49dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:gravity="center_horizontal"
         android:text="Learn More Below"
-        android:textAlignment="center"
-        android:textColor="#5a5a5a"
+        android:textColor="@color/black"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/francois_one"
         android:textSize="35sp" />
 
     <GridLayout
@@ -324,6 +321,7 @@
         android:clickable="true"
         android:padding="8dp"
         android:text="Return Home"
+        android:fontFamily="@font/francois_one"
         android:textColor="@color/cardview_dark"
         android:textSize="35dp" />
 

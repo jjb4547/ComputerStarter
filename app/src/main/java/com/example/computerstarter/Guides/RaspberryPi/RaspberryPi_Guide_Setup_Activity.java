@@ -84,8 +84,33 @@ public class RaspberryPi_Guide_Setup_Activity extends AppCompatActivity {
         item_Intro.setDescription("");
         item_Intro.setImage(R.drawable.rasp_logo);
 
+        OnboardingItem item_Conn = new OnboardingItem();
+        item_Conn.setTitle("Connect the Raspberry Pi");
+        item_Conn.setDescription("The micro SD card may come in a bigger adapter that can but slide out of that and into " +
+                "the side of the Raspberry Pi. Then connect the mouse and keyboard using the available usb ports. Make sure " +
+                "to have a screen plugged into power and then use the HDMI connected to that and plug the other end into the Raspberry Pi. " +
+                "Use an adapter if necessary to connect the HDMI. If you want to connect to the internet and your Raspberry Pi does not have " +
+                "built in WIFI then you'll want to take an ethernet cable connected to your router and connect it to the ethernet port to the Raspberry Pi. " +
+                "If you want to have sound you can connect speakers using the 3.5 mm jack.");
+        item_Conn.setImage(R.drawable.raspberry_pi);
+
+        OnboardingItem item_start = new OnboardingItem();
+        item_start.setTitle("Starting the Raspberry Pi");
+        item_start.setDescription("Plug in the power into a wall socket or usb port then the other end into the Raspberry Pi. A light should light up and you will " +
+                "see raspberries on your screen which signify that it is booting up. After a few seconds the initial setup will appear guiding you through the set up. " +
+                "Select your timezone, language, country, and password in the set up. You will have to connect to your WIFI if your board has wireless capabilities. " +
+                "Finish updating your Raspberry Pi with any updates and then restart it at the end of setup.");
+        item_start.setImage(R.drawable.raspberry_pi);
+
+        OnboardingItem item_end = new OnboardingItem();
+        item_end.setTitle("End");
+        item_end.setDescription("You will be greeted with the Raspberry Pi desktop where you can decide where you want to take your projects.");
+        item_end.setImage(R.drawable.raspberry_pi);
 
         onboardingItemPcGuideActivityList.add(item_Intro);
+        onboardingItemPcGuideActivityList.add(item_Conn);
+        onboardingItemPcGuideActivityList.add(item_start);
+        onboardingItemPcGuideActivityList.add(item_end);
         onboardingAdapterPcGuide = new OnboardingAdapter(onboardingItemPcGuideActivityList);
     }
 

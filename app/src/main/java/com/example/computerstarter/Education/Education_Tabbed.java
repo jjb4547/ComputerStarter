@@ -11,18 +11,18 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.computerstarter.R;
-import com.example.computerstarter.databinding.ActivityEducationTabbedBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Education_Tabbed extends AppCompatActivity {
 
     //private ActivityEducationTabbedBinding binding;
+    private String from;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_education_tabbed);
-        String from = getIntent().getExtras().getString("from");
+        from = getIntent().getExtras().getString("from");
         String[] diffTitles = getResources().getStringArray(R.array.comp_names);
         BottomNavigationView bottomNavigationView = findViewById(R.id.topNavigationView);
         NavController navController = Navigation.findNavController(this,R.id.frame_layout_edu);
