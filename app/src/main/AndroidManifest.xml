@@ -11,8 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ComputerStarter">
         <activity
-            android:name=".Education.PC_Part_Activity"
-            android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
+            android:name=".Education.PC_Part_Activity"/>
         <activity
             android:name=".Education.Education_Tabbed"
             android:exported="false"
@@ -36,20 +35,17 @@
         <activity android:name=".SocialMedia.SocialMediaActivity" />
         <activity android:name=".Build.Build_Activity" />
         <activity android:name=".Build.PC_Build_Parts" />
-        <activity android:name=".Build.MyBuildActivity"
-            android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
+        <activity android:name=".Build.MyBuildActivity"/>
         <activity android:name=".SocialMedia.SocialMediaBlogs"/>
         <activity android:name=".Login.Login_SignUpActivity"
             android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
         <activity android:name=".Guides.Community.Community_Builds_Activity"
             android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
-        <activity android:name=".Education.Education_Choosing_Activity"
-            android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
+        <activity android:name=".Education.Education_Choosing_Activity"/>
         <activity android:name=".Education.RaspberryPi_Education"
             android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
         <!--PC Guides -->
-        <activity android:name=".Guides.PC.PC_Building_Guide_Activity"
-            android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
+        <activity android:name=".Guides.PC.PC_Building_Guide_Activity"/>
         <activity android:name=".Guides.PC.PC_Guide_Supplies_Activity"
             android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
         <activity android:name=".Guides.PC.PC_Guide_Installation_Activity"
@@ -58,8 +54,7 @@
             android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
 
         <!-- Arduino Guides -->
-        <activity android:name=".Guides.Arduino.Arduino_Guides_Activity"
-            android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
+        <activity android:name=".Guides.Arduino.Arduino_Guides_Activity"/>
         <activity android:name=".Guides.Arduino.Arduino_Guide_Supplies_Activity"
             android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
         <activity android:name=".Guides.Arduino.Arduino_Guide_Installation_Activity"
@@ -68,8 +63,7 @@
             android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
 
         <!-- Raspberry Pi Guides -->
-        <activity android:name=".Guides.RaspberryPi.RaspberryPi_Guides_Activity"
-            android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
+        <activity android:name=".Guides.RaspberryPi.RaspberryPi_Guides_Activity"/>
         <activity android:name=".Guides.RaspberryPi.RaspberryPi_Guide_Troubleshoot_Activity"
             android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
         <activity android:name=".Guides.RaspberryPi.RaspberryPi_Guide_Prep_Activity"

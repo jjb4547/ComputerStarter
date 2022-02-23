@@ -3,28 +3,57 @@ package com.example.computerstarter.Guides.PC;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.WindowCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.navigation.NavController;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.example.computerstarter.Build.MyBuildActivity;
 import com.example.computerstarter.Education.PC_Part_Activity;
 import com.example.computerstarter.Guides.OnboardHolder.OnboardingAdapter;
 import com.example.computerstarter.Guides.OnboardHolder.OnboardingItem;
+import com.example.computerstarter.Others.AccountActivity;
 import com.example.computerstarter.R;
+import com.example.computerstarter.app.MainActivity;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class PC_Guide_Supplies_Activity extends AppCompatActivity {
-
+    private static int SPLASH_TIMEOUT = 2000;
+    private DrawerLayout drawerLayout;
+    private BottomNavigationView bottomNavigationView;
+    private NavController navController;
+    private ActionBarDrawerToggle toggle;
+    private NavigationView navigationView;
+    private FirebaseAuth mAuth;
+    private String[] list;
+    private String quiz;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private TextView log;
+    private ImageView logBut;
+    private MenuItem item_log;
+    private MenuItem item_quiz;
+    private MenuItem item_acc;
     private OnboardingAdapter onboardingAdapterPcGuide;
     private LinearLayout layoutOnboardingIndicators;
     private MaterialButton buttonOnboardingAction, exit, help;
