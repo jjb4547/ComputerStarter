@@ -116,6 +116,8 @@ public class Education_Choosing_Activity extends AppCompatActivity implements Na
         title.setText(comp);
         TextView basicText = findViewById(R.id.basic_Text);
         TextView detailedText = findViewById(R.id.detailed_Text);
+        TextView basicDes = findViewById(R.id.basicText);
+        TextView detDes = findViewById(R.id.detText);
         if(!(comp.equals("Raspberry Pi")||comp.equals("Arduino"))){
             home.setText("Return To Page");
         } else{
@@ -132,6 +134,13 @@ public class Education_Choosing_Activity extends AppCompatActivity implements Na
         if(comp.equals("Raspberry Pi")||comp.equals("Arduino")){
             basicText.setText("Initial Setup");
             detailedText.setText("Projects");
+            if(comp.equals("Raspberry Pi")) {
+                basicDes.setText("Learn to setup the Pi for the first time.");
+                detDes.setText("Fun Projects after setting Pi up.");
+            }else if(comp.equals("Arduino")){
+                basicDes.setText("Learn to setup the Arduino for the first time.");
+                detDes.setText("Fun Projects after setting the Arduino up.");
+            }
         }
         CardView basic = findViewById(R.id.supplies);
         CardView intermediate = findViewById(R.id.installation);

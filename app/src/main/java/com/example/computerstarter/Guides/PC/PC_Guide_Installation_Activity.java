@@ -105,7 +105,7 @@ public class PC_Guide_Installation_Activity extends AppCompatActivity {
 
         OnboardingItem item_CPU = new OnboardingItem();
         item_CPU.setTitle("CPU preparation and installation");
-        item_CPU.setDescription("Remove the CPU from its plastic case carefully to not damage the top or bottom sides" +
+        item_CPU.setDescription("Remove the CPU from its plastic case carefully to not touch the top or bottom sides" +
                 "of the CPU. Most CPUs have a triangle on the corner to assist you in putting in the motherboard socket." +
                 "The most common CPUs will be an Intel or AMD CPUs which both have their differences for install.");
         item_CPU.setImage(R.drawable.cpu_link);
