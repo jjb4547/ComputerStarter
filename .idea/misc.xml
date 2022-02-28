@@ -166,6 +166,7 @@
         <entry key="app/src/main/res/layout/raspberrypi_guide_layout.xml" value="0.1" />
         <entry key="app/src/main/res/layout/raspberrypi_projects_layout.xml" value="0.14719202898550723" />
         <entry key="app/src/main/res/layout/splash.xml" value="0.1" />
+        <entry key="app/src/main/res/xml/preferences.xml" value="0.1" />
       </map>
     </option>
   </component>

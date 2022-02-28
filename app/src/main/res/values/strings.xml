@@ -407,6 +407,7 @@
     -->
     <string name="pref_previously_started">false</string>
     <string name="pref_previously_started_login">false</string>
+    <string name="firstbuild">false</string>
     <string name="title_activity_pc_part">PC_Part_Activity</string>
 
 
