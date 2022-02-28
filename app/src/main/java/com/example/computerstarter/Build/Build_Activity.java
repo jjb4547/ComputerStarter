@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.CheckedTextView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,7 +37,8 @@ public class Build_Activity extends AppCompatActivity {
     private CardView cpu, mot,mem,vga,psu,stor,mon,cool,pc_case;
     private MenuItem save;
     private boolean first=true;
-    private TextView cpuTitle,motTitle,memTitle,storTitle,psuTitle,coolTitle,monTitle,vgaTitle,caseTitle;
+    private CheckedTextView checkedCPU,checkedMot,checkedMem,checkedStor,checkedPSU,checkedCool,checkedMon,checkedVGA,checkedCase;
+    private TextView cpuTitle,motTitle,memTitle,storTitle,psuTitle,coolTitle,monTitle,vgaTitle,caseTitle,title,totalNum;
     private ImageView cpuImage;
     private ImageView motImage;
     private ImageView memImage;
@@ -63,6 +65,7 @@ public class Build_Activity extends AppCompatActivity {
         main.addcardview = true;
         setContentView(R.layout.build_layout);
         Build_Data build_data = new Build_Data();
+        title = findViewById(R.id.welcome);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Intent intent = getIntent();
         name_action_bar = intent.getExtras().getString("Build");
@@ -70,8 +73,19 @@ public class Build_Activity extends AppCompatActivity {
         parts = intent.getDoubleArrayExtra("Parts");
         titles = intent.getStringArrayExtra("Titles");
         images = intent.getIntArrayExtra("Images");
-        getSupportActionBar().setTitle(name_action_bar);
+        getSupportActionBar().setTitle("PC Parts List");
+        title.setText("BUILD NAME: "+name_action_bar);
         save = findViewById(R.id.save_button);
+        totalNum = findViewById(R.id.total);
+        checkedCPU = findViewById(R.id.checkedCPU);
+        checkedMot = findViewById(R.id.checkedMot);
+        checkedMem = findViewById(R.id.checkedMem);
+        checkedStor = findViewById(R.id.checkedStor);
+        checkedPSU = findViewById(R.id.checkedPSU);
+        checkedCool = findViewById(R.id.checkedCool);
+        checkedMon = findViewById(R.id.checkedMon);
+        checkedVGA = findViewById(R.id.checkedVGA);
+        checkedCase = findViewById(R.id.checkedCase);
         init();
     }
 
@@ -82,6 +96,19 @@ public class Build_Activity extends AppCompatActivity {
         int id = item.getItemId();
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy 'at' HH:mm:ss z");
         String currentDateandTime = sdf.format(new Date());
+//        HashMap<String,String> build_parts= new HashMap<>();
+//        build_parts.put("NAME",name);
+//        build_parts.put("DATE",currentDateandTime);
+//        build_parts.put("PRICE", (String) totalNum.getText());
+//        build_parts.put("CPU",titles[0]);
+//        build_parts.put("MOTHERBOARD",titles[1]);
+//        build_parts.put("MEMORY",titles[2]);
+//        build_parts.put("STORAGE",titles[3]);
+//        build_parts.put("PSU",titles[4]);
+//        build_parts.put("CPU COOLER",titles[5]);
+//        build_parts.put("MONITOR",titles[6]);
+//        build_parts.put("GPU",titles[7]);
+//        build_parts.put("CASE",titles[8]);
         if (item.getItemId()==android.R.id.home) {
             // app icon in action bar clicked; goto parent activity.
             if(checkAuth()) {
@@ -391,6 +418,42 @@ public class Build_Activity extends AppCompatActivity {
             cpu_intent.putExtra("Images",images);
             startActivity(cpu_intent);
         });
+        if(!cpuTitle.getText().equals("Empty")){
+            cpu.setCardBackgroundColor(getResources().getColor(R.color.cardview_light));
+            checkedCPU.setChecked(true);
+        }
+        if(!motTitle.getText().equals("Empty")){
+            mot.setCardBackgroundColor(getResources().getColor(R.color.cardview_light));
+            checkedMot.setChecked(true);
+        }
+        if(!memTitle.getText().equals("Empty")){
+            mem.setCardBackgroundColor(getResources().getColor(R.color.cardview_light));
+            checkedMem.setChecked(true);
+        }
+        if(!storTitle.getText().equals("Empty")){
+            stor.setCardBackgroundColor(getResources().getColor(R.color.cardview_light));
+            checkedStor.setChecked(true);
+        }
+        if(!psuTitle.getText().equals("Empty")){
+            psu.setCardBackgroundColor(getResources().getColor(R.color.cardview_light));
+            checkedPSU.setChecked(true);
+        }
+        if(!coolTitle.getText().equals("Empty")){
+            cool.setCardBackgroundColor(getResources().getColor(R.color.cardview_light));
+            checkedCool.setChecked(true);
+        }
+        if(!monTitle.getText().equals("Empty")){
+            mon.setCardBackgroundColor(getResources().getColor(R.color.cardview_light));
+            checkedMon.setChecked(true);
+        }
+        if(!vgaTitle.getText().equals("Empty")){
+            vga.setCardBackgroundColor(getResources().getColor(R.color.cardview_light));
+            checkedVGA.setChecked(true);
+        }
+        if(!caseTitle.getText().equals("Empty")){
+            pc_case.setCardBackgroundColor(getResources().getColor(R.color.cardview_light));
+            checkedCase.setChecked(true);
+        }
         mot.setOnClickListener(view -> {
             Intent mot_intent = new Intent(Build_Activity.this, PC_Build_Parts.class);
             mot_intent.putExtra("name","Motherboards");
@@ -463,7 +526,7 @@ public class Build_Activity extends AppCompatActivity {
             pc_case_intent.putExtra("Images",images);
             startActivity(pc_case_intent);
         });
-
+        totalNum.setText("TOTAL: $"+getPriceSum());
     }
 
     @Override

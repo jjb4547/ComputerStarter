@@ -1,4 +1,4 @@
-package com.example.computerstarter.Others;
+package com.example.computerstarter.app;
 
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
@@ -13,9 +13,7 @@ import androidx.constraintlayout.motion.widget.MotionLayout;
 
 import com.example.computerstarter.Build.PriceList;
 import com.example.computerstarter.R;
-import com.example.computerstarter.app.MainActivity;
 import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -40,21 +38,18 @@ public class SplashActivity extends AppCompatActivity  {
     //File localFile;
     final long ONE_MEGABYTE = 1024 * 1024;
     {
-        islandRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-            @Override
-            public void onSuccess(byte[] bytes) {
-                // Data for "images/island.jpg" is returns, use this as needed
-                String s = new String(bytes, StandardCharsets.UTF_8);
-                JSONObject jsonObj;
-                try {
-                    jsonObj = new JSONObject(s);
-                    System.out.println("JSON ARRAY: " + jsonObj.getJSONArray("items").getJSONObject(0).getString("url"));
-                    PriceList.jsonObj = jsonObj;
-                } catch(JSONException e) {
-                    System.out.println(e);
-                }
-                System.out.println("FILE OUTPUT: " + s);
+        islandRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(bytes -> {
+            // Data for "images/island.jpg" is returns, use this as needed
+            String s = new String(bytes, StandardCharsets.UTF_8);
+            JSONObject jsonObj;
+            try {
+                jsonObj = new JSONObject(s);
+                System.out.println("JSON ARRAY: " + jsonObj.getJSONArray("items").getJSONObject(0).getString("url"));
+                PriceList.jsonObj = jsonObj;
+            } catch(JSONException e) {
+                System.out.println(e);
             }
+            System.out.println("FILE OUTPUT: " + s);
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {

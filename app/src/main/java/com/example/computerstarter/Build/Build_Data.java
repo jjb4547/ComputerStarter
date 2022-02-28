@@ -1,6 +1,8 @@
 package com.example.computerstarter.Build;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Build_Data{
     private ArrayList<String> build_name;
@@ -9,17 +11,37 @@ public class Build_Data{
     private String buildName;
     private String buildDate;
     private double buildPrice;
+    private HashMap<String,String> buildMap;
+    private ArrayList<Map> map;
+
+    public ArrayList<Map> getMap() {
+        return map;
+    }
+
+    public void setMap(ArrayList<Map> map) {
+        this.map = map;
+    }
+
+    public HashMap<String, String> getBuildMap() {
+        return buildMap;
+    }
+
+    public void setBuildMap(HashMap<String, String> buildMap) {
+        this.buildMap = buildMap;
+    }
 
     public Build_Data(){}
     public Build_Data(ArrayList<String> build_name, ArrayList<String> build_date, ArrayList<Double> price){
         this.build_date = build_date;
         this.build_name = build_name;
         this.price = price;
+        this.map = map;
     }
     public Build_Data(String buildName, String buildDate, double buildPrice){
         this.buildDate = buildDate;
         this.buildName = buildName;
         this.buildPrice = buildPrice;
+        this.buildMap = buildMap;
     }
     public String getBuildName() {
         return buildName;

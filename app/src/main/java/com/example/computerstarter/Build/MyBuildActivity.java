@@ -155,6 +155,7 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
                 build_data = documentSnapshot.toObject(Build_Data.class);
                 if(build_data.getBuild_name().size()>0||build_data.getBuildName()!=null) {
                     for(int i=0;i<build_data.getBuild_name().size();i++) {
+                        //System.out.println(build_data.getMap());
                         build.add(new Build_Data(build_data.getBuild_name().get(i),build_data.getBuild_date().get(i),(double) build_data.getPrice().get(i)));
                     }
                     ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
@@ -229,6 +230,7 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
                             build_ref.update("build_name", FieldValue.arrayRemove(build.get(position).getBuildName()));
                             build_ref.update("build_date", FieldValue.arrayRemove(build.get(position).getBuildDate()));
                             build_ref.update("price", FieldValue.arrayRemove(build.get(position).getBuildPrice()));
+                            //build_ref.update("build_parts", FieldValue.arrayRemove(build.get(position).getBuildMap()));
                             build.remove(position);
                             myBuildAdapter.notifyDataSetChanged();
                             if(build.size()==0)
@@ -239,26 +241,26 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
         }
     };
     public void addTitles(){
-        titles[0]= "CPU";
-        titles[1]= "Motherboard";
-        titles[2] = "Memory";
-        titles[3] = "Storage";
-        titles[4] = "PSU";
-        titles[5] = "CPU Cooler";
-        titles[6] = "Monitor";
-        titles[7] = "Video Card";
-        titles[8] = "Cases";
+        titles[0]= "Empty";
+        titles[1]= "Empty";
+        titles[2] = "Empty";
+        titles[3] = "Empty";
+        titles[4] = "Empty";
+        titles[5] = "Empty";
+        titles[6] = "Empty";
+        titles[7] = "Empty";
+        titles[8] = "Empty";
     }
     public void addImages(){
-        images[0] = R.drawable.cpu_link;
-        images[1] = R.drawable.motherboard_link;
-        images[2] = R.drawable.memory_link;
-        images[3] = R.drawable.storage_link;
-        images[4] = R.drawable.psu_link;
-        images[5] = R.drawable.cpu_cooler_link;
-        images[6] = R.drawable.monitor_link;
-        images[7] = R.drawable.vga_link;
-        images[8] = R.drawable.pc_case_link;
+        images[0] = R.drawable.ic_blank_image;
+        images[1] = R.drawable.ic_blank_image;
+        images[2] = R.drawable.ic_blank_image;
+        images[3] = R.drawable.ic_blank_image;
+        images[4] = R.drawable.ic_blank_image;
+        images[5] = R.drawable.ic_blank_image;
+        images[6] = R.drawable.ic_blank_image;
+        images[7] = R.drawable.ic_blank_image;
+        images[8] = R.drawable.ic_blank_image;
     }
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {

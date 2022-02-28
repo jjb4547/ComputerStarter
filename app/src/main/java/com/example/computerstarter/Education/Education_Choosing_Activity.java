@@ -132,12 +132,14 @@ public class Education_Choosing_Activity extends AppCompatActivity implements Na
             overridePendingTransition(R.anim.slide_in_top, R.anim.stay);
         });
         if(comp.equals("Raspberry Pi")||comp.equals("Arduino")){
-            basicText.setText("Initial Setup");
-            detailedText.setText("Projects");
+
+            detailedText.setText("Sample Projects");
             if(comp.equals("Raspberry Pi")) {
+                basicText.setText("Learn to Setup Pi");
                 basicDes.setText("Learn to setup the Pi for the first time.");
                 detDes.setText("Fun Projects after setting Pi up.");
             }else if(comp.equals("Arduino")){
+                basicText.setText("Learn to Setup Arduino");
                 basicDes.setText("Learn to setup the Arduino for the first time.");
                 detDes.setText("Fun Projects after setting the Arduino up.");
             }
