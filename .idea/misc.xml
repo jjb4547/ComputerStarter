@@ -56,7 +56,7 @@
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/activity_real_profile.xml" value="0.19114583333333332" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/activity_real_register.xml" value="0.19114583333333332" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/add_blogs_new.xml" value="0.32222222222222224" />
-        <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/arduino_guide_layout.xml" value="0.3558974358974359" />
+        <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/arduino_guide_layout.xml" value="0.3625" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/build_items.xml" value="0.3625" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/build_layout.xml" value="0.3569230769230769" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/layout/content_real_login.xml" value="0.19114583333333332" />
@@ -148,12 +148,22 @@
         <entry key="..\:/Users/bjesu/StudioProjects/ComputerStarter/app/src/main/res/menu/save_menu.xml" value="0.371875" />
         <entry key="..\:/Users/bjesu/StudioProjects/ComputerStarter/app/src/main/res/xml/awesome.xml" value="0.259375" />
         <entry key="..\:/Users/bjesu/StudioProjects/ComputerStarter/app/src/main/res/xml/preferences.xml" value="0.259375" />
+        <entry key="app/src/main/res/drawable/gradient_animation_supplies.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_baseline_thumb_up_24.xml" value="0.217" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_pc_part.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_pc_part_build.xml" value="0.1105072463768116" />
+        <entry key="app/src/main/res/layout/arduino_guide_layout.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/build_items.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/build_layout.xml" value="0.22" />
         <entry key="app/src/main/res/layout/education_choosing_layout.xml" value="0.1" />
         <entry key="app/src/main/res/layout/education_layout.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_container_onboarding.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/my_build_layout.xml" value="0.1" />
         <entry key="app/src/main/res/layout/onboard_layout.xml" value="0.14719202898550723" />
         <entry key="app/src/main/res/layout/pc_building_guides_layout.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/raspberrypi_arduino_education.xml" value="0.1539855072463768" />
+        <entry key="app/src/main/res/layout/raspberrypi_guide_layout.xml" value="0.1" />
         <entry key="app/src/main/res/layout/raspberrypi_projects_layout.xml" value="0.14719202898550723" />
         <entry key="app/src/main/res/layout/splash.xml" value="0.1" />
       </map>

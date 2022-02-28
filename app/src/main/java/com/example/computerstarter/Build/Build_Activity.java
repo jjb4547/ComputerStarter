@@ -1,11 +1,14 @@
 package com.example.computerstarter.Build;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.CheckedTextView;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -110,26 +113,39 @@ public class Build_Activity extends AppCompatActivity {
 //        build_parts.put("GPU",titles[7]);
 //        build_parts.put("CASE",titles[8]);
         if (item.getItemId()==android.R.id.home) {
-            // app icon in action bar clicked; goto parent activity.
-            if(checkAuth()) {
-                build_ref.get().addOnSuccessListener(documentSnapshot -> {
-                    if (documentSnapshot.exists()) {
-                        build_data = documentSnapshot.toObject(Build_Data.class);
-                        if (build_data.getBuild_name().size() < 5) {
-                            build_ref.update("build_name", FieldValue.arrayUnion(name));
-                            build_ref.update("build_date", FieldValue.arrayUnion(currentDateandTime));
-                            build_ref.update("price", FieldValue.arrayUnion(getPriceSum()));
-                            startActivity(new Intent(Build_Activity.this, MyBuildActivity.class));
-                            overridePendingTransition(R.anim.slide_in_left,R.anim.stay);
-                        } else {
-                            Toast.makeText(Build_Activity.this, "TOO MANY BUILDS, DELETE ONE!!!!", Toast.LENGTH_SHORT).show();
-                        }
+            AlertDialog.Builder alert = new AlertDialog.Builder(Build_Activity.this);
+            alert.setTitle("Build Name");
+            alert.setMessage("Exiting without saving, would you like to save?");
+            alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    if(checkAuth()) {
+                        build_ref.get().addOnSuccessListener(documentSnapshot -> {
+                            if (documentSnapshot.exists()) {
+                                build_data = documentSnapshot.toObject(Build_Data.class);
+                                if (build_data.getBuild_name().size() < 5) {
+                                    build_ref.update("build_name", FieldValue.arrayUnion(name));
+                                    build_ref.update("build_date", FieldValue.arrayUnion(currentDateandTime));
+                                    build_ref.update("price", FieldValue.arrayUnion(getPriceSum()));
+                                    startActivity(new Intent(Build_Activity.this, MyBuildActivity.class));
+                                    overridePendingTransition(R.anim.slide_in_left,R.anim.stay);
+                                } else {
+                                    Toast.makeText(Build_Activity.this, "TOO MANY BUILDS, DELETE ONE!!!!", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
                     }
-                });
-            }else
-                Toast.makeText(this,"NOT SAVED",Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(this,MyBuildActivity.class));
-            overridePendingTransition(R.anim.slide_in_left,R.anim.stay);
+                }
+            });
+            alert.setNegativeButton("No",new DialogInterface.OnClickListener(){
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Toast.makeText(Build_Activity.this,"NOT SAVED",Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(Build_Activity.this,MyBuildActivity.class));
+                }
+            });
+            alert.create().show();
+            // app icon in action bar clicked; goto parent activity.
             return true;
         }else if(id==R.id.save_button){
             if(checkAuth()){
