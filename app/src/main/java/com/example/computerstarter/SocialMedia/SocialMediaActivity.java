@@ -2,7 +2,6 @@ package com.example.computerstarter.SocialMedia;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -39,11 +38,9 @@ public class SocialMediaActivity extends AppCompatActivity{
         EditText editText = findViewById(R.id.TextInfForum);
         String stringText = editText.getText().toString().trim();
 
-        Button button = (Button) findViewById(R.id.PostInfForum);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
+        Button button = findViewById(R.id.PostInfForum);
+        button.setOnClickListener(v -> {
 
-            }
         });
     }
 

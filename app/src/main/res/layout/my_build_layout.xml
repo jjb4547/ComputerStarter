@@ -24,6 +24,28 @@
         android:textColor="@color/black"
         android:textSize="30sp"
         android:textStyle="bold" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/loginShortcut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Go To Login Screen"
+        style="@style/Button4"
+        android:backgroundTint="@color/cardview_light"
+        android:visibility="visible"
+        android:layout_below="@id/announcement"
+        android:layout_centerHorizontal="true"/>
+    <TextView
+        android:id="@+id/announcement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/recyclcer_builds"
+        android:text="Please Login to See your Builds"
+        android:visibility="visible"
+        android:textSize="30sp"
+        android:textAlignment="center"
+        android:textColor="@color/cardview_light"
+        android:fontFamily="@font/francois_one"
+        android:layout_centerHorizontal="true"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclcer_builds"

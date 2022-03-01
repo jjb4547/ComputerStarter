@@ -1,14 +1,11 @@
 package com.example.computerstarter.Build;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.CheckedTextView;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +20,7 @@ import com.example.computerstarter.R;
 import com.example.computerstarter.app.MainPageFragment;
 import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetView;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
@@ -37,7 +35,7 @@ public class Build_Activity extends AppCompatActivity {
     private DocumentReference build_ref;
     private Boolean isMenuOpen = false;
     private Build_Data build_data;
-    private CardView cpu, mot,mem,vga,psu,stor,mon,cool,pc_case;
+    private CardView cpu,mot,mem,vga,psu,stor,mon,cool,pc_case;
     private MenuItem save;
     private boolean first=true;
     private CheckedTextView checkedCPU,checkedMot,checkedMem,checkedStor,checkedPSU,checkedCool,checkedMon,checkedVGA,checkedCase;
@@ -63,8 +61,6 @@ public class Build_Activity extends AppCompatActivity {
         MainPageFragment main = new MainPageFragment();
         if(mAuth.getCurrentUser()!=null)
             build_ref= firestore.collection("Users").document(mAuth.getCurrentUser().getUid());
-        else
-            Toast.makeText(this, "YOU ARE NOT LOGGED IN, WILL NOT SAVE!!!",Toast.LENGTH_SHORT).show();
         main.addcardview = true;
         setContentView(R.layout.build_layout);
         Build_Data build_data = new Build_Data();
@@ -99,54 +95,46 @@ public class Build_Activity extends AppCompatActivity {
         int id = item.getItemId();
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy 'at' HH:mm:ss z");
         String currentDateandTime = sdf.format(new Date());
-//        HashMap<String,String> build_parts= new HashMap<>();
-//        build_parts.put("NAME",name);
-//        build_parts.put("DATE",currentDateandTime);
-//        build_parts.put("PRICE", (String) totalNum.getText());
-//        build_parts.put("CPU",titles[0]);
-//        build_parts.put("MOTHERBOARD",titles[1]);
-//        build_parts.put("MEMORY",titles[2]);
-//        build_parts.put("STORAGE",titles[3]);
-//        build_parts.put("PSU",titles[4]);
-//        build_parts.put("CPU COOLER",titles[5]);
-//        build_parts.put("MONITOR",titles[6]);
-//        build_parts.put("GPU",titles[7]);
-//        build_parts.put("CASE",titles[8]);
         if (item.getItemId()==android.R.id.home) {
-            AlertDialog.Builder alert = new AlertDialog.Builder(Build_Activity.this);
-            alert.setTitle("Build Name");
-            alert.setMessage("Exiting without saving, would you like to save?");
-            alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    if(checkAuth()) {
-                        build_ref.get().addOnSuccessListener(documentSnapshot -> {
-                            if (documentSnapshot.exists()) {
-                                build_data = documentSnapshot.toObject(Build_Data.class);
-                                if (build_data.getBuild_name().size() < 5) {
-                                    build_ref.update("build_name", FieldValue.arrayUnion(name));
-                                    build_ref.update("build_date", FieldValue.arrayUnion(currentDateandTime));
-                                    build_ref.update("price", FieldValue.arrayUnion(getPriceSum()));
-                                    startActivity(new Intent(Build_Activity.this, MyBuildActivity.class));
-                                    overridePendingTransition(R.anim.slide_in_left,R.anim.stay);
-                                } else {
-                                    Toast.makeText(Build_Activity.this, "TOO MANY BUILDS, DELETE ONE!!!!", Toast.LENGTH_SHORT).show();
-                                }
+            if(checkAuth()) {
+                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(Build_Activity.this);
+                builder.setTitle("Warning");
+                builder.setMessage("Exiting without saving, would you like to save?");
+                builder.setBackground(getResources().getDrawable(R.drawable.dialog_shape, null));
+                builder.setPositiveButton("Yes", (dialogInterface, i) -> {
+                    Toast.makeText(Build_Activity.this, "Saved", Toast.LENGTH_SHORT).show();
+
+                    build_ref.get().addOnSuccessListener(documentSnapshot -> {
+                        if (documentSnapshot.exists()) {
+                            build_data = documentSnapshot.toObject(Build_Data.class);
+                            if (build_data.getBuild_name().size() < 5) {
+                                build_ref.update("build_name", FieldValue.arrayUnion(name));
+                                build_ref.update("build_date", FieldValue.arrayUnion(currentDateandTime));
+                                build_ref.update("price", FieldValue.arrayUnion(getPriceSum()));
+                                startActivity(new Intent(Build_Activity.this, MyBuildActivity.class));
+                                overridePendingTransition(R.anim.slide_in_left, R.anim.stay);
+                            } else {
+                                Toast.makeText(Build_Activity.this, "TOO MANY BUILDS, DELETE ONE!!!!", Toast.LENGTH_SHORT).show();
                             }
-                        });
-                    }
-                }
-            });
-            alert.setNegativeButton("No",new DialogInterface.OnClickListener(){
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    Toast.makeText(Build_Activity.this,"NOT SAVED",Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                });
+                builder.setNegativeButton("No",(dialogInterface, i) -> {
+                    Toast.makeText(Build_Activity.this,"Not Saved",Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(Build_Activity.this,MyBuildActivity.class));
-                }
-            });
-            alert.create().show();
-            // app icon in action bar clicked; goto parent activity.
-            return true;
+                });
+                builder.show();
+            }else{
+                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(Build_Activity.this);
+                builder.setTitle("Warning");
+                builder.setMessage("Not Logged In, Will Not Save");
+                builder.setBackground(getResources().getDrawable(R.drawable.dialog_shape, null));
+                builder.setPositiveButton("Okay",(dialogInterface, i) -> {
+                    startActivity(new Intent(Build_Activity.this, MyBuildActivity.class));
+                    overridePendingTransition(R.anim.slide_in_left, R.anim.stay);
+                });
+                builder.show();
+            }
         }else if(id==R.id.save_button){
             if(checkAuth()){
                 build_ref.get().addOnSuccessListener(documentSnapshot -> {
@@ -163,7 +151,15 @@ public class Build_Activity extends AppCompatActivity {
                     }
                 });
             }else{
-                Toast.makeText(this,"NOT LOGGED IN, CANNOT SAVE",Toast.LENGTH_SHORT).show();
+                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(Build_Activity.this);
+                builder.setTitle("Warning");
+                builder.setMessage("Not Logged In, Will Not Save");
+                builder.setBackground(getResources().getDrawable(R.drawable.dialog_shape, null));
+                builder.setPositiveButton("Okay",(dialogInterface, i) -> {
+                    startActivity(new Intent(Build_Activity.this, MyBuildActivity.class));
+                    overridePendingTransition(R.anim.slide_in_left, R.anim.stay);
+                });
+                builder.show();
             }
         }
         return super.onOptionsItemSelected(item);
@@ -550,6 +546,7 @@ public class Build_Activity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
         outState.putDoubleArray("Parts",parts);
     }
+
 
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {

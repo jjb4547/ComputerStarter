@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:layout_margin="10dp"
         app:cardElevation="10dp"
-        app:cardCornerRadius="10dp"
+        app:cardCornerRadius="18dp"
         app:cardBackgroundColor="@color/cardview_dark">
 
         <LinearLayout
@@ -19,11 +19,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
+            <com.makeramen.roundedimageview.RoundedImageView
                 android:layout_margin="10dp"
                 android:src="@mipmap/ic_logo"
                 android:layout_width="120dp"
-                android:layout_height="150dp"/>
+                android:layout_height="150dp"
+                android:scaleType="fitCenter"
+                app:riv_corner_radius="15dip"
+                app:riv_border_width="5dip"
+                app:riv_oval="true"
+                app:riv_border_color="@color/blue_gray_darker"/>
 
             <LinearLayout
                 android:layout_weight="1"
@@ -33,34 +38,39 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:textColor="@color/black"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
                     android:layout_margin="10dp"
                     android:text="Build Name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/build_name"/>
+                    android:id="@+id/build_name"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
 
                 <TextView
                     android:id="@+id/date_started"
                     android:layout_margin="10dp"
                     android:text="Date Started"
-                    android:textSize="20dp"
+                    android:textSize="20sp"
+                    android:textColor="@color/white"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"/>
                 <TextView
                     android:id="@+id/price"
                     android:layout_margin="10dp"
                     android:text="Money"
-                    android:textSize="20dp"
+                    android:textSize="20sp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"/>
 
             </LinearLayout>
 
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
+
 
 </LinearLayout>

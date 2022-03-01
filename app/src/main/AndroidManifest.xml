@@ -35,10 +35,12 @@
         <activity android:name=".SocialMedia.SocialMediaActivity" />
         <activity android:name=".Build.Build_Activity" />
         <activity android:name=".Build.PC_Build_Parts" />
-        <activity android:name=".Build.MyBuildActivity"/>
+        <activity android:name=".Build.MyBuildActivity"
+            android:windowSoftInputMode="adjustPan"
+           android:theme="@style/Theme.ComputerStarter"/>
         <activity android:name=".SocialMedia.SocialMediaBlogs"/>
         <activity android:name=".Login.Login_SignUpActivity"
-            android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
+            android:theme="@style/Theme.ComputerStarter.NoActionBar" />
         <activity android:name=".Guides.Community.Community_Builds_Activity"
             android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
         <activity android:name=".Education.Education_Choosing_Activity"/>

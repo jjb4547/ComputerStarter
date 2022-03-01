@@ -1,13 +1,11 @@
 package com.example.computerstarter.Build;
 
-import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,8 +27,11 @@ import com.example.computerstarter.app.MainActivity;
 import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -67,6 +68,9 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
     private MenuItem item_log;
     private MenuItem item_quiz;
     private MenuItem item_acc;
+    private MenuItem item_mes;
+    private MaterialButton loginBut;
+    private TextView loginText;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -75,6 +79,8 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
         setContentView(R.layout.my_build_layout);
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
+        loginBut = findViewById(R.id.loginShortcut);
+        loginText = findViewById(R.id.announcement);
         //bottomNavigationView = findViewById(R.id.bottomNavigationView);
         //navController = Navigation.findNavController(this,R.id.frame_layout);
         //NavigationUI.setupWithNavController(bottomNavigationView,navController);
@@ -93,16 +99,23 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
         Menu menu = navigationView.getMenu();
         item_quiz = menu.findItem(R.id.quiz);
         item_acc = menu.findItem(R.id.account);
+        item_mes = menu.findItem(R.id.social);
         log = findViewById(R.id.log_Text);
         logBut = findViewById(R.id.logButtton);
         if(user!=null) {
             log.setText("Log Out");
             item_acc.setVisible(true);
             item_quiz.setVisible(true);
+            loginText.setVisibility(View.GONE);
+            loginBut.setVisibility(View.GONE);
+            item_mes.setVisible(true);
         }else {
             log.setText("Log In");
             item_acc.setVisible(false);
             item_quiz.setVisible(false);
+            item_mes.setVisible(false);
+            loginBut.setVisibility(View.VISIBLE);
+            loginText.setVisibility(View.VISIBLE);
         }
         TextView name = headerView.findViewById(R.id.myname);
         TextView email = headerView.findViewById(R.id.email);
@@ -135,6 +148,10 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
         home.setOnClickListener(view->{
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
             overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
+        });
+        loginBut.setOnClickListener(v->{
+            startActivity(new Intent(MyBuildActivity.this,Login_SignUpActivity.class));
+            overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
         });
         //getSupportActionBar().setTitle("My Builds");
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -182,12 +199,15 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
 
      */
     public void showAlertDialog(){
-        AlertDialog.Builder alert = new AlertDialog.Builder(MyBuildActivity.this);
-        alert.setTitle("Build Name");
-        alert.setMessage("Enter Your Build Name");
-        final EditText input = new EditText(MyBuildActivity.this);
-        alert.setView(input);
-        alert.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
+        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(MyBuildActivity.this);
+        builder.setTitle("Insert Build Name");
+        final TextInputEditText input = new TextInputEditText(MyBuildActivity.this);
+        input.setHint("Build Name");
+        input.setMaxLines(1);
+        input.setMaxWidth(10);
+        //final EditText input = new EditText(MyBuildActivity.this);
+        builder.setView(input);
+        builder.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 String value = input.getText().toString();
@@ -195,7 +215,7 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
                 .putExtra("Build",value).putExtra("Time",build.size()).putExtra("Parts",parts).putExtra("Titles",titles).putExtra("Images",images));
             }
         });
-        alert.create().show();
+        builder.create().show();
     }
     public void helper(){
         TapTargetView.showFor(this, TapTarget.forView(floatingActionButton,"Build your First PC")
@@ -204,7 +224,7 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
                 .titleTextSize(70)
                 .titleTextColor(R.color.white)
                 .drawShadow(true)
-                .cancelable(first)
+                .cancelable(!Boolean.parseBoolean(getResources().getString(R.string.pref_previously_started)))
                 .tintTarget(true)
                 .transparentTarget(true)
                 .targetRadius(60), new TapTargetView.Listener(){
