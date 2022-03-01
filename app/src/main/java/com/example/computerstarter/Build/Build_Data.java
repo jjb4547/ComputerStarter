@@ -7,10 +7,11 @@ import java.util.Map;
 public class Build_Data{
     private ArrayList<String> build_name;
     private ArrayList<String> build_date;
-    private ArrayList<Double> price;
+    private ArrayList<String> price;
+    private ArrayList<Double> time;
     private String buildName;
     private String buildDate;
-    private double buildPrice;
+    private String buildPrice;
     private HashMap<String,String> buildMap;
     private ArrayList<Map> map;
 
@@ -31,13 +32,13 @@ public class Build_Data{
     }
 
     public Build_Data(){}
-    public Build_Data(ArrayList<String> build_name, ArrayList<String> build_date, ArrayList<Double> price){
+    public Build_Data(ArrayList<String> build_name, ArrayList<String> build_date, ArrayList<String> price){
         this.build_date = build_date;
         this.build_name = build_name;
         this.price = price;
         this.map = map;
     }
-    public Build_Data(String buildName, String buildDate, double buildPrice){
+    public Build_Data(String buildName, String buildDate, String buildPrice){
         this.buildDate = buildDate;
         this.buildName = buildName;
         this.buildPrice = buildPrice;
@@ -59,11 +60,11 @@ public class Build_Data{
         this.buildDate = buildDate;
     }
 
-    public double getBuildPrice() {
+    public String getBuildPrice() {
         return buildPrice;
     }
 
-    public void setBuildPrice(double buildPrice) {
+    public void setBuildPrice(String buildPrice) {
         this.buildPrice = buildPrice;
     }
 
@@ -79,11 +80,11 @@ public class Build_Data{
         this.build_date = build_date;
     }
 
-    public ArrayList<Double> getPrice() {
+    public ArrayList<String> getPrice() {
         return price;
     }
 
-    public void setPrice(ArrayList<Double> price) {
+    public void setPrice(ArrayList<String> price) {
         this.price = price;
     }
 

@@ -77,7 +77,6 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
         super.onCreate(savedInstanceState);
         build = new ArrayList<>();
         setContentView(R.layout.my_build_layout);
-        mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
         loginBut = findViewById(R.id.loginShortcut);
         loginText = findViewById(R.id.announcement);
@@ -173,7 +172,7 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
                 if(build_data.getBuild_name().size()>0||build_data.getBuildName()!=null) {
                     for(int i=0;i<build_data.getBuild_name().size();i++) {
                         //System.out.println(build_data.getMap());
-                        build.add(new Build_Data(build_data.getBuild_name().get(i),build_data.getBuild_date().get(i),(double) build_data.getPrice().get(i)));
+                        build.add(new Build_Data(build_data.getBuild_name().get(i),build_data.getBuild_date().get(i), build_data.getPrice().get(i)));
                     }
                     ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
                     itemTouchHelper.attachToRecyclerView(recyclerView);

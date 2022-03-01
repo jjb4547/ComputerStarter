@@ -10,8 +10,29 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/RecycleForum"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/background_color" />
+    <TextView
+        android:id="@+id/loginText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Please Login to see what others have Posted."
+        android:layout_below="@id/RecycleForum"
+        android:layout_centerHorizontal="true"
+        android:textSize="30sp"
+        android:textAlignment="center"
+        android:textColor="@color/cardview_light"
+        android:fontFamily="@font/francois_one"/>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/loginBut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="To Login Screen"
+        android:layout_below="@+id/loginText"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="@color/cardview_light"
+        android:textSize="20sp"/>
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/buttonCreate"
@@ -25,6 +46,6 @@
         android:src="@drawable/ic_add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:ignore="SpeakableTextPresentCheck" />
+        android:visibility="gone"/>
 
 </RelativeLayout>

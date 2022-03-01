@@ -49,6 +49,8 @@ public class Build_Activity extends AppCompatActivity {
     private ImageView monImage;
     private ImageView vgaImage;
     private ImageView caseImage;
+    private String price;
+
     double[] parts;
     String name;
     String name_action_bar;
@@ -103,14 +105,15 @@ public class Build_Activity extends AppCompatActivity {
                 builder.setBackground(getResources().getDrawable(R.drawable.dialog_shape, null));
                 builder.setPositiveButton("Yes", (dialogInterface, i) -> {
                     Toast.makeText(Build_Activity.this, "Saved", Toast.LENGTH_SHORT).show();
-
                     build_ref.get().addOnSuccessListener(documentSnapshot -> {
                         if (documentSnapshot.exists()) {
                             build_data = documentSnapshot.toObject(Build_Data.class);
                             if (build_data.getBuild_name().size() < 5) {
-                                build_ref.update("build_name", FieldValue.arrayUnion(name));
-                                build_ref.update("build_date", FieldValue.arrayUnion(currentDateandTime));
-                                build_ref.update("price", FieldValue.arrayUnion(getPriceSum()));
+                                    double unixTime = System.currentTimeMillis()/1000;
+                                    price = String.valueOf(unixTime)+String.valueOf(getPriceSum());
+                                    build_ref.update("build_name", FieldValue.arrayUnion(unixTime+name));
+                                    build_ref.update("build_date", FieldValue.arrayUnion(currentDateandTime));
+                                    build_ref.update("price", FieldValue.arrayUnion(price));
                                 startActivity(new Intent(Build_Activity.this, MyBuildActivity.class));
                                 overridePendingTransition(R.anim.slide_in_left, R.anim.stay);
                             } else {
