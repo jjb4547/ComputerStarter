@@ -32,7 +32,6 @@
         <activity android:name=".app.MainActivity" />
         <activity android:name=".Others.AboutActivity" />
         <activity android:name=".Others.HelpActivity" />
-        <activity android:name=".SocialMedia.SocialMediaActivity" />
         <activity android:name=".Build.Build_Activity" />
         <activity android:name=".Build.PC_Build_Parts" />
         <activity android:name=".Build.MyBuildActivity"/>

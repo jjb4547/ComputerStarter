@@ -92,7 +92,7 @@ public class SocialMediaBlogs extends AppCompatActivity {
         user = firebaseAuth.getCurrentUser();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.fragment_add_blogs);
-        title = findViewById(R.id.ptitle);
+        //title = findViewById(R.id.ptitle); //change to spinner later
         des = findViewById(R.id.pdes);
         image = findViewById(R.id.imagep);
         upload = findViewById(R.id.pupload);
@@ -127,15 +127,18 @@ public class SocialMediaBlogs extends AppCompatActivity {
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String titl = "" + title.getText().toString().trim();
+                //vvvvv dont forget to change it back!!!
+                //String titl = "" + title.getText().toString().trim();
+                String titl = " ";
                 String description = "" + des.getText().toString().trim();
 
+                //Convert to spinner later
                 // If empty set error
-                if (TextUtils.isEmpty(titl)) {
-                    title.setError("Title Cant be empty");
-                    Toast.makeText(SocialMediaBlogs.this, "Title can't be left empty", Toast.LENGTH_LONG).show();
-                    return;
-                }
+//                if (TextUtils.isEmpty(titl)) {
+//                    title.setError("Title Cant be empty");
+//                    Toast.makeText(SocialMediaBlogs.this, "Title can't be left empty", Toast.LENGTH_LONG).show();
+//                    return;
+//                }
 
                 // If empty set error
                 if (TextUtils.isEmpty(description)) {
@@ -160,7 +163,7 @@ public class SocialMediaBlogs extends AppCompatActivity {
     private void showImagePicDialog() {
         String[] options = {"Camera", "Gallery"};
         AlertDialog.Builder builder = new AlertDialog.Builder(SocialMediaBlogs.this);
-        builder.setTitle("Pick Image From");
+        //builder.setTitle("Pick Image From");
         builder.setItems(options, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -217,7 +220,7 @@ public class SocialMediaBlogs extends AppCompatActivity {
                 hashMap.put("uemail", user.getEmail());
                 //hashMap.put("profileimage",user.getPhotoUrl());
                 hashMap.put("udp", dp);
-                hashMap.put("title", titl);
+                //hashMap.put("title", titl);
                 hashMap.put("description", description);
                 hashMap.put("uimage", downloadUri);
                 hashMap.put("ptime", timestamp);
@@ -232,7 +235,7 @@ public class SocialMediaBlogs extends AppCompatActivity {
                             public void onSuccess(Void aVoid) {
                                 pd.dismiss();
                                 Toast.makeText(SocialMediaBlogs.this, "Published", Toast.LENGTH_LONG).show();
-                                title.setText("");
+                                //title.setText("");
                                 des.setText("");
                                 //name.setText("");
                                 image.setImageURI(null);

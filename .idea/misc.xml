@@ -3,6 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Desktop/CSUN 2021/ComputerStarter/app/src/main/res/layout/activity_forum.xml" value="0.11666666666666667" />
+        <entry key="..\:/Desktop/CSUN 2021/ComputerStarter/app/src/main/res/layout/activity_forum_information.xml" value="0.16210739614994935" />
+        <entry key="..\:/Desktop/CSUN 2021/ComputerStarter/app/src/main/res/layout/add_blogs_new.xml" value="0.33" />
+        <entry key="..\:/Desktop/CSUN 2021/ComputerStarter/app/src/main/res/layout/fragment_add_blogs.xml" value="0.33" />
+        <entry key="..\:/Desktop/CSUN 2021/ComputerStarter/app/src/main/res/layout/row_comments.xml" value="0.16210739614994935" />
+        <entry key="..\:/Desktop/CSUN 2021/ComputerStarter/app/src/main/res/layout/row_posts.xml" value="0.33" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3880208333333333" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/drawable/change_image.xml" value="0.2915" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/drawable/edit.xml" value="0.153" />
@@ -170,7 +176,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
