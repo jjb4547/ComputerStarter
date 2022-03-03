@@ -258,7 +258,7 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
                     switch (direction) {
                         case ItemTouchHelper.LEFT:
                             deleteCard(viewHolder.getBindingAdapterPosition());
-                            Snackbar snackbar = Snackbar.make(recyclerView,"Deleting "+name.substring(10),Snackbar.LENGTH_INDEFINITE)
+                            Snackbar snackbar = Snackbar.make(recyclerView,"Deleting "+name.substring(10),Snackbar.LENGTH_LONG)
                                     .setAction("Undo", view ->{
                                         if(checkAuth()){
                                             build_ref.get().addOnSuccessListener(documentSnapshot -> {
@@ -332,7 +332,6 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
         Menu menu = navigationView.getMenu();
         MenuItem item_quiz = menu.findItem(R.id.quiz);
         MenuItem item_acc = menu.findItem(R.id.account);
-        //real_login login = new real_login();
         switch (item.getItemId()){
             case R.id.social:
                 Toast.makeText(this,"Future Improvement",Toast.LENGTH_SHORT).show();
@@ -370,12 +369,12 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
 
     @Override
     public void onCardClick(int position) {
-
+        editCard(position);
     }
 
     @Override
     public void onLongClick(int position) {
-        editCard(position);
+
     }
 
     private void editCard(int position) {

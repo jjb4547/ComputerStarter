@@ -122,7 +122,13 @@ public class MyBuildAdapter extends RecyclerView.Adapter<MyBuildAdapter.ViewHold
         @Override
         public void onClick(View view) {
             onCardListener.onCardClick(getAdapterPosition());
-            int[] partId = cleanUpIDs(getAdapterPosition());
+
+        }
+
+
+        @Override
+        public boolean onLongClick(View view) {
+            onCardListener.onLongClick(getAdapterPosition());int[] partId = cleanUpIDs(getAdapterPosition());
             cardLayout.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
             if(partsList.getVisibility()==View.GONE){
                 partsList.setVisibility(View.VISIBLE);
@@ -214,12 +220,6 @@ public class MyBuildAdapter extends RecyclerView.Adapter<MyBuildAdapter.ViewHold
                 cardView.setCardBackgroundColor(ContextCompat.getColor(context,R.color.cardview_dark));
                 notifyDataSetChanged();
             }
-        }
-
-
-        @Override
-        public boolean onLongClick(View view) {
-            onCardListener.onLongClick(getAdapterPosition());
             return true;
         }
     }

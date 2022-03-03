@@ -103,7 +103,7 @@ public class Build_Activity extends AppCompatActivity {
                             if (build_data.getBuild_name().size() < 5) {
                                 long unixTime = System.currentTimeMillis() / 1000;
                                 price = String.valueOf(unixTime) + String.valueOf(getPriceSum());
-                                build_ref.update("build_name", FieldValue.arrayUnion(unixTime + name));
+                                build_ref.update("build_name", FieldValue.arrayUnion(name));
                                 build_ref.update("build_date", FieldValue.arrayUnion(currentDateandTime));
                                 build_ref.update("price", FieldValue.arrayUnion(price));
                                 build_ref.update("parts_id", FieldValue.arrayUnion(unixTime + turnIntArrtoStr()));
