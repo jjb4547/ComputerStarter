@@ -1,8 +1,8 @@
 package com.example.computerstarter.Build;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.CheckedTextView;
@@ -10,16 +10,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import androidx.preference.PreferenceManager;
 
 import com.example.computerstarter.R;
 import com.example.computerstarter.app.MainPageFragment;
-import com.getkeepsafe.taptargetview.TapTarget;
-import com.getkeepsafe.taptargetview.TapTargetView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
@@ -40,6 +36,7 @@ public class Build_Activity extends AppCompatActivity {
     private boolean first=true;
     private CheckedTextView checkedCPU,checkedMot,checkedMem,checkedStor,checkedPSU,checkedCool,checkedMon,checkedVGA,checkedCase;
     private TextView cpuTitle,motTitle,memTitle,storTitle,psuTitle,coolTitle,monTitle,vgaTitle,caseTitle,title,totalNum;
+    TextView cpuPrice,motPrice, memPrice, storPrice,  psuPrice, coolPrice, monPrice, vgaPrice, casePrice;
     private ImageView cpuImage;
     private ImageView motImage;
     private ImageView memImage;
@@ -50,12 +47,10 @@ public class Build_Activity extends AppCompatActivity {
     private ImageView vgaImage;
     private ImageView caseImage;
     private String price;
-
-    double[] parts;
+    private String ids;
     String name;
     String name_action_bar;
-    String[] titles;
-    int[] images;
+    int[] partsID;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -68,12 +63,9 @@ public class Build_Activity extends AppCompatActivity {
         Build_Data build_data = new Build_Data();
         title = findViewById(R.id.welcome);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        Intent intent = getIntent();
-        name_action_bar = intent.getExtras().getString("Build");
-        name = intent.getExtras().getString("Name");
-        parts = intent.getDoubleArrayExtra("Parts");
-        titles = intent.getStringArrayExtra("Titles");
-        images = intent.getIntArrayExtra("Images");
+        ids = "";
+        name_action_bar = getIntent().getExtras().getString("Build");
+        partsID = getIntent().getIntArrayExtra("ID");
         getSupportActionBar().setTitle("PC Parts List");
         title.setText("BUILD NAME: "+name_action_bar);
         save = findViewById(R.id.save_button);
@@ -109,11 +101,12 @@ public class Build_Activity extends AppCompatActivity {
                         if (documentSnapshot.exists()) {
                             build_data = documentSnapshot.toObject(Build_Data.class);
                             if (build_data.getBuild_name().size() < 5) {
-                                    double unixTime = System.currentTimeMillis()/1000;
-                                    price = String.valueOf(unixTime)+String.valueOf(getPriceSum());
-                                    build_ref.update("build_name", FieldValue.arrayUnion(unixTime+name));
-                                    build_ref.update("build_date", FieldValue.arrayUnion(currentDateandTime));
-                                    build_ref.update("price", FieldValue.arrayUnion(price));
+                                long unixTime = System.currentTimeMillis() / 1000;
+                                price = String.valueOf(unixTime) + String.valueOf(getPriceSum());
+                                build_ref.update("build_name", FieldValue.arrayUnion(unixTime + name));
+                                build_ref.update("build_date", FieldValue.arrayUnion(currentDateandTime));
+                                build_ref.update("price", FieldValue.arrayUnion(price));
+                                build_ref.update("parts_id", FieldValue.arrayUnion(unixTime + turnIntArrtoStr()));
                                 startActivity(new Intent(Build_Activity.this, MyBuildActivity.class));
                                 overridePendingTransition(R.anim.slide_in_left, R.anim.stay);
                             } else {
@@ -144,15 +137,20 @@ public class Build_Activity extends AppCompatActivity {
                     if (documentSnapshot.exists()) {
                         build_data = documentSnapshot.toObject(Build_Data.class);
                         if (build_data.getBuild_name().size() < 5) {
-                            build_ref.update("build_name", FieldValue.arrayUnion(name));
+                            long unixTime = System.currentTimeMillis() / 1000;
+                            price = String.valueOf(unixTime) + String.valueOf(getPriceSum());
+                            build_ref.update("build_name", FieldValue.arrayUnion(unixTime + name));
                             build_ref.update("build_date", FieldValue.arrayUnion(currentDateandTime));
-                            build_ref.update("price", FieldValue.arrayUnion(getPriceSum()));
+                            build_ref.update("price", FieldValue.arrayUnion(price));
+                            build_ref.update("parts_id", FieldValue.arrayUnion(unixTime + turnIntArrtoStr()));
                             startActivity(new Intent(Build_Activity.this, MyBuildActivity.class));
+                            overridePendingTransition(R.anim.slide_in_left, R.anim.stay);
                         } else {
-                            Toast.makeText(Build_Activity.this, "TOO MANY BUILDS, DELETE ONE!!!!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Build_Activity.this, "LOGIN!", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
+
             }else{
                 MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(Build_Activity.this);
                 builder.setTitle("Warning");
@@ -169,20 +167,6 @@ public class Build_Activity extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        boolean previouslyStarted = prefs.getBoolean(getString(R.string.pref_previously_started),false);
-        if(!previouslyStarted){
-            SharedPreferences.Editor edit = prefs.edit();
-            edit.putBoolean(getString(R.string.pref_previously_started),Boolean.TRUE);
-            edit.commit();
-            firstRun();
-        }
-
-    }
-
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.save_menu,menu);
         return super.onCreateOptionsMenu(menu);
@@ -193,174 +177,14 @@ public class Build_Activity extends AppCompatActivity {
         else
             return false;
     }
-    public void firstRun(){
-        cpuHelper();
-    }
-    public void cpuHelper(){
-        TapTargetView.showFor(this, TapTarget.forView(cpu,"Add a CPU")
-                .outerCircleColor(R.color.cardview_dark)
-                .outerCircleAlpha(0.96f)
-                .titleTextSize(40)
-                .titleTextColor(R.color.white)
-                .drawShadow(true)
-                .cancelable(false)
-                .tintTarget(true)
-                .transparentTarget(true)
-                .targetRadius(100), new TapTargetView.Listener(){
-            @Override
-            public void onTargetClick(TapTargetView view){
-                super.onTargetClick(view);
-                motHelper();
-            }
-        });
-    }
-    public void motHelper(){
-        TapTargetView.showFor(this, TapTarget.forView(mot,"Add a Motherboard")
-                .outerCircleColor(R.color.cardview_dark)
-                .outerCircleAlpha(0.96f)
-                .titleTextSize(40)
-                .titleTextColor(R.color.white)
-                .drawShadow(true)
-                .cancelable(false)
-                .tintTarget(true)
-                .transparentTarget(true)
-                .targetRadius(100), new TapTargetView.Listener(){
-            @Override
-            public void onTargetClick(TapTargetView view){
-                super.onTargetClick(view);
-                memHelper();
-            }
-        });
-    }
-    public void memHelper(){
-        TapTargetView.showFor(this, TapTarget.forView(mem,"Add Memory")
-                .outerCircleColor(R.color.cardview_dark)
-                .outerCircleAlpha(0.96f)
-                .titleTextSize(40)
-                .titleTextColor(R.color.white)
-                .drawShadow(true)
-                .cancelable(false)
-                .tintTarget(true)
-                .transparentTarget(true)
-                .targetRadius(100), new TapTargetView.Listener(){
-            @Override
-            public void onTargetClick(TapTargetView view){
-                super.onTargetClick(view);
-                storHelper();
-            }
-        });
-    }
-    public void storHelper(){
-        TapTargetView.showFor(this, TapTarget.forView(stor,"Add Storage")
-                .outerCircleColor(R.color.cardview_dark)
-                .outerCircleAlpha(0.96f)
-                .titleTextSize(40)
-                .titleTextColor(R.color.white)
-                .drawShadow(true)
-                .cancelable(false)
-                .tintTarget(true)
-                .transparentTarget(true)
-                .targetRadius(100), new TapTargetView.Listener(){
-            @Override
-            public void onTargetClick(TapTargetView view){
-                super.onTargetClick(view);
-                psuHelper();
-            }
-        });
-    }
-    public void vgaHelper(){
-        TapTargetView.showFor(this, TapTarget.forView(vga,"Add a Graphics Card")
-                .outerCircleColor(R.color.cardview_dark)
-                .outerCircleAlpha(0.96f)
-                .titleTextSize(40)
-                .titleTextColor(R.color.white)
-                .drawShadow(true)
-                .cancelable(false)
-                .tintTarget(true)
-                .transparentTarget(true)
-                .targetRadius(100), new TapTargetView.Listener(){
-            @Override
-            public void onTargetClick(TapTargetView view){
-                super.onTargetClick(view);
-                caseHelper();
-            }
-        });
-    }
-    public void monHelper(){
-        TapTargetView.showFor(this, TapTarget.forView(mon,"Add a Monitor")
-                .outerCircleColor(R.color.cardview_dark)
-                .outerCircleAlpha(0.96f)
-                .titleTextSize(40)
-                .titleTextColor(R.color.white)
-                .drawShadow(true)
-                .cancelable(false)
-                .tintTarget(true)
-                .transparentTarget(true)
-                .targetRadius(100), new TapTargetView.Listener(){
-            @Override
-            public void onTargetClick(TapTargetView view){
-                super.onTargetClick(view);
-                vgaHelper();
-            }
-        });
-    }
-    public void coolHelper(){
-        TapTargetView.showFor(this, TapTarget.forView(cool,"Add a CPU Cooler")
-                .outerCircleColor(R.color.cardview_dark)
-                .outerCircleAlpha(0.96f)
-                .titleTextSize(40)
-                .titleTextColor(R.color.white)
-                .drawShadow(true)
-                .cancelable(false)
-                .tintTarget(true)
-                .transparentTarget(true)
-                .targetRadius(100), new TapTargetView.Listener(){
-            @Override
-            public void onTargetClick(TapTargetView view){
-                super.onTargetClick(view);
-                monHelper();
-            }
-        });
-    }
-    public void psuHelper(){
-        TapTargetView.showFor(this, TapTarget.forView(psu,"Add a Power Supply")
-                .outerCircleColor(R.color.cardview_dark)
-                .outerCircleAlpha(0.96f)
-                .titleTextSize(40)
-                .titleTextColor(R.color.white)
-                .drawShadow(true)
-                .cancelable(false)
-                .tintTarget(true)
-                .transparentTarget(true)
-                .targetRadius(100), new TapTargetView.Listener(){
-            @Override
-            public void onTargetClick(TapTargetView view){
-                super.onTargetClick(view);
-                coolHelper();
-            }
-        });
-    }
-    public void caseHelper(){
-        TapTargetView.showFor(this, TapTarget.forView(pc_case,"Add a Case","Once done save the build on the top right!")
-                .outerCircleColor(R.color.cardview_dark)
-                .outerCircleAlpha(0.96f)
-                .titleTextSize(40)
-                .descriptionTextColor(R.color.white)
-                .descriptionTextSize(20)
-                .titleTextColor(R.color.white)
-                .drawShadow(true)
-                .cancelable(false)
-                .tintTarget(true)
-                .transparentTarget(true)
-                .targetRadius(100), new TapTargetView.Listener(){
-            @Override
-            public void onTargetClick(TapTargetView view){
-                super.onTargetClick(view);
-                view.dismiss(true);
-            }
-        });
-    }
     public void init(){
+        findID();
+        insertDet();
+        cardListeners();
+
+    }
+
+    private void findID() {
         cpu = findViewById(R.id.cpu);
         mot = findViewById(R.id.mot);
         mem = findViewById(R.id.mem);
@@ -388,178 +212,166 @@ public class Build_Activity extends AppCompatActivity {
         monImage = findViewById(R.id.mon_link_image);
         vgaImage = findViewById(R.id.vga_link_image);
         caseImage = findViewById(R.id.case_link_image);
-        TextView cpuPrice = findViewById(R.id.cpu_Price);
-        TextView motPrice = findViewById(R.id.mot_Price);
-        TextView memPrice = findViewById(R.id.mem_Price);
-        TextView storPrice = findViewById(R.id.stor_Price);
-        TextView psuPrice = findViewById(R.id.psu_Price);
-        TextView coolPrice = findViewById(R.id.cool_Price);
-        TextView monPrice = findViewById(R.id.mon_Price);
-        TextView vgaPrice = findViewById(R.id.vga_Price);
-        TextView casePrice = findViewById(R.id.case_Price);
-        cpuTitle.setText(titles[0]);
-        cpuPrice.setText("$"+parts[0]);
-        motTitle.setText(titles[1]);
-        motPrice.setText("$"+parts[1]);
-        memTitle.setText(titles[2]);
-        memPrice.setText("$"+parts[2]);
-        storTitle.setText(titles[3]);
-        storPrice.setText("$"+parts[3]);
-        psuTitle.setText(titles[4]);
-        psuPrice.setText("$"+parts[4]);
-        coolTitle.setText(titles[5]);
-        coolPrice.setText("$"+parts[5]);
-        monTitle.setText(titles[6]);
-        monPrice.setText("$"+parts[6]);
-        vgaTitle.setText(titles[7]);
-        vgaPrice.setText("$"+parts[7]);
-        caseTitle.setText(titles[8]);
-        casePrice.setText("$"+parts[8]);
-        cpuImage.setImageResource(images[0]);
-        motImage.setImageResource(images[1]);
-        memImage.setImageResource(images[2]);
-        storImage.setImageResource(images[3]);
-        psuImage.setImageResource(images[4]);
-        coolImage.setImageResource(images[5]);
-        monImage.setImageResource(images[6]);
-        vgaImage.setImageResource(images[7]);
-        caseImage.setImageResource(images[8]);
+        cpuPrice = findViewById(R.id.cpu_Price);
+        motPrice = findViewById(R.id.mot_Price);
+        memPrice = findViewById(R.id.mem_Price);
+        storPrice = findViewById(R.id.stor_Price);
+        psuPrice = findViewById(R.id.psu_Price);
+        coolPrice = findViewById(R.id.cool_Price);
+        monPrice = findViewById(R.id.mon_Price);
+        vgaPrice = findViewById(R.id.vga_Price);
+        casePrice = findViewById(R.id.case_Price);
+    }
+
+    private void cardListeners() {
         cpu.setOnClickListener(view -> {
             Intent cpu_intent = new Intent(Build_Activity.this, PC_Build_Parts.class);
             cpu_intent.putExtra("name","CPU");
-            cpu_intent.putExtra("Parts",parts);
             cpu_intent.putExtra("Build",name_action_bar);
-            cpu_intent.putExtra("Titles",titles);
-            cpu_intent.putExtra("Images",images);
+            cpu_intent.putExtra("ID",partsID);
             startActivity(cpu_intent);
         });
-        if(!cpuTitle.getText().equals("Empty")){
-            cpu.setCardBackgroundColor(getResources().getColor(R.color.cardview_light));
-            checkedCPU.setChecked(true);
-        }
-        if(!motTitle.getText().equals("Empty")){
-            mot.setCardBackgroundColor(getResources().getColor(R.color.cardview_light));
-            checkedMot.setChecked(true);
-        }
-        if(!memTitle.getText().equals("Empty")){
-            mem.setCardBackgroundColor(getResources().getColor(R.color.cardview_light));
-            checkedMem.setChecked(true);
-        }
-        if(!storTitle.getText().equals("Empty")){
-            stor.setCardBackgroundColor(getResources().getColor(R.color.cardview_light));
-            checkedStor.setChecked(true);
-        }
-        if(!psuTitle.getText().equals("Empty")){
-            psu.setCardBackgroundColor(getResources().getColor(R.color.cardview_light));
-            checkedPSU.setChecked(true);
-        }
-        if(!coolTitle.getText().equals("Empty")){
-            cool.setCardBackgroundColor(getResources().getColor(R.color.cardview_light));
-            checkedCool.setChecked(true);
-        }
-        if(!monTitle.getText().equals("Empty")){
-            mon.setCardBackgroundColor(getResources().getColor(R.color.cardview_light));
-            checkedMon.setChecked(true);
-        }
-        if(!vgaTitle.getText().equals("Empty")){
-            vga.setCardBackgroundColor(getResources().getColor(R.color.cardview_light));
-            checkedVGA.setChecked(true);
-        }
-        if(!caseTitle.getText().equals("Empty")){
-            pc_case.setCardBackgroundColor(getResources().getColor(R.color.cardview_light));
-            checkedCase.setChecked(true);
-        }
         mot.setOnClickListener(view -> {
             Intent mot_intent = new Intent(Build_Activity.this, PC_Build_Parts.class);
             mot_intent.putExtra("name","Motherboards");
-            mot_intent.putExtra("Parts",parts);
             mot_intent.putExtra("Build",name_action_bar);
-            mot_intent.putExtra("Titles",titles);
-            mot_intent.putExtra("Images",images);
+            mot_intent.putExtra("ID",partsID);
             startActivity(mot_intent);
         });
         mem.setOnClickListener(view -> {
             Intent mem_intent = new Intent(Build_Activity.this, PC_Build_Parts.class);
             mem_intent.putExtra("name","Memory");
-            mem_intent.putExtra("Parts",parts);
             mem_intent.putExtra("Build",name_action_bar);
-            mem_intent.putExtra("Titles",titles);
-            mem_intent.putExtra("Images",images);
+            mem_intent.putExtra("ID",partsID);
             startActivity(mem_intent);
         });
         vga.setOnClickListener(view -> {
             Intent vga_intent = new Intent(Build_Activity.this, PC_Build_Parts.class);
             vga_intent.putExtra("name","Video Cards");
-            vga_intent.putExtra("Parts",parts);
             vga_intent.putExtra("Build",name_action_bar);
-            vga_intent.putExtra("Titles",titles);
-            vga_intent.putExtra("Images",images);
+            vga_intent.putExtra("ID",partsID);
             startActivity(vga_intent);
         });
         psu.setOnClickListener(view -> {
             Intent psu_intent = new Intent(Build_Activity.this, PC_Build_Parts.class);
             psu_intent.putExtra("name","Power Supplies");
-            psu_intent.putExtra("Parts",parts);
             psu_intent.putExtra("Build",name_action_bar);
-            psu_intent.putExtra("Titles",titles);
-            psu_intent.putExtra("Images",images);
+            psu_intent.putExtra("ID",partsID);
             startActivity(psu_intent);
         });
         stor.setOnClickListener(view -> {
             Intent stor_intent = new Intent(Build_Activity.this, PC_Build_Parts.class);
             stor_intent.putExtra("name","Storage");
-            stor_intent.putExtra("Parts",parts);
             stor_intent.putExtra("Build",name_action_bar);
-            stor_intent.putExtra("Titles",titles);
-            stor_intent.putExtra("Images",images);
+            stor_intent.putExtra("ID",partsID);
             startActivity(stor_intent);
         });
         cool.setOnClickListener(view -> {
             Intent cool_intent = new Intent(Build_Activity.this, PC_Build_Parts.class);
             cool_intent.putExtra("name","CPU Cooler");
-            cool_intent.putExtra("Parts",parts);
             cool_intent.putExtra("Build",name_action_bar);
-            cool_intent.putExtra("Titles",titles);
-            cool_intent.putExtra("Images",images);
+            cool_intent.putExtra("ID",partsID);
             startActivity(cool_intent);
         });
         mon.setOnClickListener(view -> {
             Intent mon_intent = new Intent(Build_Activity.this, PC_Build_Parts.class);
             mon_intent.putExtra("name","Monitor");
-            mon_intent.putExtra("Parts",parts);
             mon_intent.putExtra("Build",name_action_bar);
-            mon_intent.putExtra("Titles",titles);
-            mon_intent.putExtra("Images",images);
+            mon_intent.putExtra("ID",partsID);
             startActivity(mon_intent);
         });
         pc_case.setOnClickListener(view -> {
             Intent pc_case_intent = new Intent(Build_Activity.this, PC_Build_Parts.class);
             pc_case_intent.putExtra("name","Cases");
-            pc_case_intent.putExtra("Parts",parts);
             pc_case_intent.putExtra("Build",name_action_bar);
-            pc_case_intent.putExtra("Titles",titles);
-            pc_case_intent.putExtra("Images",images);
+            pc_case_intent.putExtra("ID",partsID);
             startActivity(pc_case_intent);
         });
+    }
+
+    private void insertDet() {
+        if (partsID[0] != -1) {
+            cpuTitle.setText(PriceList.getName(partsID[0]));
+            cpuPrice.setText(PriceList.getPriceAsString(partsID[0]));
+            cpuImage.setImageResource(PriceList.getIcon(partsID[0]));
+            cpu.setCardBackgroundColor(getResources().getColor(R.color.cardview_light));
+            checkedCPU.setChecked(true);
+        }
+        if (partsID[1] != -1) {
+            motTitle.setText(PriceList.getName(partsID[1]));
+            motPrice.setText(PriceList.getPriceAsString(partsID[1]));
+            motImage.setImageResource(PriceList.getIcon(partsID[1]));
+            mot.setCardBackgroundColor(getResources().getColor(R.color.cardview_light));
+            checkedMot.setChecked(true);
+        }
+        if (partsID[2] != -1) {
+            memTitle.setText(PriceList.getName(partsID[2]));
+            memPrice.setText(PriceList.getPriceAsString(partsID[2]));
+            memImage.setImageResource(PriceList.getIcon(partsID[2]));
+            mem.setCardBackgroundColor(getResources().getColor(R.color.cardview_light));
+            checkedMem.setChecked(true);
+        }
+        if (partsID[3] != -1) {
+            storTitle.setText(PriceList.getName(partsID[3]));
+            storPrice.setText(PriceList.getPriceAsString(partsID[3]));
+            storImage.setImageResource(PriceList.getIcon(partsID[3]));
+            stor.setCardBackgroundColor(getResources().getColor(R.color.cardview_light));
+            checkedStor.setChecked(true);
+        }
+        if (partsID[4] != -1) {
+            psuTitle.setText(PriceList.getName(partsID[4]));
+            psuPrice.setText(PriceList.getPriceAsString(partsID[4]));
+            psuImage.setImageResource(PriceList.getIcon(partsID[4]));
+            psu.setCardBackgroundColor(getResources().getColor(R.color.cardview_light));
+            checkedPSU.setChecked(true);
+        }
+        if (partsID[5] != -1) {
+            coolTitle.setText(PriceList.getName(partsID[5]));
+            coolPrice.setText(PriceList.getPriceAsString(partsID[5]));
+            coolImage.setImageResource(PriceList.getIcon(partsID[5]));
+            cool.setCardBackgroundColor(getResources().getColor(R.color.cardview_light));
+            checkedCool.setChecked(true);
+        }
+        if (partsID[6] != -1) {
+            monTitle.setText(PriceList.getName(partsID[6]));
+            monPrice.setText(PriceList.getPriceAsString(partsID[6]));
+            monImage.setImageResource(PriceList.getIcon(partsID[6]));
+            mon.setCardBackgroundColor(getResources().getColor(R.color.cardview_light));
+            checkedMon.setChecked(true);
+        }
+        if (partsID[7] != -1) {
+            vgaTitle.setText(PriceList.getName(partsID[7]));
+            vgaPrice.setText(PriceList.getPriceAsString(partsID[7]));
+            vgaImage.setImageResource(PriceList.getIcon(partsID[7]));
+            vga.setCardBackgroundColor(getResources().getColor(R.color.cardview_light));
+            checkedVGA.setChecked(true);
+        }
+        if (partsID[8] != -1) {
+            caseTitle.setText(PriceList.getName(partsID[8]));
+            casePrice.setText(PriceList.getPriceAsString(partsID[8]));
+            caseImage.setImageResource(PriceList.getIcon(partsID[8]));
+            pc_case.setCardBackgroundColor(getResources().getColor(R.color.cardview_light));
+            checkedCase.setChecked(true);
+        }
         totalNum.setText("TOTAL: $"+getPriceSum());
     }
 
-    @Override
-    protected void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putDoubleArray("Parts",parts);
+
+    public String turnIntArrtoStr(){
+        String[] arr = new String[partsID.length];
+        for(int i =0; i< partsID.length;i++){
+            arr[i] = String.valueOf(partsID[i]);
+        }
+        ids = TextUtils.join(",",arr);
+        return ids;
     }
 
-
-    @Override
-    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        parts = savedInstanceState.getDoubleArray("Parts");
-    }
     public double getPriceSum(){
         double price=0.0;
-        for(int i=0;i<parts.length;i++) {
-            price = price+parts[i];
+        for(int i=0;i<partsID.length;i++) {
+            if(partsID[i]!=-1) {
+                price = price + PriceList.getPrice(partsID[i]);
+            }
             System.out.println(price);
         }
         price = Math.floor(price*100)/100;

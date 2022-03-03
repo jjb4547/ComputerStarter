@@ -2,11 +2,14 @@ package com.example.computerstarter.Build;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Canvas;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -31,6 +35,7 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -41,11 +46,14 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class MyBuildActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
+
+public class MyBuildActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, MyBuildAdapter.onCardListener {
     private FirebaseFirestore firestore = FirebaseFirestore.getInstance();
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
     FloatingActionButton floatingActionButton;
     private MyBuildAdapter myBuildAdapter;
+    private MyBuildAdapter.ViewHolder viewHolder;
     private Build_Data build_data;
     private ArrayList<Build_Data> build;
     private DocumentReference build_ref;
@@ -53,6 +61,7 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
     private double[] parts=new double[9];
     private String[] titles = new String[9];
     private int[] images = new int[9];
+    private int[] partsID = new int[9];
     private boolean first = false;
     TextView home;
     private DrawerLayout drawerLayout;
@@ -71,6 +80,9 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
     private MenuItem item_mes;
     private MaterialButton loginBut;
     private TextView loginText;
+    private TextView cpuName, motName,memName,storName, psuName,coolName,monName,vgaName,caseName;
+    private LinearLayout cardLayout;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -80,6 +92,16 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
         FirebaseUser user = mAuth.getCurrentUser();
         loginBut = findViewById(R.id.loginShortcut);
         loginText = findViewById(R.id.announcement);
+        cpuName = findViewById(R.id.cpuName);
+        motName = findViewById(R.id.motName);
+        storName = findViewById(R.id.storName);
+        psuName = findViewById(R.id.psuName);
+        coolName = findViewById(R.id.coolName);
+        monName = findViewById(R.id.monName);
+        vgaName = findViewById(R.id.vgaName);
+        caseName = findViewById(R.id.caseName);
+        cardLayout = findViewById(R.id.cardLayout);
+        //cardLayout.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
         //bottomNavigationView = findViewById(R.id.bottomNavigationView);
         //navController = Navigation.findNavController(this,R.id.frame_layout);
         //NavigationUI.setupWithNavController(bottomNavigationView,navController);
@@ -156,8 +178,6 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         for(int i=0;i<parts.length;i++)
             parts[i]=0;
-        addTitles();
-        addImages();
         recyclerView = findViewById(R.id.recyclcer_builds);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -171,33 +191,21 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
                 build_data = documentSnapshot.toObject(Build_Data.class);
                 if(build_data.getBuild_name().size()>0||build_data.getBuildName()!=null) {
                     for(int i=0;i<build_data.getBuild_name().size();i++) {
-                        //System.out.println(build_data.getMap());
-                        build.add(new Build_Data(build_data.getBuild_name().get(i),build_data.getBuild_date().get(i), build_data.getPrice().get(i)));
+                        build.add(new Build_Data(build_data.getBuild_name().get(i),build_data.getBuild_date().get(i), build_data.getPrice().get(i), build_data.getParts_id().get(i)));
                     }
                     ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
                     itemTouchHelper.attachToRecyclerView(recyclerView);
-                    myBuildAdapter = new MyBuildAdapter(build, this);
+                    myBuildAdapter = new MyBuildAdapter(build, this, this);
                     recyclerView.setAdapter(myBuildAdapter);
                 }else{
                     helper();
                 }
             });
+
         }
     }
-
-    /*@Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId()==android.R.id.home) {
-            // app icon in action bar clicked; goto parent activity.
-            startActivity(new Intent(this,MainActivity.class));
-            overridePendingTransition(R.anim.slide_in_top,R.anim.stay);
-            return true;
-        }else
-            return super.onOptionsItemSelected(item);
-    }
-
-     */
     public void showAlertDialog(){
+        addIDs();
         MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(MyBuildActivity.this);
         builder.setTitle("Insert Build Name");
         final TextInputEditText input = new TextInputEditText(MyBuildActivity.this);
@@ -211,7 +219,7 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
             public void onClick(DialogInterface dialogInterface, int i) {
                 String value = input.getText().toString();
                 startActivity(new Intent(MyBuildActivity.this,Build_Activity.class)
-                .putExtra("Build",value).putExtra("Time",build.size()).putExtra("Parts",parts).putExtra("Titles",titles).putExtra("Images",images));
+                .putExtra("Build",value).putExtra("ID",partsID));
             }
         });
         builder.create().show();
@@ -234,7 +242,7 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
             }
         });
     }
-    ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT) {
+    ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT| ItemTouchHelper.RIGHT) {
         @Override
         public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
             return false;
@@ -242,44 +250,81 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
 
         @Override
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-            int position = viewHolder.getAdapterPosition();
+            String price = build.get(viewHolder.getBindingAdapterPosition()).getBuildPrice();
+            String name = build.get(viewHolder.getBindingAdapterPosition()).getBuildName();
+            String build_date = build.get(viewHolder.getBindingAdapterPosition()).getBuildDate();
+            String partID = build.get(viewHolder.getBindingAdapterPosition()).getPartsId();
             if(mAuth.getCurrentUser()!=null) {
                     switch (direction) {
                         case ItemTouchHelper.LEFT:
-                            build_ref.update("build_name", FieldValue.arrayRemove(build.get(position).getBuildName()));
-                            build_ref.update("build_date", FieldValue.arrayRemove(build.get(position).getBuildDate()));
-                            build_ref.update("price", FieldValue.arrayRemove(build.get(position).getBuildPrice()));
-                            //build_ref.update("build_parts", FieldValue.arrayRemove(build.get(position).getBuildMap()));
-                            build.remove(position);
-                            myBuildAdapter.notifyDataSetChanged();
-                            if(build.size()==0)
-                                helper();
+                            deleteCard(viewHolder.getBindingAdapterPosition());
+                            Snackbar snackbar = Snackbar.make(recyclerView,"Deleting "+name.substring(10),Snackbar.LENGTH_INDEFINITE)
+                                    .setAction("Undo", view ->{
+                                        if(checkAuth()){
+                                            build_ref.get().addOnSuccessListener(documentSnapshot -> {
+                                                if (documentSnapshot.exists()) {
+                                                    build_data = documentSnapshot.toObject(Build_Data.class);
+                                                    if (build_data.getBuild_name().size() < 5) {
+                                                        long unixTime = System.currentTimeMillis() / 1000;
+                                                        //price = String.valueOf(unixTime) + String.valueOf(getPriceSum());
+                                                        build_ref.update("build_name", FieldValue.arrayUnion(name));
+                                                        build_ref.update("build_date", FieldValue.arrayUnion(build_date));
+                                                        build_ref.update("price", FieldValue.arrayUnion(price));
+                                                        build_ref.update("parts_id", FieldValue.arrayUnion(partID));
+                                                    }
+                                                }
+                                            });
+                                            build.add(new Build_Data(name,build_date,price,partID));
+                                            myBuildAdapter.notifyDataSetChanged();
+                                        }
+                                    } );
+                            snackbar.show();
+                            break;
+                        case ItemTouchHelper.RIGHT:
+                            editCard(viewHolder.getBindingAdapterPosition());
                             break;
                     }
             }
         }
+
+
+        @Override
+        public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
+            new RecyclerViewSwipeDecorator.Builder(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
+                    .addSwipeLeftBackgroundColor(ContextCompat.getColor(MyBuildActivity.this, R.color.red))
+                    .addSwipeLeftActionIcon(R.drawable.ic_delete)
+                    .addSwipeLeftLabel("Delete")
+                    .addSwipeLeftCornerRadius(TypedValue.COMPLEX_UNIT_DIP,15)
+                    .addSwipeLeftPadding(TypedValue.COMPLEX_UNIT_DIP,8,8,8)
+                    .addSwipeRightActionIcon(R.drawable.change_image)
+                    .addSwipeRightBackgroundColor(ContextCompat.getColor(MyBuildActivity.this, R.color.green))
+                    .addSwipeRightLabel("Edit")
+                    .addSwipeRightCornerRadius(TypedValue.COMPLEX_UNIT_DIP,15)
+                    .create()
+                    .decorate();
+            super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+        }
     };
-    public void addTitles(){
-        titles[0]= "Empty";
-        titles[1]= "Empty";
-        titles[2] = "Empty";
-        titles[3] = "Empty";
-        titles[4] = "Empty";
-        titles[5] = "Empty";
-        titles[6] = "Empty";
-        titles[7] = "Empty";
-        titles[8] = "Empty";
+    public boolean checkAuth(){
+        if(mAuth.getCurrentUser()!=null)
+            return true;
+        else
+            return false;
     }
-    public void addImages(){
-        images[0] = R.drawable.ic_blank_image;
-        images[1] = R.drawable.ic_blank_image;
-        images[2] = R.drawable.ic_blank_image;
-        images[3] = R.drawable.ic_blank_image;
-        images[4] = R.drawable.ic_blank_image;
-        images[5] = R.drawable.ic_blank_image;
-        images[6] = R.drawable.ic_blank_image;
-        images[7] = R.drawable.ic_blank_image;
-        images[8] = R.drawable.ic_blank_image;
+
+    private void deleteCard(int position) {
+        build_ref.update("build_name", FieldValue.arrayRemove(build.get(position).getBuildName()));
+        build_ref.update("build_date", FieldValue.arrayRemove(build.get(position).getBuildDate()));
+        build_ref.update("price", FieldValue.arrayRemove(build.get(position).getBuildPrice()));
+        build_ref.update("parts_id",FieldValue.arrayRemove(build.get(position).getPartsId()));
+        build.remove(position);
+        myBuildAdapter.notifyDataSetChanged();
+    }
+
+    public void addIDs(){
+        for(int i =0;i<9;i++){
+            partsID[i]=-1;
+        }
     }
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -321,5 +366,34 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
         if(toggle.onOptionsItemSelected(item))
             return true;
         return true;
+    }
+
+    @Override
+    public void onCardClick(int position) {
+
+    }
+
+    @Override
+    public void onLongClick(int position) {
+        editCard(position);
+    }
+
+    private void editCard(int position) {
+        cleanUpIDs(position);
+        startActivity(new Intent(this,Build_Activity.class)
+                .putExtra("Build",build.get(position).getBuildName().substring(10))
+                .putExtra("ID",build.get(position).getCleanID()));
+        overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
+        deleteCard(position);
+    }
+
+    public void cleanUpIDs(int position) {
+        String[] strArr = null;
+        int[] partsID = new int[9];
+        strArr = build.get(position).getPartsId().substring(10).split(",");
+        for(int i=0;i<strArr.length;i++){
+            partsID[i] = Integer.parseInt(strArr[i]);
+        }
+        build.get(position).setCleanID(partsID);
     }
 }

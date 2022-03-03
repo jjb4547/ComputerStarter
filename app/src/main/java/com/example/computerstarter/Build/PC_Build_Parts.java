@@ -22,35 +22,23 @@ import com.example.computerstarter.R;
 
 public class PC_Build_Parts extends AppCompatActivity {
     ListView listView;
-    //String mTitle[] = {"Ex1", "Ex2", "Ex3", "Ex4", "Ex5"};
-    //String mDesc[] = {"D1", "D2", "D3", "D4", "D5"};
     String mTitle[] = new String[10];
     String mDesc[] = new String[10];
-    //int images[] = {R.drawable.amd_cpu, R.drawable.amd_cpu, R.drawable.amd_cpu, R.drawable.amd_cpu, R.drawable.amd_cpu,
-    //R.drawable.amd_cpu, R.drawable.amd_cpu, R.drawable.amd_cpu, R.drawable.amd_cpu, R.drawable.amd_cpu};
     int images[] = new int[10];
     int ids[] = new int[10];
-    double[] partsId;
-    String[] titles;
-    String action;
-    int[] componentImages;
+    int[] partsID = new int[10];
     int counter;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Intent intent = this.getIntent();
-        String name = intent.getExtras().getString("name");
-        partsId = intent.getDoubleArrayExtra("Parts");
-        action = intent.getExtras().getString("Build");
-        titles = intent.getStringArrayExtra("Titles");
-        componentImages = intent.getIntArrayExtra("Images");
         setContentView(R.layout.activity_pc_part_build);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(name);
+        getSupportActionBar().setTitle(getIntent().getStringExtra("name"));
+        partsID = getIntent().getIntArrayExtra("ID");
         counter = 0;
         for(int i = 0; i < PriceList.getLength(); i++)
         {
-            if(PriceList.getPart(i).equals(name.toLowerCase()) && counter < 11) {
+            if(PriceList.getPart(i).equals(getIntent().getExtras().getString("name").toLowerCase()) && counter < 11) {
                 mTitle[counter] = PriceList.getName(i);
                 mDesc[counter] = PriceList.getPriceAsString(i);
                 images[counter] = PriceList.getIcon(i);
@@ -67,62 +55,41 @@ public class PC_Build_Parts extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent buildIntent = new Intent(PC_Build_Parts.this,Build_Activity.class);
-                buildIntent.putExtra("Name",name);
-                buildIntent.putExtra("Build",action);
                 if(i<counter) {
                     Toast.makeText(PC_Build_Parts.this, PriceList.getPriceAsString(ids[i]), Toast.LENGTH_SHORT).show();
-                    switch (name) {
+                    switch (getIntent().getExtras().getString("name")) {
                         case "CPU":
-                            partsId[0] = PriceList.getPrice(ids[i]);
-                            titles[0] = PriceList.getName(ids[i]);
-                            componentImages[0] = PriceList.getIcon(ids[i]);
+                            partsID[0] = ids[i];
                             break;
                         case "Motherboards":
-                            partsId[1] = PriceList.getPrice(ids[i]);
-                            titles[1] = PriceList.getName(ids[i]);
-                            componentImages[1] = PriceList.getIcon(ids[i]);
+                            partsID[1] = ids[i];
                             break;
                         case "Memory":
-                            partsId[2] = PriceList.getPrice(ids[i]);
-                            titles[2] = PriceList.getName(ids[i]);
-                            componentImages[2] = PriceList.getIcon(ids[i]);
+                            partsID[2] = ids[i];
                             break;
                         case "Storage":
-                            partsId[3] = PriceList.getPrice(ids[i]);
-                            titles[3] = PriceList.getName(ids[i]);
-                            componentImages[3] = PriceList.getIcon(ids[i]);
+                            partsID[3] = ids[i];
                             break;
                         case "Power Supplies":
-                            partsId[4] = PriceList.getPrice(ids[i]);
-                            titles[4] = PriceList.getName(ids[i]);
-                            componentImages[4] = PriceList.getIcon(ids[i]);
+                            partsID[4] = ids[i];
                             break;
                         case "CPU Cooler":
-                            partsId[5] = PriceList.getPrice(ids[i]);
-                            titles[5] = PriceList.getName(ids[i]);
-                            componentImages[5] = PriceList.getIcon(ids[i]);
+                            partsID[5] = ids[i];
                             break;
                         case "Monitor":
-                            partsId[6] = PriceList.getPrice(ids[i]);
-                            titles[6] = PriceList.getName(ids[i]);
-                            componentImages[6] = PriceList.getIcon(ids[i]);
+                            partsID[6] = ids[i];
                             break;
                         case "Video Cards":
-                            partsId[7] = PriceList.getPrice(ids[i]);
-                            titles[7] = PriceList.getName(ids[i]);
-                            componentImages[7] = PriceList.getIcon(ids[i]);
+                            partsID[7] = ids[i];
                             break;
                         case "Cases":
-                            partsId[8] = PriceList.getPrice(ids[i]);
-                            titles[8] = PriceList.getName(ids[i]);
-                            componentImages[8] = PriceList.getIcon(ids[i]);
+                            partsID[8] = ids[i];
                             break;
                     }
-                    buildIntent.putExtra("Parts", partsId);
-                    buildIntent.putExtra("Titles", titles);
-                    buildIntent.putExtra("Images", componentImages);
-                    startActivity(buildIntent);
+                    startActivity(new Intent(PC_Build_Parts.this,Build_Activity.class)
+                            .putExtra("Name",getIntent().getStringExtra("name"))
+                            .putExtra("Build",getIntent().getStringExtra("Build"))
+                            .putExtra("ID",partsID));
                 }
             }
         });
