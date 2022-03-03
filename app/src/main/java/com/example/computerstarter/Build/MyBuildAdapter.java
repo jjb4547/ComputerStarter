@@ -51,7 +51,6 @@ public class MyBuildAdapter extends RecyclerView.Adapter<MyBuildAdapter.ViewHold
         holder.tbuildDate.setText(build_data_list.getBuildDate());
         holder.tbuildPrice.setText("Price: $"+build_data_list.getBuildPrice().substring(10));
         holder.tpartId.setText(build_data_list.getPartsId());
-        //holder.cpuName.setText(build_data_list.getCpuName());
 
     }
 
@@ -90,14 +89,13 @@ public class MyBuildAdapter extends RecyclerView.Adapter<MyBuildAdapter.ViewHold
         onCardListener onCardListener;
         public ViewHolder(@NonNull View itemView, onCardListener onCardListener) {
             super(itemView);
-            //buildImage = itemView.findViewById(R.id.image_item);
             cardView = itemView.findViewById(R.id.cardView);
             tbuildName = itemView.findViewById(R.id.build_name);
             tbuildDate = itemView.findViewById(R.id.date_started);
             tbuildPrice = itemView.findViewById(R.id.price);
             tpartId = itemView.findViewById(R.id.partID);
             cpuName = itemView.findViewById(R.id.cpuName);
-            motName = itemView.findViewById(R.id.monName);
+            motName = itemView.findViewById(R.id.motName);
             memName = itemView.findViewById(R.id.memName);
             storName = itemView.findViewById(R.id.storName);
             psuName = itemView.findViewById(R.id.psuName);
@@ -106,7 +104,7 @@ public class MyBuildAdapter extends RecyclerView.Adapter<MyBuildAdapter.ViewHold
             vgaName = itemView.findViewById(R.id.vgaName);
             caseName = itemView.findViewById(R.id.caseName);
             cpuTitle = itemView.findViewById(R.id.cpuTitle);
-            motTitle = itemView.findViewById(R.id.monTitle);
+            motTitle = itemView.findViewById(R.id.motTitle);
             memTitle = itemView.findViewById(R.id.memTitle);
             storTitle = itemView.findViewById(R.id.storTitle);
             psuTitle = itemView.findViewById(R.id.psuTitle);
