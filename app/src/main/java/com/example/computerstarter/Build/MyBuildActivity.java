@@ -219,7 +219,7 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
             public void onClick(DialogInterface dialogInterface, int i) {
                 String value = input.getText().toString();
                 startActivity(new Intent(MyBuildActivity.this,Build_Activity.class)
-                .putExtra("Build",value).putExtra("ID",partsID));
+                .putExtra("Build",value).putExtra("ID",partsID).putExtra("from",1));
             }
         });
         builder.create().show();
@@ -379,9 +379,14 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
 
     private void editCard(int position) {
         cleanUpIDs(position);
+        String[] editBuild = new String[]{ build.get(position).getBuildName(),
+                build.get(position).getBuildDate(),build.get(position).getBuildPrice(),
+                build.get(position).getPartsId()};
         startActivity(new Intent(this,Build_Activity.class)
+                .putExtra("from",0)
                 .putExtra("Build",build.get(position).getBuildName().substring(10))
-                .putExtra("ID",build.get(position).getCleanID()));
+                .putExtra("ID",build.get(position).getCleanID())
+            .putExtra("editBuild",editBuild));
         overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
         deleteCard(position);
     }
