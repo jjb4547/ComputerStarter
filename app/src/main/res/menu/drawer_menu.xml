@@ -10,14 +10,6 @@
         android:title="My Builds"
         android:icon="@drawable/ic_computer">
     </item>
-    <item android:id="@+id/social"
-        android:title="Messages"
-        android:icon="@drawable/ic_chat">
-    </item>
-    <item android:id="@+id/quiz"
-        android:title="Quiz"
-        android:icon="@drawable/ic_quiz">
-    </item>
 </group>
     <item android:title="Settings">
         <menu>

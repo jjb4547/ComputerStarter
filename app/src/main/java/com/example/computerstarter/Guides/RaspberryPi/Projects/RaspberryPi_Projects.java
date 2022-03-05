@@ -71,18 +71,15 @@ public class RaspberryPi_Projects extends AppCompatActivity implements Navigatio
         navigationView.setNavigationItemSelectedListener(this);
         View headerView = navigationView.getHeaderView(0);
         Menu menu = navigationView.getMenu();
-        item_quiz = menu.findItem(R.id.quiz);
         item_acc = menu.findItem(R.id.account);
         log = findViewById(R.id.log_Text);
         logBut = findViewById(R.id.logButtton);
         if(user!=null) {
             log.setText("Log Out");
             item_acc.setVisible(true);
-            item_quiz.setVisible(true);
         }else {
             log.setText("Log In");
             item_acc.setVisible(false);
-            item_quiz.setVisible(false);
         }
         TextView name = headerView.findViewById(R.id.myname);
         TextView email = headerView.findViewById(R.id.email);
@@ -104,7 +101,6 @@ public class RaspberryPi_Projects extends AppCompatActivity implements Navigatio
                 log.setText("Log In");
                 //login.logged = false;
                 item_acc.setVisible(false);
-                item_quiz.setVisible(false);
             }else{
                 startActivity(new Intent(this, Login_SignUpActivity.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
@@ -126,33 +122,28 @@ public class RaspberryPi_Projects extends AppCompatActivity implements Navigatio
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         mAuth = FirebaseAuth.getInstance();
         Menu menu = navigationView.getMenu();
-        MenuItem item_quiz = menu.findItem(R.id.quiz);
         MenuItem item_acc = menu.findItem(R.id.account);
         //real_login login = new real_login();
         switch (item.getItemId()){
-            case R.id.social:
-                Toast.makeText(this,"Future Improvement",Toast.LENGTH_SHORT).show();
-                break;
             case R.id.home:
                 Toast.makeText(this,"Main Page",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this,MainActivity.class));
+                startActivity(new Intent(this,MainActivity.class)
+                        .putExtra("from","Main"));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 break;
             case R.id.building:
                 Toast.makeText(this,"My Builds",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this, MyBuildActivity.class));
+                startActivity(new Intent(this, MyBuildActivity.class)
+                        .putExtra("from","Main"));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 break;
             case R.id.account:
                 if(mAuth.getCurrentUser()!=null) {
-                    startActivity(new Intent(this, AccountActivity.class));
+                    startActivity(new Intent(this, AccountActivity.class)
+                            .putExtra("from","Main"));
                     overridePendingTransition(R.anim.slide_in_bottom, R.anim.stay);
                 }else
                     Toast.makeText(this,"LOG IN!!!!",Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.quiz:
-                //showAlertDialogQuiz();
-                Toast.makeText(this,"Future Improvement",Toast.LENGTH_SHORT).show();
                 break;
         }
         return true;

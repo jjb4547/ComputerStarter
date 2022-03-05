@@ -115,6 +115,8 @@ public class Build_Activity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent = getIntent();
+        String name = intent.getExtras().getString("Build");
         int id = item.getItemId();
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy 'at' HH:mm:ss z");
         String currentDateandTime = sdf.format(new Date());
@@ -136,7 +138,8 @@ public class Build_Activity extends AppCompatActivity {
                                 build_ref.update("build_date", FieldValue.arrayUnion(currentDateandTime));
                                 build_ref.update("price", FieldValue.arrayUnion(price));
                                 build_ref.update("parts_id", FieldValue.arrayUnion(unixTime + turnIntArrtoStr()));
-                                startActivity(new Intent(Build_Activity.this, MyBuildActivity.class));
+                                startActivity(new Intent(Build_Activity.this, MyBuildActivity.class)
+                                        .putExtra("from","Main"));
                                 overridePendingTransition(R.anim.slide_in_left, R.anim.stay);
                             } else {
                                 Toast.makeText(Build_Activity.this, "TOO MANY BUILDS, DELETE ONE!!!!", Toast.LENGTH_SHORT).show();
@@ -156,6 +159,9 @@ public class Build_Activity extends AppCompatActivity {
                         Toast.makeText(Build_Activity.this,"Not Saved",Toast.LENGTH_SHORT).show();
                     }
                     startActivity(new Intent(Build_Activity.this,MyBuildActivity.class));
+                    Toast.makeText(Build_Activity.this,"Not Saved",Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(Build_Activity.this,MyBuildActivity.class)
+                            .putExtra("from","Main"));
                 });
                 builder.show();
             }else{
@@ -164,7 +170,8 @@ public class Build_Activity extends AppCompatActivity {
                 builder.setMessage("Not Logged In, Will Not Save");
                 builder.setBackground(getResources().getDrawable(R.drawable.dialog_shape, null));
                 builder.setPositiveButton("Okay",(dialogInterface, i) -> {
-                    startActivity(new Intent(Build_Activity.this, MyBuildActivity.class));
+                    startActivity(new Intent(Build_Activity.this, MyBuildActivity.class)
+                            .putExtra("from","Main"));
                     overridePendingTransition(R.anim.slide_in_left, R.anim.stay);
                 });
                 builder.show();
@@ -181,7 +188,8 @@ public class Build_Activity extends AppCompatActivity {
                             build_ref.update("build_date", FieldValue.arrayUnion(currentDateandTime));
                             build_ref.update("price", FieldValue.arrayUnion(price));
                             build_ref.update("parts_id", FieldValue.arrayUnion(unixTime + turnIntArrtoStr()));
-                            startActivity(new Intent(Build_Activity.this, MyBuildActivity.class));
+                            startActivity(new Intent(Build_Activity.this, MyBuildActivity.class)
+                                    .putExtra("from","Main"));
                             overridePendingTransition(R.anim.slide_in_left, R.anim.stay);
                         } else {
                             Toast.makeText(Build_Activity.this, "LOGIN!", Toast.LENGTH_SHORT).show();
@@ -264,7 +272,8 @@ public class Build_Activity extends AppCompatActivity {
         cpu.setOnClickListener(view -> {
             Intent cpu_intent = new Intent(Build_Activity.this, PC_Build_Parts.class)
                     .putExtra("from",getIntent().getExtras().getInt("from"))
-                    .putExtra("editBuild",getIntent().getStringArrayExtra("editBuild"));
+                    .putExtra("editBuild",getIntent().getStringArrayExtra("editBuild"))
+                    .putExtra("from","Main");
             cpu_intent.putExtra("name","CPU");
             cpu_intent.putExtra("Build",name_action_bar);
             cpu_intent.putExtra("ID",partsID);
@@ -272,6 +281,7 @@ public class Build_Activity extends AppCompatActivity {
         });
         mot.setOnClickListener(view -> {
             Intent mot_intent = new Intent(Build_Activity.this, PC_Build_Parts.class)
+                    .putExtra("from","Main")
                     .putExtra("from",getIntent().getExtras().getInt("from"))
                     .putExtra("editBuild",getIntent().getStringArrayExtra("editBuild"));
             mot_intent.putExtra("name","Motherboards");
@@ -282,7 +292,8 @@ public class Build_Activity extends AppCompatActivity {
         mem.setOnClickListener(view -> {
             Intent mem_intent = new Intent(Build_Activity.this, PC_Build_Parts.class)
                     .putExtra("from",getIntent().getExtras().getInt("from"))
-                    .putExtra("editBuild",getIntent().getStringArrayExtra("editBuild"));
+                    .putExtra("editBuild",getIntent().getStringArrayExtra("editBuild"))
+                    .putExtra("from","Main");
             mem_intent.putExtra("name","Memory");
             mem_intent.putExtra("Build",name_action_bar);
             mem_intent.putExtra("ID",partsID);
@@ -290,6 +301,7 @@ public class Build_Activity extends AppCompatActivity {
         });
         vga.setOnClickListener(view -> {
             Intent vga_intent = new Intent(Build_Activity.this, PC_Build_Parts.class)
+                    .putExtra("from","Main")
                     .putExtra("from",getIntent().getExtras().getInt("from"))
                     .putExtra("editBuild",getIntent().getStringArrayExtra("editBuild"));
             vga_intent.putExtra("name","Video Cards");
@@ -300,7 +312,8 @@ public class Build_Activity extends AppCompatActivity {
         psu.setOnClickListener(view -> {
             Intent psu_intent = new Intent(Build_Activity.this, PC_Build_Parts.class)
                     .putExtra("from",getIntent().getExtras().getInt("from"))
-                    .putExtra("editBuild",getIntent().getStringArrayExtra("editBuild"));
+                    .putExtra("editBuild",getIntent().getStringArrayExtra("editBuild"))
+                    .putExtra("from","Main");
             psu_intent.putExtra("name","Power Supplies");
             psu_intent.putExtra("Build",name_action_bar);
             psu_intent.putExtra("ID",partsID);
@@ -308,6 +321,7 @@ public class Build_Activity extends AppCompatActivity {
         });
         stor.setOnClickListener(view -> {
             Intent stor_intent = new Intent(Build_Activity.this, PC_Build_Parts.class)
+                    .putExtra("from","Main")
                     .putExtra("from",getIntent().getExtras().getInt("from"))
                     .putExtra("editBuild",getIntent().getStringArrayExtra("editBuild"));
             stor_intent.putExtra("name","Storage");
@@ -318,7 +332,8 @@ public class Build_Activity extends AppCompatActivity {
         cool.setOnClickListener(view -> {
             Intent cool_intent = new Intent(Build_Activity.this, PC_Build_Parts.class)
                     .putExtra("from",getIntent().getExtras().getInt("from"))
-                    .putExtra("editBuild",getIntent().getStringArrayExtra("editBuild"));
+                    .putExtra("editBuild",getIntent().getStringArrayExtra("editBuild"))
+                    .putExtra("from","Main");
             cool_intent.putExtra("name","CPU Cooler");
             cool_intent.putExtra("Build",name_action_bar);
             cool_intent.putExtra("ID",partsID);
@@ -326,6 +341,7 @@ public class Build_Activity extends AppCompatActivity {
         });
         mon.setOnClickListener(view -> {
             Intent mon_intent = new Intent(Build_Activity.this, PC_Build_Parts.class)
+                    .putExtra("from","Main")
                     .putExtra("from",getIntent().getExtras().getInt("from"))
                     .putExtra("editBuild",getIntent().getStringArrayExtra("editBuild"));
             mon_intent.putExtra("name","Monitor");
@@ -335,6 +351,7 @@ public class Build_Activity extends AppCompatActivity {
         });
         pc_case.setOnClickListener(view -> {
             Intent pc_case_intent = new Intent(Build_Activity.this, PC_Build_Parts.class)
+                    .putExtra("from","Main")
                     .putExtra("from",getIntent().getExtras().getInt("from"))
                     .putExtra("editBuild",getIntent().getStringArrayExtra("editBuild"));
             pc_case_intent.putExtra("name","Cases");

@@ -65,13 +65,15 @@ public class PC_Guide_Setup_Activity extends AppCompatActivity {
             if(onboardingViewPager.getCurrentItem()+1< onboardingAdapterPcGuide.getItemCount()){
                 onboardingViewPager.setCurrentItem(onboardingViewPager.getCurrentItem()+1);
             }else{
-                startActivity(new Intent(this, PC_Building_Guide_Activity.class));
+                startActivity(new Intent(this, PC_Building_Guide_Activity.class)
+                        .putExtra("from","Main"));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 finish();
             }
         });
         exit.setOnClickListener(view->{
-            startActivity(new Intent(this, PC_Building_Guide_Activity.class));
+            startActivity(new Intent(this, PC_Building_Guide_Activity.class)
+                    .putExtra("from","Main"));
             overridePendingTransition(R.anim.slide_in_top,R.anim.stay);
             finish();
         });

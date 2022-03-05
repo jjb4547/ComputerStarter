@@ -41,13 +41,15 @@ public class MainPageFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_main_page, container, false);
         CardView builds = view.findViewById(R.id.builds);
         builds.setOnClickListener(view->{
-            startActivity(new Intent(getActivity(), MyBuildActivity.class));
+            startActivity(new Intent(getActivity(), MyBuildActivity.class)
+                    .putExtra("from","Main"));
             getActivity().overridePendingTransition(R.anim.slide_in_left,R.anim.stay);
         });
         CardView feat = view.findViewById(R.id.helpful_link);
         feat.setOnClickListener(view ->{
             Toast.makeText(getActivity(),"PC Building Guides",Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(getContext(), PC_Building_Guide_Activity.class));
+            startActivity(new Intent(getContext(), PC_Building_Guide_Activity.class)
+                    .putExtra("from","Main"));
             getActivity().overridePendingTransition(R.anim.slide_in_bottom,R.anim.stay);
         });
         CardView feat_1 = view.findViewById(R.id.helpful_link_1);

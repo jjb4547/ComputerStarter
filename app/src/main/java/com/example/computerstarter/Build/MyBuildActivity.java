@@ -73,11 +73,8 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
     private String quiz;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     private TextView log;
-    private ImageView logBut;
     private MenuItem item_log;
-    private MenuItem item_quiz;
     private MenuItem item_acc;
-    private MenuItem item_mes;
     private MaterialButton loginBut;
     private TextView loginText;
     private TextView cpuName, motName,memName,storName, psuName,coolName,monName,vgaName,caseName;
@@ -118,23 +115,16 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
         navigationView.setNavigationItemSelectedListener(this);
         View headerView = navigationView.getHeaderView(0);
         Menu menu = navigationView.getMenu();
-        item_quiz = menu.findItem(R.id.quiz);
         item_acc = menu.findItem(R.id.account);
-        item_mes = menu.findItem(R.id.social);
         log = findViewById(R.id.log_Text);
-        logBut = findViewById(R.id.logButtton);
         if(user!=null) {
             log.setText("Log Out");
             item_acc.setVisible(true);
-            item_quiz.setVisible(true);
             loginText.setVisibility(View.GONE);
             loginBut.setVisibility(View.GONE);
-            item_mes.setVisible(true);
         }else {
             log.setText("Log In");
             item_acc.setVisible(false);
-            item_quiz.setVisible(false);
-            item_mes.setVisible(false);
             loginBut.setVisibility(View.VISIBLE);
             loginText.setVisibility(View.VISIBLE);
         }
@@ -158,7 +148,6 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
                 log.setText("Log In");
                 //login.logged = false;
                 item_acc.setVisible(false);
-                item_quiz.setVisible(false);
             }else{
                 startActivity(new Intent(this, Login_SignUpActivity.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
@@ -167,11 +156,11 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
         });
         home = findViewById(R.id.home);
         home.setOnClickListener(view->{
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            startActivity(new Intent(getApplicationContext(), MainActivity.class).putExtra("from","Main"));
             overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
         });
         loginBut.setOnClickListener(v->{
-            startActivity(new Intent(MyBuildActivity.this,Login_SignUpActivity.class));
+            startActivity(new Intent(MyBuildActivity.this,Login_SignUpActivity.class).putExtra("from","Main"));
             overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
         });
         //getSupportActionBar().setTitle("My Builds");
@@ -219,7 +208,9 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
             public void onClick(DialogInterface dialogInterface, int i) {
                 String value = input.getText().toString();
                 startActivity(new Intent(MyBuildActivity.this,Build_Activity.class)
-                .putExtra("Build",value).putExtra("ID",partsID).putExtra("from",1));
+                .putExtra("Build",value).putExtra("ID",partsID).putExtra("from",1)
+                .putExtra("Build",value).putExtra("ID",partsID)
+                .putExtra("from","Main"));
             }
         });
         builder.create().show();
@@ -330,32 +321,27 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         mAuth = FirebaseAuth.getInstance();
         Menu menu = navigationView.getMenu();
-        MenuItem item_quiz = menu.findItem(R.id.quiz);
         MenuItem item_acc = menu.findItem(R.id.account);
         switch (item.getItemId()){
-            case R.id.social:
-                Toast.makeText(this,"Future Improvement",Toast.LENGTH_SHORT).show();
-                break;
             case R.id.home:
                 Toast.makeText(this,"Main Page",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this,MainActivity.class));
+                startActivity(new Intent(this,MainActivity.class)
+                        .putExtra("from","Main"));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 break;
             case R.id.building:
                 Toast.makeText(this,"My Builds",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this, MyBuildActivity.class));
+                startActivity(new Intent(this, MyBuildActivity.class)
+                        .putExtra("from","Main"));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 break;
             case R.id.account:
                 if(mAuth.getCurrentUser()!=null) {
-                    startActivity(new Intent(this, AccountActivity.class));
+                    startActivity(new Intent(this, AccountActivity.class)
+                            .putExtra("from","Main"));
                     overridePendingTransition(R.anim.slide_in_bottom, R.anim.stay);
                 }else
                     Toast.makeText(this,"LOG IN!!!!",Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.quiz:
-                //showAlertDialogQuiz();
-                Toast.makeText(this,"Future Improvement",Toast.LENGTH_SHORT).show();
                 break;
         }
         return true;
@@ -386,7 +372,9 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
                 .putExtra("from",0)
                 .putExtra("Build",build.get(position).getBuildName().substring(10))
                 .putExtra("ID",build.get(position).getCleanID())
-            .putExtra("editBuild",editBuild));
+                .putExtra("editBuild",editBuild)
+                .putExtra("ID",build.get(position).getCleanID())
+                .putExtra("from","Main"));
         overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
         deleteCard(position);
     }

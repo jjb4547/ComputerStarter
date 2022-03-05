@@ -87,6 +87,7 @@ public class PC_Build_Parts extends AppCompatActivity {
                             break;
                     }
                     startActivity(new Intent(PC_Build_Parts.this,Build_Activity.class)
+                            .putExtra("from","Main")
                             .putExtra("Name",getIntent().getStringExtra("name"))
                             .putExtra("Build",getIntent().getStringExtra("Build"))
                             .putExtra("ID",partsID)

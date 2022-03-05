@@ -64,13 +64,15 @@ public class RaspberryPi_Guide_Prep_Activity extends AppCompatActivity {
             if(onboardingViewPager.getCurrentItem()+1< onboardingAdapterPcGuide.getItemCount()){
                 onboardingViewPager.setCurrentItem(onboardingViewPager.getCurrentItem()+1);
             }else{
-                startActivity(new Intent(this, RaspberryPi_Guide_Setup_Activity.class));
+                startActivity(new Intent(this, RaspberryPi_Guide_Setup_Activity.class)
+                        .putExtra("from","Edu"));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 finish();
             }
         });
         exit.setOnClickListener(view->{
-            startActivity(new Intent(this, RaspberryPi_Guides_Activity.class));
+            startActivity(new Intent(this, RaspberryPi_Guides_Activity.class)
+                    .putExtra("from","Edu"));
             overridePendingTransition(R.anim.slide_in_top,R.anim.stay);
             finish();
         });

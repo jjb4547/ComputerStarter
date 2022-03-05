@@ -118,7 +118,8 @@ public class SplashActivity extends AppCompatActivity  {
                     counter++;
                 }else{
                     timer.cancel();
-                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                    startActivity(new Intent(SplashActivity.this, MainActivity.class)
+                            .putExtra("from","Main"));
                     overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 }
             }

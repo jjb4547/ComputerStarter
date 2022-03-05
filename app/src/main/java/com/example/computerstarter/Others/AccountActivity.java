@@ -57,7 +57,8 @@ public class AccountActivity extends AppCompatActivity {
         profileImage = findViewById(R.id.profileImage);
         home = findViewById(R.id.home);
         home.setOnClickListener(view->{
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            startActivity(new Intent(getApplicationContext(), MainActivity.class)
+                    .putExtra("from","Main"));
             overridePendingTransition(R.anim.slide_in_bottom,R.anim.stay);
         });
         //profileImage.setImageURI(user.getPhotoUrl());
@@ -73,7 +74,8 @@ public class AccountActivity extends AppCompatActivity {
         });
         logOut.setOnClickListener(view->{
             mAuth.signOut();
-            startActivity(new Intent(AccountActivity.this,MainActivity.class));
+            startActivity(new Intent(AccountActivity.this,MainActivity.class)
+                    .putExtra("from","Main"));
             overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
         });
         profile.setOnClickListener(view -> {

@@ -18,6 +18,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 
 import com.example.computerstarter.Build.MyBuildActivity;
+import com.example.computerstarter.Education.Education_Choosing_Activity;
 import com.example.computerstarter.Login.Login_SignUpActivity;
 import com.example.computerstarter.Others.AccountActivity;
 import com.example.computerstarter.R;
@@ -68,18 +69,15 @@ public class Arduino_Guides_Activity extends AppCompatActivity implements Naviga
         navigationView.setNavigationItemSelectedListener(this);
         View headerView = navigationView.getHeaderView(0);
         Menu menu = navigationView.getMenu();
-        item_quiz = menu.findItem(R.id.quiz);
         item_acc = menu.findItem(R.id.account);
         log = findViewById(R.id.log_Text);
         logBut = findViewById(R.id.logButtton);
         if(user!=null) {
             log.setText("Log Out");
             item_acc.setVisible(true);
-            item_quiz.setVisible(true);
         }else {
             log.setText("Log In");
             item_acc.setVisible(false);
-            item_quiz.setVisible(false);
         }
         TextView name = headerView.findViewById(R.id.myname);
         TextView email = headerView.findViewById(R.id.email);
@@ -97,20 +95,23 @@ public class Arduino_Guides_Activity extends AppCompatActivity implements Naviga
             if(mAuth.getCurrentUser()!=null){
                 mAuth.signOut();
                 Toast.makeText(this,"Logged Out",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this,MainActivity.class));
+                startActivity(new Intent(this,MainActivity.class)
+                        .putExtra("from","Main"));
                 log.setText("Log In");
                 //login.logged = false;
                 item_acc.setVisible(false);
-                item_quiz.setVisible(false);
             }else{
-                startActivity(new Intent(this, Login_SignUpActivity.class));
+                startActivity(new Intent(this, Login_SignUpActivity.class)
+                        .putExtra("from","Main"));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 //log.setText("Log Out");
             }
         });
         TextView home = findViewById(R.id.home);
         home.setOnClickListener(view->{
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            startActivity(new Intent(getApplicationContext(), Education_Choosing_Activity.class)
+                    .putExtra("component","Arduino")
+                    .putExtra("from","Edu"));
             overridePendingTransition(R.anim.slide_in_top,R.anim.stay);
         });
         CardView supplies = findViewById(R.id.prep);
@@ -137,33 +138,28 @@ public class Arduino_Guides_Activity extends AppCompatActivity implements Naviga
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         mAuth = FirebaseAuth.getInstance();
         Menu menu = navigationView.getMenu();
-        MenuItem item_quiz = menu.findItem(R.id.quiz);
         MenuItem item_acc = menu.findItem(R.id.account);
         //real_login login = new real_login();
         switch (item.getItemId()){
-            case R.id.social:
-                Toast.makeText(this,"Future Improvement",Toast.LENGTH_SHORT).show();
-                break;
             case R.id.home:
                 Toast.makeText(this,"Main Page",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this,MainActivity.class));
+                startActivity(new Intent(this,MainActivity.class)
+                        .putExtra("from","Main"));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 break;
             case R.id.building:
                 Toast.makeText(this,"My Builds",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this, MyBuildActivity.class));
+                startActivity(new Intent(this, MyBuildActivity.class)
+                        .putExtra("from","Main"));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 break;
             case R.id.account:
                 if(mAuth.getCurrentUser()!=null) {
-                    startActivity(new Intent(this, AccountActivity.class));
+                    startActivity(new Intent(this, AccountActivity.class)
+                            .putExtra("from","Main"));
                     overridePendingTransition(R.anim.slide_in_bottom, R.anim.stay);
                 }else
                     Toast.makeText(this,"LOG IN!!!!",Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.quiz:
-                //showAlertDialogQuiz();
-                Toast.makeText(this,"Future Improvement",Toast.LENGTH_SHORT).show();
                 break;
         }
         return true;
