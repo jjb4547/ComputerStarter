@@ -4,15 +4,18 @@
     <item
         android:id="@+id/navigation_education"
         android:title="Education"
-        android:icon="@drawable/ic_education" />
+        android:icon="@drawable/ic_education"
+        android:visible="true"/>
     <item
         android:id="@+id/navigation_main"
         android:title="Main Page"
         android:icon="@drawable/ic_home"
+        android:visible="true"
        />
     <item android:id="@+id/navigation_social"
         android:title="Forum"
         android:icon="@drawable/ic_social"
+        android:visible="true"
 
         />
 </menu>

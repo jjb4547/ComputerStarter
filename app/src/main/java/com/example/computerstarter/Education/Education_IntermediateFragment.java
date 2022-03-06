@@ -1,9 +1,8 @@
 package com.example.computerstarter.Education;
 
-import android.graphics.Color;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,8 +44,6 @@ public class Education_IntermediateFragment extends Fragment {
                     imageView.setImageResource(R.drawable.amd_cpu);
                     link_title.setText(getString(R.string.link_title));
                     actual_link.setText(getString(R.string.cpu_link));
-                    actual_link.setMovementMethod(LinkMovementMethod.getInstance());
-                    actual_link.setLinkTextColor(Color.BLUE);
                     break;
                 case "MotherBoard":
                     //Motherboard
@@ -57,8 +54,6 @@ public class Education_IntermediateFragment extends Fragment {
                     imageView.setImageResource(R.drawable.motherboard);
                     link_title.setText(getString(R.string.link_title));
                     actual_link.setText(getString(R.string.mot_link));
-                    actual_link.setMovementMethod(LinkMovementMethod.getInstance());
-                    actual_link.setLinkTextColor(Color.BLUE);
                     break;
                 case "Memory":
                     //Memory
@@ -69,8 +64,6 @@ public class Education_IntermediateFragment extends Fragment {
                     imageView.setImageResource(R.drawable.memory);
                     link_title.setText(getString(R.string.link_title));
                     actual_link.setText(getString(R.string.mem_link));
-                    actual_link.setMovementMethod(LinkMovementMethod.getInstance());
-                    actual_link.setLinkTextColor(Color.BLUE);
                     break;
                 case "Storage":
                     //Storage
@@ -81,8 +74,6 @@ public class Education_IntermediateFragment extends Fragment {
                     imageView.setImageResource(R.drawable.storage);
                     link_title.setText(getString(R.string.link_title));
                     actual_link.setText(getString(R.string.stor_link));
-                    actual_link.setMovementMethod(LinkMovementMethod.getInstance());
-                    actual_link.setLinkTextColor(Color.BLUE);
                     break;
                 case "Video Card":
                     //Video Card
@@ -93,8 +84,6 @@ public class Education_IntermediateFragment extends Fragment {
                     imageView.setImageResource(R.drawable.vga_pic);
                     link_title.setText(getString(R.string.link_title));
                     actual_link.setText(getString(R.string.gpu_link));
-                    actual_link.setMovementMethod(LinkMovementMethod.getInstance());
-                    actual_link.setLinkTextColor(Color.BLUE);
                     break;
                 case "Power Supply":
                     //Power Supply
@@ -105,8 +94,6 @@ public class Education_IntermediateFragment extends Fragment {
                     imageView.setImageResource(R.drawable.psu);
                     link_title.setText(getString(R.string.link_title));
                     actual_link.setText(getString(R.string.psu_link));
-                    actual_link.setMovementMethod(LinkMovementMethod.getInstance());
-                    actual_link.setLinkTextColor(Color.BLUE);
                     break;
                 case "Raspberry Pi and More":
                     //Raspberry Pi
@@ -125,8 +112,6 @@ public class Education_IntermediateFragment extends Fragment {
                     //imageView.setImageResource(R.drawable.amd_cpu); //need image
                     link_title.setText(getString(R.string.link_title));
                     actual_link.setText(getString(R.string.cpucool_link));
-                    actual_link.setMovementMethod(LinkMovementMethod.getInstance());
-                    actual_link.setLinkTextColor(Color.BLUE);
                     break;
                 case "Case":
                     //Case
@@ -137,8 +122,6 @@ public class Education_IntermediateFragment extends Fragment {
                     //imageView.setImageResource(R.drawable.amd_cpu); //need image
                     link_title.setText(getString(R.string.link_title));
                     actual_link.setText(getString(R.string.case_link));
-                    actual_link.setMovementMethod(LinkMovementMethod.getInstance());
-                    actual_link.setLinkTextColor(Color.BLUE);
                     break;
                 case "OS":
                     //OS
@@ -149,8 +132,6 @@ public class Education_IntermediateFragment extends Fragment {
                     //imageView.setImageResource(R.drawable.amd_cpu); //need image
                     link_title.setText(getString(R.string.link_title));
                     actual_link.setText(getString(R.string.os_link));
-                    actual_link.setMovementMethod(LinkMovementMethod.getInstance());
-                    actual_link.setLinkTextColor(Color.BLUE);
                     break;
                 case "Monitor":
                     //Monitor
@@ -161,8 +142,6 @@ public class Education_IntermediateFragment extends Fragment {
                     //imageView.setImageResource(R.drawable.amd_cpu); //need image
                     link_title.setText(getString(R.string.link_title));
                     actual_link.setText(getString(R.string.mon_link));
-                    actual_link.setMovementMethod(LinkMovementMethod.getInstance());
-                    actual_link.setLinkTextColor(Color.BLUE);
                     break;
                 case "Peripherals":
                     //Peripherals
@@ -173,10 +152,14 @@ public class Education_IntermediateFragment extends Fragment {
                     //imageView.setImageResource(R.drawable.amd_cpu); //need image
                     link_title.setText(getString(R.string.link_title));
                     actual_link.setText(getString(R.string.per_link));
-                    actual_link.setMovementMethod(LinkMovementMethod.getInstance());
-                    actual_link.setLinkTextColor(Color.BLUE);
                     break;
             }
+            actual_link.setOnClickListener(v->{
+                startActivity(new Intent(getContext(), WebPageEducation.class)
+                        .putExtra("component",bundle.getString("component"))
+                        .putExtra("from",bundle.getString("from"))
+                        .putExtra("Act",bundle.getString("Act")));
+            });
         }
         return view;
     }

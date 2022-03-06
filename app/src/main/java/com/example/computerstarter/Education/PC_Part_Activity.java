@@ -142,105 +142,46 @@ public class PC_Part_Activity extends AppCompatActivity implements NavigationVie
             startActivity(new Intent(this,Education_Choosing_Activity.class)
                     .putExtra("component",diffTitles[0])
                     .putExtra("Act",from));
-            //Toast.makeText(PC_Part_Activity.this, diffTitles[0], Toast.LENGTH_SHORT).show();
-            /*Intent i = new Intent(PC_Part_Activity.this, Education_Choosing_Activity.class);
-            i.putExtra("component", diffTitles[0]).putExtra("Act", from);
-            startActivity(i);
-             */
         });
         mot.setOnClickListener(v -> {
             startActivity(new Intent(this,Education_Choosing_Activity.class)
                     .putExtra("component",diffTitles[1])
                     .putExtra("Act",from));
-            /*
-            Toast.makeText(PC_Part_Activity.this, diffTitles[1], Toast.LENGTH_SHORT).show();
-            Intent i = new Intent(PC_Part_Activity.this, Education_Choosing_Activity.class);
-            i.putExtra("component", diffTitles[1]).putExtra("Act", from);
-            startActivity(i);
-
-             */
         });
         mem.setOnClickListener(v -> {
             startActivity(new Intent(this,Education_Choosing_Activity.class)
                     .putExtra("component",diffTitles[2])
                     .putExtra("Act",from));
-            /*
-            Toast.makeText(PC_Part_Activity.this, diffTitles[2], Toast.LENGTH_SHORT).show();
-            Intent i = new Intent(PC_Part_Activity.this, Education_Choosing_Activity.class);
-            i.putExtra("component", diffTitles[2]).putExtra("Act", from);
-            startActivity(i);
-             */
         });
         vga.setOnClickListener(v -> {
             startActivity(new Intent(this,Education_Choosing_Activity.class)
                     .putExtra("component",diffTitles[7])
                     .putExtra("Act",from));
-            /*
-            Toast.makeText(PC_Part_Activity.this, diffTitles[7], Toast.LENGTH_SHORT).show();
-            Intent i = new Intent(PC_Part_Activity.this, Education_Choosing_Activity.class);
-            i.putExtra("component", diffTitles[7]).putExtra("Act", from);
-            startActivity(i);
-
-             */
         });
         psu.setOnClickListener(v -> {
             startActivity(new Intent(this,Education_Choosing_Activity.class)
                     .putExtra("component",diffTitles[4])
                     .putExtra("Act",from));
-            /*
-            Toast.makeText(PC_Part_Activity.this, diffTitles[4], Toast.LENGTH_SHORT).show();
-            Intent i = new Intent(PC_Part_Activity.this, Education_Choosing_Activity.class);
-            i.putExtra("component", diffTitles[4]).putExtra("Act", from);
-            startActivity(i);
-
-             */
         });
         stor.setOnClickListener(v -> {
             startActivity(new Intent(this,Education_Choosing_Activity.class)
                     .putExtra("component",diffTitles[3])
                     .putExtra("Act",from));
-            /*
-            Toast.makeText(PC_Part_Activity.this, diffTitles[3], Toast.LENGTH_SHORT).show();
-            Intent i = new Intent(PC_Part_Activity.this, Education_Choosing_Activity.class);
-            i.putExtra("component", diffTitles[3]).putExtra("Act", from);
-            startActivity(i);
-
-             */
         });
         mon.setOnClickListener(v -> {
             startActivity(new Intent(this,Education_Choosing_Activity.class)
                     .putExtra("component",diffTitles[6])
                     .putExtra("Act",from));
-            /*
-            Toast.makeText(PC_Part_Activity.this, diffTitles[6], Toast.LENGTH_SHORT).show();
-            Intent i = new Intent(PC_Part_Activity.this, Education_Choosing_Activity.class);
-            i.putExtra("component", diffTitles[6]).putExtra("Act", from);
-            startActivity(i);
-
-             */
         });
         cool.setOnClickListener(v -> {
             startActivity(new Intent(this,Education_Choosing_Activity.class)
                     .putExtra("component",diffTitles[5])
                     .putExtra("Act",from));
-            /*
-            Toast.makeText(PC_Part_Activity.this, diffTitles[5], Toast.LENGTH_SHORT).show();
-            Intent i = new Intent(PC_Part_Activity.this, Education_Choosing_Activity.class);
-            i.putExtra("component", diffTitles[5]).putExtra("Act", from);
-            startActivity(i);
-
-             */
         });
         pc_case.setOnClickListener(v -> {
             startActivity(new Intent(this,Education_Choosing_Activity.class)
                     .putExtra("component",diffTitles[8])
                     .putExtra("Act",from));
-            /*Toast.makeText(PC_Part_Activity.this, diffTitles[8], Toast.LENGTH_SHORT).show();
-            Intent i = new Intent(PC_Part_Activity.this, Education_Choosing_Activity.class);
-            i.putExtra("component", diffTitles[8]).putExtra("Act", from);
-            startActivity(i);
-
-             */
         });
     }
 

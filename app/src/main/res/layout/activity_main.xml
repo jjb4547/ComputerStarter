@@ -32,7 +32,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:background="@color/blue_gray_darker"
-            app:labelVisibilityMode="selected"
+            app:labelVisibilityMode="labeled"
             app:itemIconTint="@color/cardview_light"
             app:itemTextColor="@color/cardview_light"/>
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,7 +3,10 @@
     package="com.example.computerstarter">
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <application
+        android:networkSecurityConfig="@xml/network_security"
         android:allowBackup="true"
         android:icon="@mipmap/ic_logo"
         android:label="ComputerStarter"
@@ -80,6 +83,7 @@
             android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
         <activity android:name=".Guides.RaspberryPi.Projects.HumiditySensor.RaspberryPi_Humidity_Sensor_Coding"
             android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
+        <activity android:name=".Education.WebPageEducation"/>
 
         <!-- Fonts -->
         <meta-data

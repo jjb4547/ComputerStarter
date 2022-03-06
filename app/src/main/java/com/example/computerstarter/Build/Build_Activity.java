@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.CheckedTextView;
 import android.widget.ImageButton;
@@ -22,7 +21,6 @@ import androidx.cardview.widget.CardView;
 import com.example.computerstarter.R;
 import com.example.computerstarter.app.MainPageFragment;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
@@ -56,10 +54,11 @@ public class Build_Activity extends AppCompatActivity {
     private String price;
     private String ids;
     private RelativeLayout relLayout;
-    String name;
+    String name,currentDateandTime;
     String name_action_bar;
     int[] partsID;
     private ImageButton editName;
+    private TextView homeBut;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -71,6 +70,7 @@ public class Build_Activity extends AppCompatActivity {
         setContentView(R.layout.build_layout);
         Build_Data build_data = new Build_Data();
         title = findViewById(R.id.welcome);
+        homeBut = findViewById(R.id.homeBut);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         ids = "";
         name_action_bar = getIntent().getExtras().getString("Build");
@@ -89,6 +89,8 @@ public class Build_Activity extends AppCompatActivity {
         checkedVGA = findViewById(R.id.checkedVGA);
         checkedCase = findViewById(R.id.checkedCase);
         editName = findViewById(R.id.editName);
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy 'at' HH:mm:ss z");
+        currentDateandTime = sdf.format(new Date());
         if(getIntent().getExtras().getInt("from")==0){
             editName.setVisibility(View.VISIBLE);
             editName.setOnClickListener(view -> {
@@ -96,6 +98,9 @@ public class Build_Activity extends AppCompatActivity {
             });
         }
         init();
+        homeBut.setOnClickListener(v->{
+            returnHomeCheck();
+        });
     }
 
     public void showAlertDialog(){
@@ -120,75 +125,65 @@ public class Build_Activity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent intent = getIntent();
-        String name = intent.getExtras().getString("Build");
+        name = intent.getExtras().getString("Build");
         int id = item.getItemId();
-        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy 'at' HH:mm:ss z");
-        String currentDateandTime = sdf.format(new Date());
         if (item.getItemId()==android.R.id.home) {
-            if(checkAuth()) {
-                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(Build_Activity.this);
-                builder.setTitle("Warning");
-                builder.setMessage("Exiting without saving, would you like to save?");
-                builder.setBackground(getResources().getDrawable(R.drawable.dialog_shape, null));
-                builder.setPositiveButton("Yes", (dialogInterface, i) -> {
-                    Toast.makeText(Build_Activity.this, "Saved", Toast.LENGTH_SHORT).show();
-                    build_ref.get().addOnSuccessListener(documentSnapshot -> {
-                        if (documentSnapshot.exists()) {
-                            build_data = documentSnapshot.toObject(Build_Data.class);
-                            if (build_data.getBuild_name().size() < 5) {
-                                long unixTime = System.currentTimeMillis() / 1000;
-                                price = String.valueOf(unixTime) + String.valueOf(getPriceSum());
-                                build_ref.update("build_name", FieldValue.arrayUnion(unixTime+name_action_bar));
-                                build_ref.update("build_date", FieldValue.arrayUnion(currentDateandTime));
-                                build_ref.update("price", FieldValue.arrayUnion(price));
-                                build_ref.update("parts_id", FieldValue.arrayUnion(unixTime + turnIntArrtoStr()));
-                                startActivity(new Intent(Build_Activity.this, MyBuildActivity.class)
-                                        .putExtra("from","Main"));
-                                overridePendingTransition(R.anim.slide_in_left, R.anim.stay);
-                            } else {
-                                Toast.makeText(Build_Activity.this, "TOO MANY BUILDS, DELETE ONE!!!!", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
-                });
-                builder.setNegativeButton("No",(dialogInterface, i) -> {
-                    if(getIntent().getExtras().getInt("from")==0){
-                        String[] editBuild = getIntent().getStringArrayExtra("editBuild");
-                        build_ref.update("build_name",FieldValue.arrayUnion(editBuild[0]));
-                        build_ref.update("build_date",FieldValue.arrayUnion(editBuild[1]));
-                        build_ref.update("price",FieldValue.arrayUnion(editBuild[2]));
-                        build_ref.update("parts_id",FieldValue.arrayUnion(editBuild[3]));
-                        Toast.makeText(Build_Activity.this,"Updates Not Saved",Toast.LENGTH_SHORT).show();
-                    }else{
-                        Toast.makeText(Build_Activity.this,"Not Saved",Toast.LENGTH_SHORT).show();
-                    }
-                    startActivity(new Intent(Build_Activity.this,MyBuildActivity.class));
-                    Toast.makeText(Build_Activity.this,"Not Saved",Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(Build_Activity.this,MyBuildActivity.class)
-                            .putExtra("from","Main"));
-                });
-                builder.show();
-            }else{
-                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(Build_Activity.this);
-                builder.setTitle("Warning");
-                builder.setMessage("Not Logged In, Will Not Save");
-                builder.setBackground(getResources().getDrawable(R.drawable.dialog_shape, null));
-                builder.setPositiveButton("Okay",(dialogInterface, i) -> {
-                    startActivity(new Intent(Build_Activity.this, MyBuildActivity.class)
-                            .putExtra("from","Main"));
-                    overridePendingTransition(R.anim.slide_in_left, R.anim.stay);
-                });
-                builder.show();
-            }
+            returnHomeCheck();
         }else if(id==R.id.save_button){
-            if(checkAuth()){
+            saveButtonCheck();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void saveButtonCheck() {
+        if(checkAuth()){
+            build_ref.get().addOnSuccessListener(documentSnapshot -> {
+                if (documentSnapshot.exists()) {
+                    build_data = documentSnapshot.toObject(Build_Data.class);
+                    if (build_data.getBuild_name().size() < 5) {
+                        long unixTime = System.currentTimeMillis() / 1000;
+                        price = String.valueOf(unixTime) + String.valueOf(getPriceSum());
+                        build_ref.update("build_name", FieldValue.arrayUnion(unixTime + name_action_bar));
+                        build_ref.update("build_date", FieldValue.arrayUnion(currentDateandTime));
+                        build_ref.update("price", FieldValue.arrayUnion(price));
+                        build_ref.update("parts_id", FieldValue.arrayUnion(unixTime + turnIntArrtoStr()));
+                        startActivity(new Intent(Build_Activity.this, MyBuildActivity.class)
+                                .putExtra("from","Main"));
+                        overridePendingTransition(R.anim.slide_in_left, R.anim.stay);
+                    } else {
+                        Toast.makeText(Build_Activity.this, "LOGIN!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
+        }else{
+            MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(Build_Activity.this);
+            builder.setTitle("Warning");
+            builder.setMessage("Not Logged In, Will Not Save");
+            builder.setBackground(getResources().getDrawable(R.drawable.dialog_shape, null));
+            builder.setPositiveButton("Okay",(dialogInterface, i) -> {
+                startActivity(new Intent(Build_Activity.this, MyBuildActivity.class));
+                overridePendingTransition(R.anim.slide_in_left, R.anim.stay);
+            });
+            builder.show();
+        }
+    }
+
+    private void returnHomeCheck() {
+        if(checkAuth()) {
+            MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(Build_Activity.this);
+            builder.setTitle("Warning");
+            builder.setMessage("Exiting without saving, would you like to save?");
+            builder.setBackground(getResources().getDrawable(R.drawable.dialog_shape, null));
+            builder.setPositiveButton("Yes", (dialogInterface, i) -> {
+                Toast.makeText(Build_Activity.this, "Saved", Toast.LENGTH_SHORT).show();
                 build_ref.get().addOnSuccessListener(documentSnapshot -> {
                     if (documentSnapshot.exists()) {
                         build_data = documentSnapshot.toObject(Build_Data.class);
                         if (build_data.getBuild_name().size() < 5) {
                             long unixTime = System.currentTimeMillis() / 1000;
                             price = String.valueOf(unixTime) + String.valueOf(getPriceSum());
-                            build_ref.update("build_name", FieldValue.arrayUnion(unixTime + name_action_bar));
+                            build_ref.update("build_name", FieldValue.arrayUnion(unixTime+name_action_bar));
                             build_ref.update("build_date", FieldValue.arrayUnion(currentDateandTime));
                             build_ref.update("price", FieldValue.arrayUnion(price));
                             build_ref.update("parts_id", FieldValue.arrayUnion(unixTime + turnIntArrtoStr()));
@@ -196,24 +191,40 @@ public class Build_Activity extends AppCompatActivity {
                                     .putExtra("from","Main"));
                             overridePendingTransition(R.anim.slide_in_left, R.anim.stay);
                         } else {
-                            Toast.makeText(Build_Activity.this, "LOGIN!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Build_Activity.this, "TOO MANY BUILDS, DELETE ONE!!!!", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
-
-            }else{
-                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(Build_Activity.this);
-                builder.setTitle("Warning");
-                builder.setMessage("Not Logged In, Will Not Save");
-                builder.setBackground(getResources().getDrawable(R.drawable.dialog_shape, null));
-                builder.setPositiveButton("Okay",(dialogInterface, i) -> {
-                    startActivity(new Intent(Build_Activity.this, MyBuildActivity.class));
-                    overridePendingTransition(R.anim.slide_in_left, R.anim.stay);
-                });
-                builder.show();
-            }
+            });
+            builder.setNegativeButton("No",(dialogInterface, i) -> {
+                if(getIntent().getExtras().getInt("from")==0){
+                    String[] editBuild = getIntent().getStringArrayExtra("editBuild");
+                    build_ref.update("build_name",FieldValue.arrayUnion(editBuild[0]));
+                    build_ref.update("build_date",FieldValue.arrayUnion(editBuild[1]));
+                    build_ref.update("price",FieldValue.arrayUnion(editBuild[2]));
+                    build_ref.update("parts_id",FieldValue.arrayUnion(editBuild[3]));
+                    Toast.makeText(Build_Activity.this,"Updates Not Saved",Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(Build_Activity.this,"Not Saved",Toast.LENGTH_SHORT).show();
+                }
+                startActivity(new Intent(Build_Activity.this,MyBuildActivity.class));
+                Toast.makeText(Build_Activity.this,"Not Saved",Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(Build_Activity.this,MyBuildActivity.class)
+                        .putExtra("from","Main"));
+            });
+            builder.show();
+        }else{
+            MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(Build_Activity.this);
+            builder.setTitle("Warning");
+            builder.setMessage("Not Logged In, Will Not Save");
+            builder.setBackground(getResources().getDrawable(R.drawable.dialog_shape, null));
+            builder.setPositiveButton("Okay",(dialogInterface, i) -> {
+                startActivity(new Intent(Build_Activity.this, MyBuildActivity.class)
+                        .putExtra("from","Main"));
+                overridePendingTransition(R.anim.slide_in_left, R.anim.stay);
+            });
+            builder.show();
         }
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
