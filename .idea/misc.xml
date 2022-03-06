@@ -154,8 +154,13 @@
         <entry key="..\:/Users/bjesu/StudioProjects/ComputerStarter/app/src/main/res/menu/save_menu.xml" value="0.371875" />
         <entry key="..\:/Users/bjesu/StudioProjects/ComputerStarter/app/src/main/res/xml/awesome.xml" value="0.259375" />
         <entry key="..\:/Users/bjesu/StudioProjects/ComputerStarter/app/src/main/res/xml/preferences.xml" value="0.259375" />
+        <entry key="app/src/main/res/drawable/card_effect.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/effect.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/effect2.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/gradient_animation_splash.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_education_tabbed.xml" value="0.11548913043478261" />
         <entry key="app/src/main/res/layout/activity_pc_part.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/build_layout.xml" value="0.1" />
         <entry key="app/src/main/res/layout/education_choosing_layout.xml" value="0.1" />
         <entry key="app/src/main/res/layout/education_layout.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_forum.xml" value="0.15806159420289856" />

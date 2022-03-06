@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_color">
+    android:background="@color/background_color"
+    >
 
     <TextView
         android:id="@+id/welcome"
@@ -47,7 +48,9 @@
     <ScrollView
         android:layout_below="@id/total"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingBottom="45dp"
+        android:layout_marginBottom="15dp">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -95,7 +98,7 @@
                             android:orientation="horizontal"
                             android:padding="5dp"
                             android:layout_margin="10dp">
-                            <com.makeramen.roundedimageview.RoundedImageView
+                            <ImageView
                                 android:id="@+id/cpu_link_image"
                                 android:layout_width="75dp"
                                 android:layout_height="75dp"
@@ -711,5 +714,20 @@
             </GridLayout>
         </RelativeLayout>
     </ScrollView>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Return Back"
+            android:textSize="30sp"
+            android:textColor="@color/cardview_light"
+            android:fontFamily="@font/francois_one"/>
+    </RelativeLayout>
+
 
 </RelativeLayout>

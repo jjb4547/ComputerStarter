@@ -209,8 +209,7 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
                 String value = input.getText().toString();
                 startActivity(new Intent(MyBuildActivity.this,Build_Activity.class)
                 .putExtra("Build",value).putExtra("ID",partsID).putExtra("from",1)
-                .putExtra("Build",value).putExtra("ID",partsID)
-                .putExtra("from","Main"));
+                .putExtra("Build",value).putExtra("ID",partsID));
             }
         });
         builder.create().show();
