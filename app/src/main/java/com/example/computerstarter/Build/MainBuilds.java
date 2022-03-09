@@ -1,6 +1,5 @@
-package com.example.computerstarter.app;
+package com.example.computerstarter.Build;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -20,11 +19,10 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 import androidx.preference.PreferenceManager;
 
-import com.example.computerstarter.Build.MyBuildActivity;
 import com.example.computerstarter.Login.Login_SignUpActivity;
 import com.example.computerstarter.Others.AccountActivity;
-import com.example.computerstarter.Quiz.QuizActivity;
 import com.example.computerstarter.R;
+import com.example.computerstarter.app.HomeActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -33,7 +31,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Objects;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainBuilds extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private static int SPLASH_TIMEOUT = 2000;
     private DrawerLayout drawerLayout;
     private BottomNavigationView bottomNavigationView;
@@ -52,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_builds_main);
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
@@ -97,13 +95,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         log.setOnClickListener(view->{
             if(mAuth.getCurrentUser()!=null){
                 mAuth.signOut();
-                Toast.makeText(MainActivity.this,"Logged Out",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(MainActivity.this,MainActivity.class));
+                Toast.makeText(MainBuilds.this,"Logged Out",Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(MainBuilds.this, MainBuilds.class));
                 log.setText("Log In");
                 //login.logged = false;
                 item_acc.setVisible(false);
             }else{
-                startActivity(new Intent(MainActivity.this, Login_SignUpActivity.class));
+                startActivity(new Intent(MainBuilds.this, Login_SignUpActivity.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 //log.setText("Log Out");
             }
@@ -119,17 +117,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (item.getItemId()){
             case R.id.home:
                 Toast.makeText(this,"Main Page",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(MainActivity.this,HomeActivity.class));
+                startActivity(new Intent(MainBuilds.this, HomeActivity.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 break;
             case R.id.building:
                 Toast.makeText(this,"My Builds",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(MainActivity.this, MyBuildActivity.class));
+                startActivity(new Intent(MainBuilds.this, MyBuildActivity.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 break;
             case R.id.account:
                 if(mAuth.getCurrentUser()!=null) {
-                    startActivity(new Intent(MainActivity.this, AccountActivity.class));
+                    startActivity(new Intent(MainBuilds.this, AccountActivity.class));
                     overridePendingTransition(R.anim.slide_in_bottom, R.anim.stay);
                 }else
                     Toast.makeText(this,"LOG IN!!!!",Toast.LENGTH_SHORT).show();
@@ -153,7 +151,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             SharedPreferences.Editor edit = prefs.edit();
             edit.putBoolean(getString(R.string.pref_previously_started_login),Boolean.TRUE);
             edit.commit();
-            startActivity(new Intent(MainActivity.this,Login_SignUpActivity.class));
+            startActivity(new Intent(MainBuilds.this,Login_SignUpActivity.class));
             overridePendingTransition(R.anim.slide_in_left,R.anim.stay);
         }
 

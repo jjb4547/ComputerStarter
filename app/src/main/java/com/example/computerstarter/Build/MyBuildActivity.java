@@ -29,7 +29,6 @@ import com.example.computerstarter.Login.Login_SignUpActivity;
 import com.example.computerstarter.Others.AccountActivity;
 import com.example.computerstarter.R;
 import com.example.computerstarter.app.HomeActivity;
-import com.example.computerstarter.app.MainActivity;
 import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -146,7 +145,7 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
             if(mAuth.getCurrentUser()!=null){
                 mAuth.signOut();
                 Toast.makeText(this,"Logged Out",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this,MainActivity.class));
+                startActivity(new Intent(this, MainBuilds.class));
                 log.setText("Log In");
                 //login.logged = false;
                 item_acc.setVisible(false);
@@ -201,6 +200,7 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
         builder.setTitle("Insert Build Name");
         final TextInputEditText input = new TextInputEditText(MyBuildActivity.this);
         input.setHint("Build Name");
+        input.setImeActionLabel("Submit",KeyEvent.KEYCODE_ENTER);
         input.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {

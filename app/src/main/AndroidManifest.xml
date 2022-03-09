@@ -32,7 +32,7 @@
         <activity android:name=".Settings.SettingsActivity" />
         <activity android:name=".Others.AccountActivity"
             android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
-        <activity android:name=".app.MainActivity" />
+        <activity android:name=".Build.MainBuilds" />
         <activity android:name=".Others.AboutActivity" />
         <activity android:name=".Others.HelpActivity" />
         <activity android:name=".SocialMedia.SocialMediaActivity" />

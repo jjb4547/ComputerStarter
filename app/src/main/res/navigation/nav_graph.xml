@@ -8,8 +8,8 @@
     <fragment
         android:id="@+id/navigation_main"
         android:label="Main Page"
-        tools:layout="@layout/fragment_main_page"
-        android:name="com.example.computerstarter.app.MainPageFragment">
+        tools:layout="@layout/fragment_builds_main"
+        android:name="com.example.computerstarter.Build.MainBuildsFragment">
         <action
             android:id="@+id/action_navigation_main_to_navigation_social"
             app:destination="@id/navigation_social"

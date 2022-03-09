@@ -25,7 +25,7 @@ import com.example.computerstarter.Login.Login_SignUpActivity;
 import com.example.computerstarter.Others.AccountActivity;
 import com.example.computerstarter.R;
 import com.example.computerstarter.app.HomeActivity;
-import com.example.computerstarter.app.MainActivity;
+import com.example.computerstarter.Build.MainBuilds;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -97,7 +97,7 @@ public class Education_Choosing_Activity extends AppCompatActivity implements Na
             if(mAuth.getCurrentUser()!=null){
                 mAuth.signOut();
                 Toast.makeText(this,"Logged Out",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this,MainActivity.class));
+                startActivity(new Intent(this, MainBuilds.class));
                 log.setText("Log In");
                 //login.logged = false;
                 item_acc.setVisible(false);
@@ -122,7 +122,7 @@ public class Education_Choosing_Activity extends AppCompatActivity implements Na
         }
         home.setOnClickListener(view->{
             if(comp.equals("Raspberry Pi")||comp.equals("Arduino")){
-                startActivity(new Intent(getApplicationContext(), MainActivity.class)
+                startActivity(new Intent(getApplicationContext(), MainBuilds.class)
                         .putExtra("from","Edu"));
             }else {
                 startActivity(new Intent(getApplicationContext(), PC_Part_Activity.class)

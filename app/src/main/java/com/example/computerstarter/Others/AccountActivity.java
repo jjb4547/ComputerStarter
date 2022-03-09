@@ -15,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.computerstarter.R;
 import com.example.computerstarter.app.HomeActivity;
-import com.example.computerstarter.app.MainActivity;
+import com.example.computerstarter.Build.MainBuilds;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
@@ -74,7 +74,7 @@ public class AccountActivity extends AppCompatActivity {
         });
         logOut.setOnClickListener(view->{
             mAuth.signOut();
-            startActivity(new Intent(AccountActivity.this,MainActivity.class)
+            startActivity(new Intent(AccountActivity.this, MainBuilds.class)
                     .putExtra("from","Main"));
             overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
         });

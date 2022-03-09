@@ -23,7 +23,7 @@ import com.example.computerstarter.Login.Login_SignUpActivity;
 import com.example.computerstarter.Others.AccountActivity;
 import com.example.computerstarter.R;
 import com.example.computerstarter.app.HomeActivity;
-import com.example.computerstarter.app.MainActivity;
+import com.example.computerstarter.Build.MainBuilds;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -96,7 +96,7 @@ public class Arduino_Guides_Activity extends AppCompatActivity implements Naviga
             if(mAuth.getCurrentUser()!=null){
                 mAuth.signOut();
                 Toast.makeText(this,"Logged Out",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this,MainActivity.class)
+                startActivity(new Intent(this, MainBuilds.class)
                         .putExtra("from","Main"));
                 log.setText("Log In");
                 //login.logged = false;

@@ -19,7 +19,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import com.example.computerstarter.R;
-import com.example.computerstarter.app.MainPageFragment;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
@@ -63,7 +62,7 @@ public class Build_Activity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        MainPageFragment main = new MainPageFragment();
+        MainBuildsFragment main = new MainBuildsFragment();
         if(mAuth.getCurrentUser()!=null)
             build_ref= firestore.collection("Users").document(mAuth.getCurrentUser().getUid());
         main.addcardview = true;

@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import com.example.computerstarter.Build.MainBuilds;
 import com.example.computerstarter.Education.Education_Choosing_Activity;
 import com.example.computerstarter.Login.Login_SignUpActivity;
 import com.example.computerstarter.R;
@@ -49,15 +50,15 @@ public class HomeActivity extends AppCompatActivity {
         searchParts = findViewById(R.id.partsLookup);
         searchButton = findViewById(R.id.searchButton);
         build.setOnClickListener(v->{
-            startActivity(new Intent(HomeActivity.this, MainActivity.class)
+            startActivity(new Intent(HomeActivity.this, MainBuilds.class)
                     .putExtra("from","Main"));
         });
         education.setOnClickListener(v->{
-            startActivity(new Intent(HomeActivity.this, MainActivity.class)
+            startActivity(new Intent(HomeActivity.this, MainBuilds.class)
                     .putExtra("from","Edu"));
         });
         social.setOnClickListener(v->{
-            startActivity(new Intent(HomeActivity.this, MainActivity.class)
+            startActivity(new Intent(HomeActivity.this, MainBuilds.class)
                     .putExtra("from","Social"));
         });
         searchParts.setOnKeyListener(new View.OnKeyListener() {
