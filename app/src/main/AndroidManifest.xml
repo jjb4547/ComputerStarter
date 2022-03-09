@@ -84,6 +84,8 @@
         <activity android:name=".Guides.RaspberryPi.Projects.HumiditySensor.RaspberryPi_Humidity_Sensor_Coding"
             android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
         <activity android:name=".Education.WebPageEducation"/>
+        <activity android:name=".app.HomeActivity"
+            android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
 
         <!-- Fonts -->
         <meta-data

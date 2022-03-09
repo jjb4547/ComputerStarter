@@ -8,12 +8,12 @@
         android:visible="true"/>
     <item
         android:id="@+id/navigation_main"
-        android:title="Main Page"
-        android:icon="@drawable/ic_home"
+        android:title="Builds"
+        android:icon="@drawable/ic_computer"
         android:visible="true"
        />
     <item android:id="@+id/navigation_social"
-        android:title="Forum"
+        android:title="Social Media"
         android:icon="@drawable/ic_social"
         android:visible="true"
 

@@ -17,6 +17,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.computerstarter.R;
+import com.example.computerstarter.app.HomeActivity;
 import com.example.computerstarter.app.MainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -102,7 +103,7 @@ public class Login_SignUpActivity extends AppCompatActivity {
             }
         });
         home.setOnClickListener(view->{
-            startActivity(new Intent(Login_SignUpActivity.this, MainActivity.class));
+            startActivity(new Intent(Login_SignUpActivity.this, HomeActivity.class));
             overridePendingTransition(R.anim.slide_in_left,R.anim.stay);
         });
         forgot.setOnClickListener(view->{
@@ -166,7 +167,7 @@ public class Login_SignUpActivity extends AppCompatActivity {
                         } else {
                             if(mAuth.getCurrentUser().isEmailVerified()) {
                                 progressDialog.dismiss();
-                                Intent intent = new Intent(Login_SignUpActivity.this, MainActivity.class);
+                                Intent intent = new Intent(Login_SignUpActivity.this, HomeActivity.class);
                                 startActivity(intent);
                                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                             }else{
@@ -241,6 +242,9 @@ public class Login_SignUpActivity extends AppCompatActivity {
                             }
                         });
                     }
+                }).addOnFailureListener(e -> {
+                    progressDialog.dismiss();
+                    Toast.makeText(Login_SignUpActivity.this, "Failed to Create Account.",Toast.LENGTH_SHORT).show();
                 });
     }
 }

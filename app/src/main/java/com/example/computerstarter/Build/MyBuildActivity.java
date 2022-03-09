@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Canvas;
 import android.os.Bundle;
 import android.util.TypedValue;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,6 +28,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.computerstarter.Login.Login_SignUpActivity;
 import com.example.computerstarter.Others.AccountActivity;
 import com.example.computerstarter.R;
+import com.example.computerstarter.app.HomeActivity;
 import com.example.computerstarter.app.MainActivity;
 import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetView;
@@ -156,7 +158,7 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
         });
         home = findViewById(R.id.home);
         home.setOnClickListener(view->{
-            startActivity(new Intent(getApplicationContext(), MainActivity.class).putExtra("from","Main"));
+            startActivity(new Intent(getApplicationContext(), HomeActivity.class));
             overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
         });
         loginBut.setOnClickListener(v->{
@@ -199,6 +201,18 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
         builder.setTitle("Insert Build Name");
         final TextInputEditText input = new TextInputEditText(MyBuildActivity.this);
         input.setHint("Build Name");
+        input.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if((event.getAction()==KeyEvent.ACTION_DOWN)&&(keyCode==KeyEvent.KEYCODE_ENTER)) {
+                    String value = input.getText().toString();
+                    startActivity(new Intent(MyBuildActivity.this,Build_Activity.class)
+                            .putExtra("Build",value).putExtra("ID",partsID).putExtra("from",1)
+                            .putExtra("Build",value).putExtra("ID",partsID));
+                }
+                return true;
+            }
+        });
         input.setMaxLines(1);
         input.setMaxWidth(10);
         //final EditText input = new EditText(MyBuildActivity.this);
@@ -324,20 +338,17 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
         switch (item.getItemId()){
             case R.id.home:
                 Toast.makeText(this,"Main Page",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this,MainActivity.class)
-                        .putExtra("from","Main"));
+                startActivity(new Intent(this,HomeActivity.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 break;
             case R.id.building:
                 Toast.makeText(this,"My Builds",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this, MyBuildActivity.class)
-                        .putExtra("from","Main"));
+                startActivity(new Intent(this, MyBuildActivity.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 break;
             case R.id.account:
                 if(mAuth.getCurrentUser()!=null) {
-                    startActivity(new Intent(this, AccountActivity.class)
-                            .putExtra("from","Main"));
+                    startActivity(new Intent(this, AccountActivity.class));
                     overridePendingTransition(R.anim.slide_in_bottom, R.anim.stay);
                 }else
                     Toast.makeText(this,"LOG IN!!!!",Toast.LENGTH_SHORT).show();

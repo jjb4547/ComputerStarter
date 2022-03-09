@@ -23,6 +23,7 @@ import com.example.computerstarter.Build.MyBuildActivity;
 import com.example.computerstarter.Login.Login_SignUpActivity;
 import com.example.computerstarter.Others.AccountActivity;
 import com.example.computerstarter.R;
+import com.example.computerstarter.app.HomeActivity;
 import com.example.computerstarter.app.MainActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -146,20 +147,17 @@ public class PC_Building_Guide_Activity extends AppCompatActivity implements Nav
         switch (item.getItemId()){
             case R.id.home:
                 Toast.makeText(this,"Main Page",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this,MainActivity.class)
-                        .putExtra("from","Main"));
+                startActivity(new Intent(this, HomeActivity.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 break;
             case R.id.building:
                 Toast.makeText(this,"My Builds",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this, MyBuildActivity.class)
-                        .putExtra("from","Main"));
+                startActivity(new Intent(this, MyBuildActivity.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 break;
             case R.id.account:
                 if(mAuth.getCurrentUser()!=null) {
-                    startActivity(new Intent(this, AccountActivity.class)
-                            .putExtra("from","Main"));
+                    startActivity(new Intent(this, AccountActivity.class));
                     overridePendingTransition(R.anim.slide_in_bottom, R.anim.stay);
                 }else
                     Toast.makeText(this,"LOG IN!!!!",Toast.LENGTH_SHORT).show();

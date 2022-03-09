@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.computerstarter.R;
+import com.example.computerstarter.app.HomeActivity;
 import com.example.computerstarter.app.MainActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -57,8 +58,7 @@ public class AccountActivity extends AppCompatActivity {
         profileImage = findViewById(R.id.profileImage);
         home = findViewById(R.id.home);
         home.setOnClickListener(view->{
-            startActivity(new Intent(getApplicationContext(), MainActivity.class)
-                    .putExtra("from","Main"));
+            startActivity(new Intent(getApplicationContext(), HomeActivity.class));
             overridePendingTransition(R.anim.slide_in_bottom,R.anim.stay);
         });
         //profileImage.setImageURI(user.getPhotoUrl());

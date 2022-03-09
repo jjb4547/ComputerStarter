@@ -41,8 +41,7 @@ public class MainPageFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_main_page, container, false);
         CardView builds = view.findViewById(R.id.builds);
         builds.setOnClickListener(view->{
-            startActivity(new Intent(getActivity(), MyBuildActivity.class)
-                    .putExtra("from","Main"));
+            startActivity(new Intent(getActivity(), MyBuildActivity.class));
             getActivity().overridePendingTransition(R.anim.slide_in_left,R.anim.stay);
         });
         CardView feat = view.findViewById(R.id.helpful_link);

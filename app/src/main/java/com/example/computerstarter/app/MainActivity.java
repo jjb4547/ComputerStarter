@@ -60,6 +60,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationUI.setupWithNavController(bottomNavigationView,navController);
         if(getIntent().getExtras().getString("from").equals("Edu")){
             navController.navigate(R.id.action_navigation_main_to_navigation_education);
+        }else if(getIntent().getExtras().getString("from").equals("Social")){
+            navController.navigate(R.id.action_navigation_main_to_navigation_social);
         }
         drawerLayout = findViewById(R.id.drawerlayout);
         navigationView = findViewById(R.id.navigation_menu);
@@ -117,20 +119,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (item.getItemId()){
             case R.id.home:
                 Toast.makeText(this,"Main Page",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(MainActivity.this,MainActivity.class)
-                        .putExtra("from","Main"));
+                startActivity(new Intent(MainActivity.this,HomeActivity.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 break;
             case R.id.building:
                 Toast.makeText(this,"My Builds",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(MainActivity.this, MyBuildActivity.class)
-                        .putExtra("from","Main"));
+                startActivity(new Intent(MainActivity.this, MyBuildActivity.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 break;
             case R.id.account:
                 if(mAuth.getCurrentUser()!=null) {
-                    startActivity(new Intent(MainActivity.this, AccountActivity.class)
-                            .putExtra("from","Main"));
+                    startActivity(new Intent(MainActivity.this, AccountActivity.class));
                     overridePendingTransition(R.anim.slide_in_bottom, R.anim.stay);
                 }else
                     Toast.makeText(this,"LOG IN!!!!",Toast.LENGTH_SHORT).show();
@@ -144,20 +143,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if(toggle.onOptionsItemSelected(item))
             return true;
         return true;
-    }
-    public void showAlertDialogQuiz(){
-        //CharSequence[] charSequences = new CharSequence[]{"Building","Social","Education"};
-        list = getResources().getStringArray(R.array.quiz);
-        AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
-        alert.setTitle("Quiz");
-        //alert.setMessage("Please Choose the Quiz");
-        alert.setSingleChoiceItems(list, -1, (dialogInterface, i) -> {
-            quiz = list[i];
-            Intent intent = new Intent(MainActivity.this, QuizActivity.class);
-            intent.putExtra("ID",quiz);
-            startActivity(intent);
-        });
-        alert.create().show();
     }
     @Override
     protected void onResume() {
