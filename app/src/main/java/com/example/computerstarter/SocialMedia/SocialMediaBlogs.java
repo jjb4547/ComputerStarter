@@ -15,9 +15,12 @@ import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,6 +48,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 
@@ -81,6 +85,8 @@ public class SocialMediaBlogs extends AppCompatActivity {
     FirebaseUser user;
     ImageView profile;
     Bitmap bitmap;
+    DatabaseReference databaseTags;
+    Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +105,7 @@ public class SocialMediaBlogs extends AppCompatActivity {
         blogPicture = findViewById(R.id.blogPicture);
         name = findViewById(R.id.unametv);
         profile = findViewById(R.id.picturetv);
+        spinner = findViewById(R.id.pspin);
         pd = new ProgressDialog(this);
         pd.setCanceledOnTouchOutside(false);
         Intent intent = this.getIntent();
@@ -120,6 +127,42 @@ public class SocialMediaBlogs extends AppCompatActivity {
 
             }
         });
+
+        //used for spinner
+
+        ArrayList<String> arrayList = new ArrayList<>();
+        arrayList.add("Computer");
+        arrayList.add("GPU");
+        arrayList.add("CPU");
+        arrayList.add("Motherboard");
+        arrayList.add("Power");
+        arrayList.add("Ram");
+        arrayList.add("Memory");
+        arrayList.add("RGB");
+        arrayList.add("Tower");
+        arrayList.add("Help!");
+        arrayList.add("Monitor");
+        arrayList.add("Mouse");
+        arrayList.add("Keyboard");
+        arrayList.add("Setup");
+        arrayList.add("Stream");
+        arrayList.add("Coding");
+        arrayList.add("Design");
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, arrayList);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(arrayAdapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String tagName = parent.getItemAtPosition(position).toString();
+                Toast.makeText(parent.getContext(), "Selected: " + tagName, Toast.LENGTH_LONG).show();
+                databaseTags = FirebaseDatabase.getInstance().getReference("tagName"); //send data to same place as forum post
+            }
+            @Override
+            public void onNothingSelected(AdapterView <?> parent) {
+            }
+        });
+
         // Initialising camera and storage permission
         // After click on button we will be selecting an image
         blogPicture.setOnClickListener(v -> showImagePicDialog());

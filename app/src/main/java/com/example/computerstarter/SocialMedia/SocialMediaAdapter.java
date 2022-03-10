@@ -217,7 +217,7 @@ public class SocialMediaAdapter extends RecyclerView.Adapter<SocialMediaAdapter.
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {/**/
 
             }
         });
