@@ -44,8 +44,6 @@
         <activity android:name=".SocialMedia.SocialMediaBlogs"/>
         <activity android:name=".Login.Login_SignUpActivity"
             android:theme="@style/Theme.ComputerStarter.NoActionBar" />
-        <activity android:name=".Guides.Community.Community_Builds_Activity"
-            android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
         <activity android:name=".Education.Education_Choosing_Activity"/>
         <activity android:name=".Education.RaspberryPi_Education"
             android:theme="@style/Theme.ComputerStarter.NoActionBar"/>

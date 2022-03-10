@@ -46,7 +46,7 @@
         app:headerLayout="@layout/nav_menu"
         app:itemTextAppearance="?android:attr/textAppearanceMedium"
         android:layout_gravity= "start"
-        android:background="@color/blue_gray"
+        android:background="@drawable/drawer_background_rest_2"
         app:itemTextColor="@color/white"
         app:itemIconTint="@color/cardview_light">
         <RelativeLayout

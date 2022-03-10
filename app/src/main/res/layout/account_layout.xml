@@ -1,161 +1,212 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-   <LinearLayout
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:orientation="vertical">
-       <RelativeLayout
-           android:layout_width="match_parent"
-           android:layout_height="250dp"
-           android:background="@color/cardview_light">
+    android:id="@+id/drawerlayout">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:background="@color/cardview_light">
 
-           <ImageView
-               android:id="@+id/profileImage"
-               android:layout_width="150dp"
-               android:layout_height="150dp"
-               android:layout_centerInParent="true"
-               android:src="@mipmap/ic_logo" />
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/profileImage"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_centerInParent="true"
+                    android:scaleType="centerCrop"
+                    app:riv_corner_radius="51dp"
+                    app:riv_border_color="@color/black"
+                    android:src="@mipmap/ic_logo" />
 
-           <ImageView
-               android:id="@+id/change_profile"
-               android:layout_width="50dp"
-               android:layout_height="50dp"
-               android:layout_alignRight="@+id/profileImage"
-               android:layout_alignBottom="@+id/profileImage"
-               android:layout_centerInParent="true"
-               android:backgroundTint="@color/cardview_light"
-               android:src="@drawable/change_image"
-               android:clickable="true"/>
+                <ImageView
+                    android:id="@+id/change_profile"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_toEndOf="@id/profileImage"
+                    android:layout_alignBottom="@+id/profileImage"
+                    android:layout_centerInParent="true"
+                    android:layout_marginStart="-15dp"
+                    android:backgroundTint="@color/cardview_light"
+                    android:clickable="true"
+                    android:src="@drawable/change_image"
+                    android:tint="@color/white"/>
 
-           <TextView
-               android:id="@+id/usersName"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_below="@id/profileImage"
-               android:layout_centerHorizontal="true"
-               android:layout_marginTop="5dp"
-               android:hint="Name"
-               android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-               android:textColor="@color/white" />
-       </RelativeLayout>
-       <RelativeLayout
-           android:layout_width="match_parent"
-           android:layout_height="match_parent"
-           android:padding="15dp"
-           android:layout_margin="15dp"
-           android:background="@color/white">
-           <ImageView
-               android:layout_width="25dp"
-               android:layout_height="25dp"
-               android:id="@+id/profile"
-               android:background="@drawable/ic_people"
-               android:backgroundTint="@color/cardview_light"/>
+                <TextView
+                    android:id="@+id/usersName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/profileImage"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp"
+                    android:hint="Name"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                    android:textColor="@color/white" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="15dp"
+                android:layout_margin="15dp"
+                android:background="@color/white">
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:id="@+id/profile"
+                    android:background="@drawable/ic_people"
+                    android:backgroundTint="@color/cardview_light"/>
 
-           <TextView
-               android:id="@+id/Name"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_alignStart="@id/profile"
-               android:layout_marginStart="50dp"
-               android:hint="Loading..."
-               android:textColor="@color/black"
-               android:textSize="18sp" />
-           <View
-               android:layout_width="match_parent"
-               android:layout_height="1dp"
-               android:layout_marginTop="20dp"
-               android:layout_below="@id/Name"
-               android:background = "@color/dark_gray"
-               android:id="@+id/divider"/>
+                <TextView
+                    android:id="@+id/Name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@id/profile"
+                    android:layout_marginStart="50dp"
+                    android:hint="Loading..."
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_below="@id/Name"
+                    android:background = "@color/dark_gray"
+                    android:id="@+id/divider"/>
 
-           <ImageView
-               android:id="@+id/email"
-               android:layout_width="25dp"
-               android:layout_height="25dp"
-               android:layout_below="@+id/divider"
-               android:layout_marginTop="20dp"
-               android:background="@drawable/ic_email"
-               android:backgroundTint="@color/cardview_light" />
+                <ImageView
+                    android:id="@+id/email"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_below="@+id/divider"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/ic_email"
+                    android:backgroundTint="@color/cardview_light" />
 
-           <TextView
-               android:id="@+id/text_Email"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_below="@id/divider"
-               android:layout_alignStart="@id/profile"
-               android:layout_marginStart="50dp"
-               android:layout_marginTop="20dp"
-               android:hint="Loading..."
-               android:textColor="@color/black"
-               android:textSize="18sp" />
-           <View
-               android:layout_width="match_parent"
-               android:layout_height="1dp"
-               android:layout_marginTop="20dp"
-               android:layout_below="@id/text_Email"
-               android:background = "@color/dark_gray"
-               android:id="@+id/divider_2"
-               />
+                <TextView
+                    android:id="@+id/text_Email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/divider"
+                    android:layout_alignStart="@id/profile"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="20dp"
+                    android:hint="Loading..."
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_below="@id/text_Email"
+                    android:background = "@color/dark_gray"
+                    android:id="@+id/divider_2"
+                    />
 
-           <ImageView
-               android:layout_width="25dp"
-               android:layout_height="25dp"
-               android:layout_below="@+id/divider_2"
-               android:layout_marginTop="20dp"
-               android:background="@drawable/ic_baseline_cake_24"
-               android:backgroundTint="@color/cardview_light" />
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_below="@+id/divider_2"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/ic_baseline_cake_24"
+                    android:backgroundTint="@color/cardview_light" />
 
-           <TextView
-               android:id="@+id/text_Age"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_below="@id/divider_2"
-               android:layout_alignStart="@id/profile"
-               android:layout_marginStart="50dp"
-               android:layout_marginTop="20dp"
-               android:hint="Loading..."
-               android:textColor="@color/black"
-               android:textSize="18sp" />
+                <TextView
+                    android:id="@+id/text_Age"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/divider_2"
+                    android:layout_alignStart="@id/profile"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="20dp"
+                    android:hint="Loading..."
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
 
-           <View
-               android:layout_width="match_parent"
-               android:layout_height="1dp"
-               android:layout_below="@id/text_Age"
-               android:layout_marginTop="20dp"
-               android:background="@color/dark_gray" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/text_Age"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/dark_gray" />
 
-       </RelativeLayout>
+            </RelativeLayout>
 
-       <RelativeLayout
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content">
-           <Button
-               android:id="@+id/logOut"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:backgroundTint="@color/cardview_light"
-               android:text="Log Out"
-               android:layout_centerHorizontal="true"
-               android:layout_alignParentTop="true"
-               android:gravity="center"
-               app:shapeAppearanceOverlay = "@style/Button5"
-               android:elevation="15dp" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/logOut"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/cardview_light"
+                    android:text="Log Out"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentTop="true"
+                    android:gravity="center"
+                    app:shapeAppearanceOverlay = "@style/Button5"
+                    android:elevation="15dp" />
 
-       </RelativeLayout>
-       <TextView
-           android:id="@+id/home"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_above="@+id/logOut"
-           android:layout_marginBottom="10dp"
-           android:fontFamily="@font/francois_one"
-           android:layout_gravity="center"
-           android:textSize="30sp"
-           android:textColor="@color/cardview_light"
-           android:text="Return Home" />
-   </LinearLayout>
+            </RelativeLayout>
+            <TextView
+                android:id="@+id/home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/logOut"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/francois_one"
+                android:layout_gravity="center"
+                android:textSize="30sp"
+                android:textColor="@color/cardview_light"
+                android:text="Return Home" />
+        </LinearLayout>
 
-</ScrollView>
+
+    </RelativeLayout>
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/navigation_menu"
+        app:menu="@menu/drawer_menu"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_menu_home"
+        app:itemTextAppearance="?android:attr/textAppearanceMedium"
+        android:layout_gravity= "start"
+        android:background="@color/cardview_light"
+        app:itemTextColor="@color/white"
+        app:itemIconTint="@color/white">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:backgroundTint="@color/background_color">
+            <ImageView
+                android:id="@+id/logButtton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_logout"
+                android:layout_alignParentBottom="true"
+                android:layout_toStartOf="@+id/log_Text"
+                android:backgroundTint="@color/white"
+                app:tint="@color/white"
+                />
+            <TextView
+                android:id="@+id/log_Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:text="Log Out"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:layout_centerHorizontal="true"/>
+        </RelativeLayout>
+    </com.google.android.material.navigation.NavigationView>
+</androidx.drawerlayout.widget.DrawerLayout>

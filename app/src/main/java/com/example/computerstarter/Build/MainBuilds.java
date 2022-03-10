@@ -1,7 +1,6 @@
 package com.example.computerstarter.Build;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,7 +16,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
-import androidx.preference.PreferenceManager;
 
 import com.example.computerstarter.Login.Login_SignUpActivity;
 import com.example.computerstarter.Others.AccountActivity;
@@ -28,6 +26,9 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import java.util.Objects;
 
@@ -47,6 +48,7 @@ public class MainBuilds extends AppCompatActivity implements NavigationView.OnNa
     private MenuItem item_log;
     private MenuItem item_quiz;
     private MenuItem item_acc;
+    private StorageReference storageReference = FirebaseStorage.getInstance().getReference();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,7 +74,6 @@ public class MainBuilds extends AppCompatActivity implements NavigationView.OnNa
         Menu menu = navigationView.getMenu();
         item_acc = menu.findItem(R.id.account);
         log = findViewById(R.id.log_Text);
-        logBut = findViewById(R.id.logButtton);
         if(user!=null) {
             log.setText("Log Out");
             item_acc.setVisible(true);
@@ -87,7 +88,8 @@ public class MainBuilds extends AppCompatActivity implements NavigationView.OnNa
             String current = user.getUid();
             name.setText(user.getDisplayName());
             email.setText(user.getEmail());
-            //profile.setImageURI(user.getPhotoUrl()); //bugging out not sure why but only on the emulator
+            StorageReference profileRef = storageReference.child("ProfileImage/Users/"+mAuth.getCurrentUser().getUid()+"/profile.jpg");
+            profileRef.getDownloadUrl().addOnSuccessListener(uri -> Picasso.get().load(uri).into(profile));
         }else{
             name.setText("Guest");
             email.setText("Guest Not Signed In");
@@ -142,18 +144,5 @@ public class MainBuilds extends AppCompatActivity implements NavigationView.OnNa
             return true;
         return true;
     }
-    @Override
-    protected void onResume() {
-        super.onResume();
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        boolean previouslyStarted = prefs.getBoolean(getString(R.string.pref_previously_started),false);
-        if(!previouslyStarted){
-            SharedPreferences.Editor edit = prefs.edit();
-            edit.putBoolean(getString(R.string.pref_previously_started_login),Boolean.TRUE);
-            edit.commit();
-            startActivity(new Intent(MainBuilds.this,Login_SignUpActivity.class));
-            overridePendingTransition(R.anim.slide_in_left,R.anim.stay);
-        }
 
-    }
 }

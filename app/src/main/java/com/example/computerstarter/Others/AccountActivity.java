@@ -1,7 +1,9 @@
 package com.example.computerstarter.Others;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -13,17 +15,19 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.computerstarter.Build.MainBuilds;
 import com.example.computerstarter.R;
 import com.example.computerstarter.app.HomeActivity;
-import com.example.computerstarter.Build.MainBuilds;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.Map;
 
 
@@ -38,13 +42,17 @@ public class AccountActivity extends AppCompatActivity {
     Button logOut;
     ImageView profile;
     ImageView profileImage;
-    StorageReference storageReference;
+    StorageReference storageReference = FirebaseStorage.getInstance().getReference();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.account_layout);
         mAuth = FirebaseAuth.getInstance();
-        storageReference = FirebaseStorage.getInstance().getReference();
+        //storageReference = FirebaseStorage.getInstance().getReference();
+        StorageReference profileRef = storageReference.child("ProfileImage/Users/"+mAuth.getCurrentUser().getUid()+"/profile.jpg");
+        profileRef.getDownloadUrl().addOnSuccessListener(uri -> {
+            Picasso.get().load(uri).fit().into(profileImage);
+        });
         user = mAuth.getCurrentUser();
         name = findViewById(R.id.usersName);
         nameUser = findViewById(R.id.Name);
@@ -61,7 +69,6 @@ public class AccountActivity extends AppCompatActivity {
             startActivity(new Intent(getApplicationContext(), HomeActivity.class));
             overridePendingTransition(R.anim.slide_in_bottom,R.anim.stay);
         });
-        //profileImage.setImageURI(user.getPhotoUrl());
         DocumentReference documentReference = db.collection("Users").document(mAuth.getCurrentUser().getUid());
         documentReference.get().addOnSuccessListener(documentSnapshot -> {
             if (documentSnapshot.exists()) {
@@ -90,10 +97,31 @@ public class AccountActivity extends AppCompatActivity {
         if(requestCode==1000){
             if(resultCode== Activity.RESULT_OK){
                 Uri image = data.getData();
-                profileImage.setImageURI(image);
-                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setPhotoUri(image).build();
-                user.updateProfile(profileUpdates);
+                //profileImage.setImageURI(image);
+                try {
+                    Bitmap original = MediaStore.Images.Media.getBitmap(getContentResolver(),image);
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                    original.compress(Bitmap.CompressFormat.JPEG,15,stream);
+                    byte[] imageByte = stream.toByteArray();
+                    uploadImageToFirebase(imageByte);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
+
+    private void uploadImageToFirebase(byte[] image) {
+        ProgressDialog progressDialog = new ProgressDialog(AccountActivity.this);
+        progressDialog.setMessage("Image uploading ....");
+        progressDialog.show();
+        StorageReference fileRef = storageReference.child("ProfileImage/Users/"+mAuth.getCurrentUser().getUid()+"/profile.jpg");
+        fileRef.putBytes(image).addOnSuccessListener(taskSnapshot -> {
+            progressDialog.dismiss();
+            fileRef.getDownloadUrl().addOnSuccessListener(uri -> Picasso.get().load(uri).into(profileImage));
+        }).addOnFailureListener(e -> {
+            progressDialog.dismiss();
+            Toast.makeText(AccountActivity.this, "Image Not Uploaded", Toast.LENGTH_SHORT).show();
+        });
     }
+}
