@@ -66,10 +66,9 @@
                     android:fontFamily="@font/francois_one"
                     android:hint="Search for Parts"
                     android:imeOptions="actionSearch"
-                    android:importantForAutofill="no"
-                    android:inputType="text"
                     android:paddingStart="15dp"
                     android:paddingEnd="15dp"
+                    android:inputType="text"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
