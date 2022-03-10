@@ -38,7 +38,7 @@
                     android:backgroundTint="@color/cardview_light"
                     android:clickable="true"
                     android:src="@drawable/change_image"
-                    android:tint="@color/white"/>
+                    app:tint="@color/white" />
 
                 <TextView
                     android:id="@+id/usersName"
@@ -160,7 +160,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_above="@+id/logOut"
-                android:layout_marginBottom="10dp"
+                android:layout_marginTop="100dp"
                 android:fontFamily="@font/francois_one"
                 android:layout_gravity="center"
                 android:textSize="30sp"

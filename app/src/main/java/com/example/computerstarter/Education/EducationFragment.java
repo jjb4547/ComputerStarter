@@ -36,7 +36,7 @@ public class EducationFragment extends Fragment{
         //changed so that inflated happens first but is still returned at end
         View view = inflater.inflate(R.layout.education_layout, container, false);
         CardView pc = view.findViewById(R.id.pc_parts);
-        CardView arduino = view.findViewById(R.id.arduinos);
+        CardView arduino = view.findViewById(R.id.Guides);
         CardView rasp = view.findViewById(R.id.rasp_pi);
         pc.setOnClickListener(view1 -> {
             startActivity(new Intent(getActivity(),PC_Part_Activity.class)

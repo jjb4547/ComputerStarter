@@ -53,7 +53,7 @@
                    android:fontFamily="@font/francois_one"
                    android:gravity="center"
                    android:padding="25dp"
-                   android:text="PC Parts"
+                   android:text="PC PARTS"
                    android:textColor="@color/white"
                    android:textSize="30sp" />
 
@@ -77,24 +77,23 @@
            android:layout_margin="8dp"
            app:cardElevation="8dp"
            android:clickable="true"
-           android:id="@+id/arduinos"
+           android:id="@+id/Guides"
            app:cardCornerRadius="8dp">
            <RelativeLayout
                android:layout_width="match_parent"
                android:layout_height="150dp"
                android:background="@color/cardview_light">
 
-               <ImageView
-                   android:layout_width="250dp"
-                   android:layout_height="141dp"
-                   android:layout_marginLeft="20dp"
-                   android:layout_marginTop="5dp"
-                   android:layout_marginRight="20dp"
-                   android:layout_marginBottom="5dp"
-                   android:foregroundGravity="center"
-                   android:src="@drawable/arduino_logo"
-                   android:layout_centerInParent="true"/>
-
+               <TextView
+                   android:layout_width="326dp"
+                   android:layout_height="112dp"
+                   android:layout_centerInParent="true"
+                   android:fontFamily="@font/francois_one"
+                   android:gravity="center"
+                   android:padding="25dp"
+                   android:text="GUIDES"
+                   android:textColor="@color/white"
+                   android:textSize="30sp" />
                <TextView
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
@@ -121,17 +120,17 @@
                android:layout_width="match_parent"
                android:layout_height="150dp"
                android:background="@color/cardview_light">
+               <TextView
+                   android:layout_width="326dp"
+                   android:layout_height="112dp"
+                   android:layout_centerInParent="true"
+                   android:fontFamily="@font/francois_one"
+                   android:gravity="center"
+                   android:padding="25dp"
+                   android:text="SAMPLE PROJECTS"
+                   android:textColor="@color/white"
+                   android:textSize="30sp" />
 
-               <ImageView
-                   android:layout_width="301dp"
-                   android:layout_height="102dp"
-                   android:layout_alignParentBottom="true"
-                   android:layout_marginLeft="20dp"
-                   android:layout_marginTop="22dp"
-                   android:layout_marginRight="20dp"
-                   android:layout_marginBottom="27dp"
-                   android:src="@drawable/rasp_logo"
-                   android:layout_centerInParent="true"/>
 
                <TextView
                    android:layout_width="wrap_content"
