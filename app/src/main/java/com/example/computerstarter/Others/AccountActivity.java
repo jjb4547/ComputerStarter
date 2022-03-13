@@ -47,12 +47,14 @@ public class AccountActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.account_layout);
+        initVar();
+        getProfile();
+        getDocs();
+        clickListeners();
+    }
+
+    private void initVar() {
         mAuth = FirebaseAuth.getInstance();
-        //storageReference = FirebaseStorage.getInstance().getReference();
-        StorageReference profileRef = storageReference.child("ProfileImage/Users/"+mAuth.getCurrentUser().getUid()+"/profile.jpg");
-        profileRef.getDownloadUrl().addOnSuccessListener(uri -> {
-            Picasso.get().load(uri).fit().into(profileImage);
-        });
         user = mAuth.getCurrentUser();
         name = findViewById(R.id.usersName);
         nameUser = findViewById(R.id.Name);
@@ -65,10 +67,16 @@ public class AccountActivity extends AppCompatActivity {
         profile = findViewById(R.id.change_profile);
         profileImage = findViewById(R.id.profileImage);
         home = findViewById(R.id.home);
-        home.setOnClickListener(view->{
-            startActivity(new Intent(getApplicationContext(), HomeActivity.class));
-            overridePendingTransition(R.anim.slide_in_bottom,R.anim.stay);
+    }
+
+    private void getProfile() {
+        StorageReference profileRef = storageReference.child("ProfileImage/Users/"+mAuth.getCurrentUser().getUid()+"/profile.jpg");
+        profileRef.getDownloadUrl().addOnSuccessListener(uri -> {
+            Picasso.get().load(uri).fit().into(profileImage);
         });
+    }
+
+    private void getDocs() {
         DocumentReference documentReference = db.collection("Users").document(mAuth.getCurrentUser().getUid());
         documentReference.get().addOnSuccessListener(documentSnapshot -> {
             if (documentSnapshot.exists()) {
@@ -79,6 +87,10 @@ public class AccountActivity extends AppCompatActivity {
                 Toast.makeText(AccountActivity.this, "Document Does not Exist", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+
+    private void clickListeners() {
         logOut.setOnClickListener(view->{
             mAuth.signOut();
             startActivity(new Intent(AccountActivity.this, MainBuilds.class)
@@ -88,6 +100,10 @@ public class AccountActivity extends AppCompatActivity {
         profile.setOnClickListener(view -> {
             Intent openGalleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             startActivityForResult(openGalleryIntent,1000);
+        });
+        home.setOnClickListener(view->{
+            startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+            overridePendingTransition(R.anim.slide_in_bottom,R.anim.stay);
         });
     }
 
