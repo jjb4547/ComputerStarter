@@ -73,6 +73,9 @@ public class MainBuildsFragment extends Fragment {
                             build_data.getParts_id().get(size-1)));
                     recent_Name.setText("NAME: "+build.get(0).getBuildName().substring(10));
                     recent_Price.setText("PRICE: $"+build.get(0).getBuildPrice().substring(10));
+                    recent_build.setOnClickListener(v->{
+
+                    });
                 }
             });
         }else{

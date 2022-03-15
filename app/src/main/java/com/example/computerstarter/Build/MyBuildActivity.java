@@ -378,8 +378,7 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
                 .putExtra("Build",build.get(position).getBuildName().substring(10))
                 .putExtra("ID",build.get(position).getCleanID())
                 .putExtra("editBuild",editBuild)
-                .putExtra("ID",build.get(position).getCleanID())
-                .putExtra("from","Main"));
+                .putExtra("ID",build.get(position).getCleanID()));
         overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
         deleteCard(position);
     }

@@ -18,6 +18,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 
 import com.example.computerstarter.Build.MyBuildActivity;
+import com.example.computerstarter.Guides.Guides_Activity;
 import com.example.computerstarter.Login.Login_SignUpActivity;
 import com.example.computerstarter.Others.AccountActivity;
 import com.example.computerstarter.R;
@@ -114,7 +115,7 @@ public class PC_Building_Guide_Activity extends AppCompatActivity implements Nav
             }
         });
         home.setOnClickListener(view->{
-            startActivity(new Intent(PC_Building_Guide_Activity.this, HomeActivity.class));
+            startActivity(new Intent(PC_Building_Guide_Activity.this, Guides_Activity.class));
             overridePendingTransition(R.anim.slide_in_top,R.anim.stay);
         });
         CardView supplies = findViewById(R.id.supplies);
