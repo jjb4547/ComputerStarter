@@ -75,6 +75,12 @@ public class SocialMediaAdapter extends RecyclerView.Adapter<SocialMediaAdapter.
         final String ptime = modelPosts.get(position).getPtime();
         String dp = modelPosts.get(position).getUdp();
         String plike = modelPosts.get(position).getPlike();
+        //System.out.println("CHANGE IN ADAPTER: "+modelPosts.get(position).getisDefault());
+       if(modelPosts.get(position).getisDefault()==false){
+           holder.image.setVisibility(View.VISIBLE);
+       }else{
+           holder.image.setVisibility(View.GONE);
+       }
         final String image = modelPosts.get(position).getUimage();
         String email = modelPosts.get(position).getUemail();
         String comm = modelPosts.get(position).getPcomments();
@@ -95,7 +101,7 @@ public class SocialMediaAdapter extends RecyclerView.Adapter<SocialMediaAdapter.
         } catch (Exception e) {
 
         }
-        holder.image.setVisibility(View.VISIBLE);
+        //older.image.setVisibility(View.VISIBLE);
         try {
             Glide.with(context).load(image).into(holder.image);
         } catch (Exception e) {

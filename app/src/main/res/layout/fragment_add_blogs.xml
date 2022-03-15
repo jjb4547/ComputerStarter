@@ -38,7 +38,8 @@
             android:layout_height="200dp"
             android:layout_marginTop="15dp"
             android:background="@drawable/edit"
-            android:src="@drawable/amd_cpu"/>
+            android:src="@drawable/amd_cpu"
+            android:tag="default"/>
 
         <Button
             android:id="@+id/blogPicture"

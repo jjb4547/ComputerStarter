@@ -87,6 +87,8 @@ public class SocialMediaBlogs extends AppCompatActivity {
     Bitmap bitmap;
     DatabaseReference databaseTags;
     Spinner spinner;
+    Boolean isDefault;
+    private String tagName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +98,8 @@ public class SocialMediaBlogs extends AppCompatActivity {
         //View view = inflater.inflate(R.layout.fragment_add_blogs, container, false);
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
+        tagName="";
+        isDefault=false;
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.fragment_add_blogs);
         //title = findViewById(R.id.ptitle); //change to spinner later
@@ -154,9 +158,9 @@ public class SocialMediaBlogs extends AppCompatActivity {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String tagName = parent.getItemAtPosition(position).toString();
+                tagName = parent.getItemAtPosition(position).toString();
                 Toast.makeText(parent.getContext(), "Selected: " + tagName, Toast.LENGTH_LONG).show();
-                databaseTags = FirebaseDatabase.getInstance().getReference("tagName"); //send data to same place as forum post
+                //databaseTags = FirebaseDatabase.getInstance().getReference("tagName"); //send data to same place as forum post
             }
             @Override
             public void onNothingSelected(AdapterView <?> parent) {
@@ -248,6 +252,9 @@ public class SocialMediaBlogs extends AppCompatActivity {
         Bitmap bitmap = ((BitmapDrawable) image.getDrawable()).getBitmap();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
         byte[] data = byteArrayOutputStream.toByteArray();
+        if("default".equals(image.getTag())){
+            isDefault=!isDefault;
+        }
         // initialising the storage reference for updating the data
         StorageReference storageReference1 = FirebaseStorage.getInstance().getReference().child(filepathname);
         storageReference1.putBytes(data).addOnSuccessListener(taskSnapshot -> {
@@ -263,13 +270,13 @@ public class SocialMediaBlogs extends AppCompatActivity {
                 hashMap.put("uemail", user.getEmail());
                 //hashMap.put("profileimage",user.getPhotoUrl());
                 hashMap.put("udp", dp);
-                //hashMap.put("title", titl);
+                hashMap.put("tag", tagName);
                 hashMap.put("description", description);
                 hashMap.put("uimage", downloadUri);
                 hashMap.put("ptime", timestamp);
                 hashMap.put("plike", "0");
                 hashMap.put("pcomments", "0");
-
+                hashMap.put("isDefault",isDefault);
                 // set the data into firebase and then empty the title ,description and image data
                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Posts");
                 databaseReference.child(timestamp).setValue(hashMap)
@@ -279,6 +286,8 @@ public class SocialMediaBlogs extends AppCompatActivity {
                                 pd.dismiss();
                                 Toast.makeText(SocialMediaBlogs.this, "Published", Toast.LENGTH_LONG).show();
                                 //title.setText("");
+                                tagName = "";
+                                image.setTag("default");
                                 des.setText("");
                                 //name.setText("");
                                 image.setImageURI(null);
@@ -314,10 +323,12 @@ public class SocialMediaBlogs extends AppCompatActivity {
             if (requestCode == 2) {
                 Toast.makeText(this, "Gallery Upload Done",Toast.LENGTH_SHORT).show();
                 imageuri = data.getData();
+                image.setTag("not default");
                 image.setImageURI(imageuri);
             }else if(requestCode ==1){
                 Toast.makeText(this, "Camera Upload Done",Toast.LENGTH_SHORT).show();
                 Bitmap imageBit = (Bitmap) data.getExtras().get("data");
+                image.setTag("not default");
                 image.setImageBitmap(imageBit);
             }
         }
