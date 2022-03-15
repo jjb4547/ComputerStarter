@@ -1,4 +1,4 @@
-package com.example.computerstarter.Others;
+package com.example.computerstarter.app;
 
 public class PartsItem {
     private String partsName;

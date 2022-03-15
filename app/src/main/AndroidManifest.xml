@@ -30,8 +30,7 @@
         <activity android:name=".Quiz.Results_Activity" />
         <activity android:name=".Quiz.QuizActivity" />
         <activity android:name=".Settings.SettingsActivity" />
-        <activity android:name=".Others.AccountActivity"
-            android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
+        <activity android:name=".Others.AccountActivity"/>
         <activity android:name=".Build.MainBuilds" />
         <activity android:name=".Others.AboutActivity" />
         <activity android:name=".Others.HelpActivity" />
@@ -73,17 +72,20 @@
             android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
         <activity android:name=".Guides.RaspberryPi.RaspberryPi_Guide_Setup_Activity"
             android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
-        <activity android:name=".Guides.RaspberryPi.Projects.RaspberryPi_Projects"/>
-        <activity android:name=".Guides.RaspberryPi.Projects.HumiditySensor.RaspberryPi_Humidity_Sensor"/>
-        <activity android:name=".Guides.RaspberryPi.Projects.HumiditySensor.RaspberryPi_Humidity_Sensor_Supplies"
+        <activity android:name=".SampleProjects.RaspiProj.RaspberryPi_Projects"/>
+        <activity android:name=".SampleProjects.RaspiProj.HumiditySensor.RaspberryPi_Humidity_Sensor"/>
+        <activity android:name=".SampleProjects.RaspiProj.HumiditySensor.RaspberryPi_Humidity_Sensor_Supplies"
             android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
-        <activity android:name=".Guides.RaspberryPi.Projects.HumiditySensor.RaspberryPi_Humidity_Sensor_Wiring"
+        <activity android:name=".SampleProjects.RaspiProj.HumiditySensor.RaspberryPi_Humidity_Sensor_Wiring"
             android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
-        <activity android:name=".Guides.RaspberryPi.Projects.HumiditySensor.RaspberryPi_Humidity_Sensor_Coding"
+        <activity android:name=".SampleProjects.RaspiProj.HumiditySensor.RaspberryPi_Humidity_Sensor_Coding"
             android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
         <activity android:name=".Education.WebPageEducation"/>
         <activity android:name=".app.HomeActivity"
             android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
+        <activity android:name=".Guides.Guides_Activity" />
+        <activity android:name=".SampleProjects.SampleProjects" />
+        <activity android:name=".SampleProjects.Arduino.Arduino_Projects" />
 
         <!-- Fonts -->
         <meta-data

@@ -1,4 +1,4 @@
-package com.example.computerstarter.Guides.RaspberryPi.Projects.HumiditySensor;
+package com.example.computerstarter.SampleProjects.RaspiProj.HumiditySensor;
 
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;

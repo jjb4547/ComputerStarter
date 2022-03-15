@@ -14,7 +14,7 @@
             android:orientation="vertical">
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
+                android:layout_height="225dp"
                 android:background="@color/cardview_light">
 
                 <com.makeramen.roundedimageview.RoundedImageView
@@ -138,75 +138,86 @@
                     android:background="@color/dark_gray" />
 
             </RelativeLayout>
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent">
+
                 <Button
                     android:id="@+id/logOut"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/cardview_light"
-                    android:text="Log Out"
-                    android:layout_centerHorizontal="true"
                     android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:backgroundTint="@color/cardview_light"
+                    android:elevation="15dp"
                     android:gravity="center"
-                    app:shapeAppearanceOverlay = "@style/Button5"
-                    android:elevation="15dp" />
+                    android:text="Log Out"
+                    app:shapeAppearanceOverlay="@style/Button5" />
+
+                <TextView
+                    android:id="@+id/home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:layout_below="@id/logOut"
+                    android:layout_alignParentBottom="true"
+                    android:fontFamily="@font/francois_one"
+                    android:layout_marginTop="50dp"
+                    android:text="Return Home"
+                    android:textColor="@color/cardview_light"
+                    android:textSize="30sp" />
 
             </RelativeLayout>
-            <TextView
-                android:id="@+id/home"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/logOut"
-                android:layout_marginTop="100dp"
-                android:fontFamily="@font/francois_one"
-                android:layout_gravity="center"
-                android:textSize="30sp"
-                android:textColor="@color/cardview_light"
-                android:text="Return Home" />
+            </ScrollView>
+
         </LinearLayout>
 
 
     </RelativeLayout>
     <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigation_menu"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:id="@+id/navigation_menu"
-        app:menu="@menu/drawer_menu"
+        android:layout_gravity="start"
+        android:background="@drawable/drawer_background_rest_2"
         android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_menu_home"
+        app:headerLayout="@layout/nav_menu"
+        app:itemIconTint="@color/white"
         app:itemTextAppearance="?android:attr/textAppearanceMedium"
-        android:layout_gravity= "start"
-        android:background="@color/cardview_light"
         app:itemTextColor="@color/white"
-        app:itemIconTint="@color/white">
+        app:menu="@menu/drawer_menu">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
-            android:backgroundTint="@color/background_color">
+            android:backgroundTint="@color/cardview_light">
+
             <ImageView
                 android:id="@+id/logButtton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_logout"
                 android:layout_alignParentBottom="true"
                 android:layout_toStartOf="@+id/log_Text"
                 android:backgroundTint="@color/white"
-                app:tint="@color/white"
-                />
+                android:src="@drawable/ic_logout"
+                app:tint="@color/white" />
+
             <TextView
                 android:id="@+id/log_Text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
                 android:text="Log Out"
                 android:textColor="@color/white"
-                android:gravity="center"
-                android:textSize="20sp"
-                android:layout_centerHorizontal="true"/>
+                android:textSize="20sp" />
         </RelativeLayout>
     </com.google.android.material.navigation.NavigationView>
 </androidx.drawerlayout.widget.DrawerLayout>

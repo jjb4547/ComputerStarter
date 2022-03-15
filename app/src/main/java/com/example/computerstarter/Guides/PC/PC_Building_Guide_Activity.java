@@ -28,6 +28,9 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import java.util.Objects;
 
@@ -47,6 +50,7 @@ public class PC_Building_Guide_Activity extends AppCompatActivity implements Nav
     private MenuItem item_log;
     private MenuItem item_quiz;
     private MenuItem item_acc;
+    private StorageReference storageReference = FirebaseStorage.getInstance().getReference();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,7 +91,8 @@ public class PC_Building_Guide_Activity extends AppCompatActivity implements Nav
             String current = user.getUid();
             name.setText(user.getDisplayName());
             email.setText(user.getEmail());
-            //profile.setImageURI(user.getPhotoUrl()); //bugging out not sure why but only on the emulator
+            StorageReference profileRef = storageReference.child("ProfileImage/Users/"+mAuth.getCurrentUser().getUid()+"/profile.jpg");
+            profileRef.getDownloadUrl().addOnSuccessListener(uri -> Picasso.get().load(uri).into(profile));
         }else{
             name.setText("Guest");
             email.setText("Guest Not Signed In");
@@ -109,28 +114,24 @@ public class PC_Building_Guide_Activity extends AppCompatActivity implements Nav
             }
         });
         home.setOnClickListener(view->{
-            startActivity(new Intent(PC_Building_Guide_Activity.this, MainBuilds.class)
-                    .putExtra("from","Main"));
+            startActivity(new Intent(PC_Building_Guide_Activity.this, HomeActivity.class));
             overridePendingTransition(R.anim.slide_in_top,R.anim.stay);
         });
         CardView supplies = findViewById(R.id.supplies);
         supplies.setOnClickListener(view->{
-            startActivity(new Intent(this, PC_Guide_Supplies_Activity.class)
-                    .putExtra("from","Main"));
+            startActivity(new Intent(this, PC_Guide_Supplies_Activity.class));
             overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
             finish();
         });
         CardView installation = findViewById(R.id.installation);
         installation.setOnClickListener(view -> {
-            startActivity(new Intent(this, PC_Guide_Installation_Activity.class)
-                    .putExtra("from","Main"));
+            startActivity(new Intent(this, PC_Guide_Installation_Activity.class));
             overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
             finish();
         });
         CardView setup = findViewById(R.id.setup);
         setup.setOnClickListener(view -> {
-            startActivity(new Intent(this, PC_Guide_Setup_Activity.class)
-                    .putExtra("from","Main"));
+            startActivity(new Intent(this, PC_Guide_Setup_Activity.class));
             overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
             finish();
         });

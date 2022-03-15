@@ -1,4 +1,4 @@
-package com.example.computerstarter.Others;
+package com.example.computerstarter.app;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.computerstarter.R;
+import com.example.computerstarter.app.PartsItem;
 
 import java.util.ArrayList;
 import java.util.List;

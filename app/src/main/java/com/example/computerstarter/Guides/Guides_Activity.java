@@ -1,4 +1,4 @@
-package com.example.computerstarter.Guides.RaspberryPi.Projects.HumiditySensor;
+package com.example.computerstarter.Guides;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,48 +15,40 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.navigation.NavController;
 
+import com.example.computerstarter.Build.MainBuilds;
 import com.example.computerstarter.Build.MyBuildActivity;
-import com.example.computerstarter.Guides.RaspberryPi.Projects.RaspberryPi_Projects;
+import com.example.computerstarter.Guides.Arduino.Arduino_Guides_Activity;
+import com.example.computerstarter.Guides.PC.PC_Building_Guide_Activity;
+import com.example.computerstarter.Guides.RaspberryPi.RaspberryPi_Guides_Activity;
 import com.example.computerstarter.Login.Login_SignUpActivity;
 import com.example.computerstarter.Others.AccountActivity;
 import com.example.computerstarter.R;
 import com.example.computerstarter.app.HomeActivity;
-import com.example.computerstarter.Build.MainBuilds;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import java.util.Objects;
 
-public class RaspberryPi_Humidity_Sensor extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
-    private TextView home;
+public class Guides_Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    private CardView pc,rasp,ard;
+    TextView home;
     private DrawerLayout drawerLayout;
-    private BottomNavigationView bottomNavigationView;
-    private NavController navController;
     private ActionBarDrawerToggle toggle;
     private NavigationView navigationView;
-    private FirebaseAuth mAuth;
-    private String[] list;
-    private String quiz;
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
     private TextView log;
-    private ImageView logBut;
-    private MenuItem item_log;
-    private MenuItem item_quiz;
     private MenuItem item_acc;
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private StorageReference storageReference = FirebaseStorage.getInstance().getReference();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.raspberrypi_humidity_project_layout);
-        mAuth = FirebaseAuth.getInstance();
+        setContentView(R.layout.guide_layout);
         FirebaseUser user = mAuth.getCurrentUser();
-        //bottomNavigationView = findViewById(R.id.bottomNavigationView);
-        //navController = Navigation.findNavController(this,R.id.frame_layout);
-        //NavigationUI.setupWithNavController(bottomNavigationView,navController);
         drawerLayout = findViewById(R.id.drawerlayout);
         navigationView = findViewById(R.id.navigation_menu);
         toggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.navigation_draw_open,R.string.navigation_draw_close);
@@ -72,7 +64,6 @@ public class RaspberryPi_Humidity_Sensor extends AppCompatActivity implements Na
         Menu menu = navigationView.getMenu();
         item_acc = menu.findItem(R.id.account);
         log = findViewById(R.id.log_Text);
-        logBut = findViewById(R.id.logButtton);
         if(user!=null) {
             log.setText("Log Out");
             item_acc.setVisible(true);
@@ -87,6 +78,8 @@ public class RaspberryPi_Humidity_Sensor extends AppCompatActivity implements Na
             String current = user.getUid();
             name.setText(user.getDisplayName());
             email.setText(user.getEmail());
+            StorageReference profileRef = storageReference.child("ProfileImage/Users/"+mAuth.getCurrentUser().getUid()+"/profile.jpg");
+            profileRef.getDownloadUrl().addOnSuccessListener(uri -> Picasso.get().load(uri).into(profile));
             //profile.setImageURI(user.getPhotoUrl()); //bugging out not sure why but only on the emulator
         }else{
             name.setText("Guest");
@@ -106,34 +99,38 @@ public class RaspberryPi_Humidity_Sensor extends AppCompatActivity implements Na
                 //log.setText("Log Out");
             }
         });
-        CardView supplies = findViewById(R.id.supplies);
-        supplies.setOnClickListener(view -> {
-            startActivity(new Intent(this, RaspberryPi_Humidity_Sensor_Supplies.class));
+        pc = findViewById(R.id.PCGuide);
+        rasp = findViewById(R.id.RaspGuide);
+        ard = findViewById(R.id.ArduinoGuide);
+        home = findViewById(R.id.homeBut);
+        pc.setOnClickListener(view1 -> {
+            startActivity(new Intent(Guides_Activity.this, PC_Building_Guide_Activity.class)
+                    .putExtra("Act","Edu"));
         });
-        CardView wiring = findViewById(R.id.installation);
-        wiring.setOnClickListener(view -> {
-            startActivity(new Intent(this, RaspberryPi_Humidity_Sensor_Wiring.class));
+        rasp.setOnClickListener(view2 -> {
+            startActivity(new Intent(Guides_Activity.this, RaspberryPi_Guides_Activity.class)
+                    .putExtra("component","Raspberry Pi")
+                    .putExtra("Act","Edu"));
         });
-        CardView coding = findViewById(R.id.setup);
-        coding.setOnClickListener(view -> {
-            startActivity(new Intent(this, RaspberryPi_Humidity_Sensor_Coding.class));
+        ard.setOnClickListener(view2 -> {
+            startActivity(new Intent(Guides_Activity.this, Arduino_Guides_Activity.class)
+                    .putExtra("component","Arduino")
+                    .putExtra("Act","Edu"));
         });
-        TextView home = findViewById(R.id.home);
-        home.setOnClickListener(view->{
-            startActivity(new Intent(getApplicationContext(), RaspberryPi_Projects.class));
-            overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
+        home.setOnClickListener(view -> {
+            startActivity(new Intent(Guides_Activity.this, HomeActivity.class));
         });
     }
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         mAuth = FirebaseAuth.getInstance();
         Menu menu = navigationView.getMenu();
         MenuItem item_acc = menu.findItem(R.id.account);
-        //real_login login = new real_login();
         switch (item.getItemId()){
             case R.id.home:
                 Toast.makeText(this,"Main Page",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this, HomeActivity.class));
+                startActivity(new Intent(this,HomeActivity.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 break;
             case R.id.building:

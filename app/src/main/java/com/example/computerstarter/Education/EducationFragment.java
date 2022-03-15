@@ -10,7 +10,9 @@ import android.widget.ListView;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import com.example.computerstarter.Guides.Guides_Activity;
 import com.example.computerstarter.R;
+import com.example.computerstarter.SampleProjects.SampleProjects;
 import com.google.firebase.auth.FirebaseAuth;
 
 
@@ -36,21 +38,17 @@ public class EducationFragment extends Fragment{
         //changed so that inflated happens first but is still returned at end
         View view = inflater.inflate(R.layout.education_layout, container, false);
         CardView pc = view.findViewById(R.id.pc_parts);
-        CardView arduino = view.findViewById(R.id.Guides);
-        CardView rasp = view.findViewById(R.id.rasp_pi);
+        CardView guides = view.findViewById(R.id.Guides);
+        CardView sampleProj = view.findViewById(R.id.rasp_pi);
         pc.setOnClickListener(view1 -> {
             startActivity(new Intent(getActivity(),PC_Part_Activity.class)
                     .putExtra("Act","Edu"));
         });
-        rasp.setOnClickListener(view2 -> {
-            startActivity(new Intent(getActivity(), Education_Choosing_Activity.class)
-                    .putExtra("component","Raspberry Pi")
-                    .putExtra("Act","Edu"));
+        sampleProj.setOnClickListener(view2 -> {
+            startActivity(new Intent(getActivity(), SampleProjects.class));
         });
-        arduino.setOnClickListener(view2 -> {
-            startActivity(new Intent(getActivity(), Education_Choosing_Activity.class)
-                    .putExtra("component","Arduino")
-                    .putExtra("Act","Edu"));
+        guides.setOnClickListener(view2 -> {
+            startActivity(new Intent(getActivity(), Guides_Activity.class));
         });
         return view;
     }

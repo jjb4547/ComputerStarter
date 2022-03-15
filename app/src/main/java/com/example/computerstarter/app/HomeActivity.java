@@ -27,8 +27,6 @@ import com.example.computerstarter.Education.Education_Choosing_Activity;
 import com.example.computerstarter.Guides.RaspberryPi.RaspberryPi_Guides_Activity;
 import com.example.computerstarter.Login.Login_SignUpActivity;
 import com.example.computerstarter.Others.AccountActivity;
-import com.example.computerstarter.Others.AutoCompletePartsAdapter;
-import com.example.computerstarter.Others.PartsItem;
 import com.example.computerstarter.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;

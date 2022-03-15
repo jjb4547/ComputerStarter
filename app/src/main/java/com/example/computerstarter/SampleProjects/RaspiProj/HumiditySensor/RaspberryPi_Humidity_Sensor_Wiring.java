@@ -1,4 +1,4 @@
-package com.example.computerstarter.Guides.RaspberryPi.Projects.HumiditySensor;
+package com.example.computerstarter.SampleProjects.RaspiProj.HumiditySensor;
 
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
@@ -23,7 +23,7 @@ import com.google.android.material.button.MaterialButton;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RaspberryPi_Humidity_Sensor_Supplies extends AppCompatActivity {
+public class RaspberryPi_Humidity_Sensor_Wiring extends AppCompatActivity {
 
     private OnboardingAdapter onboardingAdapterPcGuide;
     private LinearLayout layoutOnboardingIndicators;
@@ -65,7 +65,7 @@ public class RaspberryPi_Humidity_Sensor_Supplies extends AppCompatActivity {
             if(onboardingViewPager.getCurrentItem()+1< onboardingAdapterPcGuide.getItemCount()){
                 onboardingViewPager.setCurrentItem(onboardingViewPager.getCurrentItem()+1);
             }else{
-                startActivity(new Intent(this, RaspberryPi_Humidity_Sensor_Wiring.class));
+                startActivity(new Intent(this, RaspberryPi_Humidity_Sensor_Coding.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 finish();
             }
@@ -79,48 +79,22 @@ public class RaspberryPi_Humidity_Sensor_Supplies extends AppCompatActivity {
 
     private void setupOnboardingItems(){
         List<OnboardingItem> onboardingItemPcGuideActivityList = new ArrayList<>();
-        OnboardingItem item_Intro = new OnboardingItem();
-        item_Intro.setTitle("Welcome to the Supplies Guide");
-        item_Intro.setDescription("These are the supplies you will need for this project.");
-        item_Intro.setImage(R.drawable.rasp_logo);
 
-        OnboardingItem item_rasp = new OnboardingItem();
-        item_rasp.setTitle("Raspberry Pi");
-        item_rasp.setDescription("Get your Raspberry Pi.");
-        item_rasp.setImage(R.drawable.raspberry_pi);
+        OnboardingItem item_intro = new OnboardingItem();
+        item_intro.setTitle("Welcome to the Wiring Section");
+        item_intro.setDescription("You will learn to wire up the whole system");
+        item_intro.setImage(R.drawable.rasp_logo);
 
-        OnboardingItem item_sdcard = new OnboardingItem();
-        item_sdcard.setTitle("8GB SD or MicroSD");
-        item_sdcard.setDescription("Depends on which Raspberry Pi you are using.");
-        item_sdcard.setImage(R.drawable.sd_card);
+        OnboardingItem item_circuit = new OnboardingItem();
+        item_circuit.setTitle("DHT22 Circuit");
+        item_circuit.setDescription("• Place a 10k resistor between Pin 1 and Pin 2 of the DHT22\n" +
+                "• Wire Pin 1 of the DHT22 to Physical Pin 1 (3v3) on the Pi\n" +
+                "• Wire Pin 2 of the DHT22 to Physical Pin 7 (GPIO4) on the Pi\n" +
+                "• Wire Pin 4 of the DHT22 to Physical Pin 6 (GND) on the Pi");
+        item_circuit.setImage(R.drawable.circuit);
 
-        OnboardingItem item_breadboard = new OnboardingItem();
-        item_breadboard.setTitle("Breadboard and Jumper Wires");
-        item_breadboard.setDescription("Make sure you have a breadboard and some jumper wires. " +
-                "The colors do not matter but as a recommendation make sure that the voltage are red " +
-                "and any ground wires are black.");
-        item_breadboard.setImage(R.drawable.breadboard);
-
-        OnboardingItem item_ohm = new OnboardingItem();
-        item_ohm.setTitle("10k Ohm Resistor");
-        item_ohm.setDescription("Make sure it is the Brown, Black, Orange, Gold type.");
-        item_ohm.setImage(R.drawable.k_ohm_resistor);
-
-        OnboardingItem item_dht22 = new OnboardingItem();
-        item_dht22.setTitle("DHT22");
-        item_dht22.setDescription("Pin 1 is VCC (Power Supply/Voltage)\n" +
-                "Pin 2 is DATA (The signal pin)\n" +
-                "Pin 3 is NULL (DO NOT CONNECT)\n" +
-                "Pin 4 is GND (Ground)");
-        item_dht22.setImage(R.drawable.dht22);
-
-
-        onboardingItemPcGuideActivityList.add(item_Intro);
-        onboardingItemPcGuideActivityList.add(item_rasp);
-        onboardingItemPcGuideActivityList.add(item_sdcard);
-        onboardingItemPcGuideActivityList.add(item_breadboard);
-        onboardingItemPcGuideActivityList.add(item_ohm);
-        onboardingItemPcGuideActivityList.add(item_dht22);
+        onboardingItemPcGuideActivityList.add(item_intro);
+        onboardingItemPcGuideActivityList.add(item_circuit);
         onboardingAdapterPcGuide = new OnboardingAdapter(onboardingItemPcGuideActivityList);
     }
 
@@ -156,7 +130,7 @@ public class RaspberryPi_Humidity_Sensor_Supplies extends AppCompatActivity {
             }
         }
         if (index== onboardingAdapterPcGuide.getItemCount()-1){
-            buttonOnboardingAction.setText("Wiring");
+            buttonOnboardingAction.setText("Coding");
         }else{
             buttonOnboardingAction.setText("Next");
         }

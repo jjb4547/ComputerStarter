@@ -29,6 +29,9 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import java.util.Objects;
 
@@ -52,6 +55,7 @@ public class PC_Part_Activity extends AppCompatActivity implements NavigationVie
     private MenuItem item_log;
     private MenuItem item_quiz;
     private MenuItem item_acc;
+    private StorageReference storageReference = FirebaseStorage.getInstance().getReference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +96,8 @@ public class PC_Part_Activity extends AppCompatActivity implements NavigationVie
             String current = user.getUid();
             name.setText(user.getDisplayName());
             email.setText(user.getEmail());
+            StorageReference profileRef = storageReference.child("ProfileImage/Users/"+mAuth.getCurrentUser().getUid()+"/profile.jpg");
+            profileRef.getDownloadUrl().addOnSuccessListener(uri -> Picasso.get().load(uri).into(profile));
             //profile.setImageURI(user.getPhotoUrl()); //bugging out not sure why but only on the emulator
         }else{
             name.setText("Guest");
@@ -127,7 +133,7 @@ public class PC_Part_Activity extends AppCompatActivity implements NavigationVie
         if(from.equals("Guide")){
             home.setText("Return to Supplies");
         }else{
-            home.setText("Return to Home");
+            home.setText("Return Home");
         }
         home.setOnClickListener(view->{
             if(from.equals("Guide")){

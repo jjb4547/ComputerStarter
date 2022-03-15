@@ -41,6 +41,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -74,7 +77,7 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
     private TextView loginText;
     private TextView cpuName, motName,memName,storName, psuName,coolName,monName,vgaName,caseName;
     private LinearLayout cardLayout;
-
+    private StorageReference storageReference = FirebaseStorage.getInstance().getReference();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -126,6 +129,8 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
             String current = user.getUid();
             name.setText(user.getDisplayName());
             email.setText(user.getEmail());
+            StorageReference profileRef = storageReference.child("ProfileImage/Users/"+mAuth.getCurrentUser().getUid()+"/profile.jpg");
+            profileRef.getDownloadUrl().addOnSuccessListener(uri -> Picasso.get().load(uri).into(profile));
             //profile.setImageURI(user.getPhotoUrl()); //bugging out not sure why but only on the emulator
         }else{
             name.setText("Guest");

@@ -17,20 +17,20 @@ import androidx.cardview.widget.CardView;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 
+import com.example.computerstarter.Build.MainBuilds;
 import com.example.computerstarter.Build.MyBuildActivity;
-import com.example.computerstarter.Guides.Arduino.Arduino_Guides_Activity;
-import com.example.computerstarter.Guides.RaspberryPi.Projects.RaspberryPi_Projects;
-import com.example.computerstarter.Guides.RaspberryPi.RaspberryPi_Guides_Activity;
 import com.example.computerstarter.Login.Login_SignUpActivity;
 import com.example.computerstarter.Others.AccountActivity;
 import com.example.computerstarter.R;
 import com.example.computerstarter.app.HomeActivity;
-import com.example.computerstarter.Build.MainBuilds;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import java.util.Objects;
 
@@ -49,6 +49,7 @@ public class Education_Choosing_Activity extends AppCompatActivity implements Na
     private MenuItem item_log;
     private MenuItem item_quiz;
     private MenuItem item_acc;
+    private StorageReference storageReference = FirebaseStorage.getInstance().getReference();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,7 +89,8 @@ public class Education_Choosing_Activity extends AppCompatActivity implements Na
             String current = user.getUid();
             name.setText(user.getDisplayName());
             email.setText(user.getEmail());
-            //profile.setImageURI(user.getPhotoUrl()); //bugging out not sure why but only on the emulator
+            StorageReference profileRef = storageReference.child("ProfileImage/Users/"+mAuth.getCurrentUser().getUid()+"/profile.jpg");
+            profileRef.getDownloadUrl().addOnSuccessListener(uri -> Picasso.get().load(uri).into(profile));
         }else{
             name.setText("Guest");
             email.setText("Guest Not Signed In");
@@ -99,12 +101,10 @@ public class Education_Choosing_Activity extends AppCompatActivity implements Na
                 Toast.makeText(this,"Logged Out",Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this, MainBuilds.class));
                 log.setText("Log In");
-                //login.logged = false;
                 item_acc.setVisible(false);
             }else{
                 startActivity(new Intent(this, Login_SignUpActivity.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
-                //log.setText("Log Out");
             }
         });
         TextView home = findViewById(R.id.home);
@@ -115,58 +115,20 @@ public class Education_Choosing_Activity extends AppCompatActivity implements Na
         TextView detailedText = findViewById(R.id.detailed_Text);
         TextView basicDes = findViewById(R.id.basicText);
         TextView detDes = findViewById(R.id.detText);
-        if(!(comp.equals("Raspberry Pi")||comp.equals("Arduino"))){
-            home.setText("Return To Page");
-        } else{
-            home.setText("Return to Home");
-        }
         home.setOnClickListener(view->{
-            if(comp.equals("Raspberry Pi")||comp.equals("Arduino")){
-                startActivity(new Intent(getApplicationContext(), MainBuilds.class)
-                        .putExtra("from","Edu"));
-            }else {
-                startActivity(new Intent(getApplicationContext(), PC_Part_Activity.class)
-                        .putExtra("Act",getIntent().getExtras().getString("Act"))
-                        .putExtra("from","Edu"));
-            }
+            startActivity(new Intent(getApplicationContext(), PC_Part_Activity.class)
+                    .putExtra("Act",getIntent().getExtras().getString("Act")));
             overridePendingTransition(R.anim.slide_in_top, R.anim.stay);
         });
-        if(comp.equals("Raspberry Pi")||comp.equals("Arduino")){
-
-            detailedText.setText("Sample Projects");
-            if(comp.equals("Raspberry Pi")) {
-                basicText.setText("Learn to Setup Pi");
-                basicDes.setText("Learn to setup the Pi for the first time.");
-                detDes.setText("Fun Projects after setting Pi up.");
-            }else if(comp.equals("Arduino")){
-                basicText.setText("Learn to Setup Arduino");
-                basicDes.setText("Learn to setup the Arduino for the first time.");
-                detDes.setText("Fun Projects after setting the Arduino up.");
-            }
-        }
         CardView basic = findViewById(R.id.supplies);
         CardView intermediate = findViewById(R.id.installation);
         basic.setOnClickListener(view->{
-            if(!(comp.equals("Arduino")||comp.equals("Raspberry Pi"))) {
-                startActivity(new Intent(getApplicationContext(), Education_Tabbed.class).putExtra("from", "Beginner")
-                        .putExtra("component", comp).putExtra("Act",getIntent().getExtras().getString("Act")));
-            }else if(comp.equals("Arduino")){
-                startActivity(new Intent(getApplicationContext(), Arduino_Guides_Activity.class)
-                        .putExtra("from","Edu"));
-            }else if(comp.equals("Raspberry Pi")){
-                startActivity(new Intent(getApplicationContext(), RaspberryPi_Guides_Activity.class)
-                        .putExtra("from","Edu"));
-            }
+            startActivity(new Intent(getApplicationContext(), Education_Tabbed.class).putExtra("from", "Beginner")
+                    .putExtra("component", comp).putExtra("Act",getIntent().getExtras().getString("Act")));
         });
         intermediate.setOnClickListener(view -> {
-            if(!(comp.equals("Arduino")||comp.equals("Raspberry Pi"))) {
-                startActivity(new Intent(getApplicationContext(), Education_Tabbed.class).putExtra("from", "Intermediate")
-                        .putExtra("component", comp).putExtra("Act",getIntent().getExtras().getString("Act")));
-            }else if(comp.equals("Arduino")){
-                //startActivity(new Intent(getApplicationContext(), Arduino_Guides_Activity.class));
-            }else if(comp.equals("Raspberry Pi")){
-                startActivity(new Intent(getApplicationContext(), RaspberryPi_Projects.class));
-            }
+            startActivity(new Intent(getApplicationContext(), Education_Tabbed.class).putExtra("from", "Intermediate")
+                    .putExtra("component", comp).putExtra("Act",getIntent().getExtras().getString("Act")));
         });
 
     }

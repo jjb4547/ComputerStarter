@@ -18,17 +18,19 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 
 import com.example.computerstarter.Build.MyBuildActivity;
-import com.example.computerstarter.Education.Education_Choosing_Activity;
+import com.example.computerstarter.Guides.Guides_Activity;
 import com.example.computerstarter.Login.Login_SignUpActivity;
 import com.example.computerstarter.Others.AccountActivity;
 import com.example.computerstarter.R;
 import com.example.computerstarter.app.HomeActivity;
-import com.example.computerstarter.Build.MainBuilds;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import java.util.Objects;
 
@@ -48,15 +50,13 @@ public class Arduino_Guides_Activity extends AppCompatActivity implements Naviga
     private MenuItem item_log;
     private MenuItem item_quiz;
     private MenuItem item_acc;
+    private StorageReference storageReference = FirebaseStorage.getInstance().getReference();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.arduino_guide_layout);
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
-        //bottomNavigationView = findViewById(R.id.bottomNavigationView);
-        //navController = Navigation.findNavController(this,R.id.frame_layout);
-        //NavigationUI.setupWithNavController(bottomNavigationView,navController);
         drawerLayout = findViewById(R.id.drawerlayout);
         navigationView = findViewById(R.id.navigation_menu);
         toggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.navigation_draw_open,R.string.navigation_draw_close);
@@ -87,6 +87,8 @@ public class Arduino_Guides_Activity extends AppCompatActivity implements Naviga
             String current = user.getUid();
             name.setText(user.getDisplayName());
             email.setText(user.getEmail());
+            StorageReference profileRef = storageReference.child("ProfileImage/Users/"+mAuth.getCurrentUser().getUid()+"/profile.jpg");
+            profileRef.getDownloadUrl().addOnSuccessListener(uri -> Picasso.get().load(uri).into(profile));
             //profile.setImageURI(user.getPhotoUrl()); //bugging out not sure why but only on the emulator
         }else{
             name.setText("Guest");
@@ -96,23 +98,19 @@ public class Arduino_Guides_Activity extends AppCompatActivity implements Naviga
             if(mAuth.getCurrentUser()!=null){
                 mAuth.signOut();
                 Toast.makeText(this,"Logged Out",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this, MainBuilds.class)
-                        .putExtra("from","Main"));
+                startActivity(new Intent(this, HomeActivity.class));
                 log.setText("Log In");
                 //login.logged = false;
                 item_acc.setVisible(false);
             }else{
-                startActivity(new Intent(this, Login_SignUpActivity.class)
-                        .putExtra("from","Main"));
+                startActivity(new Intent(this, Login_SignUpActivity.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 //log.setText("Log Out");
             }
         });
         TextView home = findViewById(R.id.home);
         home.setOnClickListener(view->{
-            startActivity(new Intent(getApplicationContext(), Education_Choosing_Activity.class)
-                    .putExtra("component","Arduino")
-                    .putExtra("from","Edu"));
+            startActivity(new Intent(getApplicationContext(), Guides_Activity.class));
             overridePendingTransition(R.anim.slide_in_top,R.anim.stay);
         });
         CardView supplies = findViewById(R.id.prep);
