@@ -111,16 +111,8 @@ public class SocialMediaBlogs extends AppCompatActivity {
         pd.setCanceledOnTouchOutside(false);
         Intent intent = this.getIntent();
         // Retrieving the user data like name ,email and profile pic using query
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        byte[] data = byteArrayOutputStream.toByteArray();
         StorageReference storageReference1 = FirebaseStorage.getInstance().getReference().child("ProfileImage/Users/"+user.getUid()+"/profile");
-        storageReference1.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-            @Override
-            public void onSuccess(Uri uri) {
-                dp = uri.toString();
-            }
-        });
-
+        storageReference1.getDownloadUrl().addOnSuccessListener(uri -> dp = uri.toString());
         //used for spinner
 
         ArrayList<String> arrayList = new ArrayList<>();

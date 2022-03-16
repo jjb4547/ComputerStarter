@@ -115,7 +115,7 @@
                 android:padding="5dp"
                 android:src="@drawable/ic_like"
                 android:background="@color/cardview_dark"
-                />
+                android:clickable="true"/>
 
             <TextView
                 android:id="@+id/pcommentco"
