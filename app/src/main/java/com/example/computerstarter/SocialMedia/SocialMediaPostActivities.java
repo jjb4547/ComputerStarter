@@ -134,9 +134,9 @@ public class SocialMediaPostActivities extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 if (mlike) {
-                    if (dataSnapshot.child(postId).child("Likes").hasChild(postId)) {
+                    if (dataSnapshot.child(postId).child("Likes").hasChild(myuid)) {
                         postref.child(postId).child("plike").setValue("" + (Integer.parseInt (plike) - 1));
-                        postref.child(postId).child("Likes").child(postId).removeValue();
+                        postref.child(postId).child("Likes").child(myuid).removeValue();
                         mlike = false;
                     } else {
                         postref.child(postId).child("plike").setValue("" + (Integer.parseInt (plike) + 1));
@@ -153,16 +153,14 @@ public class SocialMediaPostActivities extends AppCompatActivity {
         });
     }
     private void addLike(String ptime){
+        String timestamp = String.valueOf(System.currentTimeMillis());
         DatabaseReference datarf = FirebaseDatabase.getInstance().getReference("Posts").child(ptime).child("Likes");
         HashMap<String, Object> hashMap = new HashMap<>();
-//        hashMap.put("cId", timestamp);
-//        hashMap.put("comment", commentss);
-//        hashMap.put("ptime", timestamp);
+        hashMap.put("ptime", timestamp);
         hashMap.put("uid", myuid);
-//        hashMap.put("uemail", myemail);
-//        hashMap.put("udp", mydp);
-//        hashMap.put("uname", myname);
-        datarf.child(ptime).setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+        hashMap.put("udp", mydp);
+        hashMap.put("uname", myname);
+        datarf.child(myuid).setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 //progressDialog.dismiss();
@@ -182,6 +180,7 @@ public class SocialMediaPostActivities extends AppCompatActivity {
     private void postComment() {
         progressDialog.setMessage("Adding Comment");
         final String commentss = comment.getText().toString().trim();
+
         if (TextUtils.isEmpty(commentss)) {
             Toast.makeText(SocialMediaPostActivities.this, "Empty comment", Toast.LENGTH_LONG).show();
             return;

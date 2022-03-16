@@ -58,9 +58,10 @@
 
             <ImageButton
                 android:id="@+id/morebtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@null" />
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@color/cardview_dark"
+                android:src="@drawable/ic_three_dots"/>
 
         </LinearLayout>
 
@@ -115,7 +116,7 @@
                 android:padding="5dp"
                 android:src="@drawable/ic_like"
                 android:background="@color/cardview_dark"
-                android:clickable="true"/>
+                android:clickable="true" />
 
             <TextView
                 android:id="@+id/pcommentco"

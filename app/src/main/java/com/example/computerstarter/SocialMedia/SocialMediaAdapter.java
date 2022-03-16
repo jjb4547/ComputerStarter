@@ -3,12 +3,10 @@ package com.example.computerstarter.SocialMedia;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.text.format.DateFormat;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -46,19 +44,21 @@ public class SocialMediaAdapter extends RecyclerView.Adapter<SocialMediaAdapter.
 
     Context context;
     String myuid;
-    private DatabaseReference liekeref, postref;
+    private DatabaseReference postref, likeRef;
     boolean mprocesslike = false;
     private StorageReference storageReference = FirebaseStorage.getInstance().getReference();
     FirebaseUser user;
+    private String mydp;
 
     public SocialMediaAdapter(Context context, List<SocialMediaModel> modelPosts) {
         this.context = context;
         this.modelPosts = modelPosts;
         myuid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         user = FirebaseAuth.getInstance().getCurrentUser();
-        Uri profile = FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl();
-        liekeref = FirebaseDatabase.getInstance().getReference().child("Likes");
+        //Uri profile = FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl();
         postref = FirebaseDatabase.getInstance().getReference().child("Posts");
+        StorageReference storageReference1 = FirebaseStorage.getInstance().getReference().child("ProfileImage/Users/"+user.getUid()+"/profile");
+        storageReference1.getDownloadUrl().addOnSuccessListener(uri -> mydp = uri.toString());
     }
 
     List<SocialMediaModel> modelPosts;
@@ -99,6 +99,20 @@ public class SocialMediaAdapter extends RecyclerView.Adapter<SocialMediaAdapter.
         holder.like.setText(plike + " Likes");
         holder.comments.setText(comm + " Comments");
         holder.picture.setImageURI(modelPosts.get(position).getProfile());
+        //Changes the color of the Heart
+        postref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.child(pid).child("Likes").hasChild(myuid)){
+                    holder.likebtn.setColorFilter(context.getResources().getColor(R.color.red));
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
         //holder.picture.setImageURI(profile);
         try {
             Glide.with(context).load(dp).into(holder.picture);
@@ -109,41 +123,44 @@ public class SocialMediaAdapter extends RecyclerView.Adapter<SocialMediaAdapter.
             Glide.with(context).load(image).into(holder.image);
         } catch (Exception e) {
         }
-        holder.likebtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //addLike(ptime);
-                final int plike = Integer.parseInt(modelPosts.get(holder.getAdapterPosition()).getPlike());
-                mprocesslike = true;
-                final String postid = modelPosts.get(holder.getAdapterPosition()).getPtime();
-                postref.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+        holder.likebtn.setOnClickListener(v -> {
+            final int plike1 = Integer.parseInt(modelPosts.get(holder.getAdapterPosition()).getPlike());
+            mprocesslike = true;
+            final String postid = modelPosts.get(holder.getAdapterPosition()).getPtime();
+            postref.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    //Toast.makeText(context.getApplicationContext(), "CLICKED ON LIKE",Toast.LENGTH_SHORT).show();
+                    if (mprocesslike) {
                         //Toast.makeText(context.getApplicationContext(), "CLICKED ON LIKE",Toast.LENGTH_SHORT).show();
-                        if (mprocesslike) {
-                            //Toast.makeText(context.getApplicationContext(), "CLICKED ON LIKE",Toast.LENGTH_SHORT).show();
-                            if (dataSnapshot.child(postid).child("Likes").hasChild(postid)) {
-                                postref.child(postid).child("plike").setValue("" + (plike - 1));
-                                postref.child(postid).child("Likes").child(postid).removeValue();
-                                mprocesslike = false;
-                            } else {
-                                postref.child(postid).child("plike").setValue("" + (plike + 1));
-                                addLike(ptime);
-                                mprocesslike = false;
-                            }
+                        if (dataSnapshot.child(postid).child("Likes").hasChild(myuid)) {
+                            postref.child(postid).child("plike").setValue("" + (plike1 - 1));
+                            postref.child(postid).child("Likes").child(myuid).removeValue();
+                            holder.likebtn.setSelected(false);
+                            mprocesslike = false;
+                        } else {
+                            holder.likebtn.setSelected(true);
+                            //holder.likebtn.setColorFilter(context.getResources().getColor(R.color.red));
+                            postref.child(postid).child("plike").setValue("" + (plike1 + 1));
+                            addLike(postid,holder);
+                            mprocesslike = false;
                         }
                     }
+                }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                    }
-                });
-            }
+                }
+            });
         });
+        if(!uid.equals(myuid)){
+            holder.more.setVisibility(View.GONE);
+        }
         holder.more.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Toast.makeText(context.getApplicationContext(), "CLICKED ON EDIT", Toast.LENGTH_SHORT).show();
                 showMoreOptions(holder.more, uid, myuid, ptime, image);
             }
         });
@@ -156,19 +173,23 @@ public class SocialMediaAdapter extends RecyclerView.Adapter<SocialMediaAdapter.
                 context.startActivity(intent);
             }
         });
+        holder.comments.setOnClickListener(v->{
+            final int pcomment = Integer.parseInt(modelPosts.get(holder.getAdapterPosition()).getPcomments());
+            Intent intent = new Intent(context, SocialMediaPostActivities.class);
+            intent.putExtra("pid", ptime).putExtra("comments", pcomment);
+            context.startActivity(intent);
+        });
     }
 
-    private void addLike(String ptime){
+    private void addLike(String ptime, MyHolder holder){
+        String timestamp = String.valueOf(System.currentTimeMillis());
         DatabaseReference datarf = FirebaseDatabase.getInstance().getReference("Posts").child(ptime).child("Likes");
         HashMap<String, Object> hashMap = new HashMap<>();
-//        hashMap.put("cId", timestamp);
-//        hashMap.put("comment", commentss);
-//        hashMap.put("ptime", timestamp);
+        hashMap.put("ptime", timestamp);
         hashMap.put("uid", myuid);
-//        hashMap.put("uemail", myemail);
-//        hashMap.put("udp", mydp);
-//        hashMap.put("uname", myname);
-        datarf.child(ptime).setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+        hashMap.put("udp", mydp);
+        hashMap.put("uname", user.getDisplayName());
+        datarf.child(myuid).setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 //progressDialog.dismiss();
@@ -190,15 +211,11 @@ public class SocialMediaAdapter extends RecyclerView.Adapter<SocialMediaAdapter.
         if (uid.equals(myuid)) {
             popupMenu.getMenu().add(Menu.NONE, 0, 0, "DELETE");
         }
-        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                if (item.getItemId() == 0) {
-                    deltewithImage(pid, image);
-                }
-
-                return false;
+        popupMenu.setOnMenuItemClickListener(item -> {
+            if (item.getItemId() == 0) {
+                deltewithImage(pid, image);
             }
+            return false;
         });
         popupMenu.show();
     }
@@ -217,6 +234,7 @@ public class SocialMediaAdapter extends RecyclerView.Adapter<SocialMediaAdapter.
                     }
                     pd.dismiss();
                     Toast.makeText(context, "Deleted Successfully", Toast.LENGTH_LONG).show();
+                    notifyDataSetChanged();
                 }
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {

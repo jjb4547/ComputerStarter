@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.computerstarter.Login.Login_SignUpActivity;
 import com.example.computerstarter.R;
@@ -26,8 +26,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +38,7 @@ public class SocialMediaFragment extends Fragment {
     SocialMediaAdapter adapterPosts;
     FloatingActionButton button;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     public SocialMediaFragment() {
         // Required empty public constructor
@@ -83,6 +82,14 @@ public class SocialMediaFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_forum, container, false);
         MaterialButton loginBut = view.findViewById(R.id.loginBut);
+        swipeRefreshLayout = view.findViewById(R.id.swipeLayout);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                loadPosts();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
         TextView loginText = view.findViewById(R.id.loginText);
         button = view.findViewById(R.id.buttonCreate);
         FirebaseUser user = mAuth.getCurrentUser();

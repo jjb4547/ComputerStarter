@@ -95,7 +95,7 @@ public class MainBuilds extends AppCompatActivity implements NavigationView.OnNa
             if(mAuth.getCurrentUser()!=null){
                 mAuth.signOut();
                 Toast.makeText(MainBuilds.this,"Logged Out",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(MainBuilds.this, MainBuilds.class));
+                startActivity(new Intent(MainBuilds.this, Login_SignUpActivity.class));
                 log.setText("Log In");
                 //login.logged = false;
                 item_acc.setVisible(false);

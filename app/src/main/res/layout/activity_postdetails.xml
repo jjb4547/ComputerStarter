@@ -210,7 +210,7 @@
             android:layout_height="40dp"
             android:layout_alignParentRight="true"
             android:background="@color/white"
-            android:src="@drawable/ic_like"
+            android:src="@drawable/ic_send"
             app:tint="@color/cardview_dark" />
         <!--android:src="@drawable/send_message"-->
 
