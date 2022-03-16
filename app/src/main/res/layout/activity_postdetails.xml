@@ -38,11 +38,14 @@
                         android:gravity="center_vertical"
                         android:orientation="horizontal">
 
-                        <ImageView
+                        <com.makeramen.roundedimageview.RoundedImageView
+                            android:layout_margin="5dp"
                             android:id="@+id/pictureco"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
-                            android:scaleType="centerCrop"/>
+                            android:scaleType="centerCrop"
+                            app:riv_corner_radius="10dp"
+                            app:riv_border_color="@color/black"/>
                             <!--android:src="@drawable/profile_image"-->
 
 
@@ -76,14 +79,6 @@
                             <!--android:src="@drawable/ic_more"-->
 
                     </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/ptitleco"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Title"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/descriptco"
@@ -139,9 +134,10 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:autoLink="all"
-                            android:background="@color/white"
                             android:padding="5dp"
-                            android:text="Like" />
+                            android:text="Like"
+                            style="@style/Button5"
+                            android:backgroundTint="@color/cardview_light"/>
                             <!--android:drawableStart="@drawable/ic_like"
                             android:drawableLeft="@drawable/ic_like"-->
 
@@ -151,9 +147,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:background="@color/white"
+                            style="@style/Button5"
                             android:padding="5dp"
-                            android:text="SHARE" />
+                            android:text="SHARE"
+                            android:backgroundTint="@color/cardview_light"/>
                         <!--android:drawableStart="@drawable/ic_share"
                         android:drawableLeft="@drawable/ic_share"-->
                     </LinearLayout>
@@ -186,10 +183,13 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true">
 
-        <ImageView
+        <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/commentimge"
             android:layout_width="50dp"
-            android:layout_height="50dp" />
+            android:layout_height="50dp"
+            app:riv_border_color="@color/black"
+            app:riv_corner_radius="10dp"
+            android:scaleType="centerCrop"/>
             <!--android:src="@drawable/profile_image" -->
 
         <EditText
@@ -210,7 +210,8 @@
             android:layout_height="40dp"
             android:layout_alignParentRight="true"
             android:background="@color/white"
-            />
+            android:src="@drawable/ic_like"
+            app:tint="@color/cardview_dark" />
         <!--android:src="@drawable/send_message"-->
 
     </RelativeLayout>

@@ -27,14 +27,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Quiz.Results_Activity" />
-        <activity android:name=".Quiz.QuizActivity" />
         <activity android:name=".Settings.SettingsActivity" />
         <activity android:name=".Others.AccountActivity"/>
         <activity android:name=".Build.MainBuilds" />
         <activity android:name=".Others.AboutActivity" />
         <activity android:name=".Others.HelpActivity" />
-        <activity android:name=".SocialMedia.SocialMediaActivity" />
         <activity android:name=".Build.Build_Activity" />
         <activity android:name=".Build.PC_Build_Parts" />
         <activity android:name=".Build.MyBuildActivity"
@@ -86,6 +83,7 @@
         <activity android:name=".Guides.Guides_Activity" />
         <activity android:name=".SampleProjects.SampleProjects" />
         <activity android:name=".SampleProjects.Arduino.Arduino_Projects" />
+        <activity android:name=".SocialMedia.SocialMediaPostActivities" />
 
         <!-- Fonts -->
         <meta-data

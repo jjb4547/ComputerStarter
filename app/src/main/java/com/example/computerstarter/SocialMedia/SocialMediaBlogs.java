@@ -15,9 +15,12 @@ import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,17 +37,14 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 
@@ -81,6 +81,11 @@ public class SocialMediaBlogs extends AppCompatActivity {
     FirebaseUser user;
     ImageView profile;
     Bitmap bitmap;
+    DatabaseReference databaseTags;
+    Spinner spinner;
+    Boolean isDefault;
+    private String tagName;
+    private StorageReference storageReference = FirebaseStorage.getInstance().getReference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,36 +95,59 @@ public class SocialMediaBlogs extends AppCompatActivity {
         //View view = inflater.inflate(R.layout.fragment_add_blogs, container, false);
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
+        tagName="";
+        isDefault=false;
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.fragment_add_blogs);
-        title = findViewById(R.id.ptitle);
+        //title = findViewById(R.id.ptitle); //change to spinner later
         des = findViewById(R.id.pdes);
         image = findViewById(R.id.imagep);
         upload = findViewById(R.id.pupload);
         blogPicture = findViewById(R.id.blogPicture);
         name = findViewById(R.id.unametv);
         profile = findViewById(R.id.picturetv);
+        spinner = findViewById(R.id.pspin);
         pd = new ProgressDialog(this);
         pd.setCanceledOnTouchOutside(false);
         Intent intent = this.getIntent();
         // Retrieving the user data like name ,email and profile pic using query
-        databaseReference = FirebaseDatabase.getInstance().getReference("Users");
-        Query query = databaseReference.orderByChild("email").equalTo(email2);
-        query.addValueEventListener(new ValueEventListener() {
+        StorageReference storageReference1 = FirebaseStorage.getInstance().getReference().child("ProfileImage/Users/"+user.getUid()+"/profile");
+        storageReference1.getDownloadUrl().addOnSuccessListener(uri -> dp = uri.toString());
+        //used for spinner
+
+        ArrayList<String> arrayList = new ArrayList<>();
+        arrayList.add("Computer");
+        arrayList.add("GPU");
+        arrayList.add("CPU");
+        arrayList.add("Motherboard");
+        arrayList.add("Power");
+        arrayList.add("Ram");
+        arrayList.add("Memory");
+        arrayList.add("RGB");
+        arrayList.add("Tower");
+        arrayList.add("Help!");
+        arrayList.add("Monitor");
+        arrayList.add("Mouse");
+        arrayList.add("Keyboard");
+        arrayList.add("Setup");
+        arrayList.add("Stream");
+        arrayList.add("Coding");
+        arrayList.add("Design");
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, arrayList);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(arrayAdapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                    //name = dataSnapshot1.child("name").getValue().toString();
-                    //email = "" + dataSnapshot1.child("email").getValue();
-                    dp = "" + dataSnapshot1.child("image").getValue().toString();
-                }
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                tagName = parent.getItemAtPosition(position).toString();
+                Toast.makeText(parent.getContext(), "Selected: " + tagName, Toast.LENGTH_LONG).show();
+                //databaseTags = FirebaseDatabase.getInstance().getReference("tagName"); //send data to same place as forum post
             }
-
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
+            public void onNothingSelected(AdapterView <?> parent) {
             }
         });
+
         // Initialising camera and storage permission
         // After click on button we will be selecting an image
         blogPicture.setOnClickListener(v -> showImagePicDialog());
@@ -127,15 +155,18 @@ public class SocialMediaBlogs extends AppCompatActivity {
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String titl = "" + title.getText().toString().trim();
+                //vvvvv dont forget to change it back!!!
+                //String titl = "" + title.getText().toString().trim();
+                String titl = " ";
                 String description = "" + des.getText().toString().trim();
 
+                //Convert to spinner later
                 // If empty set error
-                if (TextUtils.isEmpty(titl)) {
-                    title.setError("Title Cant be empty");
-                    Toast.makeText(SocialMediaBlogs.this, "Title can't be left empty", Toast.LENGTH_LONG).show();
-                    return;
-                }
+//                if (TextUtils.isEmpty(titl)) {
+//                    title.setError("Title Cant be empty");
+//                    Toast.makeText(SocialMediaBlogs.this, "Title can't be left empty", Toast.LENGTH_LONG).show();
+//                    return;
+//                }
 
                 // If empty set error
                 if (TextUtils.isEmpty(description)) {
@@ -143,7 +174,7 @@ public class SocialMediaBlogs extends AppCompatActivity {
                     Toast.makeText(SocialMediaBlogs.this, "Description can't be left empty", Toast.LENGTH_LONG).show();
                     return;
                 }
-                 //If empty show error
+                //If empty show error
                 /*if (imageuri == null) {
                     Toast.makeText(SocialMediaBlogs.this, "Select an Image", Toast.LENGTH_LONG).show();
                 } else {
@@ -160,7 +191,7 @@ public class SocialMediaBlogs extends AppCompatActivity {
     private void showImagePicDialog() {
         String[] options = {"Camera", "Gallery"};
         AlertDialog.Builder builder = new AlertDialog.Builder(SocialMediaBlogs.this);
-        builder.setTitle("Pick Image From");
+        //builder.setTitle("Pick Image From");
         builder.setItems(options, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -197,11 +228,14 @@ public class SocialMediaBlogs extends AppCompatActivity {
         pd.setMessage("Publishing Post");
         pd.show();
         final String timestamp = String.valueOf(System.currentTimeMillis());
-        String filepathname = "Posts/" + "post" + timestamp;
+        String filepathname = "Posts/post" + timestamp;
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         Bitmap bitmap = ((BitmapDrawable) image.getDrawable()).getBitmap();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
         byte[] data = byteArrayOutputStream.toByteArray();
+        if("default".equals(image.getTag())){
+            isDefault=!isDefault;
+        }
         // initialising the storage reference for updating the data
         StorageReference storageReference1 = FirebaseStorage.getInstance().getReference().child(filepathname);
         storageReference1.putBytes(data).addOnSuccessListener(taskSnapshot -> {
@@ -215,15 +249,14 @@ public class SocialMediaBlogs extends AppCompatActivity {
                 hashMap.put("uid", user.getUid());
                 hashMap.put("uname", user.getDisplayName());
                 hashMap.put("uemail", user.getEmail());
-                //hashMap.put("profileimage",user.getPhotoUrl());
                 hashMap.put("udp", dp);
-                hashMap.put("title", titl);
+                hashMap.put("tag", tagName);
                 hashMap.put("description", description);
                 hashMap.put("uimage", downloadUri);
                 hashMap.put("ptime", timestamp);
                 hashMap.put("plike", "0");
                 hashMap.put("pcomments", "0");
-
+                hashMap.put("isDefault",isDefault);
                 // set the data into firebase and then empty the title ,description and image data
                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Posts");
                 databaseReference.child(timestamp).setValue(hashMap)
@@ -232,7 +265,9 @@ public class SocialMediaBlogs extends AppCompatActivity {
                             public void onSuccess(Void aVoid) {
                                 pd.dismiss();
                                 Toast.makeText(SocialMediaBlogs.this, "Published", Toast.LENGTH_LONG).show();
-                                title.setText("");
+                                //title.setText("");
+                                tagName = "";
+                                image.setTag("default");
                                 des.setText("");
                                 //name.setText("");
                                 image.setImageURI(null);
@@ -268,10 +303,12 @@ public class SocialMediaBlogs extends AppCompatActivity {
             if (requestCode == 2) {
                 Toast.makeText(this, "Gallery Upload Done",Toast.LENGTH_SHORT).show();
                 imageuri = data.getData();
+                image.setTag("not default");
                 image.setImageURI(imageuri);
             }else if(requestCode ==1){
                 Toast.makeText(this, "Camera Upload Done",Toast.LENGTH_SHORT).show();
                 Bitmap imageBit = (Bitmap) data.getExtras().get("data");
+                image.setTag("not default");
                 image.setImageBitmap(imageBit);
             }
         }

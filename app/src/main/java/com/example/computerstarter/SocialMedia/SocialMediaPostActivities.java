@@ -1,9 +1,11 @@
 package com.example.computerstarter.SocialMedia;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.computerstarter.R;
+import com.example.computerstarter.app.MainActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,9 +33,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 
 public class SocialMediaPostActivities extends AppCompatActivity {
@@ -47,7 +55,7 @@ public class SocialMediaPostActivities extends AppCompatActivity {
     EditText comment;
     ImageButton sendb;
     RecyclerView recyclerView;
-    /////List<SocialMediaModelComment> commentList;
+    List<SocialMediaModelComment> commentList;
     SocialMediaAdapterComment adapterComment;
     ImageView imagep;
     boolean mlike = false;
@@ -58,6 +66,7 @@ public class SocialMediaPostActivities extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_postdetails);
+
         actionBar = getSupportActionBar();
         actionBar.setTitle("Post Details");
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -69,61 +78,43 @@ public class SocialMediaPostActivities extends AppCompatActivity {
         name = findViewById(R.id.unameco);
         time = findViewById(R.id.utimeco);
         more = findViewById(R.id.morebtn);
-        title = findViewById(R.id.ptitleco);
+        imagep = findViewById(R.id.commentimge);
         myemail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
         myuid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        StorageReference storageReference1 = FirebaseStorage.getInstance().getReference().child("ProfileImage/Users/"+myuid+"/profile");
+        storageReference1.getDownloadUrl().addOnSuccessListener(uri -> {
+            mydp = uri.toString();
+            Picasso.get().load(uri).into(imagep);
+        });
         description = findViewById(R.id.descriptco);
         tcomment = findViewById(R.id.pcommenttv);
         like = findViewById(R.id.plikebco);
         likebtn = findViewById(R.id.like);
         comment = findViewById(R.id.typecommet);
         sendb = findViewById(R.id.sendcomment);
-        imagep = findViewById(R.id.commentimge);
         share = findViewById(R.id.share);
         profile = findViewById(R.id.profilelayout);
         progressDialog = new ProgressDialog(this);
         loadPostInfo();
-
-        loadUserInfo();
-        setLikes();
-        actionBar.setSubtitle("SignedInAs:" + myemail);
         loadComments();
-        sendb.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                postComment();
-            }
-        });
-        likebtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                likepost();
-            }
-        });
-//        like.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(PostDetailsActivity.this, PostLikedByActivity.class);
-//                intent.putExtra("pid", postId);
-//                startActivity(intent);
-//            }
-//        });
+        sendb.setOnClickListener(v -> postComment());
+        likebtn.setOnClickListener(v -> likepost());
     }
 
-    private void loadComments() {
 
+    private void loadComments() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
-        //////commentList = new ArrayList<>();
+        commentList = new ArrayList<>();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts").child(postId).child("Comments");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                ///////commentList.clear();
+                commentList.clear();
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                     SocialMediaModelComment modelComment = dataSnapshot1.getValue(SocialMediaModelComment.class);
-                    ///////commentList.add(modelComment);
-                    ////////adapterComment = new SocialMediaAdapterComment(getApplicationContext(), commentList, myuid, postId);
+                    commentList.add(modelComment);
+                    adapterComment = new SocialMediaAdapterComment(getApplicationContext(), commentList, myuid, postId);
                     recyclerView.setAdapter(adapterComment);
                 }
             }
@@ -134,47 +125,21 @@ public class SocialMediaPostActivities extends AppCompatActivity {
             }
         });
     }
-
-    private void setLikes() {
-        final DatabaseReference liekeref = FirebaseDatabase.getInstance().getReference().child("Likes");
-        liekeref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                if (dataSnapshot.child(postId).hasChild(myuid)) {
-                    ///////likebtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_liked, 0, 0, 0);
-                    likebtn.setText("Liked");
-                } else {
-                    ///////likebtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_like, 0, 0, 0);
-                    likebtn.setText("Like");
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
-
     private void likepost() {
-
         mlike = true;
-        final DatabaseReference liekeref = FirebaseDatabase.getInstance().getReference().child("Likes");
         final DatabaseReference postref = FirebaseDatabase.getInstance().getReference().child("Posts");
-        liekeref.addValueEventListener(new ValueEventListener() {
+        postref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 if (mlike) {
-                    if (dataSnapshot.child(postId).hasChild(myuid)) {
+                    if (dataSnapshot.child(postId).hasChild("isLiked")) {
                         postref.child(postId).child("plike").setValue("" + (Integer.parseInt(plike) - 1));
-                        liekeref.child(postId).child(myuid).removeValue();
+                        postref.child(postId).child("isLiked").removeValue();
                         mlike = false;
-
                     } else {
                         postref.child(postId).child("plike").setValue("" + (Integer.parseInt(plike) + 1));
-                        liekeref.child(postId).child(myuid).setValue("Liked");
+                        postref.child(postId).child("isLiked").setValue("Liked");
                         mlike = false;
                     }
                 }
@@ -189,7 +154,6 @@ public class SocialMediaPostActivities extends AppCompatActivity {
 
     private void postComment() {
         progressDialog.setMessage("Adding Comment");
-
         final String commentss = comment.getText().toString().trim();
         if (TextUtils.isEmpty(commentss)) {
             Toast.makeText(SocialMediaPostActivities.this, "Empty comment", Toast.LENGTH_LONG).show();
@@ -197,6 +161,8 @@ public class SocialMediaPostActivities extends AppCompatActivity {
         }
         progressDialog.show();
         String timestamp = String.valueOf(System.currentTimeMillis());
+        DatabaseReference commentRef = FirebaseDatabase.getInstance().getReference("Posts").child(postId+"/pcomments");
+        commentRef.setValue(String.valueOf(getIntent().getExtras().getInt("comments")+1));
         DatabaseReference datarf = FirebaseDatabase.getInstance().getReference("Posts").child(postId).child("Comments");
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("cId", timestamp);
@@ -212,7 +178,7 @@ public class SocialMediaPostActivities extends AppCompatActivity {
                 progressDialog.dismiss();
                 Toast.makeText(SocialMediaPostActivities.this, "Added", Toast.LENGTH_LONG).show();
                 comment.setText("");
-                updatecommetcount();
+                //updatecommetcount();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -222,55 +188,32 @@ public class SocialMediaPostActivities extends AppCompatActivity {
             }
         });
     }
-
-    boolean count = false;
-
-    private void updatecommetcount() {
-        count = true;
-        final DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts").child(postId);
-        reference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (count) {
-                    String comments = "" + dataSnapshot.child("pcomments").getValue();
-                    int newcomment = Integer.parseInt(comments) + 1;
-                    reference.child("pcomments").setValue("" + newcomment);
-                    count = false;
-
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
-
-    private void loadUserInfo() {
-
-        Query myref = FirebaseDatabase.getInstance().getReference("Users");
-        myref.orderByChild("uid").equalTo(myuid).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                    myname = dataSnapshot1.child("name").getValue().toString();
-                    mydp = dataSnapshot1.child("image").getValue().toString();
-                    try {
-                        Glide.with(SocialMediaPostActivities.this).load(mydp).into(imagep);
-                    } catch (Exception e) {
-
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
-
+//
+//    boolean count = false;
+//
+//    private void updatecommetcount() {
+//        count = true;
+//        final DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts").child(postId);
+//        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                if (count) {
+//                    String comments = "" + dataSnapshot.child("pcomments").getValue();
+//                    int newcomment = Integer.parseInt(comments) + 1;
+//                    reference.child("pcomments").setValue("" + newcomment);
+//                    count = false;
+//
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
+//    }
+//
+//
     private void loadPostInfo() {
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Posts");
@@ -280,7 +223,7 @@ public class SocialMediaPostActivities extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                    String ptitle = dataSnapshot1.child("title").getValue().toString();
+                    //String ptitle = dataSnapshot1.child("title").getValue().toString();
                     String descriptions = dataSnapshot1.child("description").getValue().toString();
                     uimage = dataSnapshot1.child("uimage").getValue().toString();
                     hisdp = dataSnapshot1.child("udp").getValue().toString();
@@ -294,12 +237,12 @@ public class SocialMediaPostActivities extends AppCompatActivity {
                     calendar.setTimeInMillis(Long.parseLong(ptime));
                     String timedate = DateFormat.format("dd/MM/yyyy hh:mm aa", calendar).toString();
                     name.setText(hisname);
-                    title.setText(ptitle);
+                    //title.setText(ptitle);
                     description.setText(descriptions);
                     like.setText(plike + " Likes");
                     time.setText(timedate);
                     tcomment.setText(commentcount + " Comments");
-                    if (uimage.equals("noImage")) {
+                    if (dataSnapshot1.child("isDefault").getValue().toString().equals("true")) {
                         image.setVisibility(View.GONE);
                     } else {
                         image.setVisibility(View.VISIBLE);
@@ -309,10 +252,9 @@ public class SocialMediaPostActivities extends AppCompatActivity {
 
                         }
                     }
-                    try {
-                        Glide.with(SocialMediaPostActivities.this).load(hisdp).into(picture);
-                    } catch (Exception e) {
-
+                        try {
+                            Glide.with(SocialMediaPostActivities.this).load(hisdp).into(picture);
+                        } catch (Exception e) {
                     }
 
 
@@ -327,9 +269,19 @@ public class SocialMediaPostActivities extends AppCompatActivity {
     }
 
     @Override
-    public boolean onSupportNavigateUp() {
-        onBackPressed();
-        return super.onSupportNavigateUp();
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId()==android.R.id.home) {
+            // app icon in action bar clicked; goto parent activity.
+            startActivity(new Intent(this, MainActivity.class));
+            return true;
+        }else
+            return super.onOptionsItemSelected(item);
     }
+//
+//    @Override
+//    public boolean onSupportNavigateUp() {
+//        onBackPressed();
+//        return super.onSupportNavigateUp();
+//    }
 
 }

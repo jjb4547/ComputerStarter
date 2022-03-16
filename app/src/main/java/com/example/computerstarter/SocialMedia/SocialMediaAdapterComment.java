@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.computerstarter.R;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Calendar;
 import java.util.List;
@@ -22,6 +23,7 @@ public class SocialMediaAdapterComment extends RecyclerView.Adapter<SocialMediaA
 
     Context context;
     List<SocialMediaModelComment> list;
+    FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
     public SocialMediaAdapterComment(Context context, List<SocialMediaModelComment> list, String myuid, String postid) {
         this.context = context;
@@ -44,8 +46,8 @@ public class SocialMediaAdapterComment extends RecyclerView.Adapter<SocialMediaA
     @Override
     public void onBindViewHolder(@NonNull MyHolder holder, int position) {
         final String uid = list.get(position).getUid();
-        String name = list.get(position).getUname();
-        String email = list.get(position).getUemail();
+        String name = mAuth.getCurrentUser().getDisplayName();
+        String email = mAuth.getCurrentUser().getEmail();
         String image = list.get(position).getUdp();
         final String cid = list.get(position).getcId();
         String comment = list.get(position).getComment();

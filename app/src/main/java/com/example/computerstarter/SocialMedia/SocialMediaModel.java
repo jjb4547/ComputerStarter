@@ -6,6 +6,16 @@ public class SocialMediaModel {
     public SocialMediaModel() {
     }
 
+    public Boolean getisDefault() {
+        return isDefault;
+    }
+
+    public void setisDefault(Boolean isDefault) {
+        this.isDefault = isDefault;
+    }
+
+    Boolean isDefault;
+
     String description;
 
     public String getDescription() {
@@ -98,7 +108,7 @@ public class SocialMediaModel {
         this.pcomments = pcomments;
     }
 
-    public SocialMediaModel(String description, String pid, String ptime, String pcomments, String title, String udp, String uemail, String uid, String uimage, String uname, String plike, Uri profile) {
+    public SocialMediaModel(String description, String pid, String ptime, String pcomments, String title, String udp, String uemail, String uid, String uimage, String uname, String plike, Uri profile, Boolean isDefault) {
         this.description = description;
         this.pid = pid;
         this.ptime = ptime;
@@ -111,6 +121,7 @@ public class SocialMediaModel {
         this.uname = uname;
         this.plike = plike;
         this.profile = profile;
+        this.isDefault = isDefault;
     }
 
     public Uri getProfile() {

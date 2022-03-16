@@ -25,8 +25,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.computerstarter.R;
 import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -46,11 +46,14 @@ public class SocialMediaAdapter extends RecyclerView.Adapter<SocialMediaAdapter.
     String myuid;
     private DatabaseReference liekeref, postref;
     boolean mprocesslike = false;
+    private StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+    FirebaseUser user;
 
     public SocialMediaAdapter(Context context, List<SocialMediaModel> modelPosts) {
         this.context = context;
         this.modelPosts = modelPosts;
         myuid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        user = FirebaseAuth.getInstance().getCurrentUser();
         Uri profile = FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl();
         liekeref = FirebaseDatabase.getInstance().getReference().child("Likes");
         postref = FirebaseDatabase.getInstance().getReference().child("Posts");
@@ -75,6 +78,11 @@ public class SocialMediaAdapter extends RecyclerView.Adapter<SocialMediaAdapter.
         final String ptime = modelPosts.get(position).getPtime();
         String dp = modelPosts.get(position).getUdp();
         String plike = modelPosts.get(position).getPlike();
+       if(modelPosts.get(position).getisDefault()==false){
+           holder.image.setVisibility(View.VISIBLE);
+       }else{
+           holder.image.setVisibility(View.GONE);
+       }
         final String image = modelPosts.get(position).getUimage();
         String email = modelPosts.get(position).getUemail();
         String comm = modelPosts.get(position).getPcomments();
@@ -88,56 +96,48 @@ public class SocialMediaAdapter extends RecyclerView.Adapter<SocialMediaAdapter.
         holder.time.setText(timedate);
         holder.like.setText(plike + " Likes");
         holder.comments.setText(comm + " Comments");
+        holder.picture.setImageURI(modelPosts.get(position).getProfile());
         //holder.picture.setImageURI(profile);
-        setLikes(holder, ptime);
         try {
             Glide.with(context).load(dp).into(holder.picture);
         } catch (Exception e) {
 
         }
-        holder.image.setVisibility(View.VISIBLE);
         try {
             Glide.with(context).load(image).into(holder.image);
         } catch (Exception e) {
-
         }
-//        holder.like.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(holder.itemView.getContext(), PostLikedByActivity.class);
-//                intent.putExtra("pid", pid);
-//                holder.itemView.getContext().startActivity(intent);
-//            }
-//        });
-//        holder.likebtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                final int plike = Integer.parseInt(modelPosts.get(position).getPlike());
-//                mprocesslike = true;
-//                final String postid = modelPosts.get(position).getPtime();
-//                liekeref.addValueEventListener(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                        if (mprocesslike) {
-//                            if (dataSnapshot.child(postid).hasChild(myuid)) {
-//                                postref.child(postid).child("plike").setValue("" + (plike - 1));
-//                                liekeref.child(postid).child(myuid).removeValue();
-//                                mprocesslike = false;
-//                            } else {
-//                                postref.child(postid).child("plike").setValue("" + (plike + 1));
-//                                liekeref.child(postid).child(myuid).setValue("Liked");
-//                                mprocesslike = false;
-//                            }
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//                    }
-//                });
-//            }
-//        });
+        holder.likebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final int plike = Integer.parseInt(modelPosts.get(holder.getAdapterPosition()).getPlike());
+                mprocesslike = true;
+                final String postid = modelPosts.get(holder.getAdapterPosition()).getPtime();
+                postref.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        //Toast.makeText(context.getApplicationContext(), "CLICKED ON LIKE",Toast.LENGTH_SHORT).show();
+                        if (mprocesslike) {
+                            //Toast.makeText(context.getApplicationContext(), "CLICKED ON LIKE",Toast.LENGTH_SHORT).show();
+                            if (dataSnapshot.child(postid).hasChild("isLiked")) {
+                                postref.child(postid).child("plike").setValue("" + (plike - 1));
+                                postref.child(postid).child("isLiked").removeValue();
+                                mprocesslike = false;
+                            } else {
+                                postref.child(postid).child("plike").setValue("" + (plike + 1));
+                                postref.child(postid).child("isLiked").setValue("Liked");
+                                mprocesslike = false;
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+            }
+        });
         holder.more.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -147,8 +147,9 @@ public class SocialMediaAdapter extends RecyclerView.Adapter<SocialMediaAdapter.
         holder.comment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final int pcomment = Integer.parseInt(modelPosts.get(holder.getAdapterPosition()).getPcomments());
                 Intent intent = new Intent(context, SocialMediaPostActivities.class);
-                intent.putExtra("pid", ptime);
+                intent.putExtra("pid", ptime).putExtra("comments", pcomment);
                 context.startActivity(intent);
             }
         });
@@ -176,48 +177,25 @@ public class SocialMediaAdapter extends RecyclerView.Adapter<SocialMediaAdapter.
         final ProgressDialog pd = new ProgressDialog(context);
         pd.setMessage("Deleting");
         StorageReference picref = FirebaseStorage.getInstance().getReferenceFromUrl(image);
-        picref.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                Query query = FirebaseDatabase.getInstance().getReference("Posts").orderByChild("ptime").equalTo(pid);
-                query.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                            dataSnapshot1.getRef().removeValue();
-                        }
-                        pd.dismiss();
-                        Toast.makeText(context, "Deleted Successfully", Toast.LENGTH_LONG).show();
+        picref.delete().addOnSuccessListener(aVoid -> {
+            Query query = FirebaseDatabase.getInstance().getReference("Posts").orderByChild("ptime").equalTo(pid);
+            query.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                        dataSnapshot1.getRef().removeValue();
                     }
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                    pd.dismiss();
+                    Toast.makeText(context, "Deleted Successfully", Toast.LENGTH_LONG).show();
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                    }
-                });
-            }
+                }
+            });
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-
-            }
-        });
-    }
-
-    private void setLikes(final MyHolder holder, final String pid) {
-        liekeref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.child(pid).hasChild(myuid)) {
-                    //holder.likebtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_liked, 0, 0, 0);
-                    holder.likebtn.setText("Liked");
-                } else {
-                    //holder.likebtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_like, 0, 0, 0);
-                    holder.likebtn.setText("Like");
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
@@ -231,8 +209,9 @@ public class SocialMediaAdapter extends RecyclerView.Adapter<SocialMediaAdapter.
     class MyHolder extends RecyclerView.ViewHolder {
         ImageView picture, image;
         TextView name, time, title, description, like, comments;
-        ImageButton more;
-        Button likebtn, comment;
+        ImageButton more,likebtn;
+        Button comment;
+
         LinearLayout profile;
 
         public MyHolder(@NonNull View itemView) {
