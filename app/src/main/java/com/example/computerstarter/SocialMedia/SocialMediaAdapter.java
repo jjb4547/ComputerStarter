@@ -25,6 +25,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.computerstarter.R;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -37,6 +38,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -110,6 +112,7 @@ public class SocialMediaAdapter extends RecyclerView.Adapter<SocialMediaAdapter.
         holder.likebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //addLike(ptime);
                 final int plike = Integer.parseInt(modelPosts.get(holder.getAdapterPosition()).getPlike());
                 mprocesslike = true;
                 final String postid = modelPosts.get(holder.getAdapterPosition()).getPtime();
@@ -119,13 +122,13 @@ public class SocialMediaAdapter extends RecyclerView.Adapter<SocialMediaAdapter.
                         //Toast.makeText(context.getApplicationContext(), "CLICKED ON LIKE",Toast.LENGTH_SHORT).show();
                         if (mprocesslike) {
                             //Toast.makeText(context.getApplicationContext(), "CLICKED ON LIKE",Toast.LENGTH_SHORT).show();
-                            if (dataSnapshot.child(postid).hasChild("isLiked")) {
+                            if (dataSnapshot.child(postid).child("Likes").hasChild(postid)) {
                                 postref.child(postid).child("plike").setValue("" + (plike - 1));
-                                postref.child(postid).child("isLiked").removeValue();
+                                postref.child(postid).child("Likes").child(postid).removeValue();
                                 mprocesslike = false;
                             } else {
                                 postref.child(postid).child("plike").setValue("" + (plike + 1));
-                                postref.child(postid).child("isLiked").setValue("Liked");
+                                addLike(ptime);
                                 mprocesslike = false;
                             }
                         }
@@ -151,6 +154,33 @@ public class SocialMediaAdapter extends RecyclerView.Adapter<SocialMediaAdapter.
                 Intent intent = new Intent(context, SocialMediaPostActivities.class);
                 intent.putExtra("pid", ptime).putExtra("comments", pcomment);
                 context.startActivity(intent);
+            }
+        });
+    }
+
+    private void addLike(String ptime){
+        DatabaseReference datarf = FirebaseDatabase.getInstance().getReference("Posts").child(ptime).child("Likes");
+        HashMap<String, Object> hashMap = new HashMap<>();
+//        hashMap.put("cId", timestamp);
+//        hashMap.put("comment", commentss);
+//        hashMap.put("ptime", timestamp);
+        hashMap.put("uid", myuid);
+//        hashMap.put("uemail", myemail);
+//        hashMap.put("udp", mydp);
+//        hashMap.put("uname", myname);
+        datarf.child(ptime).setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                //progressDialog.dismiss();
+                Toast.makeText(context.getApplicationContext(), "Added", Toast.LENGTH_LONG).show();
+                //comment.setText("");
+                //updatecommetcount();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                //progressDialog.dismiss();
+                Toast.makeText(context.getApplicationContext(), "Failed", Toast.LENGTH_LONG).show();
             }
         });
     }

@@ -81,6 +81,7 @@ public class SocialMediaPostActivities extends AppCompatActivity {
         imagep = findViewById(R.id.commentimge);
         myemail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
         myuid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        myname = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
         StorageReference storageReference1 = FirebaseStorage.getInstance().getReference().child("ProfileImage/Users/"+myuid+"/profile");
         storageReference1.getDownloadUrl().addOnSuccessListener(uri -> {
             mydp = uri.toString();
@@ -133,13 +134,13 @@ public class SocialMediaPostActivities extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 if (mlike) {
-                    if (dataSnapshot.child(postId).hasChild("isLiked")) {
-                        postref.child(postId).child("plike").setValue("" + (Integer.parseInt(plike) - 1));
-                        postref.child(postId).child("isLiked").removeValue();
+                    if (dataSnapshot.child(postId).child("Likes").hasChild(postId)) {
+                        postref.child(postId).child("plike").setValue("" + (Integer.parseInt (plike) - 1));
+                        postref.child(postId).child("Likes").child(postId).removeValue();
                         mlike = false;
                     } else {
-                        postref.child(postId).child("plike").setValue("" + (Integer.parseInt(plike) + 1));
-                        postref.child(postId).child("isLiked").setValue("Liked");
+                        postref.child(postId).child("plike").setValue("" + (Integer.parseInt (plike) + 1));
+                        addLike(ptime);
                         mlike = false;
                     }
                 }
@@ -148,6 +149,32 @@ public class SocialMediaPostActivities extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
+    }
+    private void addLike(String ptime){
+        DatabaseReference datarf = FirebaseDatabase.getInstance().getReference("Posts").child(ptime).child("Likes");
+        HashMap<String, Object> hashMap = new HashMap<>();
+//        hashMap.put("cId", timestamp);
+//        hashMap.put("comment", commentss);
+//        hashMap.put("ptime", timestamp);
+        hashMap.put("uid", myuid);
+//        hashMap.put("uemail", myemail);
+//        hashMap.put("udp", mydp);
+//        hashMap.put("uname", myname);
+        datarf.child(ptime).setValue(hashMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                //progressDialog.dismiss();
+                Toast.makeText(SocialMediaPostActivities.this, "Added", Toast.LENGTH_LONG).show();
+                //comment.setText("");
+                //updatecommetcount();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                //progressDialog.dismiss();
+                Toast.makeText(SocialMediaPostActivities.this, "Failed", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -277,11 +304,5 @@ public class SocialMediaPostActivities extends AppCompatActivity {
         }else
             return super.onOptionsItemSelected(item);
     }
-//
-//    @Override
-//    public boolean onSupportNavigateUp() {
-//        onBackPressed();
-//        return super.onSupportNavigateUp();
-//    }
 
 }

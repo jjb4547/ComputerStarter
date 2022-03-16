@@ -3,6 +3,8 @@ package com.example.computerstarter.Login;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -30,7 +32,10 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -227,6 +232,12 @@ public class Login_SignUpActivity extends AppCompatActivity {
                         documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {
+                                StorageReference fileRef = FirebaseStorage.getInstance().getReference().child("ProfileImage/Users/"+mAuth.getCurrentUser().getUid()+"/profile");
+                                Bitmap image = BitmapFactory.decodeResource(getResources(),R.drawable.amd_cpu);
+                                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                                image.compress(Bitmap.CompressFormat.PNG,15,stream);
+                                byte[] imageByte = stream.toByteArray();
+                                fileRef.putBytes(imageByte).addOnSuccessListener(taskSnapshot -> Toast.makeText(Login_SignUpActivity.this,"Default Profile Image Uploaded",Toast.LENGTH_SHORT).show());
                                 mAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {

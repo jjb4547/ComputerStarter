@@ -46,8 +46,8 @@ public class SocialMediaAdapterComment extends RecyclerView.Adapter<SocialMediaA
     @Override
     public void onBindViewHolder(@NonNull MyHolder holder, int position) {
         final String uid = list.get(position).getUid();
-        String name = mAuth.getCurrentUser().getDisplayName();
-        String email = mAuth.getCurrentUser().getEmail();
+        String name = list.get(position).getUname();
+        String email = list.get(position).getUemail();
         String image = list.get(position).getUdp();
         final String cid = list.get(position).getcId();
         String comment = list.get(position).getComment();

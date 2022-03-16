@@ -186,7 +186,7 @@ public class AccountActivity extends AppCompatActivity implements NavigationView
                 try {
                     Bitmap original = MediaStore.Images.Media.getBitmap(getContentResolver(),image);
                     ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                    original.compress(Bitmap.CompressFormat.JPEG,15,stream);
+                    original.compress(Bitmap.CompressFormat.PNG,15,stream);
                     byte[] imageByte = stream.toByteArray();
                     uploadImageToFirebase(imageByte);
                 } catch (IOException e) {
@@ -200,7 +200,7 @@ public class AccountActivity extends AppCompatActivity implements NavigationView
         ProgressDialog progressDialog = new ProgressDialog(AccountActivity.this);
         progressDialog.setMessage("Image uploading ....");
         progressDialog.show();
-        StorageReference fileRef = storageReference.child("ProfileImage/Users/"+mAuth.getCurrentUser().getUid()+"/profile.jpg");
+        StorageReference fileRef = storageReference.child("ProfileImage/Users/"+mAuth.getCurrentUser().getUid()+"/profile");
         fileRef.putBytes(image).addOnSuccessListener(taskSnapshot -> {
             progressDialog.dismiss();
             fileRef.getDownloadUrl().addOnSuccessListener(uri -> Picasso.get().load(uri).into(profileImage));
