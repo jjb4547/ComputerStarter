@@ -22,8 +22,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.computerstarter.Build.MainBuilds;
 import com.example.computerstarter.R;
-import com.example.computerstarter.app.MainActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -272,7 +272,7 @@ public class SocialMediaPostActivities extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId()==android.R.id.home) {
             // app icon in action bar clicked; goto parent activity.
-            startActivity(new Intent(this, MainActivity.class));
+            startActivity(new Intent(this, MainBuilds.class).putExtra("from","Social"));
             return true;
         }else
             return super.onOptionsItemSelected(item);

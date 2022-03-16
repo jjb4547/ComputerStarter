@@ -44,9 +44,6 @@ public class MainBuilds extends AppCompatActivity implements NavigationView.OnNa
     private String quiz;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     private TextView log;
-    private ImageView logBut;
-    private MenuItem item_log;
-    private MenuItem item_quiz;
     private MenuItem item_acc;
     private StorageReference storageReference = FirebaseStorage.getInstance().getReference();
     @Override
@@ -88,7 +85,7 @@ public class MainBuilds extends AppCompatActivity implements NavigationView.OnNa
             String current = user.getUid();
             name.setText(user.getDisplayName());
             email.setText(user.getEmail());
-            StorageReference profileRef = storageReference.child("ProfileImage/Users/"+mAuth.getCurrentUser().getUid()+"/profile.jpg");
+            StorageReference profileRef = storageReference.child("ProfileImage/Users/"+mAuth.getCurrentUser().getUid()+"/profile");
             profileRef.getDownloadUrl().addOnSuccessListener(uri -> Picasso.get().load(uri).into(profile));
         }else{
             name.setText("Guest");
