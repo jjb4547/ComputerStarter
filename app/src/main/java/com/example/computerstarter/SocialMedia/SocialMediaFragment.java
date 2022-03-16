@@ -25,6 +25,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,12 +41,15 @@ public class SocialMediaFragment extends Fragment {
     FloatingActionButton button;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private SwipeRefreshLayout swipeRefreshLayout;
+    String dp;
 
     public SocialMediaFragment() {
         // Required empty public constructor
     }
 
     private void loadPosts() {
+        StorageReference storageReference1 = FirebaseStorage.getInstance().getReference().child("ProfileImage/Users/"+user.getUid()+"/profile");
+        storageReference1.getDownloadUrl().addOnSuccessListener(uri -> dp = uri.toString());
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Posts");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -52,9 +57,11 @@ public class SocialMediaFragment extends Fragment {
                 posts.clear();
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                     SocialMediaModel modelPost = dataSnapshot1.getValue(SocialMediaModel.class);
+                    modelPost.setUdp(dp);
                     posts.add(modelPost);
                     adapterPosts = new SocialMediaAdapter(getActivity(), posts);
                     recyclerView.setAdapter(adapterPosts);
+                    adapterPosts.notifyDataSetChanged();
                 }
             }
 
@@ -72,6 +79,13 @@ public class SocialMediaFragment extends Fragment {
         super.onCreate(savedInstanceState);
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
+        loadPosts();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadPosts();
     }
 
     @Override

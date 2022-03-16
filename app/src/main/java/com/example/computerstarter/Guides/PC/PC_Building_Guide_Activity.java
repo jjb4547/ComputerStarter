@@ -92,7 +92,7 @@ public class PC_Building_Guide_Activity extends AppCompatActivity implements Nav
             String current = user.getUid();
             name.setText(user.getDisplayName());
             email.setText(user.getEmail());
-            StorageReference profileRef = storageReference.child("ProfileImage/Users/"+mAuth.getCurrentUser().getUid()+"/profile.jpg");
+            StorageReference profileRef = storageReference.child("ProfileImage/Users/"+mAuth.getCurrentUser().getUid()+"/profile");
             profileRef.getDownloadUrl().addOnSuccessListener(uri -> Picasso.get().load(uri).into(profile));
         }else{
             name.setText("Guest");

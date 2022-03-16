@@ -90,7 +90,7 @@ public class RaspberryPi_Projects extends AppCompatActivity implements Navigatio
             String current = user.getUid();
             name.setText(user.getDisplayName());
             email.setText(user.getEmail());
-            StorageReference profileRef = storageReference.child("ProfileImage/Users/"+mAuth.getCurrentUser().getUid()+"/profile.jpg");
+            StorageReference profileRef = storageReference.child("ProfileImage/Users/"+mAuth.getCurrentUser().getUid()+"/profile");
             profileRef.getDownloadUrl().addOnSuccessListener(uri -> Picasso.get().load(uri).into(profile));
             //profile.setImageURI(user.getPhotoUrl()); //bugging out not sure why but only on the emulator
         }else{
