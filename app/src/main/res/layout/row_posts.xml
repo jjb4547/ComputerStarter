@@ -5,10 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    app:cardCornerRadius="8dp"
+    app:cardCornerRadius="15dp"
     app:cardElevation="8dp"
     app:cardUseCompatPadding="true"
-    app:contentPaddingBottom="1dp"
     android:background="@color/background_color">
 
     <LinearLayout
@@ -24,13 +23,15 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <ImageView
+            <com.makeramen.roundedimageview.RoundedImageView
                 android:id="@+id/picturetv"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_people"
-                />
+                app:riv_corner_radius="15dp"
+                android:layout_margin="10dp"
+                app:riv_border_color="@color/black"
+                android:src="@drawable/ic_people"/>
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -98,27 +99,27 @@
 
             <TextView
                 android:id="@+id/plikeb"
-                android:layout_width="28dp"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:textAlignment="textEnd"
                 android:text="0"
                 android:textColor="@color/white" />
-            <Button
+            <ImageButton
+                android:layout_marginTop="6dp"
                 android:id="@+id/like"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:autoLink="all"
                 android:padding="5dp"
-                android:text="L"
-                android:textColor="@color/white"
-                android:backgroundTint="@color/cardview_light"
+                android:src="@drawable/ic_like"
+                android:background="@color/cardview_dark"
                 />
 
             <TextView
                 android:id="@+id/pcommentco"
-                android:layout_width="36dp"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
@@ -128,12 +129,12 @@
 
             <Button
                 android:id="@+id/comment"
-                android:layout_width="80dp"
+                android:layout_width="90dp"
                 android:layout_height="wrap_content"
                 android:autoLink="all"
                 android:backgroundTint="@color/cardview_light"
                 android:padding="5dp"
-                android:text="C" />
+                android:text="Comment" />
         </LinearLayout>
 
         <View

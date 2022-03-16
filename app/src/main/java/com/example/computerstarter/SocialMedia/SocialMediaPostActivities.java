@@ -83,17 +83,16 @@ public class SocialMediaPostActivities extends AppCompatActivity {
         profile = findViewById(R.id.profilelayout);
         progressDialog = new ProgressDialog(this);
         loadPostInfo();
-
         loadUserInfo();
         setLikes();
         actionBar.setSubtitle("SignedInAs:" + myemail);
-        loadComments();
-        sendb.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                postComment();
-            }
-        });
+        //loadComments();
+//        sendb.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                postComment();
+//            }
+//        });
         likebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -140,7 +139,6 @@ public class SocialMediaPostActivities extends AppCompatActivity {
         liekeref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
                 if (dataSnapshot.child(postId).hasChild(myuid)) {
                     ///////likebtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_liked, 0, 0, 0);
                     likebtn.setText("Liked");
@@ -158,7 +156,6 @@ public class SocialMediaPostActivities extends AppCompatActivity {
     }
 
     private void likepost() {
-
         mlike = true;
         final DatabaseReference liekeref = FirebaseDatabase.getInstance().getReference().child("Likes");
         final DatabaseReference postref = FirebaseDatabase.getInstance().getReference().child("Posts");
@@ -171,7 +168,6 @@ public class SocialMediaPostActivities extends AppCompatActivity {
                         postref.child(postId).child("plike").setValue("" + (Integer.parseInt(plike) - 1));
                         liekeref.child(postId).child(myuid).removeValue();
                         mlike = false;
-
                     } else {
                         postref.child(postId).child("plike").setValue("" + (Integer.parseInt(plike) + 1));
                         liekeref.child(postId).child(myuid).setValue("Liked");

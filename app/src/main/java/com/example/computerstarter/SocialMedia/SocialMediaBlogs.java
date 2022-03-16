@@ -37,12 +37,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -89,6 +85,7 @@ public class SocialMediaBlogs extends AppCompatActivity {
     Spinner spinner;
     Boolean isDefault;
     private String tagName;
+    private StorageReference storageReference = FirebaseStorage.getInstance().getReference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,21 +111,13 @@ public class SocialMediaBlogs extends AppCompatActivity {
         pd.setCanceledOnTouchOutside(false);
         Intent intent = this.getIntent();
         // Retrieving the user data like name ,email and profile pic using query
-        databaseReference = FirebaseDatabase.getInstance().getReference("Users");
-        Query query = databaseReference.orderByChild("email").equalTo(email2);
-        query.addValueEventListener(new ValueEventListener() {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        byte[] data = byteArrayOutputStream.toByteArray();
+        StorageReference storageReference1 = FirebaseStorage.getInstance().getReference().child("ProfileImage/Users/"+user.getUid()+"/profile");
+        storageReference1.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                    //name = dataSnapshot1.child("name").getValue().toString();
-                    //email = "" + dataSnapshot1.child("email").getValue();
-                    dp = "" + dataSnapshot1.child("image").getValue().toString();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
+            public void onSuccess(Uri uri) {
+                dp = uri.toString();
             }
         });
 
@@ -193,7 +182,7 @@ public class SocialMediaBlogs extends AppCompatActivity {
                     Toast.makeText(SocialMediaBlogs.this, "Description can't be left empty", Toast.LENGTH_LONG).show();
                     return;
                 }
-                 //If empty show error
+                //If empty show error
                 /*if (imageuri == null) {
                     Toast.makeText(SocialMediaBlogs.this, "Select an Image", Toast.LENGTH_LONG).show();
                 } else {
@@ -247,7 +236,7 @@ public class SocialMediaBlogs extends AppCompatActivity {
         pd.setMessage("Publishing Post");
         pd.show();
         final String timestamp = String.valueOf(System.currentTimeMillis());
-        String filepathname = "Posts/" + "post" + timestamp;
+        String filepathname = "Posts/post" + timestamp;
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         Bitmap bitmap = ((BitmapDrawable) image.getDrawable()).getBitmap();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
@@ -268,7 +257,6 @@ public class SocialMediaBlogs extends AppCompatActivity {
                 hashMap.put("uid", user.getUid());
                 hashMap.put("uname", user.getDisplayName());
                 hashMap.put("uemail", user.getEmail());
-                //hashMap.put("profileimage",user.getPhotoUrl());
                 hashMap.put("udp", dp);
                 hashMap.put("tag", tagName);
                 hashMap.put("description", description);

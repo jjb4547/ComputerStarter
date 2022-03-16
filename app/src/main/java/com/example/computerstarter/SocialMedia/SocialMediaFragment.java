@@ -50,7 +50,6 @@ public class SocialMediaFragment extends Fragment {
                     adapterPosts = new SocialMediaAdapter(getActivity(), posts);
                     recyclerView.setAdapter(adapterPosts);
                 }
-                System.out.println("HERE IS WHAT I NEED: "+posts.get(posts.size()-1).getisDefault());
             }
 
             @Override
@@ -83,7 +82,6 @@ public class SocialMediaFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         posts = new ArrayList<>();
         loadPosts();
-        //System.out.println("HEREEEEE: "+posts.get(0).getDescription());
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
