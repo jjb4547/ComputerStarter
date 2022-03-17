@@ -93,7 +93,6 @@ public class SocialMediaAdapter extends RecyclerView.Adapter<SocialMediaAdapter.
         calendar.setTimeInMillis(Long.parseLong(ptime));
         String timedate = DateFormat.format("dd/MM/yyyy hh:mm aa", calendar).toString();
         holder.name.setText(nameh);
-        holder.title.setText(titlee);
         holder.description.setText(descri);
         holder.time.setText(timedate);
         holder.like.setText(plike + " Likes");
@@ -269,7 +268,6 @@ public class SocialMediaAdapter extends RecyclerView.Adapter<SocialMediaAdapter.
             name = itemView.findViewById(R.id.unametv);
             time = itemView.findViewById(R.id.utimetv);
             more = itemView.findViewById(R.id.morebtn);
-            title = itemView.findViewById(R.id.ptitletv);
             description = itemView.findViewById(R.id.descript);
             like = itemView.findViewById(R.id.plikeb);
             comments = itemView.findViewById(R.id.pcommentco);
