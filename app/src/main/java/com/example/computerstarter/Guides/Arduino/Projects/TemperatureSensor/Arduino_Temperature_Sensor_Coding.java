@@ -111,66 +111,22 @@ public class Arduino_Temperature_Sensor_Coding extends AppCompatActivity {
                 "\t c.) Serial.println(\"Dallas Temperature IC Control Library Demo\"); \n" +
                 "\t d.)  sensors.begin();}\n" +
                 "7.) (Line 10-20) These lines take place in the void loop(void)\n" +
-                "8.) Serial.print(\" Requesting temperatures...\"); \n" +
-                "\t a.) sensors.requestTemperatures();\n" +
-                "\t b.) Serial.println(\"DONE\");\n" +
-                "\t c.) Serial.print(\"Temperature is: \"); \n" +
-                "\t d.) Serial.print(sensors.getTempCByIndex(0));\n"+
-                "\t e.)delay(1000);}");
+                "8.) Call global temperature and sends command to get temperature readings" +
+                "\t a.) Serial.print(\" Requesting temperatures...\"); \n" +
+                "\t b.) sensors.requestTemperatures();\n" +
+                "\t c.) Serial.println(\"DONE\");\n" +
+                "\t d.) Serial.print(\"Temperature is: \"); \n" +
+                "\t e.) Serial.print(sensors.getTempCByIndex(0));\n"+
+                "\t f.)delay(1000);}" +
+                "9.) Your computer screen should then begin showing the temperature being measured" +
+                "Below is the full github of the libraries used for this project" +
+                "https://github.com/milesburton/Arduino-Temperature-Control-Library"+
+                "https://github.com/fdebrabander/Arduino-LiquidCrystal-I2C-library ");
         item_code.setImage(R.drawable.rasp_logo);
-
-        //Not needed below its done up here
-        OnboardingItem item_save = new OnboardingItem();
-        item_save.setTitle("Saving the Data from the Humidity Sensor");
-        item_save.setDescription("1.) We will create another script that will allow us to save data to a file\n" +
-                "\t a.) nano ~/humidity_logger.py\n" +
-                "2.) (Line 1-3) Inside of this new script we will be importing the os, time, and os libraries. The os " +
-                "library lets us check the file and the time library us timestamp our data.\n" +
-                "\t a.) import os\n" +
-                "\t a.) import time\n" +
-                "\t a.) import Adafruit_DHT\n" +
-                "3.) (Line 4-5) Same lines as before\n" +
-                "\t a.) DHT_SENSOR = Adafruit_DHT.DHT22\n" +
-                "\t b.) DHT_PIN = 4\n" +
-                "4.) (Line 6-11) The try will handle erros and \"home/pi/humdity.csv\" will be where \"a+\" will append data to the file\n" +
-                "\t a.) try:\n" +
-                "\t b.) f = open('/home/pi/humidity.csv','a+')\n" +
-                "\t c.) if os,stat('/home/pi/humidity.csv').st_size == 0:\n" +
-                "\t d.) f.write('Date,Time,Temperature,Humidity\\r\\n')\n"+
-                "\t e.) except:\n"+
-                "\t f.) pass:\n"+
-                "5.) (Line 12-13) Read data from the sensor and storing it in humidity and temperature variables" +
-                "we use the library to get the humidity and temperature from the sensor\n" +
-                "\t a.) while True:\n" +
-                "\t b.) humidity, temperature = Adafruit_DHT.read_retry(DHT_SENSOR, DHT_PIN)\n" +
-                "6.) (Line 14-19) We write the data collected to out humidity.csv file with a sleep for 30 seconds which can be modified to suit your needs\n" +
-                "\t a.) if humidity is not None and temperature is not None\n" +
-                "\t b.) f.write('{0},{1},{2:0.1f}C,{3:0.1f}%\\r\\n'.format(time:strftime('%m/%d/%y'), time.strftime('%H.%M'), temperature, humidity))\n" +
-                "\t c.) else:\n" +
-                "\t d.)print(\"Failed to retrieve data from the humidity sensor\")\n"+
-                "\t e.) \n"+
-                "\t f.) time.sleep(30)\n"+
-                "7.) Once your done typing out the code you can save it by hitting CTRL + X followed by ENTER\n" +
-                "8.) Lastly run it with this command to see it working\n" +
-                "\t a.) python3 ~/humidity_logger.py\n" +
-                "9.) To see the data in the humidity.csv file then run this command\n" +
-                "\t a.) nano ~/humidity.csv\n" +
-                "10.) The contents of the file should looks like this\n" +
-                "\t a.) Date, Time, Temperature, Humidity\n" +
-                "\t b.) 05/04/19, 05:47,22.3C,50.6%\n" +
-                "\t c.) 05/04/19, 05:48,22.2C,50.4%\n" +
-                "\t d.) 05/04/19, 05:48,22.2C,50.6%\n" +
-                "\t e.) 05/04/19, 05:49,22.2C,50.4%\n" +
-                "\t f.) 05/04/19, 05:49,22.2C,50.4%\n" +
-                "\t g.) 05/04/19, 05:50,22.2C,50.3%\n" +
-                "\t h.) 05/04/19, 05:50,22.2C,50.3%\n" +
-                "\t i.) 05/04/19, 05:51,22.2C,50.2%\n");
-        item_save.setImage(R.drawable.rasp_logo);
 
         onboardingItemPcGuideActivityList.add(item_Intro);
         onboardingItemPcGuideActivityList.add(item_prep);
         onboardingItemPcGuideActivityList.add(item_code);
-        onboardingItemPcGuideActivityList.add(item_save);
         onboardingAdapterPcGuide = new OnboardingAdapter(onboardingItemPcGuideActivityList);
     }
 
