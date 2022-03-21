@@ -8,14 +8,14 @@
 
 
     <Spinner
-        android:id="@+id/spinner2"
+        android:id="@+id/pspinRV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/spinner2">
+        android:layout_below="@+id/pspinRV">
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/RecycleForum"
             android:layout_width="match_parent"

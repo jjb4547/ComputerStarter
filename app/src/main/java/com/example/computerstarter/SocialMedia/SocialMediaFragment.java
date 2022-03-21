@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -39,6 +41,7 @@ public class SocialMediaFragment extends Fragment {
     List<SocialMediaModel> posts;
     SocialMediaAdapter adapterPosts;
     FloatingActionButton button;
+    Spinner spinner;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private SwipeRefreshLayout swipeRefreshLayout;
     String dp;
@@ -93,6 +96,25 @@ public class SocialMediaFragment extends Fragment {
                              Bundle savedInstanceState) {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
+        ArrayList<String> arrayList = new ArrayList<>();
+        arrayList.add("Computer");
+        arrayList.add("GPU");
+        arrayList.add("CPU");
+        arrayList.add("Motherboard");
+        arrayList.add("Power");
+        arrayList.add("Ram");
+        arrayList.add("Memory");
+        arrayList.add("RGB");
+        arrayList.add("Tower");
+        arrayList.add("Help!");
+        arrayList.add("Monitor");
+        arrayList.add("Mouse");
+        arrayList.add("Keyboard");
+        arrayList.add("Setup");
+        arrayList.add("Stream");
+        arrayList.add("Coding");
+        arrayList.add("Design");
+
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_forum, container, false);
         MaterialButton loginBut = view.findViewById(R.id.loginBut);
@@ -106,6 +128,10 @@ public class SocialMediaFragment extends Fragment {
         });
         TextView loginText = view.findViewById(R.id.loginText);
         button = view.findViewById(R.id.buttonCreate);
+        spinner = view.findViewById(R.id.pspinRV);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, arrayList);
+        adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        spinner.setAdapter(adapter);
         FirebaseUser user = mAuth.getCurrentUser();
         if(user!=null){
             loginBut.setVisibility(View.GONE);
