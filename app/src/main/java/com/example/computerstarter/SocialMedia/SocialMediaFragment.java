@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -42,6 +43,8 @@ public class SocialMediaFragment extends Fragment {
     SocialMediaAdapter adapterPosts;
     FloatingActionButton button;
     Spinner spinner;
+    String textSpin = "";
+
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private SwipeRefreshLayout swipeRefreshLayout;
     String dp;
@@ -117,6 +120,14 @@ public class SocialMediaFragment extends Fragment {
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_forum, container, false);
+
+        //used for spinner dropdown on RecyclerView
+        spinner = view.findViewById(R.id.pspinRV);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, arrayList);
+        adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        spinner.setAdapter(adapter);
+
+        // Inflate the layout for this fragment
         MaterialButton loginBut = view.findViewById(R.id.loginBut);
         swipeRefreshLayout = view.findViewById(R.id.swipeLayout);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -124,14 +135,15 @@ public class SocialMediaFragment extends Fragment {
             public void onRefresh() {
                 loadPosts();
                 swipeRefreshLayout.setRefreshing(false);
+
+                //value of spinner selected, need to send to db
+                textSpin = spinner.getSelectedItem().toString();
+                System.out.println(textSpin + " Testing Values!");
             }
         });
         TextView loginText = view.findViewById(R.id.loginText);
         button = view.findViewById(R.id.buttonCreate);
-        spinner = view.findViewById(R.id.pspinRV);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, arrayList);
-        adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-        spinner.setAdapter(adapter);
+
         FirebaseUser user = mAuth.getCurrentUser();
         if(user!=null){
             loginBut.setVisibility(View.GONE);
@@ -165,5 +177,4 @@ public class SocialMediaFragment extends Fragment {
         loadPosts();
         return view;
     }
-
 }
