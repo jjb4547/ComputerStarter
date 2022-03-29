@@ -79,13 +79,18 @@ public class SocialMediaFragment extends Fragment {
         super.onCreate(savedInstanceState);
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
-        loadPosts();
+        if(user!=null) {
+            loadPosts();
+        }
+
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        loadPosts();
+        if(user!=null) {
+            loadPosts();
+        }
     }
 
     @Override
@@ -107,17 +112,12 @@ public class SocialMediaFragment extends Fragment {
         TextView loginText = view.findViewById(R.id.loginText);
         button = view.findViewById(R.id.buttonCreate);
         FirebaseUser user = mAuth.getCurrentUser();
+        recyclerView = view.findViewById(R.id.RecycleForum);
         if(user!=null){
             loginBut.setVisibility(View.GONE);
             loginText.setVisibility(View.GONE);
             button.setVisibility(View.VISIBLE);
             button.setOnClickListener(view1 -> {
-            /*Fragment frag = new SocialMediaBlogs();
-            FragmentTransaction ft = getFragmentManager().beginTransaction();
-            ft.replace(R.id.fragment_container, frag);
-            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-            ft.addToBackStack(null);
-            ft.commit();*/
                 Intent intent = new Intent(getContext(),SocialMediaBlogs.class);
                 startActivity(intent);
             });
@@ -129,14 +129,15 @@ public class SocialMediaFragment extends Fragment {
                 startActivity(new Intent(getContext(), Login_SignUpActivity.class));
             });
         }
-        recyclerView = view.findViewById(R.id.RecycleForum);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setReverseLayout(true);
         layoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(layoutManager);
         posts = new ArrayList<>();
-        loadPosts();
+        if(user!=null) {
+            loadPosts();
+        }
         return view;
     }
 
