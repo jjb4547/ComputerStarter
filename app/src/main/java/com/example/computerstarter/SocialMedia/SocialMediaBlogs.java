@@ -275,7 +275,6 @@ public class SocialMediaBlogs extends AppCompatActivity {
                                 //startActivity(new Intent(SocialMediaBlogs.this, SocialMediaFragment.class));
                                 //Toast.makeText(getApplicationContext(),"SETTING NULL", Toast.LENGTH_SHORT).show();
                                 SocialMediaBlogs.this.finish();
-
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                     @Override

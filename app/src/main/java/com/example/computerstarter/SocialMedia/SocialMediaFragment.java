@@ -23,10 +23,12 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -34,7 +36,7 @@ import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SocialMediaFragment extends Fragment {
+public class SocialMediaFragment extends Fragment{
     FirebaseAuth firebaseAuth;
     FirebaseUser user;
     String myuid;
@@ -44,6 +46,8 @@ public class SocialMediaFragment extends Fragment {
     FloatingActionButton button;
     Spinner spinner;
     String textSpin = "";
+
+    final FirebaseDatabase database = FirebaseDatabase.getInstance();
 
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -126,6 +130,34 @@ public class SocialMediaFragment extends Fragment {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, arrayList);
         adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                textSpin = spinner.getSelectedItem().toString();
+//                System.out.println(textSpin + " Testing Values!");
+                final DatabaseReference spinnerRef = database.getReference("Posts/");
+                Query query = spinnerRef.orderByChild("tag").equalTo(textSpin);
+                query.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        posts.clear();
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                })
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
 
         // Inflate the layout for this fragment
         MaterialButton loginBut = view.findViewById(R.id.loginBut);
@@ -136,9 +168,6 @@ public class SocialMediaFragment extends Fragment {
                 loadPosts();
                 swipeRefreshLayout.setRefreshing(false);
 
-                //value of spinner selected, need to send to db
-                textSpin = spinner.getSelectedItem().toString();
-                System.out.println(textSpin + " Testing Values!");
             }
         });
         TextView loginText = view.findViewById(R.id.loginText);
