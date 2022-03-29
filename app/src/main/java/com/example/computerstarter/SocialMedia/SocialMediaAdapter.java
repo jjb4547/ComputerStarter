@@ -1,8 +1,11 @@
 package com.example.computerstarter.SocialMedia;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.text.format.DateFormat;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -44,11 +47,13 @@ public class SocialMediaAdapter extends RecyclerView.Adapter<SocialMediaAdapter.
 
     Context context;
     String myuid;
+    ImageView imageView;
     private DatabaseReference postref, likeRef;
     boolean mprocesslike = false;
     private StorageReference storageReference = FirebaseStorage.getInstance().getReference();
     FirebaseUser user;
     private String mydp;
+    Dialog dialog;
 
     public SocialMediaAdapter(Context context, List<SocialMediaModel> modelPosts) {
         this.context = context;
@@ -74,6 +79,7 @@ public class SocialMediaAdapter extends RecyclerView.Adapter<SocialMediaAdapter.
     public void onBindViewHolder(@NonNull final MyHolder holder, final int position) {
         final String uid = modelPosts.get(position).getUid();
         String nameh = modelPosts.get(position).getUname();
+
         //Uri profile = modelPosts.get(position).getProfile();
         final String titlee = modelPosts.get(position).getTitle();
         final String descri = modelPosts.get(position).getDescription();
@@ -98,6 +104,18 @@ public class SocialMediaAdapter extends RecyclerView.Adapter<SocialMediaAdapter.
         holder.like.setText(plike + " Likes");
         holder.comments.setText(comm + " Comments");
         holder.picture.setImageURI(modelPosts.get(position).getProfile());
+        holder.image.setOnClickListener(view -> {
+            dialog = new Dialog(context);
+            dialog.setContentView(R.layout.imagelayout);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            imageView = dialog.findViewById(R.id.imagePrev);
+            try {
+                Glide.with(context).load(image).into(imageView);
+            }catch (Exception e) {
+            }
+            dialog.show();
+            imageView.setOnClickListener(view1 -> dialog.dismiss());
+        });
         //Changes the color of the Heart
         postref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -179,6 +197,9 @@ public class SocialMediaAdapter extends RecyclerView.Adapter<SocialMediaAdapter.
             context.startActivity(intent);
         });
     }
+    private void openImage() {
+
+    }
 
     private void addLike(String ptime, MyHolder holder){
         String timestamp = String.valueOf(System.currentTimeMillis());
@@ -208,18 +229,19 @@ public class SocialMediaAdapter extends RecyclerView.Adapter<SocialMediaAdapter.
     private void showMoreOptions(ImageButton more, String uid, String myuid, final String pid, final String image) {
         PopupMenu popupMenu = new PopupMenu(context, more, Gravity.END);
         if (uid.equals(myuid)) {
-            popupMenu.getMenu().add(Menu.NONE, 0, 0, "DELETE");
+            popupMenu.getMenu().add(Menu.NONE, 0, 0, "Delete");
         }
         popupMenu.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == 0) {
-                deltewithImage(pid, image);
+                //Toast.makeText(context.getApplicationContext(), "CLICKED ON DELETE", Toast.LENGTH_SHORT).show();
+                deletewithImage(pid, image);
             }
             return false;
         });
         popupMenu.show();
     }
 
-    private void deltewithImage(final String pid, String image) {
+    private void deletewithImage(final String pid, String image) {
         final ProgressDialog pd = new ProgressDialog(context);
         pd.setMessage("Deleting");
         StorageReference picref = FirebaseStorage.getInstance().getReferenceFromUrl(image);

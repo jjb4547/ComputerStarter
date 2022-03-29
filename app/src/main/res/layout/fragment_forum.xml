@@ -62,7 +62,4 @@
         android:backgroundTint="@color/cardview_light"
         android:textSize="20sp"/>
 
-
-
-
 </RelativeLayout>

@@ -83,6 +83,7 @@
             android:layout_height="100dp"
             android:background="@color/silver"
             android:scaleType="centerCrop"
+            android:clickable="true"
             />
 
         <RelativeLayout
