@@ -52,6 +52,34 @@ public class SocialMediaFragment extends Fragment {
     public SocialMediaFragment() {
         // Required empty public constructor
     }
+    private void loadTagPosts(){
+        StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("ProfileImage/Users/"+user.getUid()+"/profile");
+        storageReference.getDownloadUrl().addOnSuccessListener(uri -> dp = uri.toString());
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Posts");
+        if(!textSpin.equals("")) {
+            databaseReference.orderByChild("tag").equalTo(textSpin).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    posts.clear();
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        SocialMediaModel modelPost = dataSnapshot.getValue(SocialMediaModel.class);
+                        modelPost.setUdp(dp);
+                        posts.add(modelPost);
+                        adapterPosts = new SocialMediaAdapter(getActivity(), posts);
+                        recyclerView.setAdapter(adapterPosts);
+                        adapterPosts.notifyDataSetChanged();
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }else{
+            loadPosts();
+        }
+    }
 
     private void loadPosts() {
         StorageReference storageReference1 = FirebaseStorage.getInstance().getReference().child("ProfileImage/Users/"+user.getUid()+"/profile");
@@ -98,8 +126,8 @@ public class SocialMediaFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
-
         ArrayList<String> arrayList = new ArrayList<>();
+        arrayList.add("");
         arrayList.add("Computer");
         arrayList.add("GPU");
         arrayList.add("CPU");
@@ -117,7 +145,6 @@ public class SocialMediaFragment extends Fragment {
         arrayList.add("Stream");
         arrayList.add("Coding");
         arrayList.add("Design");
-
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_forum, container, false);
 
@@ -126,19 +153,29 @@ public class SocialMediaFragment extends Fragment {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, arrayList);
         adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                textSpin = spinner.getSelectedItem().toString();
+                //System.out.println(textSpin + " Testing Values!");
+                loadTagPosts();
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
         // Inflate the layout for this fragment
         MaterialButton loginBut = view.findViewById(R.id.loginBut);
         swipeRefreshLayout = view.findViewById(R.id.swipeLayout);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                spinner.setSelection(0);
                 loadPosts();
                 swipeRefreshLayout.setRefreshing(false);
-
                 //value of spinner selected, need to send to db
-                textSpin = spinner.getSelectedItem().toString();
-                System.out.println(textSpin + " Testing Values!");
             }
         });
         TextView loginText = view.findViewById(R.id.loginText);
@@ -150,12 +187,6 @@ public class SocialMediaFragment extends Fragment {
             loginText.setVisibility(View.GONE);
             button.setVisibility(View.VISIBLE);
             button.setOnClickListener(view1 -> {
-            /*Fragment frag = new SocialMediaBlogs();
-            FragmentTransaction ft = getFragmentManager().beginTransaction();
-            ft.replace(R.id.fragment_container, frag);
-            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-            ft.addToBackStack(null);
-            ft.commit();*/
                 Intent intent = new Intent(getContext(),SocialMediaBlogs.class);
                 startActivity(intent);
             });
