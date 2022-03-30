@@ -61,8 +61,8 @@ public class SocialMediaBlogs extends AppCompatActivity {
     String email2;
     private static final int CAMERA_REQUEST = 100;
     private static final int STORAGE_REQUEST = 200;
-    private static final int CAMERA_PERMISSION_CODE =112;
-    private static final int STORAGE_PERMISSION_CODE =113;
+    private static final int CAMERA_PERMISSION_CODE = 112;
+    private static final int STORAGE_PERMISSION_CODE = 113;
     private boolean cameraPermission = false;
     private boolean storagePermission = false;
     ProgressDialog pd;

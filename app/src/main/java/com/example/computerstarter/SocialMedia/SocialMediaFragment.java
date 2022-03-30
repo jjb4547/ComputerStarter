@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -39,12 +42,43 @@ public class SocialMediaFragment extends Fragment {
     List<SocialMediaModel> posts;
     SocialMediaAdapter adapterPosts;
     FloatingActionButton button;
+    Spinner spinner;
+    String textSpin = "";
+
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private SwipeRefreshLayout swipeRefreshLayout;
     String dp;
 
     public SocialMediaFragment() {
         // Required empty public constructor
+    }
+    private void loadTagPosts(){
+        StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("ProfileImage/Users/"+user.getUid()+"/profile");
+        storageReference.getDownloadUrl().addOnSuccessListener(uri -> dp = uri.toString());
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Posts");
+        if(!textSpin.equals("")) {
+            databaseReference.orderByChild("tag").equalTo(textSpin).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    posts.clear();
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        SocialMediaModel modelPost = dataSnapshot.getValue(SocialMediaModel.class);
+                        modelPost.setUdp(dp);
+                        posts.add(modelPost);
+                        adapterPosts = new SocialMediaAdapter(getActivity(), posts);
+                        recyclerView.setAdapter(adapterPosts);
+                        adapterPosts.notifyDataSetChanged();
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }else{
+            loadPosts();
+        }
     }
 
     private void loadPosts() {
@@ -97,20 +131,61 @@ public class SocialMediaFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
-
+        ArrayList<String> arrayList = new ArrayList<>();
+        arrayList.add("");
+        arrayList.add("Computer");
+        arrayList.add("GPU");
+        arrayList.add("CPU");
+        arrayList.add("Motherboard");
+        arrayList.add("Power");
+        arrayList.add("Ram");
+        arrayList.add("Memory");
+        arrayList.add("RGB");
+        arrayList.add("Tower");
+        arrayList.add("Help!");
+        arrayList.add("Monitor");
+        arrayList.add("Mouse");
+        arrayList.add("Keyboard");
+        arrayList.add("Setup");
+        arrayList.add("Stream");
+        arrayList.add("Coding");
+        arrayList.add("Design");
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_forum, container, false);
+
+        //used for spinner dropdown on RecyclerView
+        spinner = view.findViewById(R.id.pspinRV);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, arrayList);
+        adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                textSpin = spinner.getSelectedItem().toString();
+                //System.out.println(textSpin + " Testing Values!");
+                loadTagPosts();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        // Inflate the layout for this fragment
         MaterialButton loginBut = view.findViewById(R.id.loginBut);
         swipeRefreshLayout = view.findViewById(R.id.swipeLayout);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                spinner.setSelection(0);
                 loadPosts();
                 swipeRefreshLayout.setRefreshing(false);
+                //value of spinner selected, need to send to db
             }
         });
         TextView loginText = view.findViewById(R.id.loginText);
         button = view.findViewById(R.id.buttonCreate);
+
         FirebaseUser user = mAuth.getCurrentUser();
         recyclerView = view.findViewById(R.id.RecycleForum);
         if(user!=null){
@@ -140,5 +215,4 @@ public class SocialMediaFragment extends Fragment {
         }
         return view;
     }
-
 }

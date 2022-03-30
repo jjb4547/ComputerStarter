@@ -8,7 +8,7 @@
 
 
     <Spinner
-        android:id="@+id/spinner2"
+        android:id="@+id/pspinRV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
@@ -16,8 +16,7 @@
         android:id="@+id/swipeLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/spinner2">
-
+        android:layout_below="@+id/pspinRV">
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/RecycleForum"
             android:layout_width="match_parent"
@@ -36,6 +35,8 @@
         android:layout_marginBottom="15dp"
         android:backgroundTint="@color/cardview_light"
         android:src="@drawable/ic_add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:visibility="gone"/>
 
 
@@ -44,8 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Please Login to see what others have Posted."
-        android:visibility="gone"
-        android:layout_below="@id/spinner2"
+        android:layout_below="@id/swipeLayout"
         android:layout_centerHorizontal="true"
         android:textSize="30sp"
         android:textAlignment="center"
@@ -53,7 +53,6 @@
         android:fontFamily="@font/francois_one"/>
     <com.google.android.material.button.MaterialButton
         android:id="@+id/loginBut"
-        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="To Login Screen"
@@ -61,5 +60,8 @@
         android:layout_centerHorizontal="true"
         android:backgroundTint="@color/cardview_light"
         android:textSize="20sp"/>
+
+
+
 
 </RelativeLayout>
