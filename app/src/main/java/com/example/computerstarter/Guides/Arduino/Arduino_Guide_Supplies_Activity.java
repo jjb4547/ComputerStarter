@@ -3,6 +3,7 @@ package com.example.computerstarter.Guides.Arduino;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -14,8 +15,6 @@ import androidx.core.content.ContextCompat;
 import androidx.core.view.WindowCompat;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.example.computerstarter.Education.Education_Choosing_Activity;
-import com.example.computerstarter.Education.PC_Part_Activity;
 import com.example.computerstarter.Guides.OnboardHolder.OnboardingAdapter;
 import com.example.computerstarter.Guides.OnboardHolder.OnboardingItem;
 import com.example.computerstarter.R;
@@ -75,10 +74,7 @@ public class Arduino_Guide_Supplies_Activity extends AppCompatActivity {
             overridePendingTransition(R.anim.slide_in_top,R.anim.stay);
             finish();
         });
-        help.setOnClickListener(view -> {
-            startActivity(new Intent(this, Education_Choosing_Activity.class)
-                    .putExtra("Act","Guide").putExtra("component","Arduino"));
-        });
+        help.setVisibility(View.GONE);
     }
 
     private void setupOnboardingItems(){

@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -196,6 +197,12 @@ public class SocialMediaAdapter extends RecyclerView.Adapter<SocialMediaAdapter.
             intent.putExtra("pid", ptime).putExtra("comments", pcomment);
             context.startActivity(intent);
         });
+        holder.cardView.setOnClickListener(view -> {
+            final int pcomment = Integer.parseInt(modelPosts.get(holder.getAdapterPosition()).getPcomments());
+            Intent intent = new Intent(context, SocialMediaPostActivities.class);
+            intent.putExtra("pid", ptime).putExtra("comments", pcomment);
+            context.startActivity(intent);
+        });
     }
     private void openImage() {
 
@@ -282,9 +289,11 @@ public class SocialMediaAdapter extends RecyclerView.Adapter<SocialMediaAdapter.
         Button comment;
 
         LinearLayout profile;
+        CardView cardView;
 
         public MyHolder(@NonNull View itemView) {
             super(itemView);
+            cardView = itemView.findViewById(R.id.rowpostCard);
             picture = itemView.findViewById(R.id.picturetv);
             image = itemView.findViewById(R.id.pimagetv);
             name = itemView.findViewById(R.id.unametv);

@@ -30,17 +30,21 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Build_Activity extends AppCompatActivity {
+    private TextView cpuPrice, motPrice, memPrice, storPrice, psuPrice, coolPrice, monPrice, vgaPrice, casePrice;
+    private String name, currentDateandTime;
+    private String name_action_bar;
+    private int[] partsID;
+    private int[] numParts;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private FirebaseFirestore firestore = FirebaseFirestore.getInstance();
     private DocumentReference build_ref;
     private Boolean isMenuOpen = false;
     private Build_Data build_data;
-    private CardView cpu,mot,mem,vga,psu,stor,mon,cool,pc_case;
+    private CardView cpu, mot, mem, vga, psu, stor, mon, cool, pc_case, addPart;
     private MenuItem save;
-    private boolean first=true;
-    private CheckedTextView checkedCPU,checkedMot,checkedMem,checkedStor,checkedPSU,checkedCool,checkedMon,checkedVGA,checkedCase;
-    private TextView cpuTitle,motTitle,memTitle,storTitle,psuTitle,coolTitle,monTitle,vgaTitle,caseTitle,title,totalNum;
-    TextView cpuPrice,motPrice, memPrice, storPrice,  psuPrice, coolPrice, monPrice, vgaPrice, casePrice;
+    private boolean first = true;
+    private CheckedTextView checkedCPU, checkedMot, checkedMem, checkedStor, checkedPSU, checkedCool, checkedMon, checkedVGA, checkedCase;
+    private TextView cpuTitle, motTitle, memTitle, storTitle, psuTitle, coolTitle, monTitle, vgaTitle, caseTitle, title, totalNum;
     private ImageView cpuImage;
     private ImageView motImage;
     private ImageView memImage;
@@ -51,31 +55,32 @@ public class Build_Activity extends AppCompatActivity {
     private ImageView vgaImage;
     private ImageView caseImage;
     private String price;
-    private String ids;
-    private RelativeLayout relLayout;
-    String name,currentDateandTime;
-    String name_action_bar;
-    int[] partsID;
-    private ImageButton editName;
+    private String ids,num;
+    private RelativeLayout totalLayout;
+    private ImageButton editName,saveButton,backButton,plusMem,minusMem;
     private TextView homeBut;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         MainBuildsFragment main = new MainBuildsFragment();
-        if(mAuth.getCurrentUser()!=null)
-            build_ref= firestore.collection("Users").document(mAuth.getCurrentUser().getUid());
+        if (mAuth.getCurrentUser() != null)
+            build_ref = firestore.collection("Users").document(mAuth.getCurrentUser().getUid());
         main.addcardview = true;
         setContentView(R.layout.build_layout);
         Build_Data build_data = new Build_Data();
         title = findViewById(R.id.welcome);
-        homeBut = findViewById(R.id.homeBut);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        backButton= findViewById(R.id.leaveBuild);
+        saveButton = findViewById(R.id.saveBuild);
+        plusMem = findViewById(R.id.plusMem);
+        minusMem = findViewById(R.id.minusMem);
+        totalLayout = findViewById(R.id.totalLayout);
         ids = "";
+        num="";
         name_action_bar = getIntent().getExtras().getString("Build");
         partsID = getIntent().getIntArrayExtra("ID");
-        getSupportActionBar().setTitle("PC Parts List");
-        title.setText("BUILD NAME: "+name_action_bar);
+        numParts = getIntent().getIntArrayExtra("Num");
+        title.setText(name_action_bar);
         save = findViewById(R.id.save_button);
         totalNum = findViewById(R.id.total);
         checkedCPU = findViewById(R.id.checkedCPU);
@@ -90,19 +95,41 @@ public class Build_Activity extends AppCompatActivity {
         editName = findViewById(R.id.editName);
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy 'at' HH:mm:ss z");
         currentDateandTime = sdf.format(new Date());
-        if(getIntent().getExtras().getInt("from")==0){
+        if (getIntent().getExtras().getInt("Edit") == 0) {
             editName.setVisibility(View.VISIBLE);
             editName.setOnClickListener(view -> {
                 showAlertDialog();
             });
         }
         init();
-        homeBut.setOnClickListener(v->{
+        backButton.setOnClickListener(v -> {
             returnHomeCheck();
+        });
+        saveButton.setOnClickListener(view -> {
+            saveButtonCheck();
+        });
+        plusMem.setOnClickListener(view->{
+            numParts[2]=numParts[2]+1;
+            memPrice.setText("$ "+PriceList.getPrice(partsID[2])*numParts[2]);
+            totalNum.setText("$ "+getPriceSum());
+            if(numParts[2]>1){
+                minusMem.setVisibility(View.VISIBLE);
+            }
+        });
+        if(numParts[2]==1)
+            minusMem.setVisibility(View.GONE);
+        minusMem.setOnClickListener(view->{
+            if(numParts[2]>0) {
+                numParts[2] = numParts[2] - 1;
+                memPrice.setText("$ " + PriceList.getPrice(partsID[2]) * numParts[2]);
+                totalNum.setText("$ " + getPriceSum());
+            }
+            if(numParts[2]==1)
+                minusMem.setVisibility(View.GONE);
         });
     }
 
-    public void showAlertDialog(){
+    public void showAlertDialog() {
         MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(Build_Activity.this);
         builder.setTitle("Insert Build Name");
         final TextInputEditText input = new TextInputEditText(Build_Activity.this);
@@ -115,7 +142,7 @@ public class Build_Activity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 name_action_bar = input.getText().toString();
-                title.setText("BUILD NAME: "+name_action_bar);
+                title.setText("BUILD NAME: " + name_action_bar);
             }
         });
         builder.create().show();
@@ -126,16 +153,16 @@ public class Build_Activity extends AppCompatActivity {
         Intent intent = getIntent();
         name = intent.getExtras().getString("Build");
         int id = item.getItemId();
-        if (item.getItemId()==android.R.id.home) {
+        if (item.getItemId() == android.R.id.home) {
             returnHomeCheck();
-        }else if(id==R.id.save_button){
+        } else if (id == R.id.save_button) {
             saveButtonCheck();
         }
         return super.onOptionsItemSelected(item);
     }
 
     private void saveButtonCheck() {
-        if(checkAuth()){
+        if (checkAuth()) {
             build_ref.get().addOnSuccessListener(documentSnapshot -> {
                 if (documentSnapshot.exists()) {
                     build_data = documentSnapshot.toObject(Build_Data.class);
@@ -146,8 +173,8 @@ public class Build_Activity extends AppCompatActivity {
                         build_ref.update("build_date", FieldValue.arrayUnion(currentDateandTime));
                         build_ref.update("price", FieldValue.arrayUnion(price));
                         build_ref.update("parts_id", FieldValue.arrayUnion(unixTime + turnIntArrtoStr()));
-                        startActivity(new Intent(Build_Activity.this, MyBuildActivity.class)
-                                .putExtra("from","Main"));
+                        build_ref.update("num_parts",FieldValue.arrayUnion(unixTime+turnIntArrtoStrParts()));
+                        startActivity(new Intent(Build_Activity.this, MyBuildActivity.class));
                         overridePendingTransition(R.anim.slide_in_left, R.anim.stay);
                     } else {
                         Toast.makeText(Build_Activity.this, "LOGIN!", Toast.LENGTH_SHORT).show();
@@ -155,12 +182,12 @@ public class Build_Activity extends AppCompatActivity {
                 }
             });
 
-        }else{
+        } else {
             MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(Build_Activity.this);
             builder.setTitle("Warning");
             builder.setMessage("Not Logged In, Will Not Save");
             builder.setBackground(getResources().getDrawable(R.drawable.dialog_shape, null));
-            builder.setPositiveButton("Okay",(dialogInterface, i) -> {
+            builder.setPositiveButton("Okay", (dialogInterface, i) -> {
                 startActivity(new Intent(Build_Activity.this, MyBuildActivity.class));
                 overridePendingTransition(R.anim.slide_in_left, R.anim.stay);
             });
@@ -169,7 +196,7 @@ public class Build_Activity extends AppCompatActivity {
     }
 
     private void returnHomeCheck() {
-        if(checkAuth()) {
+        if (checkAuth()) {
             MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(Build_Activity.this);
             builder.setTitle("Warning");
             builder.setMessage("Exiting without saving, would you like to save?");
@@ -182,12 +209,12 @@ public class Build_Activity extends AppCompatActivity {
                         if (build_data.getBuild_name().size() < 5) {
                             long unixTime = System.currentTimeMillis() / 1000;
                             price = String.valueOf(unixTime) + String.valueOf(getPriceSum());
-                            build_ref.update("build_name", FieldValue.arrayUnion(unixTime+name_action_bar));
+                            build_ref.update("build_name", FieldValue.arrayUnion(unixTime + name_action_bar));
                             build_ref.update("build_date", FieldValue.arrayUnion(currentDateandTime));
                             build_ref.update("price", FieldValue.arrayUnion(price));
                             build_ref.update("parts_id", FieldValue.arrayUnion(unixTime + turnIntArrtoStr()));
-                            startActivity(new Intent(Build_Activity.this, MyBuildActivity.class)
-                                    .putExtra("from","Main"));
+                            build_ref.update("num_parts",FieldValue.arrayUnion(unixTime+turnIntArrtoStrParts()));
+                            startActivity(new Intent(Build_Activity.this, MyBuildActivity.class));
                             overridePendingTransition(R.anim.slide_in_left, R.anim.stay);
                         } else {
                             Toast.makeText(Build_Activity.this, "TOO MANY BUILDS, DELETE ONE!!!!", Toast.LENGTH_SHORT).show();
@@ -195,31 +222,30 @@ public class Build_Activity extends AppCompatActivity {
                     }
                 });
             });
-            builder.setNegativeButton("No",(dialogInterface, i) -> {
-                if(getIntent().getExtras().getInt("from")==0){
+            builder.setNegativeButton("No", (dialogInterface, i) -> {
+                if (getIntent().getExtras().getString("Edit").equals("yes")) {
                     String[] editBuild = getIntent().getStringArrayExtra("editBuild");
-                    build_ref.update("build_name",FieldValue.arrayUnion(editBuild[0]));
-                    build_ref.update("build_date",FieldValue.arrayUnion(editBuild[1]));
-                    build_ref.update("price",FieldValue.arrayUnion(editBuild[2]));
-                    build_ref.update("parts_id",FieldValue.arrayUnion(editBuild[3]));
-                    Toast.makeText(Build_Activity.this,"Updates Not Saved",Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(Build_Activity.this,"Not Saved",Toast.LENGTH_SHORT).show();
+                    build_ref.update("build_name", FieldValue.arrayUnion(editBuild[0]));
+                    build_ref.update("build_date", FieldValue.arrayUnion(editBuild[1]));
+                    build_ref.update("price", FieldValue.arrayUnion(editBuild[2]));
+                    build_ref.update("parts_id", FieldValue.arrayUnion(editBuild[3]));
+                    build_ref.update("num_parts",FieldValue.arrayUnion(editBuild[4]));
+                    Toast.makeText(Build_Activity.this, "Updates Not Saved", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(Build_Activity.this, "Not Saved", Toast.LENGTH_SHORT).show();
                 }
-                startActivity(new Intent(Build_Activity.this,MyBuildActivity.class));
-                Toast.makeText(Build_Activity.this,"Not Saved",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(Build_Activity.this,MyBuildActivity.class)
-                        .putExtra("from","Main"));
+                startActivity(new Intent(Build_Activity.this, MyBuildActivity.class));
+                Toast.makeText(Build_Activity.this, "Not Saved", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(Build_Activity.this, MyBuildActivity.class));
             });
             builder.show();
-        }else{
+        } else {
             MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(Build_Activity.this);
             builder.setTitle("Warning");
             builder.setMessage("Not Logged In, Will Not Save");
             builder.setBackground(getResources().getDrawable(R.drawable.dialog_shape, null));
-            builder.setPositiveButton("Okay",(dialogInterface, i) -> {
-                startActivity(new Intent(Build_Activity.this, MyBuildActivity.class)
-                        .putExtra("from","Main"));
+            builder.setPositiveButton("Okay", (dialogInterface, i) -> {
+                startActivity(new Intent(Build_Activity.this, MyBuildActivity.class));
                 overridePendingTransition(R.anim.slide_in_left, R.anim.stay);
             });
             builder.show();
@@ -228,22 +254,41 @@ public class Build_Activity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.save_menu,menu);
+        getMenuInflater().inflate(R.menu.save_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
-    public boolean checkAuth(){
-        if(mAuth.getCurrentUser()!=null)
+
+    public boolean checkAuth() {
+        if (mAuth.getCurrentUser() != null)
             return true;
         else
             return false;
     }
-    public void init(){
+
+    public void init() {
         findID();
         insertDet();
+        checkAddVisibility();
+        checkCardVisibility();
         cardListeners();
     }
 
+    private void checkAddVisibility() {
+        boolean partsEmptySomewhere = false;
+        for (int i = 0; i < partsID.length; i++) {
+            if (partsID[i] == -1) {
+                partsEmptySomewhere = true;
+                addPart.setVisibility(View.VISIBLE);
+                break;
+            }
+        }
+        if (!partsEmptySomewhere) {
+            addPart.setVisibility(View.GONE);
+        }
+    }
+
     private void findID() {
+        addPart = findViewById(R.id.addPart);
         cpu = findViewById(R.id.cpu);
         mot = findViewById(R.id.mot);
         mem = findViewById(R.id.mem);
@@ -283,303 +328,296 @@ public class Build_Activity extends AppCompatActivity {
     }
 
     private void cardListeners() {
-        cpu.setOnClickListener(view -> {
-            Intent cpu_intent = new Intent(Build_Activity.this, PC_Build_Parts.class)
-                    .putExtra("from",getIntent().getExtras().getInt("from"))
-                    .putExtra("editBuild",getIntent().getStringArrayExtra("editBuild"))
-                    .putExtra("from","Main");
-            cpu_intent.putExtra("name","CPU");
-            cpu_intent.putExtra("Build",name_action_bar);
-            cpu_intent.putExtra("ID",partsID);
-            startActivity(cpu_intent);
+        addPart.setOnClickListener(view -> {
+            startActivity(new Intent(Build_Activity.this, PCBuildLayout.class)
+                    .putExtra("Edit", "Edit").putExtra("editBuild", getIntent().getStringArrayExtra("editBuild"))
+                    .putExtra("Build", name_action_bar).putExtra("ID", partsID).putExtra("Num",numParts));
         });
-        cpu.setOnLongClickListener(v ->{
-            if(partsID[0]!=-1) {
-                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(Build_Activity.this);
-                builder.setMessage("Delete " + PriceList.getName(partsID[0])+" ?");
-                builder.setTitle("Removing CPU");
-                builder.setPositiveButton("Yes", (dialog, which) -> {
-                    cpuTitle.setText("Empty");
-                    cpuImage.setImageResource(R.drawable.ic_blank_image);
-                    cpuPrice.setText("$0.00");
-                    checkedCPU.setChecked(false);
-                    cpu.setCardBackgroundColor(getResources().getColor(R.color.cardview_dark));
-                    partsID[0] = -1;
-                    totalNum.setText("TOTAL: $" + getPriceSum());
-                });
-                builder.setNegativeButton("No", (dialog, which) -> {
-                    Toast.makeText(this, "Nothing Happened.", Toast.LENGTH_SHORT).show();
-                });
-                builder.create().show();
-            }else{
-                Toast.makeText(this, "Cannot Delete anything.",Toast.LENGTH_SHORT).show();
-            }
+        cpu.setOnLongClickListener(v -> {
+            MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(Build_Activity.this);
+            builder.setMessage("What would you like to do with " + PriceList.getName(partsID[0]) + " ?");
+            builder.setTitle("CPU");
+            builder.setPositiveButton("Delete", (dialog, which) -> {
+                cpuTitle.setText("Empty");
+                cpuImage.setImageResource(R.drawable.ic_blank_image);
+                cpuPrice.setText("$0.00");
+                checkedCPU.setChecked(false);
+                cpu.setCardBackgroundColor(getResources().getColor(R.color.cardview_dark));
+                partsID[0] = -1;
+                numParts[0]=0;
+                totalNum.setText("$ "+getPriceSum());
+                cpu.setVisibility(View.GONE);
+                checkAddVisibility();
+            });
+            builder.setNegativeButton("Edit", (dialog, which) -> {
+                startActivity(new Intent(Build_Activity.this, PC_Build_Parts.class)
+                        .putExtra("Edit", getIntent().getExtras().getString("Edit"))
+                        .putExtra("editBuild", getIntent().getStringArrayExtra("editBuild"))
+                        .putExtra("name", "CPU").putExtra("Build", name_action_bar)
+                        .putExtra("ID", partsID));
+            });
+            builder.create().show();
             return true;
         });
-        mot.setOnClickListener(view -> {
-            Intent mot_intent = new Intent(Build_Activity.this, PC_Build_Parts.class)
-                    .putExtra("from","Main")
-                    .putExtra("from",getIntent().getExtras().getInt("from"))
-                    .putExtra("editBuild",getIntent().getStringArrayExtra("editBuild"));
-            mot_intent.putExtra("name","Motherboards");
-            mot_intent.putExtra("Build",name_action_bar);
-            mot_intent.putExtra("ID",partsID);
-            startActivity(mot_intent);
-        });
-        mot.setOnLongClickListener(v->{
-            if(partsID[1]!=-1){
-                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(Build_Activity.this);
-                builder.setMessage("Delete " + PriceList.getName(partsID[1])+" ?");
-                builder.setTitle("Removing Motherboard");
-                builder.setPositiveButton("Yes", (dialog, which) -> {
-                    motTitle.setText("Empty");
-                    motImage.setImageResource(R.drawable.ic_blank_image);
-                    motPrice.setText("$0.00");
-                    checkedMot.setChecked(false);
-                    partsID[1] = -1;
-                    mot.setCardBackgroundColor(getResources().getColor(R.color.cardview_dark));
-                    totalNum.setText("TOTAL: $" + getPriceSum());
-                });
-                builder.setNegativeButton("No", (dialog, which) -> {
-                    Toast.makeText(this, "Nothing Happened.", Toast.LENGTH_SHORT).show();
-                });
-                builder.create().show();
-            }else{
-                Toast.makeText(this, "Cannot Delete anything.",Toast.LENGTH_SHORT).show();
-            }
+
+        mot.setOnLongClickListener(v -> {
+            MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(Build_Activity.this);
+            builder.setMessage("What would you like to do with " + PriceList.getName(partsID[1]) + " ?");
+            builder.setTitle("Motherboard");
+            builder.setPositiveButton("Delete", (dialog, which) -> {
+                motTitle.setText("Empty");
+                motImage.setImageResource(R.drawable.ic_blank_image);
+                motPrice.setText("$0.00");
+                checkedMot.setChecked(false);
+                partsID[1] = -1;
+                numParts[1]=0;
+                mot.setCardBackgroundColor(getResources().getColor(R.color.cardview_dark));
+                totalNum.setText("$ "+getPriceSum());
+                mot.setVisibility(View.GONE);
+                checkAddVisibility();
+            });
+            builder.setNegativeButton("Edit", (dialog, which) -> {
+                startActivity(new Intent(Build_Activity.this, PCBuildLayout.class)
+                        .putExtra("Edit", getIntent().getExtras().getString("Edit"))
+                        .putExtra("editBuild", getIntent().getStringArrayExtra("editBuild"))
+                        .putExtra("name", "Motherboards").putExtra("Build", name_action_bar)
+                        .putExtra("ID", partsID));
+            });
+            builder.create().show();
             return true;
         });
-        mem.setOnClickListener(view -> {
-            Intent mem_intent = new Intent(Build_Activity.this, PC_Build_Parts.class)
-                    .putExtra("from",getIntent().getExtras().getInt("from"))
-                    .putExtra("editBuild",getIntent().getStringArrayExtra("editBuild"))
-                    .putExtra("from","Main");
-            mem_intent.putExtra("name","Memory");
-            mem_intent.putExtra("Build",name_action_bar);
-            mem_intent.putExtra("ID",partsID);
-            startActivity(mem_intent);
-        });
-        mem.setOnLongClickListener(v->{
-            if(partsID[2]!=-1){
-                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(Build_Activity.this);
-                builder.setMessage("Delete " + PriceList.getName(partsID[2])+" ?");
-                builder.setTitle("Removing Memory");
-                builder.setPositiveButton("Yes", (dialog, which) -> {
-                    memTitle.setText("Empty");
-                    memImage.setImageResource(R.drawable.ic_blank_image);
-                    memPrice.setText("$0.00");
-                    checkedMem.setChecked(false);
-                    partsID[2]=-1;
-                    mem.setCardBackgroundColor(getResources().getColor(R.color.cardview_dark));
-                    totalNum.setText("TOTAL: $"+getPriceSum());
-                });
-                builder.setNegativeButton("No", (dialog, which) -> {
-                    Toast.makeText(this, "Nothing Happened.", Toast.LENGTH_SHORT).show();
-                });
-                builder.create().show();
-            }else{
-                Toast.makeText(this, "Cannot Delete anything.",Toast.LENGTH_SHORT).show();
-            }
+        mem.setOnLongClickListener(v -> {
+            MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(Build_Activity.this);
+            builder.setMessage("What would you like to do with " + PriceList.getName(partsID[2]) + " ?");
+            builder.setTitle("Removing Memory");
+            builder.setPositiveButton("Delete", (dialog, which) -> {
+                memTitle.setText("Empty");
+                memImage.setImageResource(R.drawable.ic_blank_image);
+                memPrice.setText("$0.00");
+                checkedMem.setChecked(false);
+                partsID[2] = -1;
+                numParts[2]=0;
+                mem.setCardBackgroundColor(getResources().getColor(R.color.cardview_dark));
+                totalNum.setText("$ "+getPriceSum());
+                mem.setVisibility(View.GONE);
+                checkAddVisibility();
+            });
+            builder.setNegativeButton("Edit", (dialog, which) -> {
+                startActivity(new Intent(Build_Activity.this, PC_Build_Parts.class)
+                        .putExtra("Edit", getIntent().getExtras().getString("Edit"))
+                        .putExtra("editBuild", getIntent().getStringArrayExtra("editBuild"))
+                        .putExtra("name", "Memory").putExtra("Build", name_action_bar)
+                        .putExtra("ID", partsID));
+            });
+            builder.create().show();
             return true;
         });
-        vga.setOnClickListener(view -> {
-            Intent vga_intent = new Intent(Build_Activity.this, PC_Build_Parts.class)
-                    .putExtra("from","Main")
-                    .putExtra("from",getIntent().getExtras().getInt("from"))
-                    .putExtra("editBuild",getIntent().getStringArrayExtra("editBuild"));
-            vga_intent.putExtra("name","Video Cards");
-            vga_intent.putExtra("Build",name_action_bar);
-            vga_intent.putExtra("ID",partsID);
-            startActivity(vga_intent);
-        });
-        vga.setOnLongClickListener(v->{
-            if(partsID[3]!=-1){
-                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(Build_Activity.this);
-                builder.setMessage("Delete " + PriceList.getName(partsID[3])+" ?");
-                builder.setTitle("Removing Graphics Caed");
-                builder.setPositiveButton("Yes", (dialog, which) -> {
-                    vgaTitle.setText("Empty");
-                    vgaImage.setImageResource(R.drawable.ic_blank_image);
-                    vgaPrice.setText("$0.00");
-                    checkedVGA.setChecked(false);
-                    partsID[3]=-1;
-                    vga.setCardBackgroundColor(getResources().getColor(R.color.cardview_dark));
-                    totalNum.setText("TOTAL: $"+getPriceSum());
-                });
-                builder.setNegativeButton("No", (dialog, which) -> {
-                    Toast.makeText(this, "Nothing Happened.", Toast.LENGTH_SHORT).show();
-                });
-                builder.create().show();
-            }else{
-                Toast.makeText(this, "Cannot Delete anything.",Toast.LENGTH_SHORT).show();
-            }
+        vga.setOnLongClickListener(v -> {
+            MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(Build_Activity.this);
+            builder.setMessage("What would you like to do with " + PriceList.getName(partsID[3]) + " ?");
+            builder.setTitle("Graphics Card");
+            builder.setPositiveButton("Delete", (dialog, which) -> {
+                vgaTitle.setText("Empty");
+                vgaImage.setImageResource(R.drawable.ic_blank_image);
+                vgaPrice.setText("$0.00");
+                checkedVGA.setChecked(false);
+                partsID[3] = -1;
+                numParts[3]=0;
+                vga.setCardBackgroundColor(getResources().getColor(R.color.cardview_dark));
+                totalNum.setText("$ "+getPriceSum());
+                vga.setVisibility(View.GONE);
+                checkAddVisibility();
+            });
+            builder.setNegativeButton("Edit", (dialog, which) -> {
+                startActivity(new Intent(Build_Activity.this, PC_Build_Parts.class)
+                        .putExtra("Edit", getIntent().getExtras().getString("Edit"))
+                        .putExtra("editBuild", getIntent().getStringArrayExtra("editBuild"))
+                        .putExtra("name", "Video Cards").putExtra("Build", name_action_bar)
+                        .putExtra("ID", partsID));
+            });
+            builder.create().show();
             return true;
         });
-        psu.setOnClickListener(view -> {
-            Intent psu_intent = new Intent(Build_Activity.this, PC_Build_Parts.class)
-                    .putExtra("from",getIntent().getExtras().getInt("from"))
-                    .putExtra("editBuild",getIntent().getStringArrayExtra("editBuild"))
-                    .putExtra("from","Main");
-            psu_intent.putExtra("name","Power Supplies");
-            psu_intent.putExtra("Build",name_action_bar);
-            psu_intent.putExtra("ID",partsID);
-            startActivity(psu_intent);
-        });
-        psu.setOnLongClickListener(v->{
-            if(partsID[4]!=-1){
-                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(Build_Activity.this);
-                builder.setMessage("Delete " + PriceList.getName(partsID[4])+" ?");
-                builder.setTitle("Removing Power Suppl Unit");
-                builder.setPositiveButton("Yes", (dialog, which) -> {
-                    psuTitle.setText("Empty");
-                    psuImage.setImageResource(R.drawable.ic_blank_image);
-                    psuPrice.setText("$0.00");
-                    checkedPSU.setChecked(false);
-                    partsID[4]=-1;
-                    psu.setCardBackgroundColor(getResources().getColor(R.color.cardview_dark));
-                    totalNum.setText("TOTAL: $"+getPriceSum());
-                });
-                builder.setNegativeButton("No", (dialog, which) -> {
-                    Toast.makeText(this, "Nothing Happened.", Toast.LENGTH_SHORT).show();
-                });
-                builder.create().show();
-            }else{
-                Toast.makeText(this, "Cannot Delete anything.",Toast.LENGTH_SHORT).show();
-            }
+        psu.setOnLongClickListener(v -> {
+            MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(Build_Activity.this);
+            builder.setMessage("What would you like to do with " + PriceList.getName(partsID[4]) + " ?");
+            builder.setTitle("Power Supply Unit");
+            builder.setPositiveButton("Delete", (dialog, which) -> {
+                psuTitle.setText("Empty");
+                psuImage.setImageResource(R.drawable.ic_blank_image);
+                psuPrice.setText("$0.00");
+                checkedPSU.setChecked(false);
+                partsID[4] = -1;
+                numParts[4]=0;
+                psu.setCardBackgroundColor(getResources().getColor(R.color.cardview_dark));
+                totalNum.setText("$ "+getPriceSum());
+                psu.setVisibility(View.GONE);
+                checkAddVisibility();
+            });
+            builder.setNegativeButton("Edit", (dialog, which) -> {
+                startActivity(new Intent(Build_Activity.this, PC_Build_Parts.class)
+                        .putExtra("Edit", getIntent().getExtras().getString("Edit"))
+                        .putExtra("editBuild", getIntent().getStringArrayExtra("editBuild"))
+                        .putExtra("name", "Power Supplies").putExtra("Build", name_action_bar)
+                        .putExtra("ID", partsID));
+            });
+            builder.create().show();
             return true;
         });
-        stor.setOnClickListener(view -> {
-            Intent stor_intent = new Intent(Build_Activity.this, PC_Build_Parts.class)
-                    .putExtra("from","Main")
-                    .putExtra("from",getIntent().getExtras().getInt("from"))
-                    .putExtra("editBuild",getIntent().getStringArrayExtra("editBuild"));
-            stor_intent.putExtra("name","Storage");
-            stor_intent.putExtra("Build",name_action_bar);
-            stor_intent.putExtra("ID",partsID);
-            startActivity(stor_intent);
-        });
-        stor.setOnLongClickListener(v->{
-            if(partsID[5]!=-1){
-                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(Build_Activity.this);
-                builder.setMessage("Delete " + PriceList.getName(partsID[5])+" ?");
-                builder.setTitle("Removing Storage");
-                builder.setPositiveButton("Yes", (dialog, which) -> {
-                    storTitle.setText("Empty");
-                    storImage.setImageResource(R.drawable.ic_blank_image);
-                    storPrice.setText("$0.00");
-                    checkedStor.setChecked(false);
-                    partsID[5]=-1;
-                    stor.setCardBackgroundColor(getResources().getColor(R.color.cardview_dark));
-                    totalNum.setText("TOTAL: $"+getPriceSum());
-                });
-                builder.setNegativeButton("No", (dialog, which) -> {
-                    Toast.makeText(this, "Nothing Happened.", Toast.LENGTH_SHORT).show();
-                });
-                builder.create().show();
-            }else{
-                Toast.makeText(this, "Cannot Delete anything.",Toast.LENGTH_SHORT).show();
-            }
+        stor.setOnLongClickListener(v -> {
+            MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(Build_Activity.this);
+            builder.setMessage("What would you like to do with " + PriceList.getName(partsID[5]) + " ?");
+            builder.setTitle("Storage");
+            builder.setPositiveButton("Delete", (dialog, which) -> {
+                storTitle.setText("Empty");
+                storImage.setImageResource(R.drawable.ic_blank_image);
+                storPrice.setText("$0.00");
+                checkedStor.setChecked(false);
+                partsID[5] = -1;
+                numParts[5]=0;
+                stor.setCardBackgroundColor(getResources().getColor(R.color.cardview_dark));
+                totalNum.setText("$ "+getPriceSum());
+                stor.setVisibility(View.GONE);
+                checkAddVisibility();
+            });
+            builder.setNegativeButton("Edit", (dialog, which) -> {
+                startActivity(new Intent(Build_Activity.this, PC_Build_Parts.class)
+                        .putExtra("Edit", getIntent().getExtras().getString("Edit"))
+                        .putExtra("editBuild", getIntent().getStringArrayExtra("editBuild"))
+                        .putExtra("name", "Storage").putExtra("Build", name_action_bar)
+                        .putExtra("ID", partsID));
+            });
+            builder.create().show();
             return true;
         });
-        cool.setOnClickListener(view -> {
-            Intent cool_intent = new Intent(Build_Activity.this, PC_Build_Parts.class)
-                    .putExtra("from",getIntent().getExtras().getInt("from"))
-                    .putExtra("editBuild",getIntent().getStringArrayExtra("editBuild"))
-                    .putExtra("from","Main");
-            cool_intent.putExtra("name","CPU Cooler");
-            cool_intent.putExtra("Build",name_action_bar);
-            cool_intent.putExtra("ID",partsID);
-            startActivity(cool_intent);
-        });
-        cool.setOnLongClickListener(v->{
-            if(partsID[6]!=-1){
-                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(Build_Activity.this);
-                builder.setMessage("Delete " + PriceList.getName(partsID[6])+" ?");
-                builder.setTitle("Removing CPU Cooler");
-                builder.setPositiveButton("Yes", (dialog, which) -> {
-                    coolTitle.setText("Empty");
-                    coolImage.setImageResource(R.drawable.ic_blank_image);
-                    coolPrice.setText("$0.00");
-                    checkedCool.setChecked(false);
-                    partsID[6]=-1;
-                    cool.setCardBackgroundColor(getResources().getColor(R.color.cardview_dark));
-                    totalNum.setText("TOTAL: $"+getPriceSum());
-                });
-                builder.setNegativeButton("No", (dialog, which) -> {
-                    Toast.makeText(this, "Nothing Happened.", Toast.LENGTH_SHORT).show();
-                });
-                builder.create().show();
-            }else{
-                Toast.makeText(this, "Cannot Delete anything.",Toast.LENGTH_SHORT).show();
-            }
+        cool.setOnLongClickListener(v -> {
+            MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(Build_Activity.this);
+            builder.setMessage("What would you like to do with " + PriceList.getName(partsID[6]) + " ?");
+            builder.setTitle("Removing CPU Cooler");
+            builder.setPositiveButton("Delete", (dialog, which) -> {
+                coolTitle.setText("Empty");
+                coolImage.setImageResource(R.drawable.ic_blank_image);
+                coolPrice.setText("$0.00");
+                checkedCool.setChecked(false);
+                partsID[6] = -1;
+                numParts[6]=0;
+                cool.setCardBackgroundColor(getResources().getColor(R.color.cardview_dark));
+                totalNum.setText("$ "+getPriceSum());
+                cool.setVisibility(View.GONE);
+                checkAddVisibility();
+            });
+            builder.setNegativeButton("Edit", (dialog, which) -> {
+                startActivity(new Intent(Build_Activity.this, PC_Build_Parts.class)
+                        .putExtra("Edit", getIntent().getExtras().getString("Edit"))
+                        .putExtra("editBuild", getIntent().getStringArrayExtra("editBuild"))
+                        .putExtra("name", "CPU Cooler").putExtra("Build", name_action_bar)
+                        .putExtra("ID", partsID));
+            });
+            builder.create().show();
+
             return true;
         });
-        mon.setOnClickListener(view -> {
-            Intent mon_intent = new Intent(Build_Activity.this, PC_Build_Parts.class)
-                    .putExtra("from","Main")
-                    .putExtra("from",getIntent().getExtras().getInt("from"))
-                    .putExtra("editBuild",getIntent().getStringArrayExtra("editBuild"));
-            mon_intent.putExtra("name","Monitor");
-            mon_intent.putExtra("Build",name_action_bar);
-            mon_intent.putExtra("ID",partsID);
-            startActivity(mon_intent);
-        });
-        mon.setOnLongClickListener(v->{
-            if(partsID[7]!=-1){
-                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(Build_Activity.this);
-                builder.setMessage("Delete " + PriceList.getName(partsID[7])+" ?");
-                builder.setTitle("Removing Monitor");
-                builder.setPositiveButton("Yes", (dialog, which) -> {
-                    monTitle.setText("Empty");
-                    monImage.setImageResource(R.drawable.ic_blank_image);
-                    monPrice.setText("$0.00");
-                    checkedMon.setChecked(false);
-                    partsID[7]=-1;
-                    mon.setCardBackgroundColor(getResources().getColor(R.color.cardview_dark));
-                    totalNum.setText("TOTAL: $"+getPriceSum());
-                });
-                builder.setNegativeButton("No", (dialog, which) -> {
-                    Toast.makeText(this, "Nothing Happened.", Toast.LENGTH_SHORT).show();
-                });
-                builder.create().show();
-            }else{
-                Toast.makeText(this, "Cannot Delete anything.",Toast.LENGTH_SHORT).show();
-            }
+
+        mon.setOnLongClickListener(v -> {
+            MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(Build_Activity.this);
+            builder.setMessage("What would you like to do with " + PriceList.getName(partsID[7]) + " ?");
+            builder.setTitle("Monitor");
+            builder.setPositiveButton("Delete", (dialog, which) -> {
+                monTitle.setText("Empty");
+                monImage.setImageResource(R.drawable.ic_blank_image);
+                monPrice.setText("$0.00");
+                checkedMon.setChecked(false);
+                partsID[7] = -1;
+                numParts[7]=0;
+                mon.setCardBackgroundColor(getResources().getColor(R.color.cardview_dark));
+                totalNum.setText("$ "+getPriceSum());
+                mon.setVisibility(View.GONE);
+                checkAddVisibility();
+            });
+            builder.setNegativeButton("Edit", (dialog, which) -> {
+                startActivity(new Intent(Build_Activity.this, PC_Build_Parts.class)
+                        .putExtra("Edit", getIntent().getExtras().getString("Edit"))
+                        .putExtra("editBuild", getIntent().getStringArrayExtra("editBuild"))
+                        .putExtra("name", "Monitor").putExtra("Build", name_action_bar)
+                        .putExtra("ID", partsID));
+            });
+            builder.create().show();
             return true;
         });
-        pc_case.setOnClickListener(view -> {
-            Intent pc_case_intent = new Intent(Build_Activity.this, PC_Build_Parts.class)
-                    .putExtra("from","Main")
-                    .putExtra("from",getIntent().getExtras().getInt("from"))
-                    .putExtra("editBuild",getIntent().getStringArrayExtra("editBuild"));
-            pc_case_intent.putExtra("name","Cases");
-            pc_case_intent.putExtra("Build",name_action_bar);
-            pc_case_intent.putExtra("ID",partsID);
-            startActivity(pc_case_intent);
-        });
-        pc_case.setOnLongClickListener(v->{
-            if(partsID[8]!=-1){
-                MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(Build_Activity.this);
-                builder.setMessage("Delete " + PriceList.getName(partsID[8])+" ?");
-                builder.setTitle("Removing Case");
-                builder.setPositiveButton("Yes", (dialog, which) -> {
-                    caseTitle.setText("Empty");
-                    caseImage.setImageResource(R.drawable.ic_blank_image);
-                    casePrice.setText("$0.00");
-                    checkedCase.setChecked(false);
-                    partsID[8]=-1;
-                    pc_case.setCardBackgroundColor(getResources().getColor(R.color.cardview_dark));
-                    totalNum.setText("TOTAL: $"+getPriceSum());
-                });
-                builder.setNegativeButton("No", (dialog, which) -> {
-                    Toast.makeText(this, "Nothing Happened.", Toast.LENGTH_SHORT).show();
-                });
-                builder.create().show();
-            }else{
-                Toast.makeText(this, "Cannot Delete anything.",Toast.LENGTH_SHORT).show();
-            }
+        pc_case.setOnLongClickListener(v -> {
+            MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(Build_Activity.this);
+            builder.setMessage("What would you like to do with " + PriceList.getName(partsID[8]) + " ?");
+            builder.setTitle("Case");
+            builder.setPositiveButton("Delete", (dialog, which) -> {
+                caseTitle.setText("Empty");
+                caseImage.setImageResource(R.drawable.ic_blank_image);
+                casePrice.setText("$0.00");
+                checkedCase.setChecked(false);
+                partsID[8] = -1;
+                numParts[8]=0;
+                pc_case.setCardBackgroundColor(getResources().getColor(R.color.cardview_dark));
+                totalNum.setText("$ "+getPriceSum());
+                pc_case.setVisibility(View.GONE);
+                checkAddVisibility();
+            });
+            builder.setNegativeButton("Edit", (dialog, which) -> {
+                startActivity(new Intent(Build_Activity.this, PC_Build_Parts.class)
+                        .putExtra("Edit", getIntent().getExtras().getString("Edit"))
+                        .putExtra("editBuild", getIntent().getStringArrayExtra("editBuild"))
+                        .putExtra("name", "Cases").putExtra("Build", name_action_bar)
+                        .putExtra("ID", partsID));
+            });
+            builder.create().show();
             return true;
         });
+    }
+
+    private void checkCardVisibility() {
+        if (partsID[0] != -1) {
+            cpu.setVisibility(View.VISIBLE);
+        } else {
+            cpu.setVisibility(View.GONE);
+        }
+        if (partsID[1] != -1) {
+            mot.setVisibility(View.VISIBLE);
+        } else {
+            mot.setVisibility(View.GONE);
+        }
+        if (partsID[2] != -1) {
+            mem.setVisibility(View.VISIBLE);
+        } else {
+            mem.setVisibility(View.GONE);
+        }
+        if (partsID[3] != -1) {
+            stor.setVisibility(View.VISIBLE);
+        } else {
+            stor.setVisibility(View.GONE);
+        }
+        if (partsID[4] != -1) {
+            psu.setVisibility(View.VISIBLE);
+        } else {
+            psu.setVisibility(View.GONE);
+        }
+        if (partsID[5] != -1) {
+            cool.setVisibility(View.VISIBLE);
+        } else {
+            cool.setVisibility(View.GONE);
+        }
+        if (partsID[6] != -1) {
+            mon.setVisibility(View.VISIBLE);
+        } else {
+            mon.setVisibility(View.GONE);
+        }
+        if (partsID[7] != -1) {
+            vga.setVisibility(View.VISIBLE);
+        } else {
+            vga.setVisibility(View.GONE);
+        }
+        if (partsID[8] != -1) {
+            pc_case.setVisibility(View.VISIBLE);
+        } else {
+            pc_case.setVisibility(View.GONE);
+        }
     }
 
     private void insertDet() {
@@ -599,7 +637,7 @@ public class Build_Activity extends AppCompatActivity {
         }
         if (partsID[2] != -1) {
             memTitle.setText(PriceList.getName(partsID[2]));
-            memPrice.setText(PriceList.getPriceAsString(partsID[2]));
+            memPrice.setText("$ "+PriceList.getPrice(partsID[2])*numParts[2]);
             memImage.setImageResource(PriceList.getIcon(partsID[2]));
             mem.setCardBackgroundColor(getResources().getColor(R.color.cardview_light));
             checkedMem.setChecked(true);
@@ -646,28 +684,36 @@ public class Build_Activity extends AppCompatActivity {
             pc_case.setCardBackgroundColor(getResources().getColor(R.color.cardview_light));
             checkedCase.setChecked(true);
         }
-        totalNum.setText("TOTAL: $"+getPriceSum());
+        totalNum.setText("$ "+getPriceSum());
     }
 
 
-    public String turnIntArrtoStr(){
+    public String turnIntArrtoStr() {
         String[] arr = new String[partsID.length];
-        for(int i =0; i< partsID.length;i++){
+        for (int i = 0; i < partsID.length; i++) {
             arr[i] = String.valueOf(partsID[i]);
         }
-        ids = TextUtils.join(",",arr);
+        ids = TextUtils.join(",", arr);
         return ids;
     }
+    public String turnIntArrtoStrParts() {
+        String[] arr = new String[numParts.length];
+        for (int i = 0; i < numParts.length; i++) {
+            arr[i] = String.valueOf(numParts[i]);
+        }
+        num = TextUtils.join(",", arr);
+        return num;
+    }
 
-    public double getPriceSum(){
-        double price=0.0;
-        for(int i=0;i<partsID.length;i++) {
-            if(partsID[i]!=-1) {
-                price = price + PriceList.getPrice(partsID[i]);
+    public double getPriceSum() {
+        double price = 0.0;
+        for (int i = 0; i < partsID.length; i++) {
+            if (partsID[i] != -1) {
+                price = price + PriceList.getPrice(partsID[i])*numParts[i];
             }
             System.out.println(price);
         }
-        price = Math.floor(price*100)/100;
+        price = Math.floor(price * 100) / 100;
         return price;
     }
 }

@@ -22,228 +22,254 @@
             android:orientation="vertical"
             android:animateLayoutChanges="true">
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <com.makeramen.roundedimageview.RoundedImageView
-                android:layout_margin="10dp"
-                android:src="@mipmap/ic_logo"
-                android:layout_width="120dp"
-                android:layout_height="150dp"
-                android:scaleType="fitCenter"
-                app:riv_corner_radius="15dip"
-                app:riv_border_width="5dip"
-                app:riv_oval="true"
-                app:riv_border_color="@color/blue_gray_darker"/>
-
             <LinearLayout
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <TextView
-                    android:id="@+id/partID"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    />
+                android:layout_height="wrap_content">
 
-                <TextView
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    android:layout_margin="10dp"
-                    android:text="Build Name"
+                <LinearLayout
+                    android:gravity="center"
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/build_name"
-                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"/>
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/partID"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Build Name: "
+                            android:textColor="@color/white"
+                            android:layout_margin="10dp"
+                            android:textSize="25sp"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/francois_one"/>
+                        <TextView
+                            android:textColor="@color/white"
+                            android:textSize="20sp"
+                            android:layout_margin="10dp"
+                            android:text="Build Name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/build_name"
+                            android:fontFamily="@font/francois_one"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:textSize="25sp"
+                            android:textColor="@color/white"
+                            android:text="Date:"
+                            android:layout_margin="10dp"
+                            android:fontFamily="@font/francois_one"/>
+                        <TextView
+                            android:id="@+id/date_started"
+                            android:layout_margin="10dp"
+                            android:text="Date Started"
+                            android:textSize="20sp"
+                            android:textColor="@color/white"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/francois_one"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Price: "
+                            android:textSize="25sp"
+                            android:textColor="@color/white"
+                            android:layout_margin="10dp"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/francois_one"/>
+                    <TextView
+                        android:id="@+id/price"
+                        android:layout_margin="10dp"
+                        android:text="Money"
+                        android:textSize="20sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/francois_one"/>
+                    </LinearLayout>
 
-                <TextView
-                    android:id="@+id/date_started"
-                    android:layout_margin="10dp"
-                    android:text="Date Started"
-                    android:textSize="20sp"
-                    android:textColor="@color/white"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"/>
-                <TextView
-                    android:id="@+id/price"
-                    android:layout_margin="10dp"
-                    android:text="Money"
-                    android:textSize="20sp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"/>
+                </LinearLayout>
 
             </LinearLayout>
-
-        </LinearLayout>
             <LinearLayout
                 android:id="@+id/partsList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:visibility="gone">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Parts List"
-                android:layout_gravity="center"
-                android:textStyle="bold"
-                android:textSize="25sp"
-                android:textColor="@color/white"/>
-            <TextView
-                android:id="@+id/cpuTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                android:layout_marginLeft="10dp" />
-            <TextView
-                android:id="@+id/cpuName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:textColor="@color/white"
-                android:layout_gravity="center"
-                android:textAlignment="center"/>
-            <TextView
-                android:id="@+id/motTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                android:layout_marginLeft="10dp" />
-            <TextView
-                android:id="@+id/motName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:textColor="@color/white"
-                android:layout_gravity="center"
-                android:textAlignment="center"/>
-            <TextView
-                android:id="@+id/memTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                android:layout_marginLeft="10dp"
-                android:textAlignment="center"/>
-            <TextView
-                android:id="@+id/memName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:textColor="@color/white"
-                android:layout_gravity="center"
-                android:textAlignment="center"/>
-            <TextView
-                android:id="@+id/storTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                android:layout_marginLeft="10dp" />
-            <TextView
-                android:id="@+id/storName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:textColor="@color/white"
-                android:layout_gravity="center"
-                android:textAlignment="center"/>
-            <TextView
-                android:id="@+id/psuTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                android:layout_marginLeft="10dp" />
-            <TextView
-                android:id="@+id/psuName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:textColor="@color/white"
-                android:layout_gravity="center"
-                android:textAlignment="center"/>
-            <TextView
-                android:id="@+id/coolTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                android:layout_marginLeft="10dp" />
-            <TextView
-                android:id="@+id/coolName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:textColor="@color/white"
-                android:layout_gravity="center"
-                android:textAlignment="center"/>
-            <TextView
-                android:id="@+id/monTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                android:layout_marginLeft="10dp" />
-            <TextView
-                android:id="@+id/monName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:textColor="@color/white"
-                android:layout_gravity="center"
-                android:textAlignment="center"/>
-            <TextView
-                android:id="@+id/vgaTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                android:layout_marginLeft="10dp" />
-            <TextView
-                android:id="@+id/vgaName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:textColor="@color/white"
-                android:layout_marginLeft="10dp"
-                android:layout_gravity="center"
-                android:textAlignment="center"/>
-            <TextView
-                android:id="@+id/caseTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="@color/white"
-                android:layout_marginLeft="10dp" />
-            <TextView
-                android:id="@+id/caseName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:textColor="@color/white"
-                android:layout_gravity="center"
-                android:textAlignment="center"/>
-        </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Parts List"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:textSize="25sp"
+                    android:textColor="@color/white"/>
+                <TextView
+                    android:id="@+id/cpuTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:layout_marginLeft="10dp" />
+                <TextView
+                    android:id="@+id/cpuName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:textAlignment="center"/>
+                <TextView
+                    android:id="@+id/motTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:layout_marginLeft="10dp" />
+                <TextView
+                    android:id="@+id/motName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:textAlignment="center"/>
+                <TextView
+                    android:id="@+id/memTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:layout_marginLeft="10dp"
+                    android:textAlignment="center"/>
+                <TextView
+                    android:id="@+id/memName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:textAlignment="center"/>
+                <TextView
+                    android:id="@+id/storTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:layout_marginLeft="10dp" />
+                <TextView
+                    android:id="@+id/storName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:textAlignment="center"/>
+                <TextView
+                    android:id="@+id/psuTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:layout_marginLeft="10dp" />
+                <TextView
+                    android:id="@+id/psuName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:textAlignment="center"/>
+                <TextView
+                    android:id="@+id/coolTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:layout_marginLeft="10dp" />
+                <TextView
+                    android:id="@+id/coolName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:textAlignment="center"/>
+                <TextView
+                    android:id="@+id/monTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:layout_marginLeft="10dp" />
+                <TextView
+                    android:id="@+id/monName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:textAlignment="center"/>
+                <TextView
+                    android:id="@+id/vgaTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:layout_marginLeft="10dp" />
+                <TextView
+                    android:id="@+id/vgaName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textColor="@color/white"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="center"
+                    android:textAlignment="center"/>
+                <TextView
+                    android:id="@+id/caseTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:layout_marginLeft="10dp" />
+                <TextView
+                    android:id="@+id/caseName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:textAlignment="center"/>
+            </LinearLayout>
         </LinearLayout>
 
 

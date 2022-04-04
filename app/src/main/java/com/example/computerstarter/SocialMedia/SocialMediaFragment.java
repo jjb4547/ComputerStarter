@@ -152,7 +152,6 @@ public class SocialMediaFragment extends Fragment {
         arrayList.add("Design");
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_forum, container, false);
-
         //used for spinner dropdown on RecyclerView
         spinner = view.findViewById(R.id.pspinRV);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, arrayList);
@@ -163,7 +162,9 @@ public class SocialMediaFragment extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 textSpin = spinner.getSelectedItem().toString();
                 //System.out.println(textSpin + " Testing Values!");
-                loadTagPosts();
+                if(user!=null) {
+                    loadTagPosts();
+                }
             }
 
             @Override
@@ -197,6 +198,7 @@ public class SocialMediaFragment extends Fragment {
                 startActivity(intent);
             });
         }else{
+            spinner.setVisibility(View.GONE);
             loginBut.setVisibility(View.VISIBLE);
             loginText.setVisibility(View.VISIBLE);
             button.setVisibility(View.GONE);

@@ -6,17 +6,33 @@
         android:title="Home"
         android:icon="@drawable/ic_home">
     </item>
-    <item android:id="@+id/building"
-        android:title="My Builds"
-        android:icon="@drawable/ic_computer">
-    </item>
 </group>
+    <item android:title="Builds">
+        <menu>
+            <item android:title="My Builds"
+                android:id="@+id/building"/>
+        </menu>
+    </item>
+    <item android:title="Education">
+        <menu>
+            <item
+                android:title="Computer Parts"
+                android:id="@+id/partsMenu"/>
+            <item
+                android:title="Guides"
+                android:id="@+id/guidesMenu" />
+            <item
+                android:title="Sample Projects"
+                android:id="@+id/projectsMenu"/>
+        </menu>
+    </item>
     <item android:title="Settings">
         <menu>
             <item
                 android:title="Account"
-                android:id="@+id/account"
-                android:icon="@drawable/ic_people" />
+                android:id="@+id/account"/>
         </menu>
     </item>
+
+
 </menu>
