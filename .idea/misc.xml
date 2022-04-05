@@ -3,8 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Desktop/CSUN 2021/ComputerStarter/app/src/main/res/layout/activity_forum.xml" value="0.33" />
+        <entry key="..\:/Desktop/CSUN 2021/ComputerStarter/app/src/main/res/layout/activity_forum_information.xml" value="0.1646403242147923" />
+        <entry key="..\:/Desktop/CSUN 2021/ComputerStarter/app/src/main/res/layout/add_blogs_new.xml" value="0.18931159420289856" />
         <entry key="..\:/Desktop/CSUN 2021/ComputerStarter/app/src/main/res/layout/fragment_add_blogs.xml" value="0.33" />
         <entry key="..\:/Desktop/CSUN 2021/ComputerStarter/app/src/main/res/layout/fragment_forum.xml" value="0.2667572463768116" />
+        <entry key="..\:/Desktop/CSUN 2021/ComputerStarter/app/src/main/res/layout/row_posts.xml" value="0.40409683426443205" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3880208333333333" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/drawable/bg_round.xml" value="0.1155" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/drawable/change_image.xml" value="0.2915" />
