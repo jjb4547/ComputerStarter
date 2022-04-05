@@ -23,12 +23,10 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -36,7 +34,7 @@ import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SocialMediaFragment extends Fragment{
+public class SocialMediaFragment extends Fragment {
     FirebaseAuth firebaseAuth;
     FirebaseUser user;
     String myuid;
@@ -47,14 +45,40 @@ public class SocialMediaFragment extends Fragment{
     Spinner spinner;
     String textSpin = "";
 
-    final FirebaseDatabase database = FirebaseDatabase.getInstance();
-
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private SwipeRefreshLayout swipeRefreshLayout;
     String dp;
 
     public SocialMediaFragment() {
         // Required empty public constructor
+    }
+    private void loadTagPosts(){
+        StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("ProfileImage/Users/"+user.getUid()+"/profile");
+        storageReference.getDownloadUrl().addOnSuccessListener(uri -> dp = uri.toString());
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Posts");
+        if(!textSpin.equals("")) {
+            databaseReference.orderByChild("tag").equalTo(textSpin).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    posts.clear();
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        SocialMediaModel modelPost = dataSnapshot.getValue(SocialMediaModel.class);
+                        modelPost.setUdp(dp);
+                        posts.add(modelPost);
+                        adapterPosts = new SocialMediaAdapter(getActivity(), posts);
+                        recyclerView.setAdapter(adapterPosts);
+                        adapterPosts.notifyDataSetChanged();
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }else{
+            loadPosts();
+        }
     }
 
     private void loadPosts() {
@@ -102,8 +126,8 @@ public class SocialMediaFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
-
         ArrayList<String> arrayList = new ArrayList<>();
+        arrayList.add("");
         arrayList.add("Computer");
         arrayList.add("GPU");
         arrayList.add("CPU");
@@ -121,7 +145,6 @@ public class SocialMediaFragment extends Fragment{
         arrayList.add("Stream");
         arrayList.add("Coding");
         arrayList.add("Design");
-
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_forum, container, false);
 
@@ -132,42 +155,28 @@ public class SocialMediaFragment extends Fragment{
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 textSpin = spinner.getSelectedItem().toString();
-//                System.out.println(textSpin + " Testing Values!");
-                final DatabaseReference spinnerRef = database.getReference("Posts/");
-                Query query = spinnerRef.orderByChild("tag").equalTo(textSpin);
-                query.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        posts.clear();
-
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                })
+                //System.out.println(textSpin + " Testing Values!");
+                loadTagPosts();
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+            public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
         });
-
-
-
         // Inflate the layout for this fragment
         MaterialButton loginBut = view.findViewById(R.id.loginBut);
         swipeRefreshLayout = view.findViewById(R.id.swipeLayout);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                loadPosts();
+                //spinner.setSelection(0);
+                //loadPosts();
+                loadTagPosts();
                 swipeRefreshLayout.setRefreshing(false);
-
+                //value of spinner selected, need to send to db
             }
         });
         TextView loginText = view.findViewById(R.id.loginText);
@@ -179,12 +188,6 @@ public class SocialMediaFragment extends Fragment{
             loginText.setVisibility(View.GONE);
             button.setVisibility(View.VISIBLE);
             button.setOnClickListener(view1 -> {
-            /*Fragment frag = new SocialMediaBlogs();
-            FragmentTransaction ft = getFragmentManager().beginTransaction();
-            ft.replace(R.id.fragment_container, frag);
-            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-            ft.addToBackStack(null);
-            ft.commit();*/
                 Intent intent = new Intent(getContext(),SocialMediaBlogs.class);
                 startActivity(intent);
             });

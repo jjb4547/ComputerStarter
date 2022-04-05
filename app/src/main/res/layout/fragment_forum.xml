@@ -4,24 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/cardview_dark"
     android:orientation="vertical">
 
 
     <Spinner
         android:id="@+id/pspinRV"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_width="309dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        />
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/pspinRV">
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/RecycleForum"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
-            android:background="@color/background_color" />
+            android:background="#AAAAAA" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     <com.google.android.material.floatingactionbutton.FloatingActionButton

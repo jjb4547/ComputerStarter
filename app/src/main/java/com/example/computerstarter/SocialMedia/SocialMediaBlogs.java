@@ -116,6 +116,7 @@ public class SocialMediaBlogs extends AppCompatActivity {
         //used for spinner
 
         ArrayList<String> arrayList = new ArrayList<>();
+        arrayList.add("");
         arrayList.add("Computer");
         arrayList.add("GPU");
         arrayList.add("CPU");

@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="-10dp"
     android:orientation="vertical"
     app:cardCornerRadius="15dp"
     app:cardElevation="8dp"
@@ -86,43 +87,46 @@
 
         <ImageView
             android:id="@+id/pimagetv"
-            android:layout_gravity="center"
             android:layout_width="325dp"
-            android:layout_height="100dp"
+            android:layout_height="230dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
             android:background="@color/silver"
-            android:scaleType="centerCrop"
-            />
+            android:scaleType="centerCrop" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="68dp"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/plikeb"
-                android:layout_width="50dp"
+                android:layout_width="75dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
-                android:textAlignment="textEnd"
                 android:text="0"
+                android:textAlignment="textEnd"
                 android:textColor="@color/white" />
+
             <ImageButton
-                android:layout_marginTop="6dp"
                 android:id="@+id/like"
-                android:layout_width="80dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:autoLink="all"
-                android:padding="5dp"
-                android:src="@drawable/ic_like"
                 android:background="@color/cardview_dark"
-                android:clickable="true" />
+                android:clickable="true"
+                android:padding="5dp"
+                android:src="@drawable/ic_like" />
 
             <TextView
                 android:id="@+id/pcommentco"
-                android:layout_width="80dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
                 android:text="0"
                 android:textAlignment="textEnd"
@@ -132,6 +136,7 @@
                 android:id="@+id/comment"
                 android:layout_width="90dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:autoLink="all"
                 android:backgroundTint="@color/cardview_light"
                 android:padding="5dp"
@@ -142,16 +147,16 @@
             android:layout_width="match_parent"
             android:layout_height="1dp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:gravity="center"-->
+<!--            android:orientation="horizontal">-->
 
 
 
 
-        </LinearLayout>
+<!--        </LinearLayout>-->
 
     </LinearLayout>
 
