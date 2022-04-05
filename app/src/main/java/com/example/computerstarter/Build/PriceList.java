@@ -105,4 +105,17 @@ public class PriceList {
         return i;
     }
 
+    public static String getSocket(int id)
+    {
+        String answer = "null";
+        if(getPart(id).equals("cpu"))
+        {
+            try{
+                answer = jsonObj.getJSONArray("items").getJSONObject(id).getString("socket");
+            } catch(JSONException e){
+                System.out.println(e);
+            }
+        }
+        return answer;
+    }
 }
