@@ -73,7 +73,7 @@
             android:id="@+id/ptitletv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Title"
+            android:text="Tag"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold"
