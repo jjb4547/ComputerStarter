@@ -64,13 +64,15 @@ public class Arduino_Guide_Setup_Activity extends AppCompatActivity {
             if(onboardingViewPager.getCurrentItem()+1< onboardingAdapterPcGuide.getItemCount()){
                 onboardingViewPager.setCurrentItem(onboardingViewPager.getCurrentItem()+1);
             }else{
-                startActivity(new Intent(this, Arduino_Guides_Activity.class));
+                startActivity(new Intent(this, Arduino_Guides_Activity.class)
+                        .putExtra("from","Edu"));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 finish();
             }
         });
         exit.setOnClickListener(view->{
-            startActivity(new Intent(this, Arduino_Guides_Activity.class));
+            startActivity(new Intent(this, Arduino_Guides_Activity.class)
+                    .putExtra("from","Edu"));
             overridePendingTransition(R.anim.slide_in_top,R.anim.stay);
             finish();
         });
