@@ -32,7 +32,8 @@
         <activity android:name=".Build.MainBuilds" />
         <activity android:name=".Others.AboutActivity" />
         <activity android:name=".Others.HelpActivity" />
-        <activity android:name=".Build.Build_Activity" />
+        <activity android:name=".Build.Build_Activity"
+            android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
         <activity android:name=".Build.PC_Build_Parts" />
         <activity android:name=".Build.MyBuildActivity"
             android:windowSoftInputMode="adjustPan"
@@ -84,6 +85,8 @@
         <activity android:name=".SampleProjects.SampleProjects" />
         <activity android:name=".SampleProjects.Arduino.Arduino_Projects" />
         <activity android:name=".SocialMedia.SocialMediaPostActivities" />
+        <activity android:name=".Build.PCBuildLayout"
+            android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
 
         <!-- Fonts -->
         <meta-data

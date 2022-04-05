@@ -27,6 +27,7 @@ public class PC_Build_Parts extends AppCompatActivity {
     int images[] = new int[10];
     int ids[] = new int[10];
     int[] partsID = new int[10];
+    int[] numParts;
     int counter;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,6 +36,7 @@ public class PC_Build_Parts extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(getIntent().getStringExtra("name"));
         partsID = getIntent().getIntArrayExtra("ID");
+        numParts = getIntent().getIntArrayExtra("Num");
         counter = 0;
         for(int i = 0; i < PriceList.getLength(); i++)
         {
@@ -60,38 +62,47 @@ public class PC_Build_Parts extends AppCompatActivity {
                     switch (getIntent().getExtras().getString("name")) {
                         case "CPU":
                             partsID[0] = ids[i];
+                            numParts[0] = numParts[0]+1;
                             break;
                         case "Motherboards":
                             partsID[1] = ids[i];
+                            numParts[1]=numParts[1]+1;
                             break;
                         case "Memory":
                             partsID[2] = ids[i];
+                            numParts[2]=numParts[2]+1;
                             break;
                         case "Storage":
                             partsID[3] = ids[i];
+                            numParts[3]=numParts[3]+1;
                             break;
                         case "Power Supplies":
                             partsID[4] = ids[i];
+                            numParts[4]=numParts[4]+1;
                             break;
                         case "CPU Cooler":
                             partsID[5] = ids[i];
+                            numParts[5]=numParts[5]+1;
                             break;
                         case "Monitor":
                             partsID[6] = ids[i];
+                            numParts[6]=numParts[6]+1;
                             break;
                         case "Video Cards":
                             partsID[7] = ids[i];
+                            numParts[7]=numParts[7]+1;
                             break;
                         case "Cases":
                             partsID[8] = ids[i];
+                            numParts[8]=numParts[8]+1;
                             break;
                     }
                     startActivity(new Intent(PC_Build_Parts.this,Build_Activity.class)
-                            .putExtra("from","Main")
                             .putExtra("Name",getIntent().getStringExtra("name"))
                             .putExtra("Build",getIntent().getStringExtra("Build"))
                             .putExtra("ID",partsID)
-                            .putExtra("from",getIntent().getExtras().getInt("from"))
+                            .putExtra("Num",numParts)
+                            .putExtra("Edit",getIntent().getExtras().getString("Edit"))
                             .putExtra("editBuild",getIntent().getStringArrayExtra("editBuild")));
                 }
             }

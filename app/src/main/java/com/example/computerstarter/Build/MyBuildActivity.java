@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -64,6 +65,7 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
     private String[] titles = new String[9];
     private int[] images = new int[9];
     private int[] partsID = new int[9];
+    private int[] numParts = new int[9];
     private boolean first = false;
     TextView home;
     private DrawerLayout drawerLayout;
@@ -163,6 +165,8 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         for(int i=0;i<parts.length;i++)
             parts[i]=0;
+        for(int i=0;i<numParts.length;i++)
+            numParts[i]=0;
         recyclerView = findViewById(R.id.recyclcer_builds);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -176,7 +180,7 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
                 build_data = documentSnapshot.toObject(Build_Data.class);
                 if(build_data.getBuild_name().size()>0||build_data.getBuildName()!=null) {
                     for(int i=0;i<build_data.getBuild_name().size();i++) {
-                        build.add(new Build_Data(build_data.getBuild_name().get(i),build_data.getBuild_date().get(i), build_data.getPrice().get(i), build_data.getParts_id().get(i)));
+                        build.add(new Build_Data(build_data.getBuild_name().get(i),build_data.getBuild_date().get(i), build_data.getPrice().get(i), build_data.getParts_id().get(i),build_data.getNum_parts().get(i)));
                     }
                     ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
                     itemTouchHelper.attachToRecyclerView(recyclerView);
@@ -194,7 +198,9 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
         MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(MyBuildActivity.this);
         builder.setTitle("Insert Build Name");
         final TextInputEditText input = new TextInputEditText(MyBuildActivity.this);
-        input.setHint("Build Name");
+        input.setHint("MAX 8 Characters");
+        input.setMaxLines(1);
+        input.setFilters(new InputFilter[]{new InputFilter.LengthFilter(8)});
         input.setImeActionLabel("Submit",KeyEvent.KEYCODE_ENTER);
         input.setOnKeyListener(new View.OnKeyListener() {
             @Override
@@ -202,8 +208,7 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
                 if((event.getAction()==KeyEvent.ACTION_DOWN)&&(keyCode==KeyEvent.KEYCODE_ENTER)) {
                     String value = input.getText().toString();
                     startActivity(new Intent(MyBuildActivity.this,Build_Activity.class)
-                            .putExtra("Build",value).putExtra("ID",partsID).putExtra("from",1)
-                            .putExtra("Build",value).putExtra("ID",partsID));
+                            .putExtra("Build",value).putExtra("ID",partsID).putExtra("Edit","no").putExtra("Num",numParts));
                 }
                 return true;
             }
@@ -217,8 +222,7 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
             public void onClick(DialogInterface dialogInterface, int i) {
                 String value = input.getText().toString();
                 startActivity(new Intent(MyBuildActivity.this,Build_Activity.class)
-                .putExtra("Build",value).putExtra("ID",partsID).putExtra("from",1)
-                .putExtra("Build",value).putExtra("ID",partsID));
+                .putExtra("Build",value).putExtra("ID",partsID).putExtra("Edit","no").putExtra("Num",numParts));
             }
         });
         builder.create().show();
@@ -253,6 +257,7 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
             String name = build.get(viewHolder.getBindingAdapterPosition()).getBuildName();
             String build_date = build.get(viewHolder.getBindingAdapterPosition()).getBuildDate();
             String partID = build.get(viewHolder.getBindingAdapterPosition()).getPartsId();
+            String numPart = build.get(viewHolder.getBindingAdapterPosition()).getNumParts();
             if(mAuth.getCurrentUser()!=null) {
                     switch (direction) {
                         case ItemTouchHelper.LEFT:
@@ -270,10 +275,11 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
                                                         build_ref.update("build_date", FieldValue.arrayUnion(build_date));
                                                         build_ref.update("price", FieldValue.arrayUnion(price));
                                                         build_ref.update("parts_id", FieldValue.arrayUnion(partID));
+                                                        build_ref.update("num_parts",FieldValue.arrayUnion(numPart));
                                                     }
                                                 }
                                             });
-                                            build.add(new Build_Data(name,build_date,price,partID));
+                                            build.add(new Build_Data(name,build_date,price,partID,numPart));
                                             myBuildAdapter.notifyDataSetChanged();
                                         }
                                     } );
@@ -316,6 +322,7 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
         build_ref.update("build_date", FieldValue.arrayRemove(build.get(position).getBuildDate()));
         build_ref.update("price", FieldValue.arrayRemove(build.get(position).getBuildPrice()));
         build_ref.update("parts_id",FieldValue.arrayRemove(build.get(position).getPartsId()));
+        build_ref.update("num_parts",FieldValue.arrayRemove(build.get(position).getNumParts()));
         build.remove(position);
         myBuildAdapter.notifyDataSetChanged();
     }
@@ -370,15 +377,17 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
 
     private void editCard(int position) {
         cleanUpIDs(position);
+        cleanUpPartNums(position);
+        //System.out.println(build.get(position).getNumPart());
         String[] editBuild = new String[]{ build.get(position).getBuildName(),
                 build.get(position).getBuildDate(),build.get(position).getBuildPrice(),
-                build.get(position).getPartsId()};
+                build.get(position).getPartsId(),build.get(position).getNumParts()};
         startActivity(new Intent(this,Build_Activity.class)
-                .putExtra("from",0)
+                .putExtra("Edit","yes")
                 .putExtra("Build",build.get(position).getBuildName().substring(10))
-                .putExtra("ID",build.get(position).getCleanID())
                 .putExtra("editBuild",editBuild)
-                .putExtra("ID",build.get(position).getCleanID()));
+                .putExtra("ID",build.get(position).getCleanID())
+                .putExtra("Num",build.get(position).getNumPart()));
         overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
         deleteCard(position);
     }
@@ -391,5 +400,15 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
             partsID[i] = Integer.parseInt(strArr[i]);
         }
         build.get(position).setCleanID(partsID);
+    }
+    public void cleanUpPartNums(int position) {
+        String[] strArr = null;
+        int[] numParts = new int[9];
+        strArr = build.get(position).getNumParts().substring(10).split(",");
+        for(int i=0;i<strArr.length;i++){
+            numParts[i] = Integer.parseInt(strArr[i]);
+            System.out.println("i"+i+" "+numParts[i]);
+        }
+        build.get(position).setNumPart(numParts);
     }
 }

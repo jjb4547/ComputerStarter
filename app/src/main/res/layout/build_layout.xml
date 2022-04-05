@@ -4,62 +4,115 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_color"
-    >
-
-    <TextView
-        android:id="@+id/welcome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/francois_one"
-        android:gravity="center_horizontal"
-        android:text="Build Name"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="30sp" />
-    <ImageButton
-        android:id="@+id/editName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/change_image"
-        android:layout_toEndOf="@id/welcome"
-        android:background="@color/background_color"
-        android:layout_alignTop="@id/welcome"
-        android:layout_alignBottom="@id/welcome"
-        android:layout_marginStart="15dp"
-        android:clickable="true"
-        android:visibility="gone"/>
-
-
-    <TextView
-        android:id="@+id/total"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/welcome"
-        android:layout_centerHorizontal="true"
-        android:fontFamily="@font/francois_one"
-        android:text="Total: $0.00"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="30sp" />
-
-    <ScrollView
-        android:layout_below="@id/total"
+    android:background="@drawable/gradient_home">
+    <RelativeLayout
+        android:id="@+id/headerLayoutBuild"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="45dp"
-        android:layout_marginBottom="15dp">
+        android:background="@drawable/header_background"
+        android:layout_alignParentTop="true">
+
+        <TextView
+            android:id="@+id/welcome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/francois_one"
+            android:gravity="center_horizontal"
+            android:text="Build Name"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="30sp" />
+        <ImageButton
+            android:id="@+id/saveBuild"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
+            android:background="?attr/selectableItemBackground"
+            android:src="@drawable/ic_save"
+            app:tint="@color/white"
+            android:layout_centerVertical="true"/>
+
+        <ImageButton
+            android:id="@+id/leaveBuild"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:background="?attr/selectableItemBackground"
+            android:src="@drawable/ic_back"
+            app:tint="@color/white" />
+        <ImageButton
+            android:id="@+id/editName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/change_image"
+            android:layout_toEndOf="@id/welcome"
+            android:background="?attr/selectableItemBackground"
+            android:layout_alignTop="@id/welcome"
+            android:layout_alignBottom="@id/welcome"
+            android:layout_marginStart="15dp"
+            android:clickable="true"
+            android:visibility="gone"
+            app:tint="@color/white" />
+
+    </RelativeLayout>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/addPart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="fill"
+        android:layout_rowWeight="1"
+        android:layout_columnWeight="1"
+        android:layout_margin="8dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="8dp"
+        app:cardBackgroundColor="@color/cardview_dark"
+        android:layout_below="@id/headerLayoutBuild"
+        android:layout_centerHorizontal="true">
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/addPartText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/francois_one"
+                android:text="Add Parts"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <ScrollView
+        android:id="@+id/buildScroll"
+        android:layout_below="@id/addPart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="15dp"
+        android:layout_marginBottom="50dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <GridLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:rowCount="9"
                 android:columnCount="1">
+
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cpu"
                     android:layout_width="wrap_content"
@@ -79,6 +132,7 @@
                         android:orientation="vertical">
                         <CheckedTextView
                             android:id="@+id/checkedCPU"
+                            android:layout_centerHorizontal="true"
                             android:checkMark="?android:attr/listChoiceIndicatorMultiple"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -102,7 +156,7 @@
                                 android:id="@+id/cpu_link_image"
                                 android:layout_width="75dp"
                                 android:layout_height="75dp"
-                                android:src="@drawable/ic_blank_image"
+                                tools:src="@drawable/ic_blank_image"
                                 android:layout_gravity="start"
                                 android:layout_marginStart="10dp"
                                 app:riv_oval="true"/>
@@ -116,7 +170,7 @@
                                     android:id="@+id/cpuText"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="CPU"
+                                    tools:text="CPU"
                                     android:textStyle="bold"
                                     android:textColor="@color/white"
                                     android:textAlignment="center"
@@ -127,7 +181,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_gravity="center"
                                     android:gravity="center"
-                                    android:text="$0.00"
+                                    tools:text="$0.00"
                                     android:textColor="@color/white"
                                     android:layout_height="wrap_content"
                                     android:textSize="25sp" />
@@ -176,7 +230,7 @@
                                 android:id="@+id/mot_link_image"
                                 android:layout_width="75dp"
                                 android:layout_height="75dp"
-                                android:src="@drawable/ic_blank_image"
+                                tools:src="@drawable/ic_blank_image"
                                 android:layout_gravity="start"
                                 android:layout_marginStart="10dp"/>
 
@@ -188,7 +242,7 @@
                                     android:id="@+id/motText"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="MOTHERBOARD"
+                                    tools:text="MOTHERBOARD"
                                     android:textStyle="bold"
                                     android:textColor="@color/white"
                                     android:textAlignment="center"
@@ -199,7 +253,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_gravity="center"
                                     android:gravity="center"
-                                    android:text="$0.00"
+                                    tools:text="$0.00"
                                     android:textColor="@color/white"
                                     android:layout_height="wrap_content"
                                     android:textSize="25sp" />
@@ -224,12 +278,36 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <ImageButton
+                                android:id="@+id/minusMem"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="10dp"
+                                android:background="?attr/selectableItemBackground"
+                                android:src="@drawable/ic_horline" />
+                        <ImageButton
+                            android:id="@+id/plusMem"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_add"
+                            android:background="?attr/selectableItemBackground"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="10dp"
+                            app:tint="@color/white" />
                         <CheckedTextView
                             android:id="@+id/checkedMem"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="MEMORY"
                             android:layout_gravity="center"
+                            android:layout_centerHorizontal="true"
                             android:fontFamily="@font/francois_one"
                             android:textSize="30sp"
                             android:textColor="@color/white"
@@ -238,6 +316,7 @@
                             android:gravity="center"
                             android:checkMarkTint="@color/white"
                             android:checkMark="?android:attr/listChoiceIndicatorMultiple"/>
+                        </RelativeLayout>
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -248,7 +327,7 @@
                                 android:id="@+id/mem_link_image"
                                 android:layout_width="75dp"
                                 android:layout_height="75dp"
-                                android:src="@drawable/ic_blank_image"
+                                tools:src="@drawable/ic_blank_image"
                                 android:layout_gravity="start"
                                 android:layout_marginStart="10dp"/>
 
@@ -260,7 +339,7 @@
                                     android:id="@+id/memText"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="MEMORY"
+                                    tools:text="MEMORY"
                                     android:textStyle="bold"
                                     android:textColor="@color/white"
                                     android:textAlignment="center"
@@ -271,7 +350,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_gravity="center"
                                     android:gravity="center"
-                                    android:text="$0.00"
+                                    tools:text="$0.00"
                                     android:textColor="@color/white"
                                     android:layout_height="wrap_content"
                                     android:textSize="25sp" />
@@ -320,7 +399,7 @@
                                 android:id="@+id/stor_link_image"
                                 android:layout_width="75dp"
                                 android:layout_height="75dp"
-                                android:src="@drawable/ic_blank_image"
+                                tools:src="@drawable/ic_blank_image"
                                 android:layout_gravity="start"
                                 android:layout_marginStart="10dp"/>
 
@@ -332,7 +411,7 @@
                                     android:id="@+id/storText"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="STORAGE"
+                                    tools:text="STORAGE"
                                     android:textStyle="bold"
                                     android:textColor="@color/white"
                                     android:textAlignment="center"
@@ -343,7 +422,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_gravity="center"
                                     android:gravity="center"
-                                    android:text="$0.00"
+                                    tools:text="$0.00"
                                     android:textColor="@color/white"
                                     android:layout_height="wrap_content"
                                     android:textSize="25sp" />
@@ -392,7 +471,7 @@
                                 android:id="@+id/psu_link_image"
                                 android:layout_width="75dp"
                                 android:layout_height="75dp"
-                                android:src="@drawable/ic_blank_image"
+                                tools:src="@drawable/ic_blank_image"
                                 android:layout_gravity="start"
                                 android:layout_marginStart="10dp"/>
 
@@ -404,7 +483,7 @@
                                     android:id="@+id/psuText"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="PSU"
+                                    tools:text="PSU"
                                     android:textStyle="bold"
                                     android:textColor="@color/white"
                                     android:textAlignment="center"
@@ -415,7 +494,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_gravity="center"
                                     android:gravity="center"
-                                    android:text="$0.00"
+                                    tools:text="$0.00"
                                     android:textColor="@color/white"
                                     android:layout_height="wrap_content"
                                     android:textSize="25sp" />
@@ -464,7 +543,7 @@
                                 android:id="@+id/cool_link_image"
                                 android:layout_width="75dp"
                                 android:layout_height="75dp"
-                                android:src="@drawable/ic_blank_image"
+                                tools:src="@drawable/ic_blank_image"
                                 android:layout_gravity="start"
                                 android:layout_marginStart="10dp"/>
 
@@ -476,7 +555,7 @@
                                     android:id="@+id/coolText"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="CPU COOLER"
+                                    tools:text="CPU COOLER"
                                     android:textStyle="bold"
                                     android:textColor="@color/white"
                                     android:textAlignment="center"
@@ -487,7 +566,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_gravity="center"
                                     android:gravity="center"
-                                    android:text="$0.00"
+                                    tools:text="$0.00"
                                     android:textColor="@color/white"
                                     android:layout_height="wrap_content"
                                     android:textSize="25sp" />
@@ -536,7 +615,7 @@
                                 android:id="@+id/mon_link_image"
                                 android:layout_width="75dp"
                                 android:layout_height="75dp"
-                                android:src="@drawable/ic_blank_image"
+                                tools:src="@drawable/ic_blank_image"
                                 android:layout_gravity="start"
                                 android:layout_marginStart="10dp"/>
 
@@ -548,7 +627,7 @@
                                     android:id="@+id/monText"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="MONITOR"
+                                    tools:text="MONITOR"
                                     android:textStyle="bold"
                                     android:textColor="@color/white"
                                     android:textAlignment="center"
@@ -559,7 +638,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_gravity="center"
                                     android:gravity="center"
-                                    android:text="$0.00"
+                                    tools:text="$0.00"
                                     android:textColor="@color/white"
                                     android:layout_height="wrap_content"
                                     android:textSize="25sp" />
@@ -608,7 +687,7 @@
                                 android:id="@+id/vga_link_image"
                                 android:layout_width="75dp"
                                 android:layout_height="75dp"
-                                android:src="@drawable/ic_blank_image"
+                                tools:src="@drawable/ic_blank_image"
                                 android:layout_gravity="start"
                                 android:layout_marginStart="10dp"/>
 
@@ -620,7 +699,7 @@
                                     android:id="@+id/vgaText"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="VGA"
+                                    tools:text="VGA"
                                     android:textStyle="bold"
                                     android:textColor="@color/white"
                                     android:textAlignment="center"
@@ -631,7 +710,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_gravity="center"
                                     android:gravity="center"
-                                    android:text="$0.00"
+                                    tools:text="$0.00"
                                     android:textColor="@color/white"
                                     android:layout_height="wrap_content"
                                     android:textSize="25sp" />
@@ -680,7 +759,7 @@
                                 android:id="@+id/case_link_image"
                                 android:layout_width="75dp"
                                 android:layout_height="75dp"
-                                android:src="@drawable/ic_blank_image"
+                                tools:src="@drawable/ic_blank_image"
                                 android:layout_gravity="start"
                                 android:layout_marginStart="10dp"/>
 
@@ -692,7 +771,7 @@
                                     android:id="@+id/caseText"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="CASE"
+                                    tools:text="CASE"
                                     android:textStyle="bold"
                                     android:textColor="@color/white"
                                     android:textAlignment="center"
@@ -703,7 +782,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_gravity="center"
                                     android:gravity="center"
-                                    android:text="$0.00"
+                                    tools:text="$0.00"
                                     android:textColor="@color/white"
                                     android:layout_height="wrap_content"
                                     android:textSize="25sp" />
@@ -714,21 +793,41 @@
             </GridLayout>
         </RelativeLayout>
     </ScrollView>
+    <View
+        android:layout_above="@id/totalLayout"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@color/black"/>
     <RelativeLayout
+        android:id="@+id/totalLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="15dp">
+        android:layout_centerHorizontal="true">
+    <TextView
+        android:id="@+id/totalText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/francois_one"
+        android:text="Total"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:layout_marginBottom="10dp"
+        android:layout_alignParentStart="true"/>
         <TextView
-            android:id="@+id/homeBut"
+            android:id="@+id/total"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Return Back"
-            android:textSize="30sp"
-            android:textColor="@color/cardview_light"
+            android:layout_centerHorizontal="true"
             android:fontFamily="@font/francois_one"
-            android:clickable="true"/>
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            tools:text="$0.00"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:layout_marginBottom="10dp"/>
     </RelativeLayout>
 
 

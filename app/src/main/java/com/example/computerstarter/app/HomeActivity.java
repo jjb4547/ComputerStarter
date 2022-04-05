@@ -24,10 +24,13 @@ import androidx.preference.PreferenceManager;
 import com.example.computerstarter.Build.MainBuilds;
 import com.example.computerstarter.Build.MyBuildActivity;
 import com.example.computerstarter.Education.Education_Choosing_Activity;
+import com.example.computerstarter.Education.PC_Part_Activity;
+import com.example.computerstarter.Guides.Guides_Activity;
 import com.example.computerstarter.Guides.RaspberryPi.RaspberryPi_Guides_Activity;
 import com.example.computerstarter.Login.Login_SignUpActivity;
 import com.example.computerstarter.Others.AccountActivity;
 import com.example.computerstarter.R;
+import com.example.computerstarter.SampleProjects.SampleProjects;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -39,10 +42,10 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
     FirebaseUser user;
-    CardView build,social,education,login;
+    CardView build, social, education, login;
     AutoCompleteTextView searchParts;
     ImageView searchButton;
     String[] diffTitles;
@@ -65,10 +68,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         user = mAuth.getCurrentUser();
         userName = findViewById(R.id.textUserName);
         logText = findViewById(R.id.logText);
-        if(user!=null){
+        if (user != null) {
             userName.setText(user.getDisplayName());
             logText.setText("LOG OUT");
-        }else{
+        } else {
             logText.setText("LOG IN");
             userName.setText("GUEST");
         }
@@ -77,7 +80,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         //bottomNavigationView = findViewById(R.id.bottomNavigationView);
         drawerLayout = findViewById(R.id.drawerlayout);
         navigationView = findViewById(R.id.navigation_menu);
-        toggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.navigation_draw_open,R.string.navigation_draw_close);
+        toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.navigation_draw_open, R.string.navigation_draw_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         //Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
@@ -87,23 +90,30 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         item_acc = menu.findItem(R.id.account);
         item_acc.setVisible(true);
         log = findViewById(R.id.log_Text);
-        if(user!=null) {
+        if (user != null) {
             log.setText("Log Out");
             item_acc.setVisible(true);
-        }else {
+        } else {
             log.setText("Log In");
             item_acc.setVisible(false);
         }
+        log.setOnClickListener(view -> {
+            if (user != null) {
+                mAuth.signOut();
+            } else {
+                startActivity(new Intent(HomeActivity.this, Login_SignUpActivity.class));
+            }
+        });
         TextView name = headerView.findViewById(R.id.myname);
         TextView email = headerView.findViewById(R.id.email);
         ImageView profile = headerView.findViewById(R.id.myimage);
-        if(user!=null) {
+        if (user != null) {
             String current = user.getUid();
             name.setText(user.getDisplayName());
             email.setText(user.getEmail());
-            StorageReference profileRef = storageReference.child("ProfileImage/Users/"+mAuth.getCurrentUser().getUid()+"/profile");
+            StorageReference profileRef = storageReference.child("ProfileImage/Users/" + mAuth.getCurrentUser().getUid() + "/profile");
             profileRef.getDownloadUrl().addOnSuccessListener(uri -> Picasso.get().load(uri).into(profile));
-        }else{
+        } else {
             name.setText("Guest");
             email.setText("Guest Not Signed In");
         }
@@ -116,17 +126,17 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         searchButton = findViewById(R.id.searchButton);
         AutoCompletePartsAdapter adapter = new AutoCompletePartsAdapter(this, partsItemList);
         searchParts.setAdapter(adapter);
-        build.setOnClickListener(v->{
+        build.setOnClickListener(v -> {
             startActivity(new Intent(HomeActivity.this, MainBuilds.class)
-                    .putExtra("from","Main"));
+                    .putExtra("from", "Main"));
         });
-        education.setOnClickListener(v->{
+        education.setOnClickListener(v -> {
             startActivity(new Intent(HomeActivity.this, MainBuilds.class)
-                    .putExtra("from","Edu"));
+                    .putExtra("from", "Edu"));
         });
-        social.setOnClickListener(v->{
+        social.setOnClickListener(v -> {
             startActivity(new Intent(HomeActivity.this, MainBuilds.class)
-                    .putExtra("from","Social"));
+                    .putExtra("from", "Social"));
         });
         searchParts.setThreshold(1);
         searchParts.setOnItemClickListener((parent, view, position, id) -> {
@@ -194,28 +204,28 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             }
         });
         searchParts.setOnKeyListener((v, keyCode, event) -> {
-            if((keyCode==KeyEvent.KEYCODE_DEL)){
+            if ((keyCode == KeyEvent.KEYCODE_DEL)) {
                 searchParts.setText("");
-            } else if((keyCode==KeyEvent.KEYCODE_ENTER)) {
+            } else if ((keyCode == KeyEvent.KEYCODE_ENTER)) {
                 checkName(searchParts);
             }
             return true;
         });
-        searchButton.setOnClickListener(v->{
-            if(searchParts.getText().toString().toLowerCase().equals("cpu")) {
+        searchButton.setOnClickListener(v -> {
+            if (searchParts.getText().toString().toLowerCase().equals("cpu")) {
                 startActivity(new Intent(this, Education_Choosing_Activity.class)
                         .putExtra("component", diffTitles[0])
                         .putExtra("Act", "Edu"));
-            }else{
+            } else {
                 searchParts.setText("");
             }
         });
-        login.setOnClickListener(v->{
-            if(user!=null){
+        login.setOnClickListener(v -> {
+            if (user != null) {
                 mAuth.signOut();
                 logText.setText("LOG IN");
                 startActivity(new Intent(HomeActivity.this, Login_SignUpActivity.class));
-            }else {
+            } else {
                 startActivity(new Intent(HomeActivity.this, Login_SignUpActivity.class));
             }
         });
@@ -292,62 +302,77 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         Menu menu = navigationView.getMenu();
         MenuItem item_acc = menu.findItem(R.id.account);
         //real_login login = new real_login();
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.home:
-                Toast.makeText(this,"Main Page",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Main Page", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(HomeActivity.this, HomeActivity.class));
-                overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
                 break;
             case R.id.building:
-                Toast.makeText(this,"My Builds",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "My Builds", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(HomeActivity.this, MyBuildActivity.class));
-                overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
                 break;
             case R.id.account:
-                if(mAuth.getCurrentUser()!=null) {
+                if (mAuth.getCurrentUser() != null) {
                     startActivity(new Intent(HomeActivity.this, AccountActivity.class));
                     overridePendingTransition(R.anim.slide_in_bottom, R.anim.stay);
-                }else
-                    Toast.makeText(this,"LOG IN!!!!",Toast.LENGTH_SHORT).show();
+                } else
+                    Toast.makeText(this, "LOG IN!!!!", Toast.LENGTH_SHORT).show();
+            case R.id.partsMenu:
+                startActivity(new Intent(HomeActivity.this, PC_Part_Activity.class)
+                        .putExtra("Act","Edu"));
+                break;
+            case R.id.guidesMenu:
+                startActivity(new Intent(HomeActivity.this, Guides_Activity.class));
+                break;
+            case R.id.projectsMenu:
+                startActivity(new Intent(HomeActivity.this, SampleProjects.class));
+                break;
+            default:
+                Toast.makeText(this, "Nothing was clicked.", Toast.LENGTH_SHORT).show();
                 break;
         }
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(toggle.onOptionsItemSelected(item))
+        if (toggle.onOptionsItemSelected(item))
             return true;
         return true;
     }
+
     @Override
     protected void onResume() {
         super.onResume();
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        boolean previouslyStarted = prefs.getBoolean(getString(R.string.pref_previously_started),false);
-        if(!previouslyStarted){
+        boolean previouslyStarted = prefs.getBoolean(getString(R.string.pref_previously_started), false);
+        if (!previouslyStarted) {
             SharedPreferences.Editor edit = prefs.edit();
-            edit.putBoolean(getString(R.string.pref_previously_started_login),Boolean.TRUE);
+            edit.putBoolean(getString(R.string.pref_previously_started_login), Boolean.TRUE);
             edit.commit();
-            startActivity(new Intent(HomeActivity.this,Login_SignUpActivity.class));
-            overridePendingTransition(R.anim.slide_in_left,R.anim.stay);
+            startActivity(new Intent(HomeActivity.this, Login_SignUpActivity.class));
+            overridePendingTransition(R.anim.slide_in_left, R.anim.stay);
         }
     }
-    private void fillPartsList(){
+
+    private void fillPartsList() {
         partsItemList = new ArrayList<>();
-        partsItemList.add(new PartsItem("CPU",R.drawable.cpu_link));
-        partsItemList.add(new PartsItem("MOTHERBOARD",R.drawable.motherboard_link));
-        partsItemList.add(new PartsItem("MEMORY",R.drawable.memory_link));
-        partsItemList.add(new PartsItem("STORAGE",R.drawable.storage_link));
-        partsItemList.add(new PartsItem("PSU",R.drawable.psu_link));
-        partsItemList.add(new PartsItem("CPU COOLER",R.drawable.cpu_cooler_link));
-        partsItemList.add(new PartsItem("MONITOR",R.drawable.monitor_link));
-        partsItemList.add(new PartsItem("VIDEO CARD",R.drawable.vga_link));
-        partsItemList.add(new PartsItem("CASE",R.drawable.pc_case_link));
+        partsItemList.add(new PartsItem("CPU", R.drawable.cpu_link));
+        partsItemList.add(new PartsItem("MOTHERBOARD", R.drawable.motherboard_link));
+        partsItemList.add(new PartsItem("MEMORY", R.drawable.memory_link));
+        partsItemList.add(new PartsItem("STORAGE", R.drawable.storage_link));
+        partsItemList.add(new PartsItem("PSU", R.drawable.psu_link));
+        partsItemList.add(new PartsItem("CPU COOLER", R.drawable.cpu_cooler_link));
+        partsItemList.add(new PartsItem("MONITOR", R.drawable.monitor_link));
+        partsItemList.add(new PartsItem("VIDEO CARD", R.drawable.vga_link));
+        partsItemList.add(new PartsItem("CASE", R.drawable.pc_case_link));
         partsItemList.add(new PartsItem("HDD", R.drawable.storage_link));
         partsItemList.add(new PartsItem("HARD DRIVE", R.drawable.storage_link));
         partsItemList.add(new PartsItem("SOLID STATE", R.drawable.storage_link));
         partsItemList.add(new PartsItem("SSD", R.drawable.storage_link));
-        partsItemList.add(new PartsItem("GUIDES",R.drawable.rasp_logo));
-        partsItemList.add(new PartsItem("RASPBERRY PI GUIDES",R.drawable.rasp_logo));
+        partsItemList.add(new PartsItem("GUIDES", R.drawable.rasp_logo));
+        partsItemList.add(new PartsItem("RASPBERRY PI GUIDES", R.drawable.rasp_logo));
     }
 }

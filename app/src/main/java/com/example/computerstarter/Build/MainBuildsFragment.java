@@ -70,7 +70,7 @@ public class MainBuildsFragment extends Fragment {
                     int size = build_data.getBuild_name().size();
                     build.add(new Build_Data(build_data.getBuild_name().get(size-1),
                             build_data.getBuild_date().get(size-1),build_data.getPrice().get(size-1),
-                            build_data.getParts_id().get(size-1)));
+                            build_data.getParts_id().get(size-1),build_data.getNum_parts().get(size-1)));
                     recent_Name.setText("NAME: "+build.get(0).getBuildName().substring(10));
                     recent_Price.setText("PRICE: $"+build.get(0).getBuildPrice().substring(10));
                     recent_build.setOnClickListener(v->{

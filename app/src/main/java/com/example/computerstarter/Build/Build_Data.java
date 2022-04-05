@@ -9,108 +9,28 @@ public class Build_Data{
     private String buildName;
     private String buildDate;
     private int[] partID;
-
-    public Build_Data(String cpuName, String motName, String memName, String storName, String psuName, String coolName, String monName, String vgaName, String caseName) {
-        this.cpuName = cpuName;
-        this.motName = motName;
-        this.memName = memName;
-        this.storName = storName;
-        this.psuName = psuName;
-        this.coolName = coolName;
-        this.monName = monName;
-        this.vgaName = vgaName;
-        this.caseName = caseName;
-    }
+    private int[] numPart;
 
     private String buildPrice;
     private ArrayList<String> parts_id;
+    private ArrayList<String> num_parts;
     private String partsId;
-    private String cpuName,motName,memName, storName,psuName,coolName, monName, vgaName, caseName;
-
-    public String getCpuName() {
-        return cpuName;
-    }
-
-    public void setCpuName(String cpuName) {
-        this.cpuName = cpuName;
-    }
-
-    public String getMotName() {
-        return motName;
-    }
-
-    public void setMotName(String motName) {
-        this.motName = motName;
-    }
-
-    public String getMemName() {
-        return memName;
-    }
-
-    public void setMemName(String memName) {
-        this.memName = memName;
-    }
-
-    public String getStorName() {
-        return storName;
-    }
-
-    public void setStorName(String storName) {
-        this.storName = storName;
-    }
-
-    public String getPsuName() {
-        return psuName;
-    }
-
-    public void setPsuName(String psuName) {
-        this.psuName = psuName;
-    }
-
-    public String getCoolName() {
-        return coolName;
-    }
-
-    public void setCoolName(String coolName) {
-        this.coolName = coolName;
-    }
-
-    public String getMonName() {
-        return monName;
-    }
-
-    public void setMonName(String monName) {
-        this.monName = monName;
-    }
-
-    public String getVgaName() {
-        return vgaName;
-    }
-
-    public void setVgaName(String vgaName) {
-        this.vgaName = vgaName;
-    }
-
-    public String getCaseName() {
-        return caseName;
-    }
-
-    public void setCaseName(String caseName) {
-        this.caseName = caseName;
-    }
+    private String numParts;
 
     public Build_Data(){}
-    public Build_Data(ArrayList<String> build_name, ArrayList<String> build_date, ArrayList<String> price,ArrayList<String> parts_id){
+    public Build_Data(ArrayList<String> build_name, ArrayList<String> build_date, ArrayList<String> price,ArrayList<String> parts_id,ArrayList<String> num_parts){
         this.build_date = build_date;
         this.build_name = build_name;
         this.price = price;
         this.parts_id = parts_id;
+        this.num_parts = num_parts;
     }
-    public Build_Data(String buildName, String buildDate, String buildPrice,String partsId){
+    public Build_Data(String buildName, String buildDate, String buildPrice,String partsId,String numParts){
         this.buildDate = buildDate;
         this.buildName = buildName;
         this.buildPrice = buildPrice;
         this.partsId= partsId;
+        this.numParts = numParts;
     }
     public ArrayList<String> getParts_id() {
         return parts_id;
@@ -180,5 +100,30 @@ public class Build_Data{
     }
     public int[] getCleanID(){
         return partID;
+    }
+
+
+    public String getNumParts() {
+        return numParts;
+    }
+
+    public void setNumParts(String numParts) {
+        this.numParts = numParts;
+    }
+
+    public ArrayList<String> getNum_parts() {
+        return num_parts;
+    }
+
+    public void setNum_parts(ArrayList<String> num_parts) {
+        this.num_parts = num_parts;
+    }
+
+    public int[] getNumPart() {
+        return numPart;
+    }
+
+    public void setNumPart(int[] numPart) {
+        this.numPart = numPart;
     }
 }

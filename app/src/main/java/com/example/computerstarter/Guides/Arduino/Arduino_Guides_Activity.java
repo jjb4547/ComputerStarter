@@ -118,8 +118,8 @@ public class Arduino_Guides_Activity extends AppCompatActivity implements Naviga
         CardView troubleshoot = findViewById(R.id.troubleshoot);
         supplies.setOnClickListener(view->{
             Toast.makeText(this,"Future Improvement",Toast.LENGTH_SHORT).show();
-            //startActivity(new Intent(this, Arduino_Guide_Supplies_Activity.class));
-            //overridePendingTransition(R.anim.slide_in_left,R.anim.stay);
+            startActivity(new Intent(this, Arduino_Guide_Supplies_Activity.class));
+            overridePendingTransition(R.anim.slide_in_left,R.anim.stay);
         });
         setup.setOnClickListener(view -> {
             Toast.makeText(this,"Future Improvement",Toast.LENGTH_SHORT).show();

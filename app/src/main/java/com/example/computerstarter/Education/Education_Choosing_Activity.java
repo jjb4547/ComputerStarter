@@ -15,7 +15,6 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.navigation.NavController;
 
 import com.example.computerstarter.Build.MainBuilds;
 import com.example.computerstarter.Build.MyBuildActivity;
@@ -23,11 +22,9 @@ import com.example.computerstarter.Login.Login_SignUpActivity;
 import com.example.computerstarter.Others.AccountActivity;
 import com.example.computerstarter.R;
 import com.example.computerstarter.app.HomeActivity;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
@@ -36,18 +33,11 @@ import java.util.Objects;
 
 public class Education_Choosing_Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private DrawerLayout drawerLayout;
-    private BottomNavigationView bottomNavigationView;
-    private NavController navController;
     private ActionBarDrawerToggle toggle;
     private NavigationView navigationView;
     private FirebaseAuth mAuth;
-    private String[] list;
-    private String quiz;
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
     private TextView log;
     private ImageView logBut;
-    private MenuItem item_log;
-    private MenuItem item_quiz;
     private MenuItem item_acc;
     private StorageReference storageReference = FirebaseStorage.getInstance().getReference();
     @Override

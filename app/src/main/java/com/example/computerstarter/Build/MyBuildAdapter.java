@@ -5,7 +5,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -49,9 +48,8 @@ public class MyBuildAdapter extends RecyclerView.Adapter<MyBuildAdapter.ViewHold
         //System.out.println(build_data.get(position).getBuild_name());
         holder.tbuildName.setText(build_data_list.getBuildName().substring(10));
         holder.tbuildDate.setText(build_data_list.getBuildDate());
-        holder.tbuildPrice.setText("Price: $"+build_data_list.getBuildPrice().substring(10));
+        holder.tbuildPrice.setText("$"+build_data_list.getBuildPrice().substring(10));
         holder.tpartId.setText(build_data_list.getPartsId());
-
     }
 
     @Override
@@ -60,7 +58,6 @@ public class MyBuildAdapter extends RecyclerView.Adapter<MyBuildAdapter.ViewHold
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
-        ImageView buildImage;
         LinearLayout partsList;
         LinearLayout cardLayout;
         TextView tbuildName;

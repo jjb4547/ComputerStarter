@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
+    android:id="@+id/rowpostCard"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -9,6 +10,7 @@
     app:cardCornerRadius="15dp"
     app:cardElevation="8dp"
     app:cardUseCompatPadding="true"
+    android:clickable="true"
     android:background="@color/background_color">
 
     <LinearLayout
@@ -53,6 +55,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="33 min"
+                    android:textSize="15sp"
                     android:textColor="@color/white" />
 
             </LinearLayout>
@@ -92,7 +95,9 @@
             android:layout_gravity="center"
             android:layout_marginTop="15dp"
             android:background="@color/silver"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            android:clickable="true"
+            />
 
         <LinearLayout
             android:layout_width="match_parent"
