@@ -101,18 +101,18 @@
 
             <TextView
                 android:id="@+id/plikeb"
-                android:layout_width="50dp"
+                android:layout_width="75dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
                 android:text="0"
                 android:textAlignment="textEnd"
                 android:textColor="@color/white" />
 
             <ImageButton
                 android:id="@+id/like"
-                android:layout_width="80dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:autoLink="all"
@@ -123,11 +123,11 @@
 
             <TextView
                 android:id="@+id/pcommentco"
-                android:layout_width="80dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
                 android:text="0"
                 android:textAlignment="textEnd"
                 android:textColor="@color/white" />

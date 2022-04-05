@@ -172,8 +172,9 @@ public class SocialMediaFragment extends Fragment {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                spinner.setSelection(0);
-                loadPosts();
+                //spinner.setSelection(0);
+                //loadPosts();
+                loadTagPosts();
                 swipeRefreshLayout.setRefreshing(false);
                 //value of spinner selected, need to send to db
             }
