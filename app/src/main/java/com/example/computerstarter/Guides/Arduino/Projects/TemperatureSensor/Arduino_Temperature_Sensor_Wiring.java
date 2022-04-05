@@ -67,13 +67,13 @@ public class Arduino_Temperature_Sensor_Wiring extends AppCompatActivity {
             if(onboardingViewPager.getCurrentItem()+1< onboardingAdapterPcGuide.getItemCount()){
                 onboardingViewPager.setCurrentItem(onboardingViewPager.getCurrentItem()+1);
             }else{
-                startActivity(new Intent(this, RaspberryPi_Humidity_Sensor_Coding.class));
+                startActivity(new Intent(this, Arduino_Temperature_Sensor_Coding.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 finish();
             }
         });
         exit.setOnClickListener(view->{
-            startActivity(new Intent(this, RaspberryPi_Humidity_Sensor.class));
+            startActivity(new Intent(this, Arduino_Temperature_Sensor.class));
             overridePendingTransition(R.anim.slide_in_top,R.anim.stay);
             finish();
         });

@@ -109,8 +109,7 @@ public class Arduino_Projects extends AppCompatActivity implements NavigationVie
             }
         });
         home = findViewById(R.id.home);
-        //cant find id
-        temperatureSensor = findViewById(R.id.humiditySensor);
+        temperatureSensor = findViewById(R.id.temperatureSensor);
         temperatureSensor.setOnClickListener(view -> {
             startActivity(new Intent(this, Arduino_Temperature_Sensor.class));
         });

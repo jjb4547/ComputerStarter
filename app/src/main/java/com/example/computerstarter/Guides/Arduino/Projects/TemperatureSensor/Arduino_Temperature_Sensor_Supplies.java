@@ -17,8 +17,6 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.computerstarter.Guides.OnboardHolder.OnboardingAdapter;
 import com.example.computerstarter.Guides.OnboardHolder.OnboardingItem;
-import com.example.computerstarter.Guides.RaspberryPi.Projects.HumiditySensor.RaspberryPi_Humidity_Sensor;
-import com.example.computerstarter.Guides.RaspberryPi.Projects.HumiditySensor.RaspberryPi_Humidity_Sensor_Wiring;
 import com.example.computerstarter.R;
 import com.google.android.material.button.MaterialButton;
 
@@ -66,13 +64,13 @@ public class Arduino_Temperature_Sensor_Supplies extends AppCompatActivity {
             if(onboardingViewPager.getCurrentItem()+1< onboardingAdapterPcGuide.getItemCount()){
                 onboardingViewPager.setCurrentItem(onboardingViewPager.getCurrentItem()+1);
             }else{
-                startActivity(new Intent(this, RaspberryPi_Humidity_Sensor_Wiring.class));
+                startActivity(new Intent(this, Arduino_Temperature_Sensor_Wiring.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 finish();
             }
         });
         exit.setOnClickListener(view->{
-            startActivity(new Intent(this, RaspberryPi_Humidity_Sensor.class));
+            startActivity(new Intent(this, Arduino_Temperature_Sensor.class));
             overridePendingTransition(R.anim.slide_in_top,R.anim.stay);
             finish();
         });
@@ -95,6 +93,11 @@ public class Arduino_Temperature_Sensor_Supplies extends AppCompatActivity {
         item_ard.setDescription("Have a seperate computer with the Arduino IDE downloaded");
         item_ard.setImage(R.drawable.raspberry_pi);
 
+        OnboardingItem item_tempsen = new OnboardingItem();
+        item_tempsen.setTitle("DS18B20 Programmable Resolution 1-Wire Digital Thermometer");
+        item_tempsen.setDescription("This guide specifically uses this sensor.");
+        item_tempsen.setImage(R.drawable.sd_card);
+
         OnboardingItem item_breadboard = new OnboardingItem();
         item_breadboard.setTitle("Breadboard and Jumper Wires");
         item_breadboard.setDescription("Make sure you have a breadboard and some jumper wires. " +
@@ -107,19 +110,15 @@ public class Arduino_Temperature_Sensor_Supplies extends AppCompatActivity {
         item_ohm.setDescription("Make sure to either read the colors or use a voltmeter to check.");
         item_ohm.setImage(R.drawable.k_ohm_resistor);
 
-        OnboardingItem item_tempsen = new OnboardingItem();
-        item_tempsen.setTitle("DS18B20 Programmable Resolution 1-Wire Digital Thermometer");
-        item_tempsen.setDescription("This guide specifically uses this sensor.");
-        item_tempsen.setImage(R.drawable.sd_card);
         //need to make the top look like the bottom
-        OnboardingItem item_dht22 = new OnboardingItem();
+        /*OnboardingItem item_dht22 = new OnboardingItem();
         item_dht22.setTitle("DS18B20");
         item_dht22.setDescription("Pin 1 is GND (Ground))\n" +
                 "Pin 2 is DATA (The signal pin)\n" +
                 "Pin 3 is VCC (Power Supply/Voltage)\n");
 
         item_dht22.setImage(R.drawable.dht22);
-
+        */
 
         onboardingItemPcGuideActivityList.add(item_Intro);
         onboardingItemPcGuideActivityList.add(item_ard);
@@ -127,7 +126,7 @@ public class Arduino_Temperature_Sensor_Supplies extends AppCompatActivity {
         onboardingItemPcGuideActivityList.add(item_tempsen);
         onboardingItemPcGuideActivityList.add(item_breadboard);
         onboardingItemPcGuideActivityList.add(item_ohm);
-        onboardingItemPcGuideActivityList.add(item_dht22);
+        //onboardingItemPcGuideActivityList.add(item_dht22);
         onboardingAdapterPcGuide = new OnboardingAdapter(onboardingItemPcGuideActivityList);
     }
 

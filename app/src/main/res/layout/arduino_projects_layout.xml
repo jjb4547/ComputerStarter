@@ -50,7 +50,7 @@
             app:cardElevation="8dp"
             android:clickable="true"
             app:cardPreventCornerOverlap="false"
-            android:id="@+id/humiditySensor"
+            android:id="@+id/temperatureSensor"
             app:cardCornerRadius="8dp"
             android:foreground="?android:attr/selectableItemBackground">
             <RelativeLayout
