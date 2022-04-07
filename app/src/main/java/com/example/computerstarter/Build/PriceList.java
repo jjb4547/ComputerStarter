@@ -108,7 +108,7 @@ public class PriceList {
     public static String getSocket(int id)
     {
         String answer = "null";
-        if(getPart(id).equals("cpu"))
+        if(getPart(id).equals("cpu") || getPart(id).equals("motherboards"))
         {
             try{
                 answer = jsonObj.getJSONArray("items").getJSONObject(id).getString("socket");
