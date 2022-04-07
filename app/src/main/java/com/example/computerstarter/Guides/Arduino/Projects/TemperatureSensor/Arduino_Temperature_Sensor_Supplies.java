@@ -81,22 +81,25 @@ public class Arduino_Temperature_Sensor_Supplies extends AppCompatActivity {
         OnboardingItem item_Intro = new OnboardingItem();
         item_Intro.setTitle("Welcome to the Supplies Guide");
         item_Intro.setDescription("These are the supplies you will need for this project.");
-        item_Intro.setImage(R.drawable.rasp_logo);
+        item_Intro.setImage(R.drawable.arduino_logo);
 
         OnboardingItem item_ard = new OnboardingItem();
         item_ard.setTitle("Arduino");
         item_ard.setDescription("Most commonly the UNO, but most models are compatible");
-        item_ard.setImage(R.drawable.raspberry_pi);
+        item_ard.setImage(R.drawable.arduino_uno);
 
         OnboardingItem item_ide = new OnboardingItem();
-        item_ard.setTitle("Arduino IDE on seperate computer");
-        item_ard.setDescription("Have a seperate computer with the Arduino IDE downloaded");
-        item_ard.setImage(R.drawable.raspberry_pi);
+        item_ide.setTitle("Arduino IDE on separate computer");
+        item_ide.setDescription("Have a seperate computer with the Arduino IDE downloaded");
+        item_ide.setImage(R.drawable.monitor_link);
 
         OnboardingItem item_tempsen = new OnboardingItem();
         item_tempsen.setTitle("DS18B20 Programmable Resolution 1-Wire Digital Thermometer");
-        item_tempsen.setDescription("This guide specifically uses this sensor.");
-        item_tempsen.setImage(R.drawable.sd_card);
+        item_tempsen.setDescription(
+                "Pin 1 is GND(Ground)\n" +
+                "Pin 2 is DATA(Signal Pin)\n" +
+                "Pin 3 is VDD(Power)\n");
+        item_tempsen.setImage(R.drawable.arduino_ds18b20);
 
         OnboardingItem item_breadboard = new OnboardingItem();
         item_breadboard.setTitle("Breadboard and Jumper Wires");

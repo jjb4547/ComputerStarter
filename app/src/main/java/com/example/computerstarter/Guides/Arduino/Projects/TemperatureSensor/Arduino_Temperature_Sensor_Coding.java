@@ -17,7 +17,6 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.computerstarter.Guides.OnboardHolder.OnboardingAdapter;
 import com.example.computerstarter.Guides.OnboardHolder.OnboardingItem;
-import com.example.computerstarter.Guides.RaspberryPi.Projects.HumiditySensor.RaspberryPi_Humidity_Sensor;
 import com.example.computerstarter.R;
 import com.google.android.material.button.MaterialButton;
 
@@ -83,13 +82,13 @@ public class Arduino_Temperature_Sensor_Coding extends AppCompatActivity {
         OnboardingItem item_Intro = new OnboardingItem();
         item_Intro.setTitle("Welcome to the Coding Guide");
         item_Intro.setDescription("We will now be coding the Arduino with the Arduino IDE");
-        item_Intro.setImage(R.drawable.rasp_logo);
+        item_Intro.setImage(R.drawable.arduino_logo);
 
         OnboardingItem item_prep = new OnboardingItem();
         item_prep.setTitle("Preparing the Arduino");
         item_prep.setDescription("1.) Make sure to have a data cable \n" +
                 "2.) Make sure to have a separate computer with Arduino IDE ready");
-        item_prep.setImage(R.drawable.rasp_logo);
+        item_prep.setImage(R.drawable.arduino_logo);
 
         OnboardingItem item_code = new OnboardingItem();
         item_code.setTitle("Coding on the Arduino IDE");
@@ -117,12 +116,16 @@ public class Arduino_Temperature_Sensor_Coding extends AppCompatActivity {
                 "\t c.) Serial.println(\"DONE\");\n" +
                 "\t d.) Serial.print(\"Temperature is: \"); \n" +
                 "\t e.) Serial.print(sensors.getTempCByIndex(0));\n"+
-                "\t f.)delay(1000);}" +
-                "9.) Your computer screen should then begin showing the temperature being measured" +
+                "\t f.)delay(1000);}\n" +
+                "9.) Your computer screen should then begin showing the temperature being measured\n" +
+                "\t a.) Temperature is: 22.12 Requesting temperature...DONE \n" +
+                "\t b.) Temperature is: 22.12 Requesting temperature...DONE \n" +
+                "\t c.) Temperature is: 22.12 Requesting temperature...DONE \n" +
+                "\t d.) Temperature is: 22.19 Requesting temperature...DONE \n" +
                 "Below is the full github of the libraries used for this project" +
                 "https://github.com/milesburton/Arduino-Temperature-Control-Library"+
                 "https://github.com/fdebrabander/Arduino-LiquidCrystal-I2C-library ");
-        item_code.setImage(R.drawable.rasp_logo);
+        item_code.setImage(R.drawable.arduino_logo);
 
         onboardingItemPcGuideActivityList.add(item_Intro);
         onboardingItemPcGuideActivityList.add(item_prep);

@@ -17,8 +17,6 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.computerstarter.Guides.OnboardHolder.OnboardingAdapter;
 import com.example.computerstarter.Guides.OnboardHolder.OnboardingItem;
-import com.example.computerstarter.Guides.RaspberryPi.Projects.HumiditySensor.RaspberryPi_Humidity_Sensor;
-import com.example.computerstarter.Guides.RaspberryPi.Projects.HumiditySensor.RaspberryPi_Humidity_Sensor_Coding;
 import com.example.computerstarter.R;
 import com.google.android.material.button.MaterialButton;
 
@@ -85,7 +83,7 @@ public class Arduino_Temperature_Sensor_Wiring extends AppCompatActivity {
         OnboardingItem item_intro = new OnboardingItem();
         item_intro.setTitle("Welcome to the Wiring Section");
         item_intro.setDescription("You will learn to wire up arduino and breadboard");
-        item_intro.setImage(R.drawable.rasp_logo);
+        item_intro.setImage(R.drawable.arduino_logo);
 
         OnboardingItem item_circuit = new OnboardingItem();
         item_circuit.setTitle("DS18B20 Circuit");
@@ -94,7 +92,7 @@ public class Arduino_Temperature_Sensor_Wiring extends AppCompatActivity {
                 "• Wire Pin 2 of the DS18B20 to any digital pin(pin 2 in the diagram)\n" +
                 "• Wire Pin 3 of the DS18B20 to ethier +5V or +3.3V"+
                 "• Lastly don't forget to add the resistor to connect to ground and voltage");
-        item_circuit.setImage(R.drawable.circuit);
+        item_circuit.setImage(R.drawable.arduino_temp_circuit);
 
         onboardingItemPcGuideActivityList.add(item_intro);
         onboardingItemPcGuideActivityList.add(item_circuit);
