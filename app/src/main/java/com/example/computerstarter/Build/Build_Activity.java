@@ -58,7 +58,7 @@ public class Build_Activity extends AppCompatActivity {
     private String ids,num;
     private RelativeLayout totalLayout;
     private ImageButton editName,saveButton,backButton,plusMem,minusMem;
-    private TextView homeBut;
+    private TextView homeBut, numMem;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -75,6 +75,7 @@ public class Build_Activity extends AppCompatActivity {
         plusMem = findViewById(R.id.plusMem);
         minusMem = findViewById(R.id.minusMem);
         totalLayout = findViewById(R.id.totalLayout);
+        numMem = findViewById(R.id.NumberMem);
         ids = "";
         num="";
         name_action_bar = getIntent().getExtras().getString("Build");
@@ -114,6 +115,7 @@ public class Build_Activity extends AppCompatActivity {
             totalNum.setText("$ "+getPriceSum());
             if(numParts[2]>1){
                 minusMem.setVisibility(View.VISIBLE);
+                numMem.setText("x"+numParts[2]);
             }
         });
         if(numParts[2]==1)
@@ -123,9 +125,12 @@ public class Build_Activity extends AppCompatActivity {
                 numParts[2] = numParts[2] - 1;
                 memPrice.setText("$ " + PriceList.getPrice(partsID[2]) * numParts[2]);
                 totalNum.setText("$ " + getPriceSum());
+                numMem.setText("x"+numParts[2]);
             }
-            if(numParts[2]==1)
+            if(numParts[2]==1) {
                 minusMem.setVisibility(View.GONE);
+                numMem.setVisibility(View.GONE);
+            }
         });
     }
 

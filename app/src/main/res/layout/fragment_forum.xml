@@ -6,10 +6,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient_home"
     android:orientation="vertical">
-
-
-    android:orientation="vertical"
-    android:background="@drawable/gradient_home">
     <Spinner
         android:id="@+id/pspinRV"
         android:layout_width="309dp"
@@ -22,14 +18,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/pspinRV"
-        android:background="@drawable/gradient_home"
         android:layout_marginBottom="40dp">
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/RecycleForum"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-
-            android:background="@drawable/gradient_home" />
+            android:layout_height="match_parent" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     <com.google.android.material.floatingactionbutton.FloatingActionButton

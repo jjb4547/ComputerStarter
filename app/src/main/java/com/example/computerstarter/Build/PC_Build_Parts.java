@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -32,12 +33,15 @@ public class PC_Build_Parts extends AppCompatActivity {
     int[] partsID = new int[10];
     int[] numParts;
     int counter;
+    TextView title;
+    ImageButton backButton;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pc_part_build);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(getIntent().getStringExtra("name"));
+        title = findViewById(R.id.PartBuildTitle);
+        backButton = findViewById(R.id.backPartBuild);
+        title.setText(getIntent().getStringExtra("name"));
         partsID = getIntent().getIntArrayExtra("ID");
         numParts = getIntent().getIntArrayExtra("Num");
         counter = 0;
@@ -118,6 +122,18 @@ public class PC_Build_Parts extends AppCompatActivity {
                             .putExtra("Edit",getIntent().getExtras().getString("Edit"))
                             .putExtra("editBuild",getIntent().getStringArrayExtra("editBuild")));
                 }
+            }
+        });
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(PC_Build_Parts.this,Build_Activity.class)
+                        .putExtra("Name",getIntent().getStringExtra("name"))
+                        .putExtra("Build",getIntent().getStringExtra("Build"))
+                        .putExtra("ID",partsID)
+                        .putExtra("Num",numParts)
+                        .putExtra("Edit",getIntent().getExtras().getString("Edit"))
+                        .putExtra("editBuild",getIntent().getStringArrayExtra("editBuild")));
             }
         });
 

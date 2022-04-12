@@ -120,14 +120,6 @@ public class SocialMediaFragment extends Fragment {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        if(user!=null) {
-            loadPosts();
-        }
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();

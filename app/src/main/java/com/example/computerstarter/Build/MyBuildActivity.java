@@ -10,6 +10,7 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -67,6 +68,7 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
     private int[] partsID = new int[9];
     private int[] numParts = new int[9];
     private boolean first = false;
+    private ImageButton backHome;
     TextView home;
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle toggle;
@@ -152,8 +154,8 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
                 //log.setText("Log Out");
             }
         });
-        home = findViewById(R.id.home);
-        home.setOnClickListener(view->{
+        backHome = findViewById(R.id.backHome);
+        backHome.setOnClickListener(view->{
             startActivity(new Intent(getApplicationContext(), HomeActivity.class));
             overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
         });

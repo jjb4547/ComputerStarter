@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_color">
+    android:background="@drawable/gradient_home">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -150,7 +150,7 @@
             android:fillViewport="true"
             android:orientation="vertical"
             android:gravity="center"
-            android:background="@color/background_color">
+            android:background="?attr/selectableItemBackground">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

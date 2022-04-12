@@ -11,19 +11,37 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:background="@color/background_color">
-
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
+    android:background="@drawable/gradient_home">
+    <RelativeLayout
+        android:id="@+id/titleLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp"
-        android:fontFamily="@font/francois_one"
-        android:text="My Builds"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        android:textStyle="bold" />
+        android:background="?attr/selectableItemBackground">
+
+        <ImageButton
+            android:id="@+id/backHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:background="?attr/selectableItemBackground"
+            android:src="@drawable/ic_back"
+            app:tint="@color/cardview_light" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/francois_one"
+            android:text="My Builds"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
     <com.google.android.material.button.MaterialButton
         android:id="@+id/loginShortcut"
         android:layout_width="wrap_content"
@@ -51,23 +69,10 @@
         android:id="@+id/recyclcer_builds"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/titleLayout"
         android:layout_marginStart="2dp"
-        android:layout_marginTop="60dp"
         android:layout_marginEnd="2dp"
-        android:layout_marginBottom="20dp"
-        android:paddingBottom="30dp" />
-
-    <TextView
-        android:id="@+id/home"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
-        android:layout_marginBottom="10dp"
-        android:fontFamily="@font/francois_one"
-        android:text="Return Home"
-        android:textColor="@color/cardview_light"
-        android:textSize="30sp" />
+        android:background="?attr/selectableItemBackground"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_build"

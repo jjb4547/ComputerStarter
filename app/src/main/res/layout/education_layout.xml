@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/background_color">
+    android:background="@drawable/gradient_home">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -39,7 +39,7 @@
            app:cardElevation="8dp"
            android:clickable="true"
            android:id="@+id/pc_parts"
-           app:cardCornerRadius="8dp"
+           app:cardCornerRadius="20dp"
            >
            <RelativeLayout
                android:layout_width="match_parent"
@@ -78,7 +78,7 @@
            app:cardElevation="8dp"
            android:clickable="true"
            android:id="@+id/Guides"
-           app:cardCornerRadius="8dp">
+           app:cardCornerRadius="20dp">
            <RelativeLayout
                android:layout_width="match_parent"
                android:layout_height="150dp"
@@ -115,7 +115,7 @@
            app:cardElevation="8dp"
            android:clickable="true"
            android:id="@+id/rasp_pi"
-           app:cardCornerRadius="8dp">
+           app:cardCornerRadius="20dp">
            <RelativeLayout
                android:layout_width="match_parent"
                android:layout_height="150dp"
