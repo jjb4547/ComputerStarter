@@ -1,4 +1,4 @@
-package com.example.computerstarter.Guides.Arduino.Projects;
+package com.example.computerstarter.SampleProjects.Arduino.Projects.TemperatureSensor;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,8 +19,7 @@ import androidx.navigation.NavController;
 
 import com.example.computerstarter.Build.MainBuilds;
 import com.example.computerstarter.Build.MyBuildActivity;
-import com.example.computerstarter.Education.Education_Choosing_Activity;
-import com.example.computerstarter.Guides.Arduino.Projects.TemperatureSensor.Arduino_Temperature_Sensor;
+import com.example.computerstarter.SampleProjects.Arduino.Projects.Arduino_Projects;
 import com.example.computerstarter.Login.Login_SignUpActivity;
 import com.example.computerstarter.Others.AccountActivity;
 import com.example.computerstarter.R;
@@ -33,8 +32,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Objects;
 
-public class Arduino_Projects extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
-    private CardView temperatureSensor;
+public class Arduino_Temperature_Sensor extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private TextView home;
     private DrawerLayout drawerLayout;
     private BottomNavigationView bottomNavigationView;
@@ -53,7 +51,7 @@ public class Arduino_Projects extends AppCompatActivity implements NavigationVie
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.arduino_projects_layout);
+        setContentView(R.layout.arduino_temperature_project_layout);
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
         //bottomNavigationView = findViewById(R.id.bottomNavigationView);
@@ -108,14 +106,21 @@ public class Arduino_Projects extends AppCompatActivity implements NavigationVie
                 //log.setText("Log Out");
             }
         });
-        home = findViewById(R.id.home);
-        temperatureSensor = findViewById(R.id.temperatureSensor);
-        temperatureSensor.setOnClickListener(view -> {
-            startActivity(new Intent(this, Arduino_Temperature_Sensor.class));
+        CardView supplies = findViewById(R.id.supplies);
+        supplies.setOnClickListener(view -> {
+            startActivity(new Intent(this, Arduino_Temperature_Sensor_Supplies.class));
         });
+        CardView wiring = findViewById(R.id.installation);
+        wiring.setOnClickListener(view -> {
+            startActivity(new Intent(this, Arduino_Temperature_Sensor_Wiring.class));
+        });
+        CardView coding = findViewById(R.id.setup);
+        coding.setOnClickListener(view -> {
+            startActivity(new Intent(this, Arduino_Temperature_Sensor_Coding.class));
+        });
+        TextView home = findViewById(R.id.home);
         home.setOnClickListener(view->{
-            startActivity(new Intent(getApplicationContext(), Education_Choosing_Activity.class)
-                    .putExtra("component", "Arduino"));
+            startActivity(new Intent(getApplicationContext(), Arduino_Projects.class));
             overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
         });
     }

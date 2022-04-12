@@ -1,4 +1,4 @@
-package com.example.computerstarter.Guides.Arduino.Projects.TemperatureSensor;
+package com.example.computerstarter.SampleProjects.Arduino.Projects.TemperatureSensor;
 
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;

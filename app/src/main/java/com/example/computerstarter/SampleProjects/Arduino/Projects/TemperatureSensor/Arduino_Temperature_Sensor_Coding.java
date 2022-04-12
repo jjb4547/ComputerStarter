@@ -1,4 +1,4 @@
-package com.example.computerstarter.Guides.Arduino.Projects.TemperatureSensor;
+package com.example.computerstarter.SampleProjects.Arduino.Projects.TemperatureSensor;
 
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
@@ -23,7 +23,8 @@ import com.google.android.material.button.MaterialButton;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Arduino_Temperature_Sensor_Supplies extends AppCompatActivity {
+public class Arduino_Temperature_Sensor_Coding extends AppCompatActivity {
+
     private OnboardingAdapter onboardingAdapterPcGuide;
     private LinearLayout layoutOnboardingIndicators;
     private MaterialButton buttonOnboardingAction, exit,help;
@@ -64,7 +65,7 @@ public class Arduino_Temperature_Sensor_Supplies extends AppCompatActivity {
             if(onboardingViewPager.getCurrentItem()+1< onboardingAdapterPcGuide.getItemCount()){
                 onboardingViewPager.setCurrentItem(onboardingViewPager.getCurrentItem()+1);
             }else{
-                startActivity(new Intent(this, Arduino_Temperature_Sensor_Wiring.class));
+                startActivity(new Intent(this, Arduino_Temperature_Sensor.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 finish();
             }
@@ -79,57 +80,56 @@ public class Arduino_Temperature_Sensor_Supplies extends AppCompatActivity {
     private void setupOnboardingItems(){
         List<OnboardingItem> onboardingItemPcGuideActivityList = new ArrayList<>();
         OnboardingItem item_Intro = new OnboardingItem();
-        item_Intro.setTitle("Welcome to the Supplies Guide");
-        item_Intro.setDescription("These are the supplies you will need for this project.");
+        item_Intro.setTitle("Welcome to the Coding Guide");
+        item_Intro.setDescription("We will now be coding the Arduino with the Arduino IDE");
         item_Intro.setImage(R.drawable.arduino_logo);
 
-        OnboardingItem item_ard = new OnboardingItem();
-        item_ard.setTitle("Arduino");
-        item_ard.setDescription("Most commonly the UNO, but most models are compatible");
-        item_ard.setImage(R.drawable.arduino_uno);
+        OnboardingItem item_prep = new OnboardingItem();
+        item_prep.setTitle("Preparing the Arduino");
+        item_prep.setDescription("1.) Make sure to have a data cable \n" +
+                "2.) Make sure to have a separate computer with Arduino IDE ready");
+        item_prep.setImage(R.drawable.arduino_logo);
 
-        OnboardingItem item_ide = new OnboardingItem();
-        item_ide.setTitle("Arduino IDE on separate computer");
-        item_ide.setDescription("Have a seperate computer with the Arduino IDE downloaded");
-        item_ide.setImage(R.drawable.monitor_link);
-
-        OnboardingItem item_tempsen = new OnboardingItem();
-        item_tempsen.setTitle("DS18B20 Programmable Resolution 1-Wire Digital Thermometer");
-        item_tempsen.setDescription(
-                "Pin 1 is GND(Ground)\n" +
-                "Pin 2 is DATA(Signal Pin)\n" +
-                "Pin 3 is VDD(Power)\n");
-        item_tempsen.setImage(R.drawable.arduino_ds18b20);
-
-        OnboardingItem item_breadboard = new OnboardingItem();
-        item_breadboard.setTitle("Breadboard and Jumper Wires");
-        item_breadboard.setDescription("Make sure you have a breadboard and some jumper wires. " +
-                "The colors do not matter but as a recommendation make sure that the voltage are red " +
-                "and any ground wires are black.");
-        item_breadboard.setImage(R.drawable.breadboard);
-
-        OnboardingItem item_ohm = new OnboardingItem();
-        item_ohm.setTitle("4.75k Ohm Resistor");
-        item_ohm.setDescription("Make sure to either read the colors or use a voltmeter to check.");
-        item_ohm.setImage(R.drawable.k_ohm_resistor);
-
-        //need to make the top look like the bottom
-        /*OnboardingItem item_dht22 = new OnboardingItem();
-        item_dht22.setTitle("DS18B20");
-        item_dht22.setDescription("Pin 1 is GND (Ground))\n" +
-                "Pin 2 is DATA (The signal pin)\n" +
-                "Pin 3 is VCC (Power Supply/Voltage)\n");
-
-        item_dht22.setImage(R.drawable.dht22);
-        */
+        OnboardingItem item_code = new OnboardingItem();
+        item_code.setTitle("Coding on the Arduino IDE");
+        item_code.setDescription("1.) Create the file for the code\n" +
+                "\t a.) The following is all contained in the file\n" +
+                "2.) (Line 1-2) Import libraries\n" +
+                "\t a.) #include <OneWire.h> \n" +
+                "\t b.) #include <DallasTemperature.h>\n" +
+                "3.) (Line 3) Define the pin you used(pin 2 in the diagram)\n" +
+                "\t a.) #define ONE_WIRE_BUS 2 \n" +
+                "4.) (Line 4) Define a oneWire instance\n" +
+                "\t a.) OneWire oneWire(ONE_WIRE_BUS);\n" +
+                "5.) (Line 5)Give Dallas Temperature our oneWire reference" +
+                "\t a.) DallasTemperature sensors(&oneWire);\n" +
+                "6.) (Line 6-9) These lines take place in the void setup()\n" +
+                "The lines after line 6 will start the serial port and the library\n" +
+                "\t a.) void setup(void){\n" +
+                "\t b.) Serial.begin(9600);\n" +
+                "\t c.) Serial.println(\"Dallas Temperature IC Control Library Demo\"); \n" +
+                "\t d.)  sensors.begin();}\n" +
+                "7.) (Line 10-20) These lines take place in the void loop(void)\n" +
+                "8.) Call global temperature and sends command to get temperature readings" +
+                "\t a.) Serial.print(\" Requesting temperatures...\"); \n" +
+                "\t b.) sensors.requestTemperatures();\n" +
+                "\t c.) Serial.println(\"DONE\");\n" +
+                "\t d.) Serial.print(\"Temperature is: \"); \n" +
+                "\t e.) Serial.print(sensors.getTempCByIndex(0));\n"+
+                "\t f.)delay(1000);}\n" +
+                "9.) Your computer screen should then begin showing the temperature being measured\n" +
+                "\t a.) Temperature is: 22.12 Requesting temperature...DONE \n" +
+                "\t b.) Temperature is: 22.12 Requesting temperature...DONE \n" +
+                "\t c.) Temperature is: 22.12 Requesting temperature...DONE \n" +
+                "\t d.) Temperature is: 22.19 Requesting temperature...DONE \n" +
+                "Below is the full github of the libraries used for this project" +
+                "https://github.com/milesburton/Arduino-Temperature-Control-Library"+
+                "https://github.com/fdebrabander/Arduino-LiquidCrystal-I2C-library ");
+        item_code.setImage(R.drawable.arduino_logo);
 
         onboardingItemPcGuideActivityList.add(item_Intro);
-        onboardingItemPcGuideActivityList.add(item_ard);
-        onboardingItemPcGuideActivityList.add(item_ide);
-        onboardingItemPcGuideActivityList.add(item_tempsen);
-        onboardingItemPcGuideActivityList.add(item_breadboard);
-        onboardingItemPcGuideActivityList.add(item_ohm);
-        //onboardingItemPcGuideActivityList.add(item_dht22);
+        onboardingItemPcGuideActivityList.add(item_prep);
+        onboardingItemPcGuideActivityList.add(item_code);
         onboardingAdapterPcGuide = new OnboardingAdapter(onboardingItemPcGuideActivityList);
     }
 
@@ -165,9 +165,10 @@ public class Arduino_Temperature_Sensor_Supplies extends AppCompatActivity {
             }
         }
         if (index== onboardingAdapterPcGuide.getItemCount()-1){
-            buttonOnboardingAction.setText("Wiring");
+            buttonOnboardingAction.setText("Finish");
         }else{
             buttonOnboardingAction.setText("Next");
         }
     }
 }
+

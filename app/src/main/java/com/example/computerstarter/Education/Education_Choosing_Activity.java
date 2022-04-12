@@ -18,10 +18,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.computerstarter.Build.MainBuilds;
 import com.example.computerstarter.Build.MyBuildActivity;
-import com.example.computerstarter.Guides.Arduino.Arduino_Guides_Activity;
-import com.example.computerstarter.Guides.Arduino.Projects.Arduino_Projects;
-import com.example.computerstarter.Guides.RaspberryPi.Projects.RaspberryPi_Projects;
-import com.example.computerstarter.Guides.RaspberryPi.RaspberryPi_Guides_Activity;
 import com.example.computerstarter.Login.Login_SignUpActivity;
 import com.example.computerstarter.Others.AccountActivity;
 import com.example.computerstarter.R;
