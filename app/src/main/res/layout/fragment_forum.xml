@@ -6,18 +6,37 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient_home"
     android:orientation="vertical">
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/profileImage"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:scaleType="centerCrop"
+        app:riv_corner_radius="20dp"
+        android:src="@mipmap/ic_logo" />
     <Spinner
         android:id="@+id/pspinRV"
-        android:layout_width="309dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
+        android:layout_marginStart="5dp"
+        android:layout_toEndOf="@id/profileImage"
         />
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_menu"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        app:tint="@color/cardview_light"
+        android:background="?attr/selectableItemBackground"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"/>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/pspinRV"
+        android:layout_below="@+id/profileImage"
         android:layout_marginBottom="40dp">
 
         <androidx.recyclerview.widget.RecyclerView
@@ -45,13 +64,13 @@
         android:id="@+id/loginText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Please Login to see what others have Posted."
-        android:layout_below="@id/pspinRV"
+        android:layout_below="@id/profileImage"
         android:layout_centerHorizontal="true"
-        android:textSize="30sp"
+        android:fontFamily="@font/francois_one"
+        android:text="Please Login to see what others have Posted."
         android:textAlignment="center"
         android:textColor="@color/cardview_light"
-        android:fontFamily="@font/francois_one"/>
+        android:textSize="30sp" />
     <com.google.android.material.button.MaterialButton
         android:id="@+id/loginBut"
         android:layout_width="wrap_content"

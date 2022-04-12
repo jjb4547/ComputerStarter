@@ -29,7 +29,8 @@
         </activity>
         <activity android:name=".Settings.SettingsActivity" />
         <activity android:name=".Others.AccountActivity"/>
-        <activity android:name=".Build.MainBuilds" />
+        <activity android:name=".Build.MainBuilds"
+            android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
         <activity android:name=".Others.AboutActivity" />
         <activity android:name=".Others.HelpActivity" />
         <activity android:name=".Build.Build_Activity"
@@ -37,8 +38,7 @@
         <activity android:name=".Build.PC_Build_Parts"
             android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
         <activity android:name=".Build.MyBuildActivity"
-            android:windowSoftInputMode="adjustPan"
-           android:theme="@style/Theme.ComputerStarter"/>
+           android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
         <activity android:name=".SocialMedia.SocialMediaBlogs"/>
         <activity android:name=".Login.Login_SignUpActivity"
             android:theme="@style/Theme.ComputerStarter.NoActionBar" />

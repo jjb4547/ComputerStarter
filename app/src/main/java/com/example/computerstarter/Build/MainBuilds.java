@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,8 +31,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
-import java.util.Objects;
-
 public class MainBuilds extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private static int SPLASH_TIMEOUT = 2000;
     private DrawerLayout drawerLayout;
@@ -46,6 +45,7 @@ public class MainBuilds extends AppCompatActivity implements NavigationView.OnNa
     private TextView log;
     private MenuItem item_acc;
     private StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+    private ImageButton menuButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,10 +62,11 @@ public class MainBuilds extends AppCompatActivity implements NavigationView.OnNa
         }
         drawerLayout = findViewById(R.id.drawerlayout);
         navigationView = findViewById(R.id.navigation_menu);
+        menuButton = findViewById(R.id.menuButton);
         toggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.navigation_draw_open,R.string.navigation_draw_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        //Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         navigationView.setNavigationItemSelectedListener(this);
         View headerView = navigationView.getHeaderView(0);
         Menu menu = navigationView.getMenu();
@@ -78,6 +79,12 @@ public class MainBuilds extends AppCompatActivity implements NavigationView.OnNa
             log.setText("Log In");
             item_acc.setVisible(false);
         }
+        menuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.open();
+            }
+        });
         TextView name = headerView.findViewById(R.id.myname);
         TextView email = headerView.findViewById(R.id.email);
         ImageView profile = headerView.findViewById(R.id.myimage);

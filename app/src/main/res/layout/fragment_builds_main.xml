@@ -12,16 +12,31 @@
         android:layout_margin="10dp"
         android:orientation="vertical"
         android:paddingBottom="25dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/francois_one"
-            android:padding="10dp"
-            android:text="Builds"
-            android:textAllCaps="true"
-            android:textColor="@color/black"
-            android:textSize="30sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/francois_one"
+                android:text="Builds"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:layout_centerVertical="true"
+                android:textSize="30sp" />
+            <ImageButton
+                android:id="@+id/menuButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_menu"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="10dp"
+                app:tint="@color/cardview_light"
+                android:background="?attr/selectableItemBackground"/>
+        </RelativeLayout>
         <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">

@@ -48,7 +48,6 @@ import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
 
@@ -109,7 +108,7 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
         toggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.navigation_draw_open,R.string.navigation_draw_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        //Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         navigationView.setNavigationItemSelectedListener(this);
         View headerView = navigationView.getHeaderView(0);
         Menu menu = navigationView.getMenu();
@@ -126,6 +125,13 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
             loginBut.setVisibility(View.VISIBLE);
             loginText.setVisibility(View.VISIBLE);
         }
+        ImageButton menuButton = findViewById(R.id.menuButton);
+        menuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.open();
+            }
+        });
         TextView name = headerView.findViewById(R.id.myname);
         TextView email = headerView.findViewById(R.id.email);
         ImageView profile = headerView.findViewById(R.id.myimage);
