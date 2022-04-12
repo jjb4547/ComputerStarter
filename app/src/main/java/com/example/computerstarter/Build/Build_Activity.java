@@ -110,7 +110,7 @@ public class Build_Activity extends AppCompatActivity {
         });
         plusMem.setOnClickListener(view->{
             numParts[2]=numParts[2]+1;
-            memPrice.setText("$ "+PriceList.getPrice(partsID[2])*numParts[2]);
+            memPrice.setText("$ "+String.format("%.2f",PriceList.getPrice(partsID[2])*numParts[2]));
             totalNum.setText("$ "+getPriceSum());
             if(numParts[2]>1){
                 minusMem.setVisibility(View.VISIBLE);
@@ -121,7 +121,7 @@ public class Build_Activity extends AppCompatActivity {
         minusMem.setOnClickListener(view->{
             if(numParts[2]>0) {
                 numParts[2] = numParts[2] - 1;
-                memPrice.setText("$ " + PriceList.getPrice(partsID[2]) * numParts[2]);
+                memPrice.setText("$ " + String.format("%.2f",PriceList.getPrice(partsID[2]) * numParts[2]));
                 totalNum.setText("$ " + getPriceSum());
             }
             if(numParts[2]==1)
