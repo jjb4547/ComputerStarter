@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -129,7 +130,7 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
         menuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                drawerLayout.open();
+                drawerLayout.openDrawer(Gravity.RIGHT);
             }
         });
         TextView name = headerView.findViewById(R.id.myname);

@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -17,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.example.computerstarter.Build.MainBuilds;
 import com.example.computerstarter.Login.Login_SignUpActivity;
 import com.example.computerstarter.R;
 import com.google.android.material.button.MaterialButton;
@@ -146,6 +148,10 @@ public class SocialMediaFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_forum, container, false);
         //used for spinner dropdown on RecyclerView
         spinner = view.findViewById(R.id.pspinRV);
+        ImageButton menuButton = view.findViewById(R.id.menuButton);
+        menuButton.setOnClickListener(v->{
+            ((MainBuilds)getActivity()).openDrawer();
+        });
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, arrayList);
         adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         spinner.setAdapter(adapter);

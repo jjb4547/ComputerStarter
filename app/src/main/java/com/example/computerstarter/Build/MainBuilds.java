@@ -2,6 +2,7 @@ package com.example.computerstarter.Build;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,7 +34,7 @@ import com.squareup.picasso.Picasso;
 
 public class MainBuilds extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private static int SPLASH_TIMEOUT = 2000;
-    private DrawerLayout drawerLayout;
+    public DrawerLayout drawerLayout;
     private BottomNavigationView bottomNavigationView;
     private NavController navController;
     private ActionBarDrawerToggle toggle;
@@ -82,7 +83,12 @@ public class MainBuilds extends AppCompatActivity implements NavigationView.OnNa
         menuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                drawerLayout.open();
+                openDrawer();
+                if(drawerLayout.isOpen()){
+                    drawerLayout.close();
+                }else if(!drawerLayout.isOpen()){
+                    drawerLayout.openDrawer(Gravity.RIGHT);
+                }
             }
         });
         TextView name = headerView.findViewById(R.id.myname);
@@ -112,6 +118,10 @@ public class MainBuilds extends AppCompatActivity implements NavigationView.OnNa
                 //log.setText("Log Out");
             }
         });
+    }
+
+    public void openDrawer() {
+        drawerLayout.openDrawer(Gravity.RIGHT);
     }
 
     @Override

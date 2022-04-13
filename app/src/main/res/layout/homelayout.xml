@@ -267,7 +267,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@drawable/drawer_background_2"
+        android:background="@drawable/drawer_background_left2"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_menu_home"
         app:itemIconTint="@color/white"
