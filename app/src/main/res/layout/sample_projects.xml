@@ -10,25 +10,49 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+        <RelativeLayout
+            android:id="@+id/sampleLay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageButton
+                android:id="@+id/menuButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:background="?attr/selectableItemBackground"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_menu"
+                app:tint="@color/cardview_light"
+                android:layout_marginEnd="10dp"/>
+            <ImageButton
+                android:id="@+id/homeBut"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:background="?attr/selectableItemBackground"
+                android:layout_centerVertical="true"
+                app:tint="@color/cardview_light"
+                android:src="@drawable/ic_back"
+                android:layout_marginStart="10dp"/>
 
-        <TextView
-            android:id="@+id/GuidesTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp"
-            android:fontFamily="@font/francois_one"
-            android:padding="2dp"
-            android:text="Sample Projects"
-            android:textColor="@color/cardview_light"
-            android:textSize="40sp"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/GuidesTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/francois_one"
+                android:text="Sample Projects"
+                android:textColor="@color/cardview_light"
+                android:textSize="40sp"
+                android:textStyle="bold"
+                android:layout_centerVertical="true"/>
+        </RelativeLayout>
         <ScrollView
             android:id="@+id/guidesScroll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="55dp"
-            android:layout_below="@id/GuidesTitle">
+            android:layout_below="@id/sampleLay">
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -110,26 +134,16 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="15dp">
-
-            <TextView
-                android:id="@+id/homeBut"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:fontFamily="@font/francois_one"
-                android:text="Return Home"
-                android:textColor="@color/cardview_light"
-                android:textSize="30sp" />
         </RelativeLayout>
     </RelativeLayout>
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation_menu"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:background="@drawable/drawer_background_left2"
+        android:layout_gravity="end"
+        android:background="@drawable/drawer_background_right2"
         android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_menu_home"
+        app:headerLayout="@layout/nav_menu"
         app:itemIconTint="@color/white"
         app:itemTextAppearance="?android:attr/textAppearanceMedium"
         app:itemTextColor="@color/white"

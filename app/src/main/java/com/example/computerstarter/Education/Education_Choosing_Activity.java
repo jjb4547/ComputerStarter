@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,8 +29,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
-
-import java.util.Objects;
 
 public class Education_Choosing_Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private DrawerLayout drawerLayout;
@@ -58,7 +57,7 @@ public class Education_Choosing_Activity extends AppCompatActivity implements Na
         toggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.navigation_draw_open,R.string.navigation_draw_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        //Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         navigationView.setNavigationItemSelectedListener(this);
         View headerView = navigationView.getHeaderView(0);
         Menu menu = navigationView.getMenu();
@@ -97,7 +96,7 @@ public class Education_Choosing_Activity extends AppCompatActivity implements Na
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
             }
         });
-        TextView home = findViewById(R.id.home);
+        ImageButton home = findViewById(R.id.homeBut);
         TextView title = findViewById(R.id.pcpartTitle);
         String comp = getIntent().getExtras().getString("component");
         title.setText(comp);

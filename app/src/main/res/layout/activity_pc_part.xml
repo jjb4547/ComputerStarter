@@ -5,29 +5,58 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/background_color">
+        android:background="@drawable/gradient_home">
 
-        <TextView
-            android:id="@+id/welcome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp"
-            android:fontFamily="@font/francois_one"
-            android:gravity="center_horizontal"
-            android:text="Learn More Below"
-            android:textColor="@color/black"
-            android:textSize="35sp" />
+        <RelativeLayout
+            android:id="@+id/partActLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/homeBut"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:background="?attr/selectableItemBackground"
+                android:src="@drawable/ic_back"
+                app:tint="@color/cardview_light" />
+
+            <TextView
+                android:id="@+id/welcome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/francois_one"
+                android:text="Learn More Below"
+                android:textColor="@color/black"
+                android:textSize="35sp" />
+
+            <ImageButton
+                android:id="@+id/menuButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="10dp"
+                android:background="?attr/selectableItemBackground"
+                android:src="@drawable/ic_menu"
+                app:tint="@color/cardview_light" />
+
+        </RelativeLayout>
 
         <ScrollView
             android:id="@+id/pcPartScroll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/welcome"
+            android:layout_below="@+id/partActLayout"
             android:paddingBottom="50dp">
 
             <RelativeLayout
@@ -375,31 +404,17 @@
                 </GridLayout>
             </RelativeLayout>
         </ScrollView>
-
-        <TextView
-            android:id="@+id/home"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:clickable="true"
-            android:fontFamily="@font/francois_one"
-            android:padding="8dp"
-            android:text="Return Home"
-            android:textColor="@color/cardview_light"
-            android:textSize="30dp" />
-
     </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation_menu"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:background="@color/blue_gray"
+        android:layout_gravity="end"
+        android:background="@drawable/drawer_background_right2"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_menu"
-        app:itemIconTint="@color/cardview_light"
+        app:itemIconTint="@color/white"
         app:itemTextAppearance="?android:attr/textAppearanceMedium"
         app:itemTextColor="@color/white"
         app:menu="@menu/drawer_menu">
@@ -430,7 +445,8 @@
                 android:gravity="center"
                 android:text="Log Out"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:layout_centerVertical="true"/>
         </RelativeLayout>
 
     </com.google.android.material.navigation.NavigationView>

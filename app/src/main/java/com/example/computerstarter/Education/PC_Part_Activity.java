@@ -2,9 +2,11 @@ package com.example.computerstarter.Education;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -17,13 +19,13 @@ import androidx.cardview.widget.CardView;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 
+import com.example.computerstarter.Build.MainBuilds;
 import com.example.computerstarter.Build.MyBuildActivity;
 import com.example.computerstarter.Guides.PC.PC_Guide_Supplies_Activity;
 import com.example.computerstarter.Login.Login_SignUpActivity;
 import com.example.computerstarter.Others.AccountActivity;
 import com.example.computerstarter.R;
 import com.example.computerstarter.app.HomeActivity;
-import com.example.computerstarter.Build.MainBuilds;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -33,14 +35,12 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
-import java.util.Objects;
-
 public class PC_Part_Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private ListView listView;
     private String[] diffTitles;
     private boolean sortAscending = true;
     private boolean unSorted = true;
-    private TextView home;
+    private ImageButton home;
     private DrawerLayout drawerLayout;
     private BottomNavigationView bottomNavigationView;
     private NavController navController;
@@ -75,10 +75,17 @@ public class PC_Part_Activity extends AppCompatActivity implements NavigationVie
         toggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.navigation_draw_open,R.string.navigation_draw_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        //Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         navigationView.setNavigationItemSelectedListener(this);
         View headerView = navigationView.getHeaderView(0);
         Menu menu = navigationView.getMenu();
+        ImageButton menuButton = findViewById(R.id.menuButton);
+        menuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.openDrawer(Gravity.RIGHT);
+            }
+        });
         item_acc = menu.findItem(R.id.account);
         log = findViewById(R.id.log_Text);
         logBut = findViewById(R.id.logButtton);
@@ -119,7 +126,7 @@ public class PC_Part_Activity extends AppCompatActivity implements NavigationVie
         });
         //TextView text = findViewById(R.id.title);
         String from = getIntent().getStringExtra("Act");
-        home = findViewById(R.id.home);
+        home = findViewById(R.id.homeBut);
         diffTitles = getResources().getStringArray(R.array.comp_names);
         CardView cpu = findViewById(R.id.cpu);
         CardView mot = findViewById(R.id.mot);
@@ -130,17 +137,13 @@ public class PC_Part_Activity extends AppCompatActivity implements NavigationVie
         CardView mon = findViewById(R.id.mon);
         CardView cool = findViewById(R.id.cool);
         CardView pc_case = findViewById(R.id.id_case);
-        if(from.equals("Guide")){
-            home.setText("Return to Supplies");
-        }else{
-            home.setText("Return Home");
-        }
         home.setOnClickListener(view->{
             if(from.equals("Guide")){
                 startActivity(new Intent(this, PC_Guide_Supplies_Activity.class));
                 overridePendingTransition(R.anim.slide_in_left,R.anim.stay);
             }else {
-                startActivity(new Intent(this, HomeActivity.class));
+                startActivity(new Intent(this, MainBuilds.class)
+                        .putExtra("from","Edu"));
                 overridePendingTransition(R.anim.slide_in_left, R.anim.stay);
             }
         });

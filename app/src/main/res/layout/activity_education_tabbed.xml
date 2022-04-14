@@ -5,16 +5,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Education.Education_Tabbed">
+    <RelativeLayout
+        android:id="@+id/relLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+        <ImageButton
+            android:id="@+id/homeBut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_back"
+            android:layout_centerVertical="true"
+            android:background="?attr/selectableItemBackground"
+            app:tint="@color/cardview_light"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="10dp"
+            android:layout_alignParentStart="true"/>
+
+    </RelativeLayout>
 
     <fragment
         android:id="@+id/frame_layout_edu"
+        app:layout_constraintTop_toBottomOf="@id/relLayout"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:defaultNavHost="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/topNavigationView"
         app:navGraph="@navigation/nav_graph2" />
     <com.google.android.material.bottomnavigation.BottomNavigationView

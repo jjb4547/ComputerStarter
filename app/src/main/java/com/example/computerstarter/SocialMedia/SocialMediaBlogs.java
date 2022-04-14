@@ -13,12 +13,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.TextUtils;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -31,6 +31,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import com.example.computerstarter.Build.MainBuilds;
 import com.example.computerstarter.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -97,7 +98,7 @@ public class SocialMediaBlogs extends AppCompatActivity {
         user = firebaseAuth.getCurrentUser();
         tagName="";
         isDefault=false;
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.fragment_add_blogs);
         //title = findViewById(R.id.ptitle); //change to spinner later
         des = findViewById(R.id.pdes);
@@ -109,6 +110,13 @@ public class SocialMediaBlogs extends AppCompatActivity {
         spinner = findViewById(R.id.pspin);
         pd = new ProgressDialog(this);
         pd.setCanceledOnTouchOutside(false);
+        final ImageButton homeBut = findViewById(R.id.homeBut);
+        homeBut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SocialMediaBlogs.this, MainBuilds.class).putExtra("from","Social"));
+            }
+        });
         Intent intent = this.getIntent();
         // Retrieving the user data like name ,email and profile pic using query
         StorageReference storageReference1 = FirebaseStorage.getInstance().getReference().child("ProfileImage/Users/"+user.getUid()+"/profile");
@@ -312,15 +320,6 @@ public class SocialMediaBlogs extends AppCompatActivity {
                 image.setImageBitmap(imageBit);
             }
         }
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId()==android.R.id.home) {
-            // app icon in action bar clicked; goto parent activity.
-            this.finish();
-            return true;
-        }else
-            return super.onOptionsItemSelected(item);
     }
 
     public void checkPermission(String permission, int requestCode){

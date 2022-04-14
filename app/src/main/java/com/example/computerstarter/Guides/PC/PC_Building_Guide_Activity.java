@@ -2,9 +2,11 @@ package com.example.computerstarter.Guides.PC;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,13 +19,13 @@ import androidx.cardview.widget.CardView;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 
+import com.example.computerstarter.Build.MainBuilds;
 import com.example.computerstarter.Build.MyBuildActivity;
 import com.example.computerstarter.Guides.Guides_Activity;
 import com.example.computerstarter.Login.Login_SignUpActivity;
 import com.example.computerstarter.Others.AccountActivity;
 import com.example.computerstarter.R;
 import com.example.computerstarter.app.HomeActivity;
-import com.example.computerstarter.Build.MainBuilds;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,8 +34,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
-
-import java.util.Objects;
 
 public class PC_Building_Guide_Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private static int SPLASH_TIMEOUT = 2000;
@@ -56,7 +56,7 @@ public class PC_Building_Guide_Activity extends AppCompatActivity implements Nav
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pc_building_guides_layout);
-        TextView home = findViewById(R.id.home);
+        ImageButton home = findViewById(R.id.homeBut);
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
         //bottomNavigationView = findViewById(R.id.bottomNavigationView);
@@ -71,13 +71,15 @@ public class PC_Building_Guide_Activity extends AppCompatActivity implements Nav
         toggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.navigation_draw_open,R.string.navigation_draw_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        //Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         navigationView.setNavigationItemSelectedListener(this);
         View headerView = navigationView.getHeaderView(0);
         Menu menu = navigationView.getMenu();
         item_acc = menu.findItem(R.id.account);
         log = findViewById(R.id.log_Text);
         logBut = findViewById(R.id.logButtton);
+        ImageButton menuBut = findViewById(R.id.menuButton);
+        menuBut.setOnClickListener(v -> drawerLayout.openDrawer(Gravity.RIGHT));
         if(user!=null) {
             log.setText("Log Out");
             item_acc.setVisible(true);

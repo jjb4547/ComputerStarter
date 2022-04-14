@@ -1,12 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_color">
+    <RelativeLayout
+        android:id="@+id/addBlogsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ADD POSTS"
+            android:textColor="@color/cardview_light"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/francois_one"
+            android:textSize="45sp"/>
+
+        <ImageButton
+            android:id="@+id/homeBut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:background="?attr/selectableItemBackground"
+            android:src="@drawable/ic_back"
+            app:tint="@color/cardview_light" />
+    </RelativeLayout>
 
     <LinearLayout
+        android:layout_below="@id/addBlogsLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="2dp"
@@ -57,4 +86,4 @@
             android:backgroundTint="@color/cardview_light"/>
     </LinearLayout>
 
-</ScrollView>
+</RelativeLayout>

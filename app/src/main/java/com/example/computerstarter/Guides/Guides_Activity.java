@@ -2,6 +2,7 @@ package com.example.computerstarter.Guides;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,8 +34,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
-import java.util.Objects;
-
 public class Guides_Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private CardView pc,rasp,ard;
     ImageButton home;
@@ -59,7 +58,14 @@ public class Guides_Activity extends AppCompatActivity implements NavigationView
         toggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.navigation_draw_open,R.string.navigation_draw_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        ImageButton menuButton = findViewById(R.id.menuButton);
+        menuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.openDrawer(Gravity.RIGHT);
+            }
+        });
+        //Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         navigationView.setNavigationItemSelectedListener(this);
         View headerView = navigationView.getHeaderView(0);
         Menu menu = navigationView.getMenu();
@@ -119,7 +125,8 @@ public class Guides_Activity extends AppCompatActivity implements NavigationView
                     .putExtra("Act","Edu"));
         });
         home.setOnClickListener(view -> {
-            startActivity(new Intent(Guides_Activity.this, HomeActivity.class));
+            startActivity(new Intent(Guides_Activity.this, MainBuilds.class)
+                    .putExtra("from","Edu"));
         });
     }
 

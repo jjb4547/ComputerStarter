@@ -119,6 +119,8 @@
                     android:layout_height="wrap_content"
                     app:endIconMode="password_toggle"
                     app:helperText="Enter Your Password"
+                    android:nextFocusDown="@id/signIn"
+                    android:nextFocusForward="@id/signIn"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
                     <com.google.android.material.textfield.TextInputEditText
                         android:inputType="textPassword"
@@ -129,6 +131,8 @@
                         android:textStyle="normal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:nextFocusForward="@id/signIn"
+                        android:nextFocusDown="@id/signIn"
                         />
                 </com.google.android.material.textfield.TextInputLayout>
                 <RelativeLayout

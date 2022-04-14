@@ -2,9 +2,11 @@ package com.example.computerstarter.SampleProjects;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,8 +36,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
-import java.util.Objects;
-
 public class SampleProjects extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout drawerLayout;
     private BottomNavigationView bottomNavigationView;
@@ -58,7 +58,7 @@ public class SampleProjects extends AppCompatActivity implements NavigationView.
         setContentView(R.layout.sample_projects);
         CardView rasp = findViewById(R.id.RaspGuide);
         CardView ard = findViewById(R.id.ArduinoGuide);
-        TextView home = findViewById(R.id.homeBut);
+        ImageButton home = findViewById(R.id.homeBut);
         FirebaseUser user = mAuth.getCurrentUser();
         drawerLayout = findViewById(R.id.drawerlayout);
         navigationView = findViewById(R.id.navigation_menu);
@@ -69,12 +69,19 @@ public class SampleProjects extends AppCompatActivity implements NavigationView.
         toggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.navigation_draw_open,R.string.navigation_draw_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        //Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         navigationView.setNavigationItemSelectedListener(this);
         View headerView = navigationView.getHeaderView(0);
         Menu menu = navigationView.getMenu();
         item_acc = menu.findItem(R.id.account);
         log = findViewById(R.id.log_Text);
+        ImageButton menuButton = findViewById(R.id.menuButton);
+        menuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.openDrawer(Gravity.RIGHT);
+            }
+        });
         if(user!=null) {
             log.setText("Log Out");
             item_acc.setVisible(true);

@@ -3,7 +3,8 @@ package com.example.computerstarter.Education;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -22,6 +23,15 @@ public class Education_Tabbed extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_education_tabbed);
+        final ImageButton homeBut = findViewById(R.id.homeBut);
+        homeBut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Education_Tabbed.this, Education_Choosing_Activity.class)
+                        .putExtra("component",getIntent().getExtras().getString("component"))
+                        .putExtra("Act", getIntent().getExtras().getString("Act")));
+            }
+        });
         from = getIntent().getExtras().getString("from");
         String[] diffTitles = getResources().getStringArray(R.array.comp_names);
         BottomNavigationView bottomNavigationView = findViewById(R.id.topNavigationView);
@@ -30,25 +40,13 @@ public class Education_Tabbed extends AppCompatActivity {
         if(from.compareTo("Intermediate")==0){
             navController.navigate(R.id.action_navigation_basic_to_navigation_detail);
         }
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        Bundle bundle = getIntent().getExtras();
-        if(bundle!=null){
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //Bundle bundle = getIntent().getExtras();
+        //if(bundle!=null){
             //String position = bundle.getString("component");
-            getSupportActionBar().setTitle(getIntent().getExtras().getString("component"));
-        }
+            //getSupportActionBar().setTitle(getIntent().getExtras().getString("component"));
+        //}
     }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId()==android.R.id.home) {
-            // app icon in action bar clicked; goto parent activity.
-            startActivity(new Intent(this, Education_Choosing_Activity.class)
-                    .putExtra("component",getIntent().getExtras().getString("component"))
-                    .putExtra("Act", getIntent().getExtras().getString("Act")));
-            return true;
-        }else
-            return super.onOptionsItemSelected(item);
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         return true;

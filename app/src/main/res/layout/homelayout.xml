@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawerlayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/gradient_home">
@@ -23,7 +22,7 @@
                 android:id="@+id/userProfile"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:src="@mipmap/ic_logo"
+                tools:src="@mipmap/ic_logo"
                 app:riv_corner_radius="10dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -71,7 +70,7 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <ScrollView
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -84,12 +83,12 @@
             <RelativeLayout
                 android:id="@+id/relGrid"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
                 <GridLayout
                     android:id="@+id/homeGrid"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:columnCount="2"
                     android:paddingBottom="40dp"
                     android:rowCount="3">
@@ -110,7 +109,7 @@
 
                         <RelativeLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="wrap_content">
 
                             <ImageView
                                 android:id="@+id/buildsImage"
@@ -151,14 +150,14 @@
 
                         <RelativeLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="wrap_content">
 
                             <ImageView
                                 android:id="@+id/educationImage"
                                 android:layout_width="120dp"
                                 android:layout_height="120dp"
                                 android:layout_centerInParent="true"
-                                android:src="@drawable/ic_education" />
+                                android:src="@drawable/ic_educ" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -191,7 +190,7 @@
 
                         <RelativeLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="wrap_content">
 
                             <ImageView
                                 android:id="@+id/socialImage"
@@ -233,13 +232,14 @@
 
                         <RelativeLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="wrap_content">
 
                             <ImageView
                                 android:id="@+id/loginImage"
                                 android:layout_width="120dp"
                                 android:layout_height="120dp"
                                 android:layout_centerInParent="true"
+                                android:layout_marginTop="30dp"
                                 android:src="@drawable/ic_logout" />
 
                             <TextView
@@ -259,7 +259,7 @@
                     </androidx.cardview.widget.CardView>
                 </GridLayout>
             </RelativeLayout>
-        </ScrollView>
+        </RelativeLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.navigation.NavigationView
