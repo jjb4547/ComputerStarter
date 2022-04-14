@@ -124,13 +124,10 @@ public class PriceList {
     public static int getWattage(int id)
     {
         int answer = 0;
-        if(getPart(id).equals("cpu") || getPart(id).equals("video cards") || getPart(id).equals("power supplies"))
-        {
-            try {
-                answer = jsonObj.getJSONArray("items").getJSONObject(id).getInt("wattage");
-            } catch (JSONException e) {
-                System.out.println(e);
-            }
+        try {
+            answer = jsonObj.getJSONArray("items").getJSONObject(id).getInt("wattage");
+        } catch (JSONException e) {
+            System.out.println(e);
         }
         return answer;
     }
