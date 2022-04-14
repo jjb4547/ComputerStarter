@@ -1,4 +1,4 @@
-package com.example.computerstarter.Guides.Arduino;
+package com.example.computerstarter.SampleProjects.Arduino.Projects.TemperatureSensor;
 
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
@@ -23,7 +23,7 @@ import com.google.android.material.button.MaterialButton;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Arduino_Guide_Setup_Activity extends AppCompatActivity {
+public class Arduino_Temperature_Sensor_Coding extends AppCompatActivity {
 
     private OnboardingAdapter onboardingAdapterPcGuide;
     private LinearLayout layoutOnboardingIndicators;
@@ -44,6 +44,7 @@ public class Arduino_Guide_Setup_Activity extends AppCompatActivity {
         buttonOnboardingAction = findViewById(R.id.buttonOnboardingAction);
         exit = findViewById(R.id.exit);
         help = findViewById(R.id.help);
+        help.setVisibility(View.GONE);
 
         setupOnboardingItems();
 
@@ -64,66 +65,71 @@ public class Arduino_Guide_Setup_Activity extends AppCompatActivity {
             if(onboardingViewPager.getCurrentItem()+1< onboardingAdapterPcGuide.getItemCount()){
                 onboardingViewPager.setCurrentItem(onboardingViewPager.getCurrentItem()+1);
             }else{
-                startActivity(new Intent(this, Arduino_Guides_Activity.class)
-                        .putExtra("from","Edu"));
+                startActivity(new Intent(this, Arduino_Temperature_Sensor.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 finish();
             }
         });
         exit.setOnClickListener(view->{
-            startActivity(new Intent(this, Arduino_Guides_Activity.class)
-                    .putExtra("from","Edu"));
+            startActivity(new Intent(this, Arduino_Temperature_Sensor.class));
             overridePendingTransition(R.anim.slide_in_top,R.anim.stay);
             finish();
         });
-        help.setVisibility(View.GONE);
     }
 
     private void setupOnboardingItems(){
         List<OnboardingItem> onboardingItemPcGuideActivityList = new ArrayList<>();
         OnboardingItem item_Intro = new OnboardingItem();
-        item_Intro.setTitle("Welcome to the Setup Guide");
-        item_Intro.setDescription("Here is where you will be able find out what components will be needed " +
-                "to build a computer and be able to achieve that life long dream of building a computer.");
-        item_Intro.setImage(R.drawable.pc_build_link);
+        item_Intro.setTitle("Welcome to the Coding Guide");
+        item_Intro.setDescription("We will now be coding the Arduino with the Arduino IDE");
+        item_Intro.setImage(R.drawable.arduino_logo);
 
-        OnboardingItem item_CPU = new OnboardingItem();
-        item_CPU.setTitle("CPU");
-        item_CPU.setDescription("First thing you need to get is the CPU");
-        item_CPU.setImage(R.drawable.cpu_link);
+        OnboardingItem item_prep = new OnboardingItem();
+        item_prep.setTitle("Preparing the Arduino");
+        item_prep.setDescription("1.) Make sure to have a data cable \n" +
+                "2.) Make sure to have a separate computer with Arduino IDE ready");
+        item_prep.setImage(R.drawable.arduino_logo);
 
-        OnboardingItem item_motherboard = new OnboardingItem();
-        item_motherboard.setTitle("Motherboard");
-        item_motherboard.setDescription("Second is the motherboard");
-        item_motherboard.setImage(R.drawable.motherboard_link);
-
-        OnboardingItem item_RAM = new OnboardingItem();
-        item_RAM.setTitle("RAM (Memory)");
-        item_RAM.setDescription("GET YOUR RAM");
-        item_RAM.setImage(R.drawable.memory_link);
-
-        OnboardingItem item_CPUCOOL = new OnboardingItem();
-        item_CPUCOOL.setTitle("CPU COOLER");
-        item_CPUCOOL.setDescription("GET YOUR RAM");
-        item_CPUCOOL.setImage(R.drawable.cpu_cooler_link);
-
-        OnboardingItem item_GPU = new OnboardingItem();
-        item_GPU.setTitle("GPU(VGA)");
-        item_GPU.setDescription("GET YOUR RAM");
-        item_GPU.setImage(R.drawable.vga_link);
-
-        OnboardingItem item_STORAGE = new OnboardingItem();
-        item_STORAGE.setTitle("CONGRATULATIONS");
-        item_STORAGE.setDescription("You Just Built Your First PC");
-        item_STORAGE.setImage(R.drawable.storage_link);;
+        OnboardingItem item_code = new OnboardingItem();
+        item_code.setTitle("Coding on the Arduino IDE");
+        item_code.setDescription("1.) Create the file for the code\n" +
+                "\t a.) The following is all contained in the file\n" +
+                "2.) (Line 1-2) Import libraries\n" +
+                "\t a.) #include <OneWire.h> \n" +
+                "\t b.) #include <DallasTemperature.h>\n" +
+                "3.) (Line 3) Define the pin you used(pin 2 in the diagram)\n" +
+                "\t a.) #define ONE_WIRE_BUS 2 \n" +
+                "4.) (Line 4) Define a oneWire instance\n" +
+                "\t a.) OneWire oneWire(ONE_WIRE_BUS);\n" +
+                "5.) (Line 5)Give Dallas Temperature our oneWire reference" +
+                "\t a.) DallasTemperature sensors(&oneWire);\n" +
+                "6.) (Line 6-9) These lines take place in the void setup()\n" +
+                "The lines after line 6 will start the serial port and the library\n" +
+                "\t a.) void setup(void){\n" +
+                "\t b.) Serial.begin(9600);\n" +
+                "\t c.) Serial.println(\"Dallas Temperature IC Control Library Demo\"); \n" +
+                "\t d.)  sensors.begin();}\n" +
+                "7.) (Line 10-20) These lines take place in the void loop(void)\n" +
+                "8.) Call global temperature and sends command to get temperature readings" +
+                "\t a.) Serial.print(\" Requesting temperatures...\"); \n" +
+                "\t b.) sensors.requestTemperatures();\n" +
+                "\t c.) Serial.println(\"DONE\");\n" +
+                "\t d.) Serial.print(\"Temperature is: \"); \n" +
+                "\t e.) Serial.print(sensors.getTempCByIndex(0));\n"+
+                "\t f.)delay(1000);}\n" +
+                "9.) Your computer screen should then begin showing the temperature being measured\n" +
+                "\t a.) Temperature is: 22.12 Requesting temperature...DONE \n" +
+                "\t b.) Temperature is: 22.12 Requesting temperature...DONE \n" +
+                "\t c.) Temperature is: 22.12 Requesting temperature...DONE \n" +
+                "\t d.) Temperature is: 22.19 Requesting temperature...DONE \n" +
+                "Below is the full github of the libraries used for this project" +
+                "https://github.com/milesburton/Arduino-Temperature-Control-Library"+
+                "https://github.com/fdebrabander/Arduino-LiquidCrystal-I2C-library ");
+        item_code.setImage(R.drawable.arduino_logo);
 
         onboardingItemPcGuideActivityList.add(item_Intro);
-        onboardingItemPcGuideActivityList.add(item_CPU);
-        onboardingItemPcGuideActivityList.add(item_motherboard);
-        onboardingItemPcGuideActivityList.add(item_RAM);
-        onboardingItemPcGuideActivityList.add(item_CPUCOOL);
-        onboardingItemPcGuideActivityList.add(item_GPU);
-        onboardingItemPcGuideActivityList.add(item_STORAGE);
+        onboardingItemPcGuideActivityList.add(item_prep);
+        onboardingItemPcGuideActivityList.add(item_code);
         onboardingAdapterPcGuide = new OnboardingAdapter(onboardingItemPcGuideActivityList);
     }
 
@@ -165,3 +171,4 @@ public class Arduino_Guide_Setup_Activity extends AppCompatActivity {
         }
     }
 }
+

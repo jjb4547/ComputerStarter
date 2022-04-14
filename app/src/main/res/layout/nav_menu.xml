@@ -6,7 +6,7 @@
     android:gravity="bottom"
     android:orientation="vertical"
     android:padding="15dp"
-    android:background="@drawable/drawer_background_rest">
+    android:background="@drawable/drawer_background_right">
 
     <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/myimage"

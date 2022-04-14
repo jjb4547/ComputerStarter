@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    android:id="@+id/rowpostCard"
+<androidx.cardview.widget.CardView android:id="@+id/rowpostCard"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -11,7 +10,8 @@
     app:cardElevation="8dp"
     app:cardUseCompatPadding="true"
     android:clickable="true"
-    android:background="@color/background_color">
+    android:background="@color/background_color"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,7 +34,7 @@
                 app:riv_corner_radius="15dp"
                 android:layout_margin="10dp"
                 app:riv_border_color="@color/black"
-                android:src="@drawable/ic_people"/>
+                tools:src="@drawable/ic_people"/>
 
             <LinearLayout
                 android:layout_width="0dp"

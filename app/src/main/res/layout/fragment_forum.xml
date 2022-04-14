@@ -7,29 +7,37 @@
     android:background="@drawable/gradient_home"
     android:orientation="vertical">
 
-
-    android:orientation="vertical"
-    android:background="@drawable/gradient_home">
     <Spinner
         android:id="@+id/pspinRV"
-        android:layout_width="309dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        />
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="5dp"/>
+
+    <ImageButton
+        android:id="@+id/menuButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="?attr/selectableItemBackground"
+        android:src="@drawable/ic_menu"
+        app:tint="@color/cardview_light" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:layout_marginTop="10dp"
         android:id="@+id/swipeLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/pspinRV"
-        android:background="@drawable/gradient_home"
+        android:layout_below="@+id/menuButton"
         android:layout_marginBottom="40dp">
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/RecycleForum"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-
-            android:background="@drawable/gradient_home" />
+            android:layout_height="match_parent" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -51,13 +59,13 @@
         android:id="@+id/loginText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Please Login to see what others have Posted."
-        android:layout_below="@id/pspinRV"
+        android:layout_below="@id/menuButton"
         android:layout_centerHorizontal="true"
-        android:textSize="30sp"
+        android:fontFamily="@font/francois_one"
+        android:text="Please Login to see what others have Posted."
         android:textAlignment="center"
         android:textColor="@color/cardview_light"
-        android:fontFamily="@font/francois_one"/>
+        android:textSize="30sp" />
     <com.google.android.material.button.MaterialButton
         android:id="@+id/loginBut"
         android:layout_width="wrap_content"

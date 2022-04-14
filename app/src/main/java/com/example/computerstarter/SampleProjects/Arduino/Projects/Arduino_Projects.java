@@ -1,4 +1,4 @@
-package com.example.computerstarter.SampleProjects.Arduino;
+package com.example.computerstarter.SampleProjects.Arduino.Projects;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,7 +22,7 @@ import com.example.computerstarter.Build.MyBuildActivity;
 import com.example.computerstarter.Login.Login_SignUpActivity;
 import com.example.computerstarter.Others.AccountActivity;
 import com.example.computerstarter.R;
-import com.example.computerstarter.SampleProjects.RaspiProj.HumiditySensor.RaspberryPi_Humidity_Sensor;
+import com.example.computerstarter.SampleProjects.Arduino.Projects.TemperatureSensor.Arduino_Temperature_Sensor;
 import com.example.computerstarter.SampleProjects.SampleProjects;
 import com.example.computerstarter.app.HomeActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -30,14 +30,11 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.squareup.picasso.Picasso;
 
 import java.util.Objects;
 
-public class Arduino_Projects extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    private CardView humiditySensor;
+public class Arduino_Projects extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+    private CardView temperatureSensor;
     private TextView home;
     private DrawerLayout drawerLayout;
     private BottomNavigationView bottomNavigationView;
@@ -53,13 +50,15 @@ public class Arduino_Projects extends AppCompatActivity implements NavigationVie
     private MenuItem item_log;
     private MenuItem item_quiz;
     private MenuItem item_acc;
-    private StorageReference storageReference = FirebaseStorage.getInstance().getReference();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.arduino_projects);
+        setContentView(R.layout.arduino_projects_layout);
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
+        //bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        //navController = Navigation.findNavController(this,R.id.frame_layout);
+        //NavigationUI.setupWithNavController(bottomNavigationView,navController);
         drawerLayout = findViewById(R.id.drawerlayout);
         navigationView = findViewById(R.id.navigation_menu);
         toggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.navigation_draw_open,R.string.navigation_draw_close);
@@ -90,8 +89,6 @@ public class Arduino_Projects extends AppCompatActivity implements NavigationVie
             String current = user.getUid();
             name.setText(user.getDisplayName());
             email.setText(user.getEmail());
-            StorageReference profileRef = storageReference.child("ProfileImage/Users/"+mAuth.getCurrentUser().getUid()+"/profile");
-            profileRef.getDownloadUrl().addOnSuccessListener(uri -> Picasso.get().load(uri).into(profile));
             //profile.setImageURI(user.getPhotoUrl()); //bugging out not sure why but only on the emulator
         }else{
             name.setText("Guest");
@@ -112,12 +109,13 @@ public class Arduino_Projects extends AppCompatActivity implements NavigationVie
             }
         });
         home = findViewById(R.id.home);
-        humiditySensor = findViewById(R.id.humiditySensor);
-        humiditySensor.setOnClickListener(view -> {
-            startActivity(new Intent(this, RaspberryPi_Humidity_Sensor.class));
+        temperatureSensor = findViewById(R.id.temperatureSensor);
+        temperatureSensor.setOnClickListener(view -> {
+            startActivity(new Intent(this, Arduino_Temperature_Sensor.class));
         });
         home.setOnClickListener(view->{
-            startActivity(new Intent(getApplicationContext(), SampleProjects.class));
+            startActivity(new Intent(getApplicationContext(), SampleProjects.class)
+                    .putExtra("component", "Arduino"));
             overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
         });
     }

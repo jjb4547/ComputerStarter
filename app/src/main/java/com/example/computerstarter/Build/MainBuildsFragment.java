@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,6 +53,13 @@ public class MainBuildsFragment extends Fragment {
         recent_Price = view.findViewById(R.id.recent_build_price);
         recent_title = view.findViewById(R.id.recent_build_Title);
         recent_Name  = view.findViewById(R.id.recent_build_Name);
+        ImageButton menuButton = view.findViewById(R.id.menuButton);
+        menuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainBuilds)getActivity()).openDrawer();
+            }
+        });
         builds.setOnClickListener(view->{
             startActivity(new Intent(getActivity(), MyBuildActivity.class));
             getActivity().overridePendingTransition(R.anim.slide_in_left,R.anim.stay);
