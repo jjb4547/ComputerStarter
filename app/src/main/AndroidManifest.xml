@@ -56,9 +56,9 @@
 
         <!-- Arduino Guides -->
         <activity android:name=".Guides.Arduino.Arduino_Guides_Activity"/>
-        <activity android:name=".Guides.Arduino.Arduino_Guide_Supplies_Activity"
+        <activity android:name=".Guides.Arduino.Arduino_Guide_Prep_Activity"
             android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
-        <activity android:name=".Guides.Arduino.Arduino_Guide_Installation_Activity"
+        <activity android:name=".Guides.Arduino.Arduino_Guide_Troubleshoot_Activity"
             android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
         <activity android:name=".Guides.Arduino.Arduino_Guide_Setup_Activity"
             android:theme="@style/Theme.ComputerStarter.NoActionBar"/>

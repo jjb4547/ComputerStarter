@@ -23,7 +23,7 @@ import com.google.android.material.button.MaterialButton;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Arduino_Guide_Supplies_Activity extends AppCompatActivity {
+public class Arduino_Guide_Prep_Activity extends AppCompatActivity {
 
     private OnboardingAdapter onboardingAdapterPcGuide;
     private LinearLayout layoutOnboardingIndicators;
@@ -64,7 +64,7 @@ public class Arduino_Guide_Supplies_Activity extends AppCompatActivity {
             if(onboardingViewPager.getCurrentItem()+1< onboardingAdapterPcGuide.getItemCount()){
                 onboardingViewPager.setCurrentItem(onboardingViewPager.getCurrentItem()+1);
             }else{
-                startActivity(new Intent(this, Arduino_Guide_Installation_Activity.class));
+                startActivity(new Intent(this, Arduino_Guide_Setup_Activity.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 finish();
             }
@@ -80,11 +80,36 @@ public class Arduino_Guide_Supplies_Activity extends AppCompatActivity {
     private void setupOnboardingItems(){
         List<OnboardingItem> onboardingItemPcGuideActivityList = new ArrayList<>();
         OnboardingItem item_Intro = new OnboardingItem();
-        item_Intro.setTitle("Welcome to the Supplies Guide for Arduino");
-        item_Intro.setDescription("Description");
+        item_Intro.setTitle("Welcome to the Prep Guide for Arduino");
+        item_Intro.setDescription("This is where we will guide you through " +
+                "your first time set up of your Arduino");
         item_Intro.setImage(R.drawable.arduino_logo);
 
+        OnboardingItem item_1 = new OnboardingItem();
+        item_1.setTitle("Supplies");
+        item_1.setDescription("• First and foremost you will need one of the many Arduino models. " +
+                "If you bought the Arduino alone you will need to buy some extra supplies. Arduinos " +
+                "require a micro usb cord in order to power and connect it to your personal computer. It will need to be " +
+                "cable of powering the Arduino and doing data transfer." +
+                "\n• Next you will need a separate computer in order to write your code and upload it to" +
+                "the Arduino. Most if not all computers should be capable as long as they have one free usb port " +
+                "and ability to download the Arduino IDE." +
+                "\n• You may also purchase some optional add ons that arent necessary for set up " +
+                ",but may be useful in the future such memory cards, shields, and carriers.");
+        item_1.setImage(R.drawable.arduino_uno);
+
+        /*OnboardingItem item_2 = new OnboardingItem();
+        item_2.setTitle("MicroSD setup");
+        item_2.setDescription("  There are many OS options, but as a beginner the best place to start is the Raspberry Pi OS which can serve most needs. You will want to navigate " +
+                "to https://www.raspberrypi.com/software/ on your computer to download the Raspberry Pi OS. You will then want to insert your microSD card into your computer " +
+                "or use your SD card reader. When you launch the installer your system may try to warn you, but make sure to run it anyway. Select Raspberry Pi OS and the SD card you " +
+                "inserted then select WRITE. Once it's done you can eject your SD card from your computer and prepare for the next steps.");
+        item_2.setImage(R.drawable.sd_card);
+         */
+
         onboardingItemPcGuideActivityList.add(item_Intro);
+        onboardingItemPcGuideActivityList.add(item_1);
+        //onboardingItemPcGuideActivityList.add(item_2);
         onboardingAdapterPcGuide = new OnboardingAdapter(onboardingItemPcGuideActivityList);
     }
 

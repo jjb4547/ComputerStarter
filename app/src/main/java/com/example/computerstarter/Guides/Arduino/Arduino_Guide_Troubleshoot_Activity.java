@@ -23,7 +23,7 @@ import com.google.android.material.button.MaterialButton;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Arduino_Guide_Installation_Activity extends AppCompatActivity {
+public class Arduino_Guide_Troubleshoot_Activity extends AppCompatActivity {
 
     private OnboardingAdapter onboardingAdapterPcGuide;
     private LinearLayout layoutOnboardingIndicators;
