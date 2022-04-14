@@ -124,10 +124,41 @@ public class PriceList {
     public static int getWattage(int id)
     {
         int answer = 0;
-        try{
-            answer = jsonObj.getJSONArray("items").getJSONObject(id).getInt("price");
-        } catch(JSONException e){
-            System.out.println(e);
+        if(getPart(id).equals("cpu") || getPart(id).equals("video cards") || getPart(id).equals("power supplies"))
+        {
+            try {
+                answer = jsonObj.getJSONArray("items").getJSONObject(id).getInt("wattage");
+            } catch (JSONException e) {
+                System.out.println(e);
+            }
+        }
+        return answer;
+    }
+
+    public static String getMemType(int id)
+    {
+        String answer = "null";
+        if(getPart(id).equals("memory") || getPart(id).equals("motherboards"))
+        {
+            try{
+                answer = jsonObj.getJSONArray("items").getJSONObject(id).getString("mem_type");
+            } catch(JSONException e){
+                System.out.println(e);
+            }
+        }
+        return answer;
+    }
+
+    public static int getMemSlots(int id)
+    {
+        int answer = 0;
+        if(getPart(id).equals("memory") || getPart(id).equals("motherboards"))
+        {
+            try {
+                answer = jsonObj.getJSONArray("items").getJSONObject(id).getInt("mem_slots");
+            } catch (JSONException e) {
+                System.out.println(e);
+            }
         }
         return answer;
     }
