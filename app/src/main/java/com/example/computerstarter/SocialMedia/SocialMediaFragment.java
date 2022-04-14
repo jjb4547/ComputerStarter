@@ -32,6 +32,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.makeramen.roundedimageview.RoundedImageView;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +48,8 @@ public class SocialMediaFragment extends Fragment {
     FloatingActionButton button;
     Spinner spinner;
     String textSpin = "";
+    ImageButton menuButton;
+    private StorageReference storageReference = FirebaseStorage.getInstance().getReference();
 
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -148,9 +152,23 @@ public class SocialMediaFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_forum, container, false);
         //used for spinner dropdown on RecyclerView
         spinner = view.findViewById(R.id.pspinRV);
-        ImageButton menuButton = view.findViewById(R.id.menuButton);
+        RoundedImageView profileBut = view.findViewById(R.id.profileButton);
+        menuButton = view.findViewById(R.id.menuButton);
+        profileBut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainBuilds)getActivity()).openDrawer();
+            }
+        });
         menuButton.setOnClickListener(v->{
             ((MainBuilds)getActivity()).openDrawer();
+        });
+        ImageButton filter = view.findViewById(R.id.filter);
+        filter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //PopupMenu popupMenu = new PopupMenu(this, );
+            }
         });
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, arrayList);
         adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
@@ -196,7 +214,13 @@ public class SocialMediaFragment extends Fragment {
                 Intent intent = new Intent(getContext(),SocialMediaBlogs.class);
                 startActivity(intent);
             });
+            profileBut.setVisibility(View.VISIBLE);
+            StorageReference profileRef = storageReference.child("ProfileImage/Users/" + mAuth.getCurrentUser().getUid() + "/profile");
+            profileRef.getDownloadUrl().addOnSuccessListener(uri -> Picasso.get().load(uri).into(profileBut));
+            menuButton.setVisibility(View.GONE);
         }else{
+            menuButton.setVisibility(View.VISIBLE);
+            profileBut.setVisibility(View.GONE);
             spinner.setVisibility(View.GONE);
             loginBut.setVisibility(View.VISIBLE);
             loginText.setVisibility(View.VISIBLE);

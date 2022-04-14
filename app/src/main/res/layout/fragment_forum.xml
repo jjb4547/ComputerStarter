@@ -6,32 +6,77 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient_home"
     android:orientation="vertical">
+    <RelativeLayout
+        android:id="@+id/commLay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:src="@mipmap/ic_logo" />
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/profileButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:scaleType="centerCrop"
+            app:riv_corner_radius="10dp"
+            app:tint="@color/cardview_light"
+            tools:src="@mipmap/ic_logo" />
+        <ImageButton
+            android:id="@+id/menuButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            app:tint="@color/cardview_light"
+            android:src="@drawable/ic_menu"
+            android:background="?attr/selectableItemBackground"
+            android:visibility="gone"/>
+
+        <ImageButton
+            android:id="@+id/filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_alignTop="@id/logo"
+            android:layout_alignBottom="@id/logo"
+            android:background="?attr/selectableItemBackground"
+            android:src="@drawable/ic_filter" />
+    </RelativeLayout>
 
     <Spinner
         android:id="@+id/pspinRV"
         android:layout_width="300dp"
+        android:layout_below="@id/commLay"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="5dp"/>
+        android:layout_marginTop="5dp" />
 
-    <ImageButton
-        android:id="@+id/menuButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:background="?attr/selectableItemBackground"
-        android:src="@drawable/ic_menu"
-        app:tint="@color/cardview_light" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:layout_marginTop="10dp"
         android:id="@+id/swipeLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/menuButton"
+        android:layout_below="@+id/pspinRV"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="40dp">
 
         <androidx.recyclerview.widget.RecyclerView
@@ -59,7 +104,7 @@
         android:id="@+id/loginText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/menuButton"
+        android:layout_below="@id/commLay"
         android:layout_centerHorizontal="true"
         android:fontFamily="@font/francois_one"
         android:text="Please Login to see what others have Posted."

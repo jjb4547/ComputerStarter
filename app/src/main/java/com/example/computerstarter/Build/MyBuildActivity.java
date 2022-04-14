@@ -127,12 +127,7 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
             loginText.setVisibility(View.VISIBLE);
         }
         ImageButton menuButton = findViewById(R.id.menuButton);
-        menuButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                drawerLayout.openDrawer(Gravity.RIGHT);
-            }
-        });
+        menuButton.setOnClickListener(v -> drawerLayout.openDrawer(Gravity.RIGHT));
         TextView name = headerView.findViewById(R.id.myname);
         TextView email = headerView.findViewById(R.id.email);
         ImageView profile = headerView.findViewById(R.id.myimage);

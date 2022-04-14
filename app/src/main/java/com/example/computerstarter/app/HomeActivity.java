@@ -209,7 +209,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                             .putExtra("Act", "Edu"));
                     break;
                 case "guides":
-                    startActivity(new Intent(HomeActivity.this, RaspberryPi_Guides_Activity.class));
+                    startActivity(new Intent(HomeActivity.this, Guides_Activity.class));
                     break;
             }
         });

@@ -14,16 +14,17 @@
             android:id="@+id/sampleLay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <ImageButton
                 android:id="@+id/menuButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:background="?attr/selectableItemBackground"
                 android:layout_centerVertical="true"
+                android:layout_marginEnd="10dp"
+                android:background="?attr/selectableItemBackground"
                 android:src="@drawable/ic_menu"
-                app:tint="@color/cardview_light"
-                android:layout_marginEnd="10dp"/>
+                app:tint="@color/cardview_light" />
             <ImageButton
                 android:id="@+id/homeBut"
                 android:layout_width="wrap_content"

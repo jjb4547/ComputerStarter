@@ -2,9 +2,11 @@ package com.example.computerstarter.Guides.Arduino;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,8 +33,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
-
-import java.util.Objects;
 
 public class Arduino_Guides_Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private TextView home;
@@ -66,7 +66,7 @@ public class Arduino_Guides_Activity extends AppCompatActivity implements Naviga
         toggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.navigation_draw_open,R.string.navigation_draw_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        //Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         navigationView.setNavigationItemSelectedListener(this);
         View headerView = navigationView.getHeaderView(0);
         Menu menu = navigationView.getMenu();
@@ -108,7 +108,14 @@ public class Arduino_Guides_Activity extends AppCompatActivity implements Naviga
                 //log.setText("Log Out");
             }
         });
-        TextView home = findViewById(R.id.home);
+        ImageButton menuButton = findViewById(R.id.menuButton);
+        menuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.openDrawer(Gravity.RIGHT);
+            }
+        });
+        ImageButton home = findViewById(R.id.homeBut);
         home.setOnClickListener(view->{
             startActivity(new Intent(getApplicationContext(), Guides_Activity.class));
             overridePendingTransition(R.anim.slide_in_top,R.anim.stay);

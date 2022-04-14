@@ -70,7 +70,7 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <RelativeLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -83,12 +83,12 @@
             <RelativeLayout
                 android:id="@+id/relGrid"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent">
 
                 <GridLayout
                     android:id="@+id/homeGrid"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:columnCount="2"
                     android:paddingBottom="40dp"
                     android:rowCount="3">
@@ -109,7 +109,7 @@
 
                         <RelativeLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="match_parent">
 
                             <ImageView
                                 android:id="@+id/buildsImage"
@@ -150,7 +150,7 @@
 
                         <RelativeLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="match_parent">
 
                             <ImageView
                                 android:id="@+id/educationImage"
@@ -190,7 +190,7 @@
 
                         <RelativeLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="match_parent">
 
                             <ImageView
                                 android:id="@+id/socialImage"
@@ -208,7 +208,7 @@
                                 android:layout_marginTop="30dp"
                                 android:layout_marginBottom="10dp"
                                 android:fontFamily="@font/francois_one"
-                                android:text="SOCIAL MEDIA"
+                                android:text="COMMUNITY"
                                 android:textAlignment="center"
                                 android:textColor="@color/white"
                                 android:textSize="25sp" />
@@ -232,14 +232,13 @@
 
                         <RelativeLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="match_parent">
 
                             <ImageView
                                 android:id="@+id/loginImage"
                                 android:layout_width="120dp"
                                 android:layout_height="120dp"
                                 android:layout_centerInParent="true"
-                                android:layout_marginTop="30dp"
                                 android:src="@drawable/ic_logout" />
 
                             <TextView
@@ -259,7 +258,7 @@
                     </androidx.cardview.widget.CardView>
                 </GridLayout>
             </RelativeLayout>
-        </RelativeLayout>
+        </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.navigation.NavigationView

@@ -24,6 +24,9 @@
             android:layout_margin="10dp"
             android:orientation="vertical"
             android:layout_marginBottom="15dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -32,7 +35,30 @@
                 android:gravity="center"
                 android:textSize="30sp"
                 android:textStyle="bold"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"/>
+                <ImageButton
+                    android:id="@+id/menuButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="10dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:src="@drawable/ic_menu"
+                    app:tint="@color/cardview_light" />
+                <ImageButton
+                    android:id="@+id/homeBut"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:background="?attr/selectableItemBackground"
+                    android:layout_centerVertical="true"
+                    app:tint="@color/cardview_light"
+                    android:src="@drawable/ic_back"
+                    android:layout_marginStart="10dp"/>
+            </RelativeLayout>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -215,21 +241,6 @@
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
             -->
-
-            <TextView
-                android:id="@+id/home"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:textAlignment="center"
-                android:textColor="@color/cardview_light"
-                android:text="Return Back"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:clickable="true"
-                android:fontFamily="@font/francois_one"
-                android:textSize="30sp"/>
         </LinearLayout>
 
 
@@ -242,8 +253,8 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_menu"
         app:itemTextAppearance="?android:attr/textAppearanceMedium"
-        android:layout_gravity= "start"
-        android:background="@color/blue_gray"
+        android:layout_gravity= "end"
+        android:background="@drawable/drawer_background_right2"
         app:itemTextColor="@color/white"
         app:itemIconTint="@color/cardview_light">
         <RelativeLayout
