@@ -56,21 +56,44 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
-                        <TextView
-                            android:id="@+id/checkedCPU"
-                            android:checkMark="?android:attr/listChoiceIndicatorMultiple"
-                            android:layout_width="wrap_content"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:src="@drawable/cpu_link"
+                            android:layout_margin="10dp"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="CPU"
-                            android:layout_gravity="center"
-                            android:fontFamily="@font/francois_one"
-                            android:textSize="30sp"
-                            android:textColor="@color/white"
-                            android:textStyle="bold"
-                            android:textAlignment="center"
-                            android:gravity="center"
-                            android:checkMarkTint="@color/white"/>
+                            android:orientation="vertical"
+                            android:layout_margin="10dp">
+                            <TextView
+                                android:id="@+id/checkedCPU"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="CPU"
+                                android:layout_gravity="center_horizontal"
+                                android:fontFamily="@font/francois_one"
+                                android:textSize="30sp"
+                                android:textColor="@color/white"
+                                android:textStyle="bold"
+                                android:textAlignment="center"
+                                android:checkMarkTint="@color/white" />
+                            <TextView
+                                android:id="@+id/CPUinfo"
+                                android:layout_alignParentBottom="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="AMD, Intel, and More"
+                                android:layout_gravity="center_horizontal"
+                                android:fontFamily="@font/francois_one"
+                                android:textSize="20sp"
+                                android:textColor="@color/white"
+                                android:textStyle="bold"
+                                android:textAlignment="center"
+                                android:gravity="center"
+                                android:checkMarkTint="@color/white"/>
+                        </LinearLayout>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
@@ -89,21 +112,45 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
-                        <TextView
-                            android:id="@+id/checkedMot"
-                            android:checkMark="?android:attr/listChoiceIndicatorMultiple"
-                            android:layout_width="wrap_content"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:src="@drawable/motherboard_link"
+                            android:layout_margin="10dp"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="MOTHERBOARD"
-                            android:layout_gravity="center"
-                            android:fontFamily="@font/francois_one"
-                            android:textSize="30sp"
-                            android:textColor="@color/white"
-                            android:textAlignment="center"
-                            android:checked="false"
-                            android:gravity="center"
-                            android:checkMarkTint="@color/white"/>
+                            android:orientation="vertical">
+                            <TextView
+                                android:id="@+id/checkedMot"
+                                android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="MOTHERBOARD"
+                                android:layout_gravity="center"
+                                android:fontFamily="@font/francois_one"
+                                android:textSize="30sp"
+                                android:textColor="@color/white"
+                                android:textAlignment="center"
+                                android:checked="false"
+                                android:gravity="center"
+                                android:checkMarkTint="@color/white"/>
+                            <TextView
+                                android:id="@+id/Motinfo"
+                                android:layout_alignParentBottom="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="ATX, Micro ATX, Mini ITX, and More"
+                                android:layout_gravity="center_horizontal"
+                                android:fontFamily="@font/francois_one"
+                                android:textSize="20sp"
+                                android:textColor="@color/white"
+                                android:textStyle="bold"
+                                android:textAlignment="center"
+                                android:gravity="center"
+                                android:checkMarkTint="@color/white"/>
+                        </LinearLayout>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
@@ -122,21 +169,43 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
-                        <TextView
-                            android:id="@+id/checkedMem"
-                            android:layout_width="wrap_content"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:src="@drawable/memory_link"
+                            android:layout_margin="10dp"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="MEMORY"
-                            android:layout_gravity="center"
-                            android:fontFamily="@font/francois_one"
-                            android:textSize="30sp"
-                            android:textColor="@color/white"
-                            android:textAlignment="center"
-                            android:checked="false"
-                            android:gravity="center"
-                            android:checkMarkTint="@color/white"
-                            android:checkMark="?android:attr/listChoiceIndicatorMultiple"/>
+                            android:orientation="vertical">
+                            <TextView
+                                android:id="@+id/checkedMem"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="MEMORY"
+                                android:layout_gravity="center"
+                                android:fontFamily="@font/francois_one"
+                                android:textSize="30sp"
+                                android:textColor="@color/white"
+                                android:textAlignment="center"
+                                android:checked="false"
+                                android:gravity="center" />
+                            <TextView
+                                android:id="@+id/Meminfo"
+                                android:layout_alignParentBottom="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="8GB, 16GB, 32GB, 64GB, 128GB"
+                                android:layout_gravity="center_horizontal"
+                                android:fontFamily="@font/francois_one"
+                                android:textSize="20sp"
+                                android:textColor="@color/white"
+                                android:textStyle="bold"
+                                android:textAlignment="center"
+                                android:gravity="center"
+                                android:checkMarkTint="@color/white"/>
+                        </LinearLayout>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
@@ -155,21 +224,45 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
-                        <TextView
-                            android:id="@+id/checkedStor"
-                            android:layout_width="wrap_content"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:src="@drawable/storage_link"
+                            android:layout_margin="10dp"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="STORAGE"
-                            android:layout_gravity="center"
-                            android:fontFamily="@font/francois_one"
-                            android:textSize="30sp"
-                            android:textColor="@color/white"
-                            android:textAlignment="center"
-                            android:checked="false"
-                            android:gravity="center"
-                            android:checkMarkTint="@color/white"
-                            android:checkMark="?android:attr/listChoiceIndicatorMultiple"/>
+                            android:orientation="vertical">
+                            <TextView
+                                android:id="@+id/checkedStor"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="STORAGE"
+                                android:layout_gravity="center"
+                                android:fontFamily="@font/francois_one"
+                                android:textSize="30sp"
+                                android:textColor="@color/white"
+                                android:textAlignment="center"
+                                android:checked="false"
+                                android:gravity="center"
+                                android:checkMarkTint="@color/white"
+                                android:checkMark="?android:attr/listChoiceIndicatorMultiple"/>
+                            <TextView
+                                android:id="@+id/Storageinfo"
+                                android:layout_alignParentBottom="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Solid State Drives, Hard Drive"
+                                android:layout_gravity="center_horizontal"
+                                android:fontFamily="@font/francois_one"
+                                android:textSize="20sp"
+                                android:textColor="@color/white"
+                                android:textStyle="bold"
+                                android:textAlignment="center"
+                                android:gravity="center"
+                                android:checkMarkTint="@color/white"/>
+                        </LinearLayout>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
@@ -188,21 +281,45 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
-                        <TextView
-                            android:id="@+id/checkedPSU"
-                            android:layout_width="wrap_content"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:src="@drawable/psu_link"
+                            android:layout_margin="10dp"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="POWER SUPPLY UNIT"
-                            android:layout_gravity="center"
-                            android:fontFamily="@font/francois_one"
-                            android:textSize="30sp"
-                            android:textColor="@color/white"
-                            android:textAlignment="center"
-                            android:checked="false"
-                            android:gravity="center"
-                            android:checkMarkTint="@color/white"
-                            android:checkMark="?android:attr/listChoiceIndicatorMultiple"/>
+                            android:orientation="vertical">
+                            <TextView
+                                android:id="@+id/checkedPSU"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="POWER SUPPLY UNIT"
+                                android:layout_gravity="center"
+                                android:fontFamily="@font/francois_one"
+                                android:textSize="30sp"
+                                android:textColor="@color/white"
+                                android:textAlignment="center"
+                                android:checked="false"
+                                android:gravity="center"
+                                android:checkMarkTint="@color/white"
+                                android:checkMark="?android:attr/listChoiceIndicatorMultiple"/>
+                            <TextView
+                                android:id="@+id/PSUinfo"
+                                android:layout_alignParentBottom="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Modular, and Non-Modular"
+                                android:layout_gravity="center_horizontal"
+                                android:fontFamily="@font/francois_one"
+                                android:textSize="20sp"
+                                android:textColor="@color/white"
+                                android:textStyle="bold"
+                                android:textAlignment="center"
+                                android:gravity="center"
+                                android:checkMarkTint="@color/white"/>
+                        </LinearLayout>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
@@ -221,21 +338,45 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
-                        <TextView
-                            android:id="@+id/checkedCool"
-                            android:layout_width="wrap_content"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:src="@drawable/cpu_cooler_link"
+                            android:layout_margin="10dp"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="CPU COOLER"
-                            android:layout_gravity="center"
-                            android:fontFamily="@font/francois_one"
-                            android:textSize="30sp"
-                            android:textColor="@color/white"
-                            android:textAlignment="center"
-                            android:checked="false"
-                            android:gravity="center"
-                            android:checkMarkTint="@color/white"
-                            android:checkMark="?android:attr/listChoiceIndicatorMultiple"/>
+                            android:orientation="vertical">
+                            <TextView
+                                android:id="@+id/checkedCool"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="CPU COOLER"
+                                android:layout_gravity="center"
+                                android:fontFamily="@font/francois_one"
+                                android:textSize="30sp"
+                                android:textColor="@color/white"
+                                android:textAlignment="center"
+                                android:checked="false"
+                                android:gravity="center"
+                                android:checkMarkTint="@color/white"
+                                android:checkMark="?android:attr/listChoiceIndicatorMultiple"/>
+                            <TextView
+                                android:id="@+id/CPUCoolinfo"
+                                android:layout_alignParentBottom="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Liquid Coolers"
+                                android:layout_gravity="center_horizontal"
+                                android:fontFamily="@font/francois_one"
+                                android:textSize="20sp"
+                                android:textColor="@color/white"
+                                android:textStyle="bold"
+                                android:textAlignment="center"
+                                android:gravity="center"
+                                android:checkMarkTint="@color/white"/>
+                        </LinearLayout>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
@@ -254,21 +395,45 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
-                        <TextView
-                            android:id="@+id/checkedMon"
-                            android:layout_width="wrap_content"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:src="@drawable/monitor_link"
+                            android:layout_margin="10dp"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="MONITOR"
-                            android:layout_gravity="center"
-                            android:fontFamily="@font/francois_one"
-                            android:textSize="30sp"
-                            android:textColor="@color/white"
-                            android:textAlignment="center"
-                            android:checked="false"
-                            android:gravity="center"
-                            android:checkMarkTint="@color/white"
-                            android:checkMark="?android:attr/listChoiceIndicatorMultiple"/>
+                            android:orientation="vertical">
+                            <TextView
+                                android:id="@+id/checkedMon"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="MONITOR"
+                                android:layout_gravity="center"
+                                android:fontFamily="@font/francois_one"
+                                android:textSize="30sp"
+                                android:textColor="@color/white"
+                                android:textAlignment="center"
+                                android:checked="false"
+                                android:gravity="center"
+                                android:checkMarkTint="@color/white"
+                                android:checkMark="?android:attr/listChoiceIndicatorMultiple"/>
+                            <TextView
+                                android:id="@+id/Moninfo"
+                                android:layout_alignParentBottom="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Regular, Gaming, and More"
+                                android:layout_gravity="center_horizontal"
+                                android:fontFamily="@font/francois_one"
+                                android:textSize="20sp"
+                                android:textColor="@color/white"
+                                android:textStyle="bold"
+                                android:textAlignment="center"
+                                android:gravity="center"
+                                android:checkMarkTint="@color/white"/>
+                        </LinearLayout>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
@@ -287,21 +452,45 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
-                        <TextView
-                            android:id="@+id/checkedVGA"
-                            android:layout_width="wrap_content"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:src="@drawable/vga_link"
+                            android:layout_margin="10dp"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="GRAPHICS PROCESSING UNIT"
-                            android:layout_gravity="center"
-                            android:fontFamily="@font/francois_one"
-                            android:textSize="30sp"
-                            android:textColor="@color/white"
-                            android:textAlignment="center"
-                            android:checked="false"
-                            android:gravity="center"
-                            android:checkMarkTint="@color/white"
-                            android:checkMark="?android:attr/listChoiceIndicatorMultiple"/>
+                            android:orientation="vertical">
+                            <TextView
+                                android:id="@+id/checkedVGA"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="GRAPHICS PROCESSING UNIT"
+                                android:layout_gravity="center"
+                                android:fontFamily="@font/francois_one"
+                                android:textSize="30sp"
+                                android:textColor="@color/white"
+                                android:textAlignment="center"
+                                android:checked="false"
+                                android:gravity="center"
+                                android:checkMarkTint="@color/white"
+                                android:checkMark="?android:attr/listChoiceIndicatorMultiple"/>
+                            <TextView
+                                android:id="@+id/Vgainfo"
+                                android:layout_alignParentBottom="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="3060 TI, 3070, 3070 TI and More"
+                                android:layout_gravity="center_horizontal"
+                                android:fontFamily="@font/francois_one"
+                                android:textSize="20sp"
+                                android:textColor="@color/white"
+                                android:textStyle="bold"
+                                android:textAlignment="center"
+                                android:gravity="center"
+                                android:checkMarkTint="@color/white"/>
+                        </LinearLayout>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
@@ -320,21 +509,45 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
-                        <TextView
-                            android:id="@+id/checkedCase"
-                            android:layout_width="wrap_content"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:src="@drawable/memory_link"
+                            android:layout_margin="10dp"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="CASE"
-                            android:layout_gravity="center"
-                            android:fontFamily="@font/francois_one"
-                            android:textSize="30sp"
-                            android:textColor="@color/white"
-                            android:textAlignment="center"
-                            android:checked="false"
-                            android:gravity="center"
-                            android:checkMarkTint="@color/white"
-                            android:checkMark="?android:attr/listChoiceIndicatorMultiple"/>
+                            android:orientation="vertical">
+                            <TextView
+                                android:id="@+id/checkedCase"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="CASE"
+                                android:layout_gravity="center"
+                                android:fontFamily="@font/francois_one"
+                                android:textSize="30sp"
+                                android:textColor="@color/white"
+                                android:textAlignment="center"
+                                android:checked="false"
+                                android:gravity="center"
+                                android:checkMarkTint="@color/white"
+                                android:checkMark="?android:attr/listChoiceIndicatorMultiple"/>
+                            <TextView
+                                android:id="@+id/Caseinfo"
+                                android:layout_alignParentBottom="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Many different sized cases"
+                                android:layout_gravity="center_horizontal"
+                                android:fontFamily="@font/francois_one"
+                                android:textSize="20sp"
+                                android:textColor="@color/white"
+                                android:textStyle="bold"
+                                android:textAlignment="center"
+                                android:gravity="center"
+                                android:checkMarkTint="@color/white"/>
+                        </LinearLayout>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
             </GridLayout>

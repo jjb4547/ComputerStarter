@@ -301,21 +301,32 @@
                             android:layout_alignParentEnd="true"
                             android:layout_marginEnd="10dp"
                             app:tint="@color/white" />
-                        <CheckedTextView
-                            android:id="@+id/checkedMem"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="MEMORY"
-                            android:layout_gravity="center"
-                            android:layout_centerHorizontal="true"
-                            android:fontFamily="@font/francois_one"
-                            android:textSize="30sp"
-                            android:textColor="@color/white"
-                            android:textAlignment="center"
-                            android:checked="false"
-                            android:gravity="center"
-                            android:checkMarkTint="@color/white"
-                            android:checkMark="?android:attr/listChoiceIndicatorMultiple"/>
+
+                            <CheckedTextView
+                                android:id="@+id/checkedMem"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerHorizontal="true"
+                                android:layout_gravity="center"
+                                android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+                                android:checkMarkTint="@color/white"
+                                android:checked="false"
+                                android:fontFamily="@font/francois_one"
+                                android:gravity="center"
+                                android:text="MEMORY"
+                                android:textAlignment="center"
+                                android:textColor="@color/white"
+                                android:textSize="30sp" />
+                            <TextView
+                                android:id="@+id/NumberMem"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                tools:text="x1"
+                                android:layout_toEndOf="@id/checkedMem"
+                                android:gravity="center"
+                                android:layout_centerVertical="true"
+                                android:textSize="20sp"
+                                android:textColor="@color/white"/>
                         </RelativeLayout>
                         <LinearLayout
                             android:layout_width="match_parent"

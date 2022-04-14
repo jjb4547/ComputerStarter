@@ -38,6 +38,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import java.util.Calendar;
 import java.util.HashMap;
@@ -104,7 +105,7 @@ public class SocialMediaAdapter extends RecyclerView.Adapter<SocialMediaAdapter.
         holder.time.setText(timedate);
         holder.like.setText(plike + " Likes");
         holder.comments.setText(comm + " Comments");
-        holder.picture.setImageURI(modelPosts.get(position).getProfile());
+        //holder.picture.setImageURI(modelPosts.get(position).getProfile());
         holder.image.setOnClickListener(view -> {
             dialog = new Dialog(context);
             dialog.setContentView(R.layout.imagelayout);
@@ -131,12 +132,14 @@ public class SocialMediaAdapter extends RecyclerView.Adapter<SocialMediaAdapter.
 
             }
         });
+        StorageReference profileRef = storageReference.child("ProfileImage/Users/"+modelPosts.get(position).getUid()+"/profile");
+        profileRef.getDownloadUrl().addOnSuccessListener(uri -> Picasso.get().load(uri).into(holder.picture));
         //holder.picture.setImageURI(profile);
-        try {
-            Glide.with(context).load(dp).into(holder.picture);
-        } catch (Exception e) {
-
-        }
+//        try {
+//            Glide.with(context).load(dp).into(holder.picture);
+//        } catch (Exception e) {
+//
+//        }
         try {
             Glide.with(context).load(image).into(holder.image);
         } catch (Exception e) {

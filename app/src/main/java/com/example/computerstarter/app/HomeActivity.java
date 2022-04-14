@@ -37,6 +37,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.makeramen.roundedimageview.RoundedImageView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -59,6 +60,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private TextView log;
     private StorageReference storageReference = FirebaseStorage.getInstance().getReference();
     private List<PartsItem> partsItemList;
+    private RoundedImageView profileImage;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -66,14 +68,15 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.homelayout);
         fillPartsList();
         user = mAuth.getCurrentUser();
-        userName = findViewById(R.id.textUserName);
+        //userName = findViewById(R.id.textUserName);
         logText = findViewById(R.id.logText);
+        profileImage = findViewById(R.id.userProfile);
         if (user != null) {
-            userName.setText(user.getDisplayName());
+            //userName.setText(user.getDisplayName());
             logText.setText("LOG OUT");
         } else {
             logText.setText("LOG IN");
-            userName.setText("GUEST");
+            //userName.setText("GUEST");
         }
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
@@ -113,10 +116,17 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             email.setText(user.getEmail());
             StorageReference profileRef = storageReference.child("ProfileImage/Users/" + mAuth.getCurrentUser().getUid() + "/profile");
             profileRef.getDownloadUrl().addOnSuccessListener(uri -> Picasso.get().load(uri).into(profile));
+            profileRef.getDownloadUrl().addOnSuccessListener(uri -> Picasso.get().load(uri).into(profileImage));
         } else {
             name.setText("Guest");
             email.setText("Guest Not Signed In");
         }
+        profileImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.open();
+            }
+        });
         diffTitles = getResources().getStringArray(R.array.comp_names);
         build = findViewById(R.id.buildCard);
         social = findViewById(R.id.socialCard);

@@ -1,15 +1,19 @@
 package com.example.computerstarter.Build;
 
+import android.animation.LayoutTransition;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.transition.AutoTransition;
+import android.transition.TransitionManager;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,12 +33,15 @@ public class PC_Build_Parts extends AppCompatActivity {
     int[] partsID = new int[10];
     int[] numParts;
     int counter;
+    TextView title;
+    ImageButton backButton;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pc_part_build);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(getIntent().getStringExtra("name"));
+        title = findViewById(R.id.PartBuildTitle);
+        backButton = findViewById(R.id.backPartBuild);
+        title.setText(getIntent().getStringExtra("name"));
         partsID = getIntent().getIntArrayExtra("ID");
         numParts = getIntent().getIntArrayExtra("Num");
         counter = 0;
@@ -54,6 +61,16 @@ public class PC_Build_Parts extends AppCompatActivity {
 
         MyAdapter adapter = new MyAdapter(this, mTitle, mDesc, images);
         listView.setAdapter(adapter);
+        listView.setOnItemLongClickListener((adapterView, view, i, l) -> {
+            LinearLayout details = view.findViewById(R.id.detailsParts);
+            LinearLayout layout = view.findViewById(R.id.layoutParts);
+            layout.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
+            int v = (details.getVisibility()==View.GONE)? View.VISIBLE: View.GONE;
+            TransitionManager.beginDelayedTransition(layout, new AutoTransition());
+            details.setVisibility(v);
+            //Toast.makeText(PC_Build_Parts.this, "HELLO", Toast.LENGTH_SHORT).show();
+            return true;
+        });
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -107,6 +124,18 @@ public class PC_Build_Parts extends AppCompatActivity {
                 }
             }
         });
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(PC_Build_Parts.this,Build_Activity.class)
+                        .putExtra("Name",getIntent().getStringExtra("name"))
+                        .putExtra("Build",getIntent().getStringExtra("Build"))
+                        .putExtra("ID",partsID)
+                        .putExtra("Num",numParts)
+                        .putExtra("Edit",getIntent().getExtras().getString("Edit"))
+                        .putExtra("editBuild",getIntent().getStringArrayExtra("editBuild")));
+            }
+        });
 
 
 
@@ -154,6 +183,7 @@ public class PC_Build_Parts extends AppCompatActivity {
         String rTitle[];
         String rDesc[];
         int rImgs[];
+        TextView details;
 
         MyAdapter(Context c, String title[], String desc[], int imgs[]) {
             super(c, R.layout.row, R.id.text1, title);
@@ -167,16 +197,18 @@ public class PC_Build_Parts extends AppCompatActivity {
         @NonNull
         @Override
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-            LayoutInflater layoutInflator = (LayoutInflater)getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View row = layoutInflator.inflate(R.layout.row, parent, false);
-            ImageView images = row.findViewById(R.id.image);
-            TextView myTitle = row.findViewById(R.id.text1);
-            TextView myDesc = row.findViewById(R.id.text2);
+
+            convertView = getLayoutInflater().inflate(R.layout.cardviewparts,parent,false);
+            ImageView images = convertView.findViewById(R.id.PartsImage);
+            TextView myTitle = convertView.findViewById(R.id.PartsName);
+            TextView myDesc = convertView.findViewById(R.id.PartsPrice);
+            details = convertView.findViewById(R.id.socketInfo);
 
             images.setImageResource(rImgs[position]);
             myTitle.setText(rTitle[position]);
             myDesc.setText(rDesc[position]);
-            return row;
+            details.setText(rTitle[position]);
+            return convertView;
         }
     }
 }

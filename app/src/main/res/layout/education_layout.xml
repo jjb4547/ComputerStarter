@@ -6,7 +6,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/background_color">
+    android:background="@drawable/gradient_home">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageButton
+            android:id="@+id/menuButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_menu"
+            android:background="?attr/selectableItemBackground"
+            app:tint="@color/cardview_light"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -16,7 +30,9 @@
         android:layout_marginTop="5dp"
         android:textAllCaps="true"
         android:padding="10dp"
-        android:textColor="@color/black"/>
+        android:textColor="@color/black"
+        android:layout_centerVertical="true"/>
+    </RelativeLayout>
 <ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -39,7 +55,7 @@
            app:cardElevation="8dp"
            android:clickable="true"
            android:id="@+id/pc_parts"
-           app:cardCornerRadius="8dp"
+           app:cardCornerRadius="20dp"
            >
            <RelativeLayout
                android:layout_width="match_parent"
@@ -78,7 +94,7 @@
            app:cardElevation="8dp"
            android:clickable="true"
            android:id="@+id/Guides"
-           app:cardCornerRadius="8dp">
+           app:cardCornerRadius="20dp">
            <RelativeLayout
                android:layout_width="match_parent"
                android:layout_height="150dp"
@@ -115,7 +131,7 @@
            app:cardElevation="8dp"
            android:clickable="true"
            android:id="@+id/rasp_pi"
-           app:cardCornerRadius="8dp">
+           app:cardCornerRadius="20dp">
            <RelativeLayout
                android:layout_width="match_parent"
                android:layout_height="150dp"

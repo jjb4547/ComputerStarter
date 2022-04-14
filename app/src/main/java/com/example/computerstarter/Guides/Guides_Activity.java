@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,7 +37,7 @@ import java.util.Objects;
 
 public class Guides_Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private CardView pc,rasp,ard;
-    TextView home;
+    ImageButton home;
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle toggle;
     private NavigationView navigationView;

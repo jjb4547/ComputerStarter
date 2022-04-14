@@ -22,7 +22,7 @@ import com.example.computerstarter.Build.MyBuildActivity;
 import com.example.computerstarter.Login.Login_SignUpActivity;
 import com.example.computerstarter.Others.AccountActivity;
 import com.example.computerstarter.R;
-import com.example.computerstarter.SampleProjects.Arduino.Arduino_Projects;
+import com.example.computerstarter.SampleProjects.Arduino.Projects.Arduino_Projects;
 import com.example.computerstarter.SampleProjects.RaspiProj.RaspberryPi_Projects;
 import com.example.computerstarter.app.HomeActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;

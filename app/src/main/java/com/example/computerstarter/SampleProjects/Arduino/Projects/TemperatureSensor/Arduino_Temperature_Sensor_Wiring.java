@@ -1,4 +1,4 @@
-package com.example.computerstarter.Guides.Arduino;
+package com.example.computerstarter.SampleProjects.Arduino.Projects.TemperatureSensor;
 
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
@@ -23,7 +23,7 @@ import com.google.android.material.button.MaterialButton;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Arduino_Guide_Setup_Activity extends AppCompatActivity {
+public class Arduino_Temperature_Sensor_Wiring extends AppCompatActivity {
 
     private OnboardingAdapter onboardingAdapterPcGuide;
     private LinearLayout layoutOnboardingIndicators;
@@ -44,6 +44,7 @@ public class Arduino_Guide_Setup_Activity extends AppCompatActivity {
         buttonOnboardingAction = findViewById(R.id.buttonOnboardingAction);
         exit = findViewById(R.id.exit);
         help = findViewById(R.id.help);
+        help.setVisibility(View.GONE);
 
         setupOnboardingItems();
 
@@ -64,66 +65,37 @@ public class Arduino_Guide_Setup_Activity extends AppCompatActivity {
             if(onboardingViewPager.getCurrentItem()+1< onboardingAdapterPcGuide.getItemCount()){
                 onboardingViewPager.setCurrentItem(onboardingViewPager.getCurrentItem()+1);
             }else{
-                startActivity(new Intent(this, Arduino_Guides_Activity.class)
-                        .putExtra("from","Edu"));
+                startActivity(new Intent(this, Arduino_Temperature_Sensor_Coding.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 finish();
             }
         });
         exit.setOnClickListener(view->{
-            startActivity(new Intent(this, Arduino_Guides_Activity.class)
-                    .putExtra("from","Edu"));
+            startActivity(new Intent(this, Arduino_Temperature_Sensor.class));
             overridePendingTransition(R.anim.slide_in_top,R.anim.stay);
             finish();
         });
-        help.setVisibility(View.GONE);
     }
 
     private void setupOnboardingItems(){
         List<OnboardingItem> onboardingItemPcGuideActivityList = new ArrayList<>();
-        OnboardingItem item_Intro = new OnboardingItem();
-        item_Intro.setTitle("Welcome to the Setup Guide");
-        item_Intro.setDescription("Here is where you will be able find out what components will be needed " +
-                "to build a computer and be able to achieve that life long dream of building a computer.");
-        item_Intro.setImage(R.drawable.pc_build_link);
 
-        OnboardingItem item_CPU = new OnboardingItem();
-        item_CPU.setTitle("CPU");
-        item_CPU.setDescription("First thing you need to get is the CPU");
-        item_CPU.setImage(R.drawable.cpu_link);
+        OnboardingItem item_intro = new OnboardingItem();
+        item_intro.setTitle("Welcome to the Wiring Section");
+        item_intro.setDescription("You will learn to wire up arduino and breadboard");
+        item_intro.setImage(R.drawable.arduino_logo);
 
-        OnboardingItem item_motherboard = new OnboardingItem();
-        item_motherboard.setTitle("Motherboard");
-        item_motherboard.setDescription("Second is the motherboard");
-        item_motherboard.setImage(R.drawable.motherboard_link);
+        OnboardingItem item_circuit = new OnboardingItem();
+        item_circuit.setTitle("DS18B20 Circuit");
+        item_circuit.setDescription("• Plug the DS18B20 into thr breadboard\n" +
+                "• Wire Pin 1 of the DS18B20 to GND(ground)\n" +
+                "• Wire Pin 2 of the DS18B20 to any digital pin(pin 2 in the diagram)\n" +
+                "• Wire Pin 3 of the DS18B20 to ethier +5V or +3.3V"+
+                "• Lastly don't forget to add the resistor to connect to ground and voltage");
+        item_circuit.setImage(R.drawable.arduino_temp_circuit);
 
-        OnboardingItem item_RAM = new OnboardingItem();
-        item_RAM.setTitle("RAM (Memory)");
-        item_RAM.setDescription("GET YOUR RAM");
-        item_RAM.setImage(R.drawable.memory_link);
-
-        OnboardingItem item_CPUCOOL = new OnboardingItem();
-        item_CPUCOOL.setTitle("CPU COOLER");
-        item_CPUCOOL.setDescription("GET YOUR RAM");
-        item_CPUCOOL.setImage(R.drawable.cpu_cooler_link);
-
-        OnboardingItem item_GPU = new OnboardingItem();
-        item_GPU.setTitle("GPU(VGA)");
-        item_GPU.setDescription("GET YOUR RAM");
-        item_GPU.setImage(R.drawable.vga_link);
-
-        OnboardingItem item_STORAGE = new OnboardingItem();
-        item_STORAGE.setTitle("CONGRATULATIONS");
-        item_STORAGE.setDescription("You Just Built Your First PC");
-        item_STORAGE.setImage(R.drawable.storage_link);;
-
-        onboardingItemPcGuideActivityList.add(item_Intro);
-        onboardingItemPcGuideActivityList.add(item_CPU);
-        onboardingItemPcGuideActivityList.add(item_motherboard);
-        onboardingItemPcGuideActivityList.add(item_RAM);
-        onboardingItemPcGuideActivityList.add(item_CPUCOOL);
-        onboardingItemPcGuideActivityList.add(item_GPU);
-        onboardingItemPcGuideActivityList.add(item_STORAGE);
+        onboardingItemPcGuideActivityList.add(item_intro);
+        onboardingItemPcGuideActivityList.add(item_circuit);
         onboardingAdapterPcGuide = new OnboardingAdapter(onboardingItemPcGuideActivityList);
     }
 
@@ -159,7 +131,7 @@ public class Arduino_Guide_Setup_Activity extends AppCompatActivity {
             }
         }
         if (index== onboardingAdapterPcGuide.getItemCount()-1){
-            buttonOnboardingAction.setText("Finish");
+            buttonOnboardingAction.setText("Coding");
         }else{
             buttonOnboardingAction.setText("Next");
         }

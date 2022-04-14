@@ -6,10 +6,12 @@ import android.graphics.Canvas;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -47,7 +49,6 @@ import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
 
@@ -67,6 +68,7 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
     private int[] partsID = new int[9];
     private int[] numParts = new int[9];
     private boolean first = false;
+    private ImageButton backHome;
     TextView home;
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle toggle;
@@ -107,7 +109,7 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
         toggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.navigation_draw_open,R.string.navigation_draw_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        //Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         navigationView.setNavigationItemSelectedListener(this);
         View headerView = navigationView.getHeaderView(0);
         Menu menu = navigationView.getMenu();
@@ -124,6 +126,13 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
             loginBut.setVisibility(View.VISIBLE);
             loginText.setVisibility(View.VISIBLE);
         }
+        ImageButton menuButton = findViewById(R.id.menuButton);
+        menuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.openDrawer(Gravity.RIGHT);
+            }
+        });
         TextView name = headerView.findViewById(R.id.myname);
         TextView email = headerView.findViewById(R.id.email);
         ImageView profile = headerView.findViewById(R.id.myimage);
@@ -152,8 +161,8 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
                 //log.setText("Log Out");
             }
         });
-        home = findViewById(R.id.home);
-        home.setOnClickListener(view->{
+        backHome = findViewById(R.id.backHome);
+        backHome.setOnClickListener(view->{
             startActivity(new Intent(getApplicationContext(), HomeActivity.class));
             overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
         });
