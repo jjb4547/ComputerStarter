@@ -64,6 +64,7 @@ public class PC_Build_Parts extends AppCompatActivity {
         listView.setOnItemLongClickListener((adapterView, view, i, l) -> {
             LinearLayout details = view.findViewById(R.id.detailsParts);
             LinearLayout layout = view.findViewById(R.id.layoutParts);
+            TextView textDetails = view.findViewById(R.id.socketInfo);
             layout.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
             int v = (details.getVisibility()==View.GONE)? View.VISIBLE: View.GONE;
             TransitionManager.beginDelayedTransition(layout, new AutoTransition());
@@ -207,8 +208,53 @@ public class PC_Build_Parts extends AppCompatActivity {
             images.setImageResource(rImgs[position]);
             myTitle.setText(rTitle[position]);
             myDesc.setText(rDesc[position]);
-            details.setText(rTitle[position]);
+            String detailBuilder = detailBuilder(ids[position]);
+            details.setText(detailBuilder);
             return convertView;
         }
+    }
+
+    public String detailBuilder(int partID)
+    {
+        String stringBuilder = "";
+        switch(PriceList.getPart(partID))
+        {
+            case "cpu":
+                stringBuilder += attachSocket(stringBuilder, partID) + "\n" + attachWattage(stringBuilder, partID);
+                break;
+            case "motherboards":
+                stringBuilder += attachSocket(stringBuilder, partID) + "\n" + attachWattage(stringBuilder, partID) + "\n" + attachMemType(stringBuilder, partID) + "\n" + attachMemSlots(stringBuilder, partID);
+                break;
+            case "video cards":
+            case "storage":
+            case "power supplies":
+            case "cpu cooler":
+                stringBuilder += attachWattage(stringBuilder, partID);
+                break;
+            case "memory":
+                stringBuilder += attachWattage(stringBuilder, partID) + "\n" + attachMemType(stringBuilder, partID) + "\n" + attachMemType(stringBuilder, partID);
+                break;
+        }
+        return stringBuilder;
+    }
+
+    public String attachSocket(String stringBuilder, int partID)
+    {
+        return stringBuilder + "Socket: " + PriceList.getSocket(partID);
+    }
+
+    public String attachWattage(String stringBuilder, int partID)
+    {
+        return stringBuilder + "Wattage: " + PriceList.getWattage(partID);
+    }
+
+    public String attachMemType(String stringBuilder, int partID)
+    {
+        return stringBuilder + "Memory Type: " + PriceList.getMemType(partID);
+    }
+
+    public String attachMemSlots(String stringBuilder, int partID)
+    {
+        return stringBuilder + "Memory Slots: " + PriceList.getMemSlots(partID);
     }
 }
