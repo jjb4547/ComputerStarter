@@ -58,35 +58,24 @@ public class SocialMediaBlogs extends AppCompatActivity {
     }
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseAuth firebaseAuth;
-    EditText title, des;
-    String email2;
-    private static final int CAMERA_REQUEST = 100;
-    private static final int STORAGE_REQUEST = 200;
+    EditText des;
     private static final int CAMERA_PERMISSION_CODE = 112;
     private static final int STORAGE_PERMISSION_CODE = 113;
     private boolean cameraPermission = false;
     private boolean storagePermission = false;
     ProgressDialog pd;
     ImageView image;
-    String edititle, editdes, editimage;
-    private static final int IMAGEPICK_GALLERY_REQUEST = 300;
-    private static final int IMAGE_PICKCAMERA_REQUEST = 400;
-    byte[] data;
-
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Posts");
     Uri imageuri = null;
-    TextView name, email, uid;
+    TextView name;
     String dp;
-    DatabaseReference databaseReference;
     Button upload;
-    Button blogPicture;
     FirebaseUser user;
-    ImageView profile;
-    Bitmap bitmap;
-    DatabaseReference databaseTags;
+    ImageView profile,blogPicture;
     Spinner spinner;
     Boolean isDefault;
     private String tagName;
-    private StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+    private StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("Posts");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,7 +83,6 @@ public class SocialMediaBlogs extends AppCompatActivity {
         // Inflate the layout for this fragment
         firebaseAuth = FirebaseAuth.getInstance();
         //View view = inflater.inflate(R.layout.fragment_add_blogs, container, false);
-        firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
         tagName="";
         isDefault=false;
@@ -191,7 +179,7 @@ public class SocialMediaBlogs extends AppCompatActivity {
                 }*/
 
 
-                uploadData(titl, description);
+                uploadData(description);
             }
         });
 
@@ -232,7 +220,7 @@ public class SocialMediaBlogs extends AppCompatActivity {
     }
 
     // Upload the value of blog data into firebase
-    private void uploadData(final String titl, final String description) {
+    private void uploadData(final String description) {
         // show the progress dialog box
         pd.setMessage("Publishing Post");
         pd.show();
@@ -267,7 +255,7 @@ public class SocialMediaBlogs extends AppCompatActivity {
                 hashMap.put("pcomments", "0");
                 hashMap.put("isDefault",isDefault);
                 // set the data into firebase and then empty the title ,description and image data
-                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Posts");
+
                 databaseReference.child(timestamp).setValue(hashMap)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override

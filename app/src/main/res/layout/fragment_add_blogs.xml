@@ -5,20 +5,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_color">
+    android:background="@drawable/gradient_home">
     <RelativeLayout
         android:id="@+id/addBlogsLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground">
+
         <TextView
+            android:id="@+id/postTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/francois_one"
             android:text="ADD POSTS"
             android:textColor="@color/cardview_light"
-            android:layout_centerHorizontal="true"
+            android:textSize="30sp" />
+        <Button
+            android:id="@+id/pupload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:fontFamily="@font/francois_one"
-            android:textSize="45sp"/>
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="5dp"
+            android:backgroundTint="@color/cardview_light"
+            android:text="Upload" />
 
         <ImageButton
             android:id="@+id/homeBut"
@@ -39,7 +51,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="2dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="?attr/selectableItemBackground">
 
         <Spinner
             android:id="@+id/pspin"
@@ -66,24 +79,27 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_marginTop="15dp"
-            android:background="@drawable/edit"
+            android:background="?attr/selectableItemBackground"
             android:src="@drawable/amd_cpu"
-            android:tag="default"/>
-
-        <Button
-            android:id="@+id/blogPicture"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="PICTURE"
-            android:backgroundTint="@color/cardview_light"/>
-
-        <Button
-            android:id="@+id/pupload"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20sp"
-            android:text="Upload"
-            android:backgroundTint="@color/cardview_light"/>
+            android:tag="default" />
     </LinearLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="10dp">
+
+        <ImageView
+            android:id="@+id/blogPicture"
+            android:layout_width="@dimen/_40mdp"
+            android:layout_height="@dimen/_40mdp"
+            android:src="@drawable/ic_images"
+            android:clickable="true"
+            android:background="?attr/selectableItemBackground" />
+
+    </RelativeLayout>
+
 
 </RelativeLayout>

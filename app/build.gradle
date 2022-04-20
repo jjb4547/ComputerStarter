@@ -79,4 +79,5 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.karumi:dexter:6.2.3'
     implementation 'com.github.piasy:GlideImageLoader:1.8.1'
+    implementation 'com.github.MrNouri:DynamicSizes:1.0'
 }
