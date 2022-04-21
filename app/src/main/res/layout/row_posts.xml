@@ -26,14 +26,13 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <com.makeramen.roundedimageview.RoundedImageView
-                android:id="@+id/picturetv"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+            <com.mikhaellopez.circularimageview.CircularImageView
+                android:id="@+id/profileImage"
+                android:layout_width="@dimen/_40mdp"
+                android:layout_height="@dimen/_40mdp"
                 android:scaleType="centerCrop"
-                app:riv_corner_radius="15dp"
+                android:padding="4dp"
                 android:layout_margin="10dp"
-                app:riv_border_color="@color/black"
                 tools:src="@drawable/ic_people"/>
 
             <LinearLayout
@@ -43,7 +42,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/unametv"
+                    android:id="@+id/usersName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Name"
@@ -51,7 +50,7 @@
                     android:textSize="20sp" />
 
                 <TextView
-                    android:id="@+id/utimetv"
+                    android:id="@+id/datePosted"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="33 min"
@@ -70,10 +69,10 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/ptitletv"
+            android:id="@+id/tagText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Title"
+            android:text="Tag"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -81,72 +80,56 @@
             />
 
         <TextView
-            android:id="@+id/descript"
+            android:id="@+id/postDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="32dp"
             android:text="Description"
             android:textColor="@color/white"/>
 
-        <ImageView
-            android:id="@+id/pimagetv"
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/postImage"
             android:layout_width="325dp"
-            android:layout_height="230dp"
+            android:layout_height="@dimen/_150mdp"
             android:layout_gravity="center"
             android:layout_marginTop="15dp"
             android:background="@color/silver"
             android:scaleType="centerCrop"
+            app:riv_corner_radius="10dp"
+            app:riv_mutate_background="true"
             android:clickable="true"
             />
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="68dp"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/plikeb"
-                android:layout_width="75dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:text="0"
-                android:textAlignment="textEnd"
-                android:textColor="@color/white" />
-
-            <ImageButton
                 android:id="@+id/like"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:autoLink="all"
-                android:background="@color/cardview_dark"
-                android:clickable="true"
-                android:padding="5dp"
-                android:src="@drawable/ic_like" />
+                android:layout_marginTop="10dp"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="45dp"
+                android:text="0"
+                android:textAlignment="textEnd"
+                android:drawablePadding="5dp"
+                android:drawableLeft="@drawable/ic_like_border"
+                android:textColor="@color/white" />
 
             <TextView
-                android:id="@+id/pcommentco"
-                android:layout_width="100dp"
+                android:id="@+id/comment"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginStart="15dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
+                android:layout_toEndOf="@id/like"
+                android:drawableLeft="@drawable/ic_comment"
+                android:drawablePadding="5dp"
                 android:text="0"
                 android:textAlignment="textEnd"
                 android:textColor="@color/white" />
-
-            <Button
-                android:id="@+id/comment"
-                android:layout_width="90dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:autoLink="all"
-                android:backgroundTint="@color/cardview_light"
-                android:padding="5dp"
-                android:text="Comment" />
-        </LinearLayout>
+        </RelativeLayout>
 
         <View
             android:layout_width="match_parent"

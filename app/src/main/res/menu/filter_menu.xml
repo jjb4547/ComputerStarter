@@ -2,17 +2,67 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/navigation_education"
-        android:title="Education"
+        android:id="@+id/computerItem"
+        android:title="Computer"
         android:visible="true"/>
     <item
-        android:id="@+id/navigation_main"
-        android:title="Builds"
-        android:visible="true"
-        />
-    <item android:id="@+id/navigation_social"
-        android:title="Community"
-        android:visible="true"
-
-        />
+        android:id="@+id/gpuItem"
+        android:title="GPU"
+        android:visible="true" />
+    <item
+        android:id="@+id/cpuItem"
+        android:title="CPU"
+        android:visible="true"/>
+    <item
+        android:id="@+id/motItem"
+        android:title="Motherboard"
+        android:visible="true"/>
+    <item
+        android:id="@+id/psuItem"
+        android:title="Power"
+        android:visible="true"/>
+    <item
+        android:id="@+id/ramItem"
+        android:title="RAM"
+        android:visible="true"/>
+    <item
+        android:id="@+id/memItem"
+        android:title="Memory"
+        android:visible="true"/>
+    <item
+        android:id="@+id/RGBItem"
+        android:title="RGB"
+        android:visible="true"/>
+    <item
+        android:id="@+id/towerItem"
+        android:title="Tower"
+        android:visible="true"/>
+    <item
+        android:id="@+id/helpItem"
+        android:title="Help!"
+        android:visible="true"/>
+    <item
+        android:id="@+id/monItem"
+        android:title="Monitor"
+        android:visible="true"/>
+    <item
+        android:id="@+id/mouseItem"
+        android:title="Mouse"
+        android:visible="true"/>
+    <item
+        android:id="@+id/keyItem"
+        android:title="Keyboard"
+        android:visible="true"/>
+    <item
+        android:id="@+id/streamItem"
+        android:title="Stream"
+        android:visible="true"/>
+    <item
+        android:id="@+id/codingItem"
+        android:title="Coding"
+        android:visible="true"/>
+    <item
+        android:id="@+id/designItem"
+        android:title="Design"
+        android:visible="true"/>
 </menu>

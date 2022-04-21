@@ -14,6 +14,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -40,78 +41,15 @@ import java.util.List;
 
 public class SocialMediaFragment extends Fragment {
     FirebaseAuth firebaseAuth;
+    FirebaseDatabase database;
     FirebaseUser user;
     String myuid;
     RecyclerView recyclerView;
-    List<SocialMediaModel> posts;
-    SocialMediaAdapter adapterPosts;
+    ArrayList<Post> posts;
     FloatingActionButton button;
-    Spinner spinner;
-    String textSpin = "";
-    ImageButton menuButton;
     private StorageReference storageReference = FirebaseStorage.getInstance().getReference();
 
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
-    private SwipeRefreshLayout swipeRefreshLayout;
-    String dp;
-
-    public SocialMediaFragment() {
-        // Required empty public constructor
-    }
-    private void loadTagPosts(){
-        StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("ProfileImage/Users/"+user.getUid()+"/profile");
-        storageReference.getDownloadUrl().addOnSuccessListener(uri -> dp = uri.toString());
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Posts");
-        if(!textSpin.equals("")) {
-            databaseReference.orderByChild("tag").equalTo(textSpin).addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    posts.clear();
-                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                        SocialMediaModel modelPost = dataSnapshot.getValue(SocialMediaModel.class);
-                        modelPost.setUdp(dp);
-                        posts.add(modelPost);
-                        adapterPosts = new SocialMediaAdapter(getActivity(), posts);
-                        recyclerView.setAdapter(adapterPosts);
-                        adapterPosts.notifyDataSetChanged();
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-            });
-        }else{
-            loadPosts();
-        }
-    }
-
-    private void loadPosts() {
-        StorageReference storageReference1 = FirebaseStorage.getInstance().getReference().child("ProfileImage/Users/"+user.getUid()+"/profile");
-        storageReference1.getDownloadUrl().addOnSuccessListener(uri -> dp = uri.toString());
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Posts");
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                posts.clear();
-                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                    SocialMediaModel modelPost = dataSnapshot1.getValue(SocialMediaModel.class);
-                    modelPost.setUdp(dp);
-                    posts.add(modelPost);
-                    adapterPosts = new SocialMediaAdapter(getActivity(), posts);
-                    recyclerView.setAdapter(adapterPosts);
-                    adapterPosts.notifyDataSetChanged();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                //Toast.makeText(getActivity(), databaseError.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        });
-    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -119,125 +57,44 @@ public class SocialMediaFragment extends Fragment {
         super.onCreate(savedInstanceState);
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
-        if(user!=null) {
-            loadPosts();
-        }
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        ArrayList<String> arrayList = new ArrayList<>();
-        arrayList.add("");
-        arrayList.add("Computer");
-        arrayList.add("GPU");
-        arrayList.add("CPU");
-        arrayList.add("Motherboard");
-        arrayList.add("Power");
-        arrayList.add("Ram");
-        arrayList.add("Memory");
-        arrayList.add("RGB");
-        arrayList.add("Tower");
-        arrayList.add("Help!");
-        arrayList.add("Monitor");
-        arrayList.add("Mouse");
-        arrayList.add("Keyboard");
-        arrayList.add("Setup");
-        arrayList.add("Stream");
-        arrayList.add("Coding");
-        arrayList.add("Design");
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_forum, container, false);
+        database = FirebaseDatabase.getInstance();
         //used for spinner dropdown on RecyclerView
-        spinner = view.findViewById(R.id.pspinRV);
-        RoundedImageView profileBut = view.findViewById(R.id.profileButton);
-        menuButton = view.findViewById(R.id.menuButton);
-        profileBut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ((MainBuilds)getActivity()).openDrawer();
-            }
-        });
-        menuButton.setOnClickListener(v->{
-            ((MainBuilds)getActivity()).openDrawer();
-        });
-        ImageButton filter = view.findViewById(R.id.filter);
-        filter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //PopupMenu popupMenu = new PopupMenu(this, );
-            }
-        });
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, arrayList);
-        adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                textSpin = spinner.getSelectedItem().toString();
-                //System.out.println(textSpin + " Testing Values!");
-                if(user!=null) {
-                    loadTagPosts();
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
         // Inflate the layout for this fragment
-        MaterialButton loginBut = view.findViewById(R.id.loginBut);
-        swipeRefreshLayout = view.findViewById(R.id.swipeLayout);
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        recyclerView = view.findViewById(R.id.commView);
+        posts = new ArrayList<>();
+        button = view.findViewById(R.id.buttonCreate);
+        button.setOnClickListener(view1 -> {
+            Intent intent = new Intent(getContext(), AddPost.class);
+            startActivity(intent);
+        });
+        PostAdapter postAdapter = new PostAdapter(posts, getContext());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(postAdapter);
+        database.getReference().child("Posts").addValueEventListener(new ValueEventListener() {
             @Override
-            public void onRefresh() {
-                //spinner.setSelection(0);
-                //loadPosts();
-                loadTagPosts();
-                swipeRefreshLayout.setRefreshing(false);
-                //value of spinner selected, need to send to db
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                posts.clear();
+                for(DataSnapshot dataSnapshot:snapshot.getChildren()){
+                    Post post = dataSnapshot.getValue(Post.class);
+                    post.setPostId(dataSnapshot.getKey());
+                    posts.add(post);
+                }
+                postAdapter.notifyDataSetChanged();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
-        TextView loginText = view.findViewById(R.id.loginText);
-        button = view.findViewById(R.id.buttonCreate);
-
-        FirebaseUser user = mAuth.getCurrentUser();
-        recyclerView = view.findViewById(R.id.RecycleForum);
-        if(user!=null){
-            loginBut.setVisibility(View.GONE);
-            loginText.setVisibility(View.GONE);
-            button.setVisibility(View.VISIBLE);
-            button.setOnClickListener(view1 -> {
-                Intent intent = new Intent(getContext(),SocialMediaBlogs.class);
-                startActivity(intent);
-            });
-            profileBut.setVisibility(View.VISIBLE);
-            StorageReference profileRef = storageReference.child("ProfileImage/Users/" + mAuth.getCurrentUser().getUid() + "/profile");
-            profileRef.getDownloadUrl().addOnSuccessListener(uri -> Picasso.get().load(uri).into(profileBut));
-            menuButton.setVisibility(View.GONE);
-        }else{
-            menuButton.setVisibility(View.VISIBLE);
-            profileBut.setVisibility(View.GONE);
-            spinner.setVisibility(View.GONE);
-            loginBut.setVisibility(View.VISIBLE);
-            loginText.setVisibility(View.VISIBLE);
-            button.setVisibility(View.GONE);
-            loginBut.setOnClickListener(v->{
-                startActivity(new Intent(getContext(), Login_SignUpActivity.class));
-            });
-        }
-        recyclerView.setHasFixedSize(true);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        layoutManager.setReverseLayout(true);
-        layoutManager.setStackFromEnd(true);
-        recyclerView.setLayoutManager(layoutManager);
-        posts = new ArrayList<>();
-        if(user!=null) {
-            loadPosts();
-        }
         return view;
     }
 }

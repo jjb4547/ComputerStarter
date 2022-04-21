@@ -130,20 +130,24 @@
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3880208333333333" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/xml/network_security.xml" value="0.1" />
         <entry key="..\:/Users/Jesus Banuelos/AndroidStudioProjects/ComputerStarter/app/src/main/res/xml/preferences.xml" value="0.33" />
+        <entry key="..\:/Users/bjesu/StudioProjects/ComputerStarter/app/src/main/res/drawable/dialog_shape.xml" value="0.2385" />
         <entry key="..\:/Users/bjesu/StudioProjects/ComputerStarter/app/src/main/res/drawable/gradient_animation_splash.xml" value="0.135" />
         <entry key="..\:/Users/bjesu/StudioProjects/ComputerStarter/app/src/main/res/drawable/gradient_animation_supplies.xml" value="0.135" />
         <entry key="..\:/Users/bjesu/StudioProjects/ComputerStarter/app/src/main/res/drawable/gradient_splash_1.xml" value="0.135" />
         <entry key="..\:/Users/bjesu/StudioProjects/ComputerStarter/app/src/main/res/drawable/gradient_splash_2.xml" value="0.135" />
         <entry key="..\:/Users/bjesu/StudioProjects/ComputerStarter/app/src/main/res/drawable/gradient_splash_3.xml" value="0.135" />
+        <entry key="..\:/Users/bjesu/StudioProjects/ComputerStarter/app/src/main/res/drawable/ic_heart_color.xml" value="0.1625" />
         <entry key="..\:/Users/bjesu/StudioProjects/ComputerStarter/app/src/main/res/drawable/ic_like.xml" value="0.2385" />
         <entry key="..\:/Users/bjesu/StudioProjects/ComputerStarter/app/src/main/res/drawable/ic_logout.xml" value="0.382051282051282" />
         <entry key="..\:/Users/bjesu/StudioProjects/ComputerStarter/app/src/main/res/drawable/ic_side_bg.xml" value="0.382051282051282" />
-        <entry key="..\:/Users/bjesu/StudioProjects/ComputerStarter/app/src/main/res/drawable/rounded_corners.xml" value="0.3880208333333333" />
+        <entry key="..\:/Users/bjesu/StudioProjects/ComputerStarter/app/src/main/res/drawable/rounded_corners.xml" value="0.16" />
+        <entry key="..\:/Users/bjesu/StudioProjects/ComputerStarter/app/src/main/res/drawable/rounded_corners_no_color.xml" value="0.1625" />
         <entry key="..\:/Users/bjesu/StudioProjects/ComputerStarter/app/src/main/res/drawable/switch_trcks.xml" value="0.382051282051282" />
         <entry key="..\:/Users/bjesu/StudioProjects/ComputerStarter/app/src/main/res/drawable/switch_tumbs.xml" value="0.382051282051282" />
         <entry key="..\:/Users/bjesu/StudioProjects/ComputerStarter/app/src/main/res/layout/account_layout.xml" value="0.23072916666666668" />
         <entry key="..\:/Users/bjesu/StudioProjects/ComputerStarter/app/src/main/res/layout/activity_education_activities.xml" value="0.23072916666666668" />
         <entry key="..\:/Users/bjesu/StudioProjects/ComputerStarter/app/src/main/res/layout/activity_education_tabbed.xml" value="0.1" />
+        <entry key="..\:/Users/bjesu/StudioProjects/ComputerStarter/app/src/main/res/layout/activity_forum.xml" value="0.16381578947368422" />
         <entry key="..\:/Users/bjesu/StudioProjects/ComputerStarter/app/src/main/res/layout/activity_main.xml" value="0.23072916666666668" />
         <entry key="..\:/Users/bjesu/StudioProjects/ComputerStarter/app/src/main/res/layout/activity_pc_part.xml" value="0.23072916666666668" />
         <entry key="..\:/Users/bjesu/StudioProjects/ComputerStarter/app/src/main/res/layout/activity_pc_part_build.xml" value="0.23072916666666668" />
@@ -151,6 +155,8 @@
         <entry key="..\:/Users/bjesu/StudioProjects/ComputerStarter/app/src/main/res/layout/activity_postlikedby.xml" value="0.13385416666666666" />
         <entry key="..\:/Users/bjesu/StudioProjects/ComputerStarter/app/src/main/res/layout/activity_real_login.xml" value="0.371875" />
         <entry key="..\:/Users/bjesu/StudioProjects/ComputerStarter/app/src/main/res/layout/activity_real_register.xml" value="0.4046875" />
+        <entry key="..\:/Users/bjesu/StudioProjects/ComputerStarter/app/src/main/res/layout/add_blogs_new.xml" value="0.16381578947368422" />
+        <entry key="..\:/Users/bjesu/StudioProjects/ComputerStarter/app/src/main/res/layout/addblogs.xml" value="0.16381578947368422" />
         <entry key="..\:/Users/bjesu/StudioProjects/ComputerStarter/app/src/main/res/layout/addpostlayout.xml" value="0.16381578947368422" />
         <entry key="..\:/Users/bjesu/StudioProjects/ComputerStarter/app/src/main/res/layout/arduino_projects_layout.xml" value="0.4046875" />
         <entry key="..\:/Users/bjesu/StudioProjects/ComputerStarter/app/src/main/res/layout/b.xml" value="0.13385416666666666" />
@@ -180,6 +186,7 @@
         <entry key="..\:/Users/bjesu/StudioProjects/ComputerStarter/app/src/main/res/layout/slides_layout.xml" value="0.1" />
         <entry key="..\:/Users/bjesu/StudioProjects/ComputerStarter/app/src/main/res/layout/splash.xml" value="0.25" />
         <entry key="..\:/Users/bjesu/StudioProjects/ComputerStarter/app/src/main/res/menu/drawer_menu.xml" value="0.2857142857142857" />
+        <entry key="..\:/Users/bjesu/StudioProjects/ComputerStarter/app/src/main/res/menu/filter_menu.xml" value="0.1" />
         <entry key="..\:/Users/bjesu/StudioProjects/ComputerStarter/app/src/main/res/menu/save_menu.xml" value="0.371875" />
         <entry key="..\:/Users/bjesu/StudioProjects/ComputerStarter/app/src/main/res/xml/awesome.xml" value="0.259375" />
         <entry key="..\:/Users/bjesu/StudioProjects/ComputerStarter/app/src/main/res/xml/preferences.xml" value="0.259375" />

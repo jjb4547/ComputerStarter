@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/gradient_home">
+    <RelativeLayout
+        android:id="@+id/blogLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Create Post"
+            android:fontFamily="@font/francois_one"
+            android:textSize="30sp"
+            android:textColor="@color/black"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"/>
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_back"
+            android:background="?attr/selectableItemBackground"
+            android:layout_centerVertical="true"
+            app:tint="@color/cardview_light" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/postButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/rounded_corners_no_color"
+            android:text="Post"
+            android:textColor="@color/black" />
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/viewBlog"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@id/blogLayout"
+        android:layout_marginTop="5dp"
+        android:background="@color/gray" />
+
+    <EditText
+        android:id="@+id/textPost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/viewBlog"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="16dp"
+        android:background="?attr/selectableItemBackground"
+        android:ems="10"
+        android:gravity="start"
+        android:hint="Enter your thoughts here"
+        android:inputType="textPersonName"
+        android:textColor="@color/black"
+        android:textColorHint="@color/gray" />
+
+    <RelativeLayout
+        android:id="@+id/blogBelow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Tag/Image"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="10dp"
+        android:textSize="25sp"
+        android:textAlignment="center"/>
+
+        <ImageButton
+            android:id="@+id/imagePostButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/ic_blank_image"
+            android:background="?attr/selectableItemBackground"
+            app:tint="@color/cardview_light" />
+
+        <ImageButton
+            android:id="@+id/tagPost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="10dp"
+            android:layout_toStartOf="@+id/imagePostButton"
+            android:src="@drawable/ic_tag"
+            android:background="?attr/selectableItemBackground"
+            app:tint="@color/cardview_light" />
+    </RelativeLayout>
+    <View
+        android:id="@+id/viewBlog2"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_above="@id/blogBelow"
+        android:background="@color/gray" />
+
+    <ImageView
+        android:id="@+id/postImage"
+        android:layout_width="220dp"
+        android:layout_height="220dp"
+        android:layout_below="@id/textPost"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/blank" />
+</RelativeLayout>

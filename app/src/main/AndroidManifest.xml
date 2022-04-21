@@ -39,7 +39,7 @@
             android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
         <activity android:name=".Build.MyBuildActivity"
            android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
-        <activity android:name=".SocialMedia.SocialMediaBlogs"
+        <activity android:name=".SocialMedia.AddPost"
             android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
         <activity android:name=".Login.Login_SignUpActivity"
             android:theme="@style/Theme.ComputerStarter.NoActionBar" />
