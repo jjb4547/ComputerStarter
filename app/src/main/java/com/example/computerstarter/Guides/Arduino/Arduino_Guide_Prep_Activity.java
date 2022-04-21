@@ -86,17 +86,22 @@ public class Arduino_Guide_Prep_Activity extends AppCompatActivity {
         item_Intro.setImage(R.drawable.arduino_logo);
 
         OnboardingItem item_1 = new OnboardingItem();
-        item_1.setTitle("Supplies");
+        item_1.setTitle("Arduino");
         item_1.setDescription("• First and foremost you will need one of the many Arduino models. " +
                 "If you bought the Arduino alone you will need to buy some extra supplies. Arduinos " +
                 "require a micro usb cord in order to power and connect it to your personal computer. It will need to be " +
-                "cable of powering the Arduino and doing data transfer." +
-                "\n• Next you will need a separate computer in order to write your code and upload it to" +
+                "cable of powering the Arduino and doing data transfer.");
+
+        item_1.setImage(R.drawable.arduino_uno);
+
+        OnboardingItem item_2 = new OnboardingItem();
+        item_2.setTitle("Separate Computer");
+        item_2.setDescription("• Next you will need a separate computer in order to write your code and upload it to" +
                 "the Arduino. Most if not all computers should be capable as long as they have one free usb port " +
                 "and ability to download the Arduino IDE." +
                 "\n• You may also purchase some optional add ons that arent necessary for set up " +
                 ",but may be useful in the future such memory cards, shields, and carriers.");
-        item_1.setImage(R.drawable.arduino_uno);
+        item_2.setImage(R.drawable.monitor_link);
 
         /*OnboardingItem item_2 = new OnboardingItem();
         item_2.setTitle("MicroSD setup");
@@ -109,7 +114,7 @@ public class Arduino_Guide_Prep_Activity extends AppCompatActivity {
 
         onboardingItemPcGuideActivityList.add(item_Intro);
         onboardingItemPcGuideActivityList.add(item_1);
-        //onboardingItemPcGuideActivityList.add(item_2);
+        onboardingItemPcGuideActivityList.add(item_2);
         onboardingAdapterPcGuide = new OnboardingAdapter(onboardingItemPcGuideActivityList);
     }
 

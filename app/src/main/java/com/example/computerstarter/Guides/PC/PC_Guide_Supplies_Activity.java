@@ -115,43 +115,49 @@ public class PC_Guide_Supplies_Activity extends AppCompatActivity {
 
         OnboardingItem item_CPU = new OnboardingItem();
         item_CPU.setTitle("CPU");
-        item_CPU.setDescription("First thing you need to get is the CPU");
+        item_CPU.setDescription("First you will need the CPU. It acts as the brains of the computer should be one of the first parts you decide on.");
         item_CPU.setImage(R.drawable.cpu_link);
         item_Intro.setLearn("Learn More Click on Help");
 
         OnboardingItem item_motherboard = new OnboardingItem();
         item_motherboard.setTitle("Motherboard");
-        item_motherboard.setDescription("Second is the motherboard");
+        item_motherboard.setDescription("The motherboard must match the socket of the CPU you chose. " +
+                "This is an important choice because it will connect all the parts together.");
         item_motherboard.setImage(R.drawable.motherboard_link);
         item_Intro.setLearn("Learn More Click on Help");
 
         OnboardingItem item_RAM = new OnboardingItem();
         item_RAM.setTitle("RAM (Memory)");
-        item_RAM.setDescription("GET YOUR RAM");
+        item_RAM.setDescription("The RAM will slot into the motherboard and depending on " +
+                "which motherboard you chose can house up to four sticks.");
         item_RAM.setImage(R.drawable.memory_link);
         item_Intro.setLearn("Learn More Click on Help");
 
         OnboardingItem item_CPUCOOL = new OnboardingItem();
         item_CPUCOOL.setTitle("CPU COOLER");
-        item_CPUCOOL.setDescription("GET YOUR CPU Cooler");
+        item_CPUCOOL.setDescription("The CPU cooler takes a lot of forms, but is vital to " +
+                "keeping the your CPU at healthy temperatures ");
         item_CPUCOOL.setImage(R.drawable.cpu_cooler_link);
         item_Intro.setLearn("Learn More Click on Help");
 
         OnboardingItem item_GPU = new OnboardingItem();
         item_GPU.setTitle("GPU(VGA)");
-        item_GPU.setDescription("GET YOUR VGA");
+        item_GPU.setDescription("The video card is important for rendering work and any kind of gaming. " +
+                "Intel based PCs don’t need this part, but it does help.");
         item_GPU.setImage(R.drawable.vga_link);
         item_Intro.setLearn("Learn More Click on Help");
 
         OnboardingItem item_STORAGE = new OnboardingItem();
         item_STORAGE.setTitle("STORAGE");
-        item_STORAGE.setDescription("GET YOUR STORAGE");
+        item_STORAGE.setDescription("The storage comes in a variety of form factors, " +
+                "but you will need at least one form of it to store the OS.");
         item_STORAGE.setImage(R.drawable.storage_link);
         item_Intro.setLearn("Learn More Click on Help");
 
         OnboardingItem item_PSU = new OnboardingItem();
         item_PSU.setTitle("Power Supply Unit (PSU)");
-        item_PSU.setDescription("GET YOUR STORAGE");
+        item_PSU.setDescription("The power supply allows the computer to run from wall power. " +
+                "The wattage you will require depends on the components you choose.");
         item_PSU.setImage(R.drawable.psu_link);
         item_Intro.setLearn("Learn More Click on Help");
 
@@ -165,7 +171,7 @@ public class PC_Guide_Supplies_Activity extends AppCompatActivity {
 
         OnboardingItem item_os = new OnboardingItem();
         item_os.setTitle("Operating System");
-        item_os.setDescription("So many choices for an OS. ");
+        item_os.setDescription("Windows, MacOS, and Linux are the main operating systems.\n ");
         item_os.setImage(R.drawable.os_pc);
         item_Intro.setLearn("Learn More Click on Help");
 
