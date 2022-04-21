@@ -52,20 +52,22 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder> {
         holder.description.setText(model.getPostDescription());
         holder.tag.setText(model.getTag());
         holder.like.setText(model.getPostLike()+"");
-        FirebaseDatabase.getInstance().getReference().child("Posts").child(model.getPostId()).child("Likes")
-                .child(FirebaseAuth.getInstance().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    holder.like.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_heart_color, 0, 0, 0);
-                    notifyDataSetChanged();
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+        FirebaseDatabase.getInstance().getReference().child("Posts").child(model.getPostId()).child("Likes").child(FirebaseAuth.getInstance().getUid())
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(snapshot.exists()){
+                            holder.like.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_heart_color,0,0,0);
+                        }else{
+                            holder.like.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_like_border,0,0,0);
+                        }
+                    }
 
-            }
-        });
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
         holder.like.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
