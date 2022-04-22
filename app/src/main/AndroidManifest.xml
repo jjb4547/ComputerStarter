@@ -98,8 +98,9 @@
             android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
         <activity android:name=".SampleProjects.SampleProjects"
             android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
-        <activity android:name=".SocialMedia.SocialMediaPostActivities" />
         <activity android:name=".Build.PCBuildLayout"
+            android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
+        <activity android:name=".SocialMedia.CommentActivity"
             android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
 
         <!-- Fonts -->

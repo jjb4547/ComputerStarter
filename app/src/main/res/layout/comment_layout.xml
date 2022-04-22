@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/topLayout"
+        android:layout_width="match_parent"
+        android:layout_height="170dp">
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_back"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:background="?attr/selectableItemBackground"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            app:tint="@color/cardview_light" />
+
+        <ImageView
+            android:id="@+id/imageComment"
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:layout_marginTop="40dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/amd_cpu" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="40dp">
+
+            <com.mikhaellopez.circularimageview.CircularImageView
+                android:id="@+id/profileImageComment"
+                android:layout_width="@dimen/_50mdp"
+                android:layout_height="@dimen/_50mdp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/ic_people"
+                app:civ_border_color="@color/cardview_light"
+                app:civ_border_width="5dp" />
+
+            <TextView
+                android:id="@+id/profileCommentName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="-16dp"
+                android:layout_marginTop="23dp"
+                android:layout_toEndOf="@+id/profileImageComment"
+                android:background="@drawable/right_round"
+                android:fontFamily="@font/francois_one"
+                android:gravity="center"
+                android:paddingStart="3dp"
+                android:paddingEnd="3dp"
+                android:text="Name"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/commentDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/topLayout"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:text="description"
+        android:textSize="20sp" />
+    <RelativeLayout
+        android:id="@+id/likecommLayout"
+        android:layout_below="@id/commentDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/like"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:drawableLeft="@drawable/ic_like_border"
+            android:drawablePadding="5dp"
+            android:text="0"
+            android:textAlignment="textEnd"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@id/like"
+            android:drawableLeft="@drawable/ic_comment"
+            android:drawablePadding="5dp"
+            android:text="0"
+            android:textAlignment="textEnd"
+            android:textColor="@color/black" />
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/commentRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/likecommLayout"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp" />
+    <View
+        android:id="@+id/border"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginBottom="10dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/border_text"/>
+    <EditText
+        android:id="@+id/commentText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/francois_one"
+        android:textSize="20sp"
+        android:ems="10"
+        android:layout_toStartOf="@id/send"
+        android:hint="Comment Here..."
+        android:textColorHint="@color/gray"
+        android:layout_alignTop="@id/border"/>
+
+    <ImageButton
+        android:id="@+id/send"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/border"
+        android:layout_alignEnd="@id/border"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="15dp"
+        android:background="?attr/selectableItemBackground"
+        android:src="@drawable/ic_send"
+        app:tint="@color/cardview_light" />
+
+</RelativeLayout>

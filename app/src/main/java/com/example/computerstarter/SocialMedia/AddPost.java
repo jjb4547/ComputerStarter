@@ -29,6 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 import java.util.Date;
@@ -46,6 +47,7 @@ public class AddPost extends AppCompatActivity {
     ImageButton imagePostButton,tagButton;
     ImageView imagePost;
     String tag="";
+    String profile;
     boolean isDefault=true;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -115,12 +117,14 @@ public class AddPost extends AppCompatActivity {
                 tagMenu.show();
             }
         });
+
         postButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialog.show();
                 final StorageReference reference = storage.getReference().child("Posts")
                         .child(FirebaseAuth.getInstance().getUid()).child(new Date().getTime()+"");
+                final StorageReference ref = storage.getReference().child("ProfileImage/Users/"+mAuth.getCurrentUser().getUid()+"/profile");
                 Bitmap bitmap = ((BitmapDrawable)imagePost.getDrawable()).getBitmap();
                 ByteArrayOutputStream byteArrayOutputStream =  new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.PNG,100,byteArrayOutputStream);
@@ -153,6 +157,11 @@ public class AddPost extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    private void getProfileImage() {
+        StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+
     }
 
     @Override

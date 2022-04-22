@@ -80,4 +80,5 @@ dependencies {
     implementation 'com.karumi:dexter:6.2.3'
     implementation 'com.github.piasy:GlideImageLoader:1.8.1'
     implementation 'com.github.MrNouri:DynamicSizes:1.0'
+    implementation 'com.github.marlonlom:timeago:4.0.3'
 }

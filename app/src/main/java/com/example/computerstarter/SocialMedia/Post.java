@@ -71,6 +71,7 @@ public class Post {
         this.postDescription = postDescription;
         this.postedAt = postedAt;
         this.tag = tag;
+        this.isDefault = isDefault;
         this.profile = profile;
     }
 

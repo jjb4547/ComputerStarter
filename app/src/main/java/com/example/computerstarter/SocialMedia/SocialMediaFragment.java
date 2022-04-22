@@ -77,6 +77,7 @@ public class SocialMediaFragment extends Fragment {
         });
         PostAdapter postAdapter = new PostAdapter(posts, getContext());
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        linearLayoutManager.setReverseLayout(true);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(postAdapter);
         database.getReference().child("Posts").addValueEventListener(new ValueEventListener() {

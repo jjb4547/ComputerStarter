@@ -1,6 +1,8 @@
 package com.example.computerstarter.SocialMedia;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,12 +13,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.computerstarter.R;
+import com.github.marlonlom.utilities.timeago.TimeAgo;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -24,6 +29,7 @@ import java.util.ArrayList;
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder> {
     ArrayList<Post> list;
     Context context;
+    StorageReference profileRef;
 
     public PostAdapter(ArrayList<Post> list, Context context) {
         this.list = list;
@@ -34,6 +40,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder> {
     @Override
     public viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.row_posts, parent,false);
+        profileRef = FirebaseStorage.getInstance().getReference()
+                .child("ProfileImage/Users/"+FirebaseAuth.getInstance().getCurrentUser().getUid()+"/profile");
         return new viewHolder(view);
     }
 
@@ -43,17 +51,31 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder> {
         if(!model.isDefault()) {
             Picasso.get()
                     .load(model.getPostImage())
-                    .placeholder(R.drawable.blank)
                     .into(holder.postImage);
         }else{
-            holder.postImage.setVisibility(View.GONE);
         }
+        //Picasso.get().load(model.getProfile()).into(holder.profile);
         holder.name.setText(model.getPostedBy());
         holder.description.setText(model.getPostDescription());
         holder.tag.setText(model.getTag());
+        holder.date.setText(TimeAgo.using(model.getPostedAt()));
         holder.like.setText(model.getPostLike()+"");
+        profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Picasso.get().load(uri).into(holder.profile);
+            }
+        });
+        holder.comment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context, CommentActivity.class)
+                        .putExtra("postId",model.getPostId())
+                        .putExtra("postedBy",model.getPostedBy()));
+            }
+        });
         FirebaseDatabase.getInstance().getReference().child("Posts").child(model.getPostId()).child("Likes").child(FirebaseAuth.getInstance().getUid())
-                .addListenerForSingleValueEvent(new ValueEventListener() {
+                .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if(snapshot.exists()){

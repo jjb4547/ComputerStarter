@@ -108,13 +108,13 @@
                 android:id="@+id/like"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="45dp"
+                android:layout_marginTop="10dp"
+                android:drawableLeft="@drawable/ic_like_border"
+                android:drawablePadding="5dp"
                 android:text="0"
                 android:textAlignment="textEnd"
-                android:drawablePadding="5dp"
-                android:drawableLeft="@drawable/ic_like_border"
                 android:textColor="@color/white" />
 
             <TextView
