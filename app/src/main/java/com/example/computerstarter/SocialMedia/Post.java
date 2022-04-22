@@ -2,15 +2,15 @@ package com.example.computerstarter.SocialMedia;
 
 public class Post {
     private String postId, postImage, postedBy, postDescription,tag,profile;
-    private boolean isDefault;
+    private boolean defaultImage;
     private int postLike,postComment;
 
-    public boolean isDefault() {
-        return isDefault;
+    public boolean getDefaultImage() {
+        return defaultImage;
     }
 
-    public void setDefault(boolean aDefault) {
-        isDefault = aDefault;
+    public void setDefaultImage(boolean defaultImage) {
+        this.defaultImage = defaultImage;
     }
 
     public Post() {
@@ -64,14 +64,14 @@ public class Post {
         this.tag = tag;
     }
 
-    public Post(String postId, String postImage, String postedBy, String postDescription, long postedAt, String tag, boolean isDefault, String profile) {
+    public Post(String postId, String postImage, String postedBy, String postDescription, long postedAt, String tag, boolean defaultImage, String profile) {
         this.postId = postId;
         this.postImage = postImage;
         this.postedBy = postedBy;
         this.postDescription = postDescription;
         this.postedAt = postedAt;
         this.tag = tag;
-        this.isDefault = isDefault;
+        this.defaultImage = defaultImage;
         this.profile = profile;
     }
 

@@ -3,13 +3,13 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewStructure;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -29,7 +29,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 import java.util.Date;
@@ -44,11 +43,13 @@ public class AddPost extends AppCompatActivity {
     ProgressDialog dialog;
     EditText postDescription;
     AppCompatButton postButton;
-    ImageButton imagePostButton,tagButton;
+    ImageButton imagePostButton,tagButton, backButton;
     ImageView imagePost;
     String tag="";
     String profile;
-    boolean isDefault=true;
+    String postImage="";
+    String description="";
+    boolean isImage=true;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +60,14 @@ public class AddPost extends AppCompatActivity {
         dialog.setMessage("Please Wait...");
         dialog.setCanceledOnTouchOutside(false);
         dialog.setCancelable(false);
+        backButton = findViewById(R.id.backButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(AddPost.this, MainBuilds.class)
+                        .putExtra("from","Social"));
+            }
+        });
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
         database = FirebaseDatabase.getInstance();
@@ -66,6 +75,7 @@ public class AddPost extends AppCompatActivity {
         postDescription = findViewById(R.id.textPost);
         tagButton = findViewById(R.id.tagPost);
         postButton = findViewById(R.id.postButton);
+        postButton.setVisibility(View.GONE);
         imagePostButton = findViewById(R.id.imagePostButton);
         imagePost = findViewById(R.id.postImage);
         postDescription.addTextChangedListener(new TextWatcher() {
@@ -76,15 +86,14 @@ public class AddPost extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                String description = postDescription.getText().toString();
-                if(!description.isEmpty()){
+                description = postDescription.getText().toString();
+                if(!description.isEmpty()&&!postImage.equals("")){
+                    postButton.setVisibility(View.VISIBLE);
                     postButton.setBackgroundDrawable(getApplicationContext().getResources().getDrawable(R.drawable.rounded_corners_light));
                     postButton.setTextColor(getApplicationContext().getResources().getColor(R.color.white));
                     postButton.setEnabled(true);
                 }else{
-                    postButton.setBackgroundDrawable(getApplicationContext().getResources().getDrawable(R.drawable.rounded_corners_no_color));
-                    postButton.setTextColor(getApplicationContext().getResources().getColor(R.color.black));
-                    postButton.setEnabled(false);
+                    postButton.setVisibility(View.GONE);
                 }
             }
 
@@ -111,6 +120,7 @@ public class AddPost extends AppCompatActivity {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         tag = item.getTitle().toString();
+                        Toast.makeText(getApplicationContext(), "Selected Tag: "+tag, Toast.LENGTH_SHORT).show();
                         return true;
                     }
                 });
@@ -124,12 +134,7 @@ public class AddPost extends AppCompatActivity {
                 dialog.show();
                 final StorageReference reference = storage.getReference().child("Posts")
                         .child(FirebaseAuth.getInstance().getUid()).child(new Date().getTime()+"");
-                final StorageReference ref = storage.getReference().child("ProfileImage/Users/"+mAuth.getCurrentUser().getUid()+"/profile");
-                Bitmap bitmap = ((BitmapDrawable)imagePost.getDrawable()).getBitmap();
-                ByteArrayOutputStream byteArrayOutputStream =  new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.PNG,100,byteArrayOutputStream);
-                byte[] data = byteArrayOutputStream.toByteArray();
-                reference.putBytes(data).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                reference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -141,7 +146,7 @@ public class AddPost extends AppCompatActivity {
                                 post.setPostDescription(postDescription.getText().toString());
                                 post.setPostedAt(new Date().getTime());
                                 post.setTag(tag);
-                                post.setDefault(isDefault);
+                                post.setDefaultImage(isImage);
                                 database.getReference().child("Posts").push().setValue(post).addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void unused) {
@@ -169,8 +174,12 @@ public class AddPost extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(data.getData()!=null){
             uri = data.getData();
-            isDefault = false;
+            isImage = false;
             imagePost.setImageURI(uri);
+            postImage = uri.toString();
+            if(!description.isEmpty()){
+                postButton.setVisibility(View.VISIBLE);
+            }
             postButton.setBackgroundDrawable(getApplicationContext().getResources().getDrawable(R.drawable.rounded_corners_light));
             postButton.setTextColor(getApplicationContext().getResources().getColor(R.color.white));
             postButton.setEnabled(true);

@@ -16,6 +16,7 @@ import com.example.computerstarter.R;
 import com.github.marlonlom.utilities.timeago.TimeAgo;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -30,6 +31,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder> {
     ArrayList<Post> list;
     Context context;
     StorageReference profileRef;
+    FirebaseUser user;
+    FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
     public PostAdapter(ArrayList<Post> list, Context context) {
         this.list = list;
@@ -40,6 +43,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder> {
     @Override
     public viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.row_posts, parent,false);
+        user = mAuth.getCurrentUser();
         profileRef = FirebaseStorage.getInstance().getReference()
                 .child("ProfileImage/Users/"+FirebaseAuth.getInstance().getCurrentUser().getUid()+"/profile");
         return new viewHolder(view);
@@ -48,13 +52,9 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder> {
     @Override
     public void onBindViewHolder(@NonNull viewHolder holder, int position) {
         Post model = list.get(position);
-        if(!model.isDefault()) {
-            Picasso.get()
-                    .load(model.getPostImage())
-                    .into(holder.postImage);
-        }else{
-        }
-        //Picasso.get().load(model.getProfile()).into(holder.profile);
+        Picasso.get().load(model.getPostImage())
+                .placeholder(R.drawable.blank)
+                .into(holder.postImage);
         holder.name.setText(model.getPostedBy());
         holder.description.setText(model.getPostDescription());
         holder.tag.setText(model.getTag());
@@ -74,8 +74,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder> {
                         .putExtra("postedBy",model.getPostedBy()));
             }
         });
-        FirebaseDatabase.getInstance().getReference().child("Posts").child(model.getPostId()).child("Likes").child(FirebaseAuth.getInstance().getUid())
-                .addValueEventListener(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference().child("Posts").child(model.getPostId()).child("Likes").child(user.getUid())
+                .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if(snapshot.exists()){
@@ -107,11 +107,11 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder> {
                                     holder.like.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_like_border,0,0,0);
                                 }
                             });
-                            notifyDataSetChanged();
+                            //notifyDataSetChanged();
                         }else{
                             FirebaseDatabase.getInstance().getReference().child("Posts")
                                     .child(model.getPostId()).child("Likes").child(FirebaseAuth.getInstance().getUid())
-                                    .setValue(true).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    .setValue("Liked").addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void unused) {
                                     FirebaseDatabase.getInstance().getReference().child("Posts").child(model.getPostId())
@@ -123,6 +123,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder> {
                                     });
                                 }
                             });
+                            //notifyDataSetChanged();
                         }
                     }
 

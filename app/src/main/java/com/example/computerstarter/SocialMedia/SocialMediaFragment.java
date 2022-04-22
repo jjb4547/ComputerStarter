@@ -3,11 +3,13 @@ package com.example.computerstarter.SocialMedia;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.PopupMenu;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -47,6 +49,8 @@ public class SocialMediaFragment extends Fragment {
     RecyclerView recyclerView;
     ArrayList<Post> posts;
     FloatingActionButton button;
+    ImageButton filter;
+    String tag = "";
     private StorageReference storageReference = FirebaseStorage.getInstance().getReference();
 
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -71,6 +75,21 @@ public class SocialMediaFragment extends Fragment {
         recyclerView = view.findViewById(R.id.commView);
         posts = new ArrayList<>();
         button = view.findViewById(R.id.buttonCreate);
+        filter = view.findViewById(R.id.filterButton);
+        filter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PopupMenu popupMenu = new PopupMenu(getContext(), filter);
+                popupMenu.getMenuInflater().inflate(R.menu.filter_menu, popupMenu.getMenu());
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        tag = item.getTitle().toString();
+                        return true;
+                    }
+                });
+            }
+        });
         button.setOnClickListener(view1 -> {
             Intent intent = new Intent(getContext(), AddPost.class);
             startActivity(intent);
@@ -84,13 +103,14 @@ public class SocialMediaFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 posts.clear();
-                for(DataSnapshot dataSnapshot:snapshot.getChildren()){
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Post post = dataSnapshot.getValue(Post.class);
                     post.setPostId(dataSnapshot.getKey());
                     posts.add(post);
                 }
                 postAdapter.notifyDataSetChanged();
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 

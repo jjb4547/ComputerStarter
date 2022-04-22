@@ -52,7 +52,7 @@ public class CommentActivity  extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Post post = snapshot.getValue(Post.class);
-                if(!post.isDefault())
+                if(!post.getDefaultImage())
                     Picasso.get().load(post.getPostImage()).into(postImage);
                 else
                     postImage.setVisibility(View.GONE);
