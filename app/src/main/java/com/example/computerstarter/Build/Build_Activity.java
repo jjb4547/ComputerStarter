@@ -109,6 +109,8 @@ public class Build_Activity extends AppCompatActivity {
         saveButton.setOnClickListener(view -> {
             saveButtonCheck();
         });
+        if(partsID[1] != -1 && numParts[2] * PriceList.getMemSlots(partsID[2]) >= PriceList.getMemSlots(partsID[1]))
+            plusMem.setVisibility(View.GONE);
         plusMem.setOnClickListener(view->{
             System.out.println("MEM SLOTS: " + PriceList.getMemSlots(partsID[2]));
             numParts[2]=numParts[2]+1;
@@ -117,12 +119,17 @@ public class Build_Activity extends AppCompatActivity {
             if(numParts[2]>1){
                 minusMem.setVisibility(View.VISIBLE);
                 numMem.setText("x"+numParts[2]);
+                numMem.setVisibility(View.VISIBLE);
             }
             if(partsID[1] != -1 && numParts[2] * PriceList.getMemSlots(partsID[2]) >= PriceList.getMemSlots(partsID[1]))
                 plusMem.setVisibility(View.GONE);
         });
         if(numParts[2]==1)
             minusMem.setVisibility(View.GONE);
+        else if(numParts[2] > 1){
+            numMem.setText("x" + numParts[2]);
+            numMem.setVisibility(View.VISIBLE);
+        }
         minusMem.setOnClickListener(view->{
             if(numParts[2]>0) {
                 numParts[2] = numParts[2] - 1;
