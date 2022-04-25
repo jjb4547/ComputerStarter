@@ -101,7 +101,7 @@
         android:layout_below="@id/addPart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="15dp"
+        android:paddingBottom="55dp"
         android:layout_marginBottom="50dp">
         <RelativeLayout
             android:layout_width="match_parent"
@@ -824,7 +824,7 @@
         android:text="Total"
         android:textColor="@color/white"
         android:textSize="30sp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="50dp"
         android:layout_alignParentStart="true"/>
         <TextView
             android:id="@+id/total"
@@ -835,6 +835,37 @@
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="10dp"
             tools:text="$0.00"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:layout_marginBottom="50dp"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/voltageLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true">
+        <TextView
+            android:id="@+id/voltageText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/francois_one"
+            android:text="Voltage"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:layout_marginBottom="10dp"
+            android:layout_alignParentStart="true"/>
+        <TextView
+            android:id="@+id/voltage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/francois_one"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            tools:text="0V"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="30sp"

@@ -44,7 +44,7 @@ public class Build_Activity extends AppCompatActivity {
     private MenuItem save;
     private boolean first = true;
     private CheckedTextView checkedCPU, checkedMot, checkedMem, checkedStor, checkedPSU, checkedCool, checkedMon, checkedVGA, checkedCase;
-    private TextView cpuTitle, motTitle, memTitle, storTitle, psuTitle, coolTitle, monTitle, vgaTitle, caseTitle, title, totalNum;
+    private TextView cpuTitle, motTitle, memTitle, storTitle, psuTitle, coolTitle, monTitle, vgaTitle, caseTitle, title, totalNum, voltageNum;
     private ImageView cpuImage;
     private ImageView motImage;
     private ImageView memImage;
@@ -84,6 +84,8 @@ public class Build_Activity extends AppCompatActivity {
         title.setText(name_action_bar);
         save = findViewById(R.id.save_button);
         totalNum = findViewById(R.id.total);
+        voltageNum = findViewById(R.id.voltage);
+        voltageNum.setText("100V");
         checkedCPU = findViewById(R.id.checkedCPU);
         checkedMot = findViewById(R.id.checkedMot);
         checkedMem = findViewById(R.id.checkedMem);
