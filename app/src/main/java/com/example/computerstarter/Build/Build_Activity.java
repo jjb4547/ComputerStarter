@@ -121,7 +121,7 @@ public class Build_Activity extends AppCompatActivity {
             numParts[2]=numParts[2]+1;
             memPrice.setText("$ "+String.format("%.2f",PriceList.getPrice(partsID[2])*numParts[2]));
             totalNum.setText("$ "+getPriceSum());
-            wattageNum.setText(getVoltageTotal() + "W");
+            wattageNum.setText(wattageStringBuilder());
             if(numParts[2]>1){
                 minusMem.setVisibility(View.VISIBLE);
                 numMem.setText("x"+numParts[2]);
@@ -142,7 +142,7 @@ public class Build_Activity extends AppCompatActivity {
                 memPrice.setText("$ " + String.format("%.2f",PriceList.getPrice(partsID[2]) * numParts[2]));
                 totalNum.setText("$ " + getPriceSum());
                 numMem.setText("x"+numParts[2]);
-                wattageNum.setText(getVoltageTotal() + "W");
+                wattageNum.setText(wattageStringBuilder());
             }
             if(numParts[2]==1) {
                 minusMem.setVisibility(View.GONE);
@@ -370,7 +370,7 @@ public class Build_Activity extends AppCompatActivity {
                 partsID[0] = -1;
                 numParts[0]=0;
                 totalNum.setText("$ "+getPriceSum());
-                wattageNum.setText(getVoltageTotal() + "W");
+                wattageNum.setText(wattageStringBuilder());
                 cpu.setVisibility(View.GONE);
                 checkAddVisibility();
             });
@@ -398,7 +398,7 @@ public class Build_Activity extends AppCompatActivity {
                 numParts[1]=0;
                 mot.setCardBackgroundColor(getResources().getColor(R.color.cardview_dark));
                 totalNum.setText("$ "+getPriceSum());
-                wattageNum.setText(getVoltageTotal() + "W");
+                wattageNum.setText(wattageStringBuilder());
                 mot.setVisibility(View.GONE);
                 checkAddVisibility();
             });
@@ -425,7 +425,7 @@ public class Build_Activity extends AppCompatActivity {
                 numParts[2]=0;
                 mem.setCardBackgroundColor(getResources().getColor(R.color.cardview_dark));
                 totalNum.setText("$ "+getPriceSum());
-                wattageNum.setText(getVoltageTotal() + "W");
+                wattageNum.setText(wattageStringBuilder());
                 mem.setVisibility(View.GONE);
                 checkAddVisibility();
             });
@@ -452,7 +452,7 @@ public class Build_Activity extends AppCompatActivity {
                 numParts[3]=0;
                 vga.setCardBackgroundColor(getResources().getColor(R.color.cardview_dark));
                 totalNum.setText("$ "+getPriceSum());
-                wattageNum.setText(getVoltageTotal() + "W");
+                wattageNum.setText(wattageStringBuilder());
                 vga.setVisibility(View.GONE);
                 checkAddVisibility();
             });
@@ -479,6 +479,7 @@ public class Build_Activity extends AppCompatActivity {
                 numParts[4]=0;
                 psu.setCardBackgroundColor(getResources().getColor(R.color.cardview_dark));
                 totalNum.setText("$ "+getPriceSum());
+                wattageNum.setText(wattageStringBuilder());
                 psu.setVisibility(View.GONE);
                 checkAddVisibility();
             });
@@ -505,7 +506,7 @@ public class Build_Activity extends AppCompatActivity {
                 numParts[5]=0;
                 stor.setCardBackgroundColor(getResources().getColor(R.color.cardview_dark));
                 totalNum.setText("$ "+getPriceSum());
-                wattageNum.setText(getVoltageTotal() + "W");
+                wattageNum.setText(wattageStringBuilder());
                 stor.setVisibility(View.GONE);
                 checkAddVisibility();
             });
@@ -532,7 +533,7 @@ public class Build_Activity extends AppCompatActivity {
                 numParts[6]=0;
                 cool.setCardBackgroundColor(getResources().getColor(R.color.cardview_dark));
                 totalNum.setText("$ "+getPriceSum());
-                wattageNum.setText(getVoltageTotal() + "W");
+                wattageNum.setText(wattageStringBuilder());
                 cool.setVisibility(View.GONE);
                 checkAddVisibility();
             });
@@ -715,7 +716,7 @@ public class Build_Activity extends AppCompatActivity {
             checkedCase.setChecked(true);
         }
         totalNum.setText("$ "+getPriceSum());
-        wattageNum.setText(getVoltageTotal() + "W");
+        wattageNum.setText(wattageStringBuilder());
     }
 
 
@@ -748,7 +749,7 @@ public class Build_Activity extends AppCompatActivity {
         return price;
     }
 
-    public int getVoltageTotal() {
+    public int getWattageTotal() {
         int voltage = 0;
         for (int i = 0; i < partsID.length-1; i++) {
             switch(i) {
@@ -765,5 +766,14 @@ public class Build_Activity extends AppCompatActivity {
             System.out.println(voltage);
         }
         return voltage;
+    }
+
+    public String wattageStringBuilder(){
+        String stringBuilder = "";
+        if(partsID[4] == -1)
+            stringBuilder = getWattageTotal() + "W";
+        else
+            stringBuilder = getWattageTotal() + "W / " + PriceList.getWattage(partsID[4]) + "W";
+        return stringBuilder;
     }
 }
