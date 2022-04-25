@@ -110,6 +110,7 @@ public class Build_Activity extends AppCompatActivity {
             saveButtonCheck();
         });
         plusMem.setOnClickListener(view->{
+            System.out.println("MEM SLOTS: " + PriceList.getMemSlots(partsID[2]));
             numParts[2]=numParts[2]+1;
             memPrice.setText("$ "+String.format("%.2f",PriceList.getPrice(partsID[2])*numParts[2]));
             totalNum.setText("$ "+getPriceSum());
@@ -117,6 +118,8 @@ public class Build_Activity extends AppCompatActivity {
                 minusMem.setVisibility(View.VISIBLE);
                 numMem.setText("x"+numParts[2]);
             }
+            if(partsID[1] != -1 && numParts[2] * PriceList.getMemSlots(partsID[2]) >= PriceList.getMemSlots(partsID[1]))
+                plusMem.setVisibility(View.GONE);
         });
         if(numParts[2]==1)
             minusMem.setVisibility(View.GONE);
@@ -131,6 +134,8 @@ public class Build_Activity extends AppCompatActivity {
                 minusMem.setVisibility(View.GONE);
                 numMem.setVisibility(View.GONE);
             }
+            if(partsID[1] != -1 && numParts[2] * PriceList.getMemSlots(partsID[2]) < PriceList.getMemSlots(partsID[1]))
+                plusMem.setVisibility(View.VISIBLE);
         });
     }
 

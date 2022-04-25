@@ -24,6 +24,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.computerstarter.R;
 
+import java.util.Locale;
+
 public class PC_Build_Parts extends AppCompatActivity {
     ListView listView;
     String mTitle[] = new String[10];
@@ -48,6 +50,27 @@ public class PC_Build_Parts extends AppCompatActivity {
         for(int i = 0; i < PriceList.getLength(); i++)
         {
             if(PriceList.getPart(i).equals(getIntent().getExtras().getString("name").toLowerCase()) && counter < 11) {
+                //Check compatibility
+                switch(PriceList.getPart(i)){
+                    case "cpu":
+                        //Check socket w/ motherboard
+                        if(partsID[1] != -1 && !(PriceList.getSocket(partsID[1]).equals(PriceList.getSocket(i))))
+                            continue;
+                        break;
+                    case "motherboards":
+                        //Check socket w/ CPU
+                        if(partsID[0] != -1 && !(PriceList.getSocket(partsID[0]).equals(PriceList.getSocket(i))))
+                            continue;
+                        //Check mem_type with memory
+                        if(partsID[2] != -1 && !(PriceList.getMemType(partsID[2]).equals(PriceList.getMemType(i))))
+                            continue;
+                        break;
+                    case "memory":
+                        //Check mem_type with motherboard
+                        if(partsID[1] != -1 && !(PriceList.getMemType(partsID[1]).equals(PriceList.getMemType(i))))
+                            continue;
+                        break;
+                }
                 mTitle[counter] = PriceList.getName(i);
                 mDesc[counter] = PriceList.getPriceAsString(i);
                 images[counter] = PriceList.getIcon(i);
