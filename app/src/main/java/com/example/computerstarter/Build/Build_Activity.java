@@ -44,7 +44,7 @@ public class Build_Activity extends AppCompatActivity {
     private MenuItem save;
     private boolean first = true;
     private CheckedTextView checkedCPU, checkedMot, checkedMem, checkedStor, checkedPSU, checkedCool, checkedMon, checkedVGA, checkedCase;
-    private TextView cpuTitle, motTitle, memTitle, storTitle, psuTitle, coolTitle, monTitle, vgaTitle, caseTitle, title, totalNum, voltageNum;
+    private TextView cpuTitle, motTitle, memTitle, storTitle, psuTitle, coolTitle, monTitle, vgaTitle, caseTitle, title, totalNum, wattageNum;
     private ImageView cpuImage;
     private ImageView motImage;
     private ImageView memImage;
@@ -84,8 +84,7 @@ public class Build_Activity extends AppCompatActivity {
         title.setText(name_action_bar);
         save = findViewById(R.id.save_button);
         totalNum = findViewById(R.id.total);
-        voltageNum = findViewById(R.id.voltage);
-        voltageNum.setText("100V");
+        wattageNum = findViewById(R.id.wattage);
         checkedCPU = findViewById(R.id.checkedCPU);
         checkedMot = findViewById(R.id.checkedMot);
         checkedMem = findViewById(R.id.checkedMem);
@@ -111,13 +110,18 @@ public class Build_Activity extends AppCompatActivity {
         saveButton.setOnClickListener(view -> {
             saveButtonCheck();
         });
-        if(partsID[1] != -1 && numParts[2] * PriceList.getMemSlots(partsID[2]) >= PriceList.getMemSlots(partsID[1]))
+        if(partsID[1] == -1){
+            plusMem.setVisibility(View.GONE);
+            minusMem.setVisibility(View.GONE);
+        }
+        else if(partsID[1] != -1 && numParts[2] * PriceList.getMemSlots(partsID[2]) >= PriceList.getMemSlots(partsID[1]))
             plusMem.setVisibility(View.GONE);
         plusMem.setOnClickListener(view->{
             System.out.println("MEM SLOTS: " + PriceList.getMemSlots(partsID[2]));
             numParts[2]=numParts[2]+1;
             memPrice.setText("$ "+String.format("%.2f",PriceList.getPrice(partsID[2])*numParts[2]));
             totalNum.setText("$ "+getPriceSum());
+            wattageNum.setText(getVoltageTotal() + "W");
             if(numParts[2]>1){
                 minusMem.setVisibility(View.VISIBLE);
                 numMem.setText("x"+numParts[2]);
@@ -138,6 +142,7 @@ public class Build_Activity extends AppCompatActivity {
                 memPrice.setText("$ " + String.format("%.2f",PriceList.getPrice(partsID[2]) * numParts[2]));
                 totalNum.setText("$ " + getPriceSum());
                 numMem.setText("x"+numParts[2]);
+                wattageNum.setText(getVoltageTotal() + "W");
             }
             if(numParts[2]==1) {
                 minusMem.setVisibility(View.GONE);
@@ -365,6 +370,7 @@ public class Build_Activity extends AppCompatActivity {
                 partsID[0] = -1;
                 numParts[0]=0;
                 totalNum.setText("$ "+getPriceSum());
+                wattageNum.setText(getVoltageTotal() + "W");
                 cpu.setVisibility(View.GONE);
                 checkAddVisibility();
             });
@@ -392,6 +398,7 @@ public class Build_Activity extends AppCompatActivity {
                 numParts[1]=0;
                 mot.setCardBackgroundColor(getResources().getColor(R.color.cardview_dark));
                 totalNum.setText("$ "+getPriceSum());
+                wattageNum.setText(getVoltageTotal() + "W");
                 mot.setVisibility(View.GONE);
                 checkAddVisibility();
             });
@@ -418,6 +425,7 @@ public class Build_Activity extends AppCompatActivity {
                 numParts[2]=0;
                 mem.setCardBackgroundColor(getResources().getColor(R.color.cardview_dark));
                 totalNum.setText("$ "+getPriceSum());
+                wattageNum.setText(getVoltageTotal() + "W");
                 mem.setVisibility(View.GONE);
                 checkAddVisibility();
             });
@@ -444,6 +452,7 @@ public class Build_Activity extends AppCompatActivity {
                 numParts[3]=0;
                 vga.setCardBackgroundColor(getResources().getColor(R.color.cardview_dark));
                 totalNum.setText("$ "+getPriceSum());
+                wattageNum.setText(getVoltageTotal() + "W");
                 vga.setVisibility(View.GONE);
                 checkAddVisibility();
             });
@@ -496,6 +505,7 @@ public class Build_Activity extends AppCompatActivity {
                 numParts[5]=0;
                 stor.setCardBackgroundColor(getResources().getColor(R.color.cardview_dark));
                 totalNum.setText("$ "+getPriceSum());
+                wattageNum.setText(getVoltageTotal() + "W");
                 stor.setVisibility(View.GONE);
                 checkAddVisibility();
             });
@@ -522,6 +532,7 @@ public class Build_Activity extends AppCompatActivity {
                 numParts[6]=0;
                 cool.setCardBackgroundColor(getResources().getColor(R.color.cardview_dark));
                 totalNum.setText("$ "+getPriceSum());
+                wattageNum.setText(getVoltageTotal() + "W");
                 cool.setVisibility(View.GONE);
                 checkAddVisibility();
             });
@@ -704,6 +715,7 @@ public class Build_Activity extends AppCompatActivity {
             checkedCase.setChecked(true);
         }
         totalNum.setText("$ "+getPriceSum());
+        wattageNum.setText(getVoltageTotal() + "W");
     }
 
 
@@ -734,5 +746,24 @@ public class Build_Activity extends AppCompatActivity {
         }
         price = Math.floor(price * 100) / 100;
         return price;
+    }
+
+    public int getVoltageTotal() {
+        int voltage = 0;
+        for (int i = 0; i < partsID.length-1; i++) {
+            switch(i) {
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                case 5:
+                case 7:
+                    if (partsID[i] != -1) {
+                        voltage = voltage + PriceList.getWattage(partsID[i]) * numParts[i];
+                    }
+            }
+            System.out.println(voltage);
+        }
+        return voltage;
     }
 }

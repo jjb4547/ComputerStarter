@@ -841,31 +841,31 @@
             android:layout_marginBottom="50dp"/>
     </RelativeLayout>
     <RelativeLayout
-        android:id="@+id/voltageLayout"
+        android:id="@+id/wattageLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true">
         <TextView
-            android:id="@+id/voltageText"
+            android:id="@+id/wattageText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:fontFamily="@font/francois_one"
-            android:text="Voltage"
+            android:text="Wattage"
             android:textColor="@color/white"
             android:textSize="30sp"
             android:layout_marginBottom="10dp"
             android:layout_alignParentStart="true"/>
         <TextView
-            android:id="@+id/voltage"
+            android:id="@+id/wattage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:fontFamily="@font/francois_one"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="10dp"
-            tools:text="0V"
+            tools:text="0W"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="30sp"
