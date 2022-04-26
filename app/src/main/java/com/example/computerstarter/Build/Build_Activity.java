@@ -119,8 +119,8 @@ public class Build_Activity extends AppCompatActivity {
         plusMem.setOnClickListener(view->{
             System.out.println("MEM SLOTS: " + PriceList.getMemSlots(partsID[2]));
             numParts[2]=numParts[2]+1;
-            memPrice.setText("$ "+String.format("%.2f",PriceList.getPrice(partsID[2])*numParts[2]));
-            totalNum.setText("$ "+getPriceSum());
+            memPrice.setText(String.format("$%.2f",PriceList.getPrice(partsID[2])*numParts[2]));
+            totalNum.setText(String.format("$%.2f", getPriceSum()));
             wattageNum.setText(wattageStringBuilder());
             if(numParts[2]>1){
                 minusMem.setVisibility(View.VISIBLE);
@@ -139,8 +139,8 @@ public class Build_Activity extends AppCompatActivity {
         minusMem.setOnClickListener(view->{
             if(numParts[2]>0) {
                 numParts[2] = numParts[2] - 1;
-                memPrice.setText("$ " + String.format("%.2f",PriceList.getPrice(partsID[2]) * numParts[2]));
-                totalNum.setText("$ " + getPriceSum());
+                memPrice.setText(String.format("$%.2f",PriceList.getPrice(partsID[2]) * numParts[2]));
+                totalNum.setText(String.format("$%.2f", getPriceSum()));
                 numMem.setText("x"+numParts[2]);
                 wattageNum.setText(wattageStringBuilder());
             }
@@ -369,7 +369,7 @@ public class Build_Activity extends AppCompatActivity {
                 cpu.setCardBackgroundColor(getResources().getColor(R.color.cardview_dark));
                 partsID[0] = -1;
                 numParts[0]=0;
-                totalNum.setText("$ "+getPriceSum());
+                totalNum.setText(String.format("$%.2f", getPriceSum()));
                 wattageNum.setText(wattageStringBuilder());
                 cpu.setVisibility(View.GONE);
                 checkAddVisibility();
@@ -397,7 +397,7 @@ public class Build_Activity extends AppCompatActivity {
                 partsID[1] = -1;
                 numParts[1]=0;
                 mot.setCardBackgroundColor(getResources().getColor(R.color.cardview_dark));
-                totalNum.setText("$ "+getPriceSum());
+                totalNum.setText(String.format("$%.2f", getPriceSum()));
                 wattageNum.setText(wattageStringBuilder());
                 mot.setVisibility(View.GONE);
                 checkAddVisibility();
@@ -424,7 +424,7 @@ public class Build_Activity extends AppCompatActivity {
                 partsID[2] = -1;
                 numParts[2]=0;
                 mem.setCardBackgroundColor(getResources().getColor(R.color.cardview_dark));
-                totalNum.setText("$ "+getPriceSum());
+                totalNum.setText(String.format("$%.2f", getPriceSum()));
                 wattageNum.setText(wattageStringBuilder());
                 mem.setVisibility(View.GONE);
                 checkAddVisibility();
@@ -451,7 +451,7 @@ public class Build_Activity extends AppCompatActivity {
                 partsID[3] = -1;
                 numParts[3]=0;
                 vga.setCardBackgroundColor(getResources().getColor(R.color.cardview_dark));
-                totalNum.setText("$ "+getPriceSum());
+                totalNum.setText(String.format("$%.2f", getPriceSum()));
                 wattageNum.setText(wattageStringBuilder());
                 vga.setVisibility(View.GONE);
                 checkAddVisibility();
@@ -478,7 +478,7 @@ public class Build_Activity extends AppCompatActivity {
                 partsID[4] = -1;
                 numParts[4]=0;
                 psu.setCardBackgroundColor(getResources().getColor(R.color.cardview_dark));
-                totalNum.setText("$ "+getPriceSum());
+                totalNum.setText(String.format("$%.2f", getPriceSum()));
                 wattageNum.setText(wattageStringBuilder());
                 psu.setVisibility(View.GONE);
                 checkAddVisibility();
@@ -505,7 +505,7 @@ public class Build_Activity extends AppCompatActivity {
                 partsID[5] = -1;
                 numParts[5]=0;
                 stor.setCardBackgroundColor(getResources().getColor(R.color.cardview_dark));
-                totalNum.setText("$ "+getPriceSum());
+                totalNum.setText(String.format("$%.2f", getPriceSum()));
                 wattageNum.setText(wattageStringBuilder());
                 stor.setVisibility(View.GONE);
                 checkAddVisibility();
@@ -532,7 +532,7 @@ public class Build_Activity extends AppCompatActivity {
                 partsID[6] = -1;
                 numParts[6]=0;
                 cool.setCardBackgroundColor(getResources().getColor(R.color.cardview_dark));
-                totalNum.setText("$ "+getPriceSum());
+                totalNum.setText(String.format("$%.2f", getPriceSum()));
                 wattageNum.setText(wattageStringBuilder());
                 cool.setVisibility(View.GONE);
                 checkAddVisibility();
@@ -561,7 +561,7 @@ public class Build_Activity extends AppCompatActivity {
                 partsID[7] = -1;
                 numParts[7]=0;
                 mon.setCardBackgroundColor(getResources().getColor(R.color.cardview_dark));
-                totalNum.setText("$ "+getPriceSum());
+                totalNum.setText(String.format("$%.2f", getPriceSum()));
                 mon.setVisibility(View.GONE);
                 checkAddVisibility();
             });
@@ -587,7 +587,7 @@ public class Build_Activity extends AppCompatActivity {
                 partsID[8] = -1;
                 numParts[8]=0;
                 pc_case.setCardBackgroundColor(getResources().getColor(R.color.cardview_dark));
-                totalNum.setText("$ "+getPriceSum());
+                totalNum.setText(String.format("$%.2f", getPriceSum()));
                 pc_case.setVisibility(View.GONE);
                 checkAddVisibility();
             });
@@ -715,7 +715,7 @@ public class Build_Activity extends AppCompatActivity {
             pc_case.setCardBackgroundColor(getResources().getColor(R.color.cardview_light));
             checkedCase.setChecked(true);
         }
-        totalNum.setText("$ "+getPriceSum());
+        totalNum.setText(String.format("$%.2f", getPriceSum()));
         wattageNum.setText(wattageStringBuilder());
     }
 

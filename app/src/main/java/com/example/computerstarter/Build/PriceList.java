@@ -28,7 +28,7 @@ public class PriceList {
             answerStr = "Out of stock.";
             return answerStr;
         }
-        answerStr = "$" + String.format("%.2f", answer);
+        answerStr = String.format("$%.2f", answer);
 
         return answerStr;
     }
