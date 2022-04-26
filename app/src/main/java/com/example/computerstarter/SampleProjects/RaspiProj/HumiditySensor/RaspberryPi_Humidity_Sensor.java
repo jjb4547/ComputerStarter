@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,16 +18,16 @@ import androidx.cardview.widget.CardView;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 
+import com.example.computerstarter.Build.MainBuilds;
 import com.example.computerstarter.Build.MyBuildActivity;
 import com.example.computerstarter.Education.PC_Part_Activity;
 import com.example.computerstarter.Guides.Guides_Activity;
-import com.example.computerstarter.SampleProjects.RaspiProj.RaspberryPi_Projects;
 import com.example.computerstarter.Login.Login_SignUpActivity;
 import com.example.computerstarter.Others.AccountActivity;
 import com.example.computerstarter.R;
+import com.example.computerstarter.SampleProjects.RaspiProj.RaspberryPi_Projects;
 import com.example.computerstarter.SampleProjects.SampleProjects;
 import com.example.computerstarter.app.HomeActivity;
-import com.example.computerstarter.Build.MainBuilds;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -35,8 +36,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
-
-import java.util.Objects;
 
 public class RaspberryPi_Humidity_Sensor extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private TextView home;
@@ -73,7 +72,7 @@ public class RaspberryPi_Humidity_Sensor extends AppCompatActivity implements Na
         toggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.navigation_draw_open,R.string.navigation_draw_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        //Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         navigationView.setNavigationItemSelectedListener(this);
         View headerView = navigationView.getHeaderView(0);
         Menu menu = navigationView.getMenu();
@@ -128,7 +127,7 @@ public class RaspberryPi_Humidity_Sensor extends AppCompatActivity implements Na
         coding.setOnClickListener(view -> {
             startActivity(new Intent(this, RaspberryPi_Humidity_Sensor_Coding.class));
         });
-        TextView home = findViewById(R.id.home);
+        ImageButton home = findViewById(R.id.backButton);
         home.setOnClickListener(view->{
             startActivity(new Intent(getApplicationContext(), RaspberryPi_Projects.class));
             overridePendingTransition(R.anim.slide_in_right,R.anim.stay);

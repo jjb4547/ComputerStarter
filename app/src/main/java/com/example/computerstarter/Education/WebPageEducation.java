@@ -6,6 +6,7 @@ import android.view.KeyEvent;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -15,7 +16,7 @@ import com.example.computerstarter.R;
 
 public class WebPageEducation extends AppCompatActivity {
     WebView web;
-    TextView homeBut;
+    ImageButton homeBut;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
