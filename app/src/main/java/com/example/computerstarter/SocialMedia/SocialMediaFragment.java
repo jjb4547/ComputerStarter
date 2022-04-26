@@ -95,7 +95,8 @@ public class SocialMediaFragment extends Fragment {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         tag = item.getTitle().toString();
-                        Toast.makeText(getContext(),tag,Toast.LENGTH_SHORT).show();
+                        if(tag.equals("Clear Filter"))
+                            tag = "";
                         if(user!=null)
                             loadPost();
                         return true;
