@@ -83,47 +83,39 @@ public class Arduino_Guide_Setup_Activity extends AppCompatActivity {
         List<OnboardingItem> onboardingItemPcGuideActivityList = new ArrayList<>();
         OnboardingItem item_Intro = new OnboardingItem();
         item_Intro.setTitle("Welcome to the Setup Guide");
-        item_Intro.setDescription("Here is where you will be able find out what components will be needed " +
-                "to build a computer and be able to achieve that life long dream of building a computer.");
-        item_Intro.setImage(R.drawable.pc_build_link);
+        item_Intro.setDescription("");
+        item_Intro.setImage(R.drawable.arduino_logo);
 
-        OnboardingItem item_CPU = new OnboardingItem();
-        item_CPU.setTitle("CPU");
-        item_CPU.setDescription("First thing you need to get is the CPU");
-        item_CPU.setImage(R.drawable.cpu_link);
+        OnboardingItem item_Conn = new OnboardingItem();
+        item_Conn.setTitle("Download the Arduino IDE");
+        item_Conn.setDescription("To start you will want to navigate to the offical Arduino " +
+                "website and download it on a supported OS. The Arduino IDE will finish installing and " +
+                "you will need to start it. You will be greeted by a blank sketch.ino file containing" +
+                "a setup function and loop function.");
+        item_Conn.setImage(R.drawable.arduino_logo);
 
-        OnboardingItem item_motherboard = new OnboardingItem();
-        item_motherboard.setTitle("Motherboard");
-        item_motherboard.setDescription("Second is the motherboard");
-        item_motherboard.setImage(R.drawable.motherboard_link);
+        OnboardingItem item_start = new OnboardingItem();
+        item_start.setTitle("Starting the Arduino");
+        item_start.setDescription("Connect your Arduino to your computer using a free USB port. Connecting the board" +
+                "will cause it to scan for drivers. If not you can manually find the drivers online." +
+                "need to make sure to select your board by going to Tools -> Board -> and Arduino/Uno or " + "whichever Arduino you bought. " +
+                "You will also need to select the correct serial port. It can be found in Tools -> Port -> COM4 or a " +
+                "COM ranging from 3 or more on Windows and a slightly different look on Mac. " +
+                "You can find out which serial port is using by unplugging your Arduino and seeing which COM disappeared. ");
+        item_start.setImage(R.drawable.arduino_uno);
 
-        OnboardingItem item_RAM = new OnboardingItem();
-        item_RAM.setTitle("RAM (Memory)");
-        item_RAM.setDescription("GET YOUR RAM");
-        item_RAM.setImage(R.drawable.memory_link);
-
-        OnboardingItem item_CPUCOOL = new OnboardingItem();
-        item_CPUCOOL.setTitle("CPU COOLER");
-        item_CPUCOOL.setDescription("GET YOUR RAM");
-        item_CPUCOOL.setImage(R.drawable.cpu_cooler_link);
-
-        OnboardingItem item_GPU = new OnboardingItem();
-        item_GPU.setTitle("GPU(VGA)");
-        item_GPU.setDescription("GET YOUR RAM");
-        item_GPU.setImage(R.drawable.vga_link);
-
-        OnboardingItem item_STORAGE = new OnboardingItem();
-        item_STORAGE.setTitle("CONGRATULATIONS");
-        item_STORAGE.setDescription("You Just Built Your First PC");
-        item_STORAGE.setImage(R.drawable.storage_link);;
+        OnboardingItem item_end = new OnboardingItem();
+        item_end.setTitle("End");
+        item_end.setDescription("Now you can pick any of the Arduino project tutorials available. For many of " +
+                "these projects you'll have to gather more supplies such as breadboards and jumper cables. There are " +
+                "built-in tutorials in the Arduino IDE under File -> Examples, but there are many more tutorials online through " +
+                "Arduino or other third-party websites. We also have a tutorial on our app for a temperature controller.");
+        item_end.setImage(R.drawable.arduino_uno);
 
         onboardingItemPcGuideActivityList.add(item_Intro);
-        onboardingItemPcGuideActivityList.add(item_CPU);
-        onboardingItemPcGuideActivityList.add(item_motherboard);
-        onboardingItemPcGuideActivityList.add(item_RAM);
-        onboardingItemPcGuideActivityList.add(item_CPUCOOL);
-        onboardingItemPcGuideActivityList.add(item_GPU);
-        onboardingItemPcGuideActivityList.add(item_STORAGE);
+        onboardingItemPcGuideActivityList.add(item_Conn);
+        onboardingItemPcGuideActivityList.add(item_start);
+        onboardingItemPcGuideActivityList.add(item_end);
         onboardingAdapterPcGuide = new OnboardingAdapter(onboardingItemPcGuideActivityList);
     }
 

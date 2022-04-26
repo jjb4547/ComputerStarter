@@ -23,7 +23,7 @@ import com.google.android.material.button.MaterialButton;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Arduino_Guide_Installation_Activity extends AppCompatActivity {
+public class Arduino_Guide_Prep_Activity extends AppCompatActivity {
 
     private OnboardingAdapter onboardingAdapterPcGuide;
     private LinearLayout layoutOnboardingIndicators;
@@ -80,48 +80,41 @@ public class Arduino_Guide_Installation_Activity extends AppCompatActivity {
     private void setupOnboardingItems(){
         List<OnboardingItem> onboardingItemPcGuideActivityList = new ArrayList<>();
         OnboardingItem item_Intro = new OnboardingItem();
-        item_Intro.setTitle("Welcome to the Installation Guide");
-        item_Intro.setDescription("Here is where you will be able find out what components will be needed " +
-                "to build a computer and be able to achieve that life long dream of building a computer.");
-        item_Intro.setImage(R.drawable.pc_build_link);
+        item_Intro.setTitle("Welcome to the Prep Guide for Arduino");
+        item_Intro.setDescription("This is where we will guide you through " +
+                "your first time set up of your Arduino");
+        item_Intro.setImage(R.drawable.arduino_logo);
 
-        OnboardingItem item_CPU = new OnboardingItem();
-        item_CPU.setTitle("CPU");
-        item_CPU.setDescription("First thing you need to get is the CPU");
-        item_CPU.setImage(R.drawable.cpu_link);
+        OnboardingItem item_1 = new OnboardingItem();
+        item_1.setTitle("Arduino");
+        item_1.setDescription("• First and foremost you will need one of the many Arduino models. " +
+                "If you bought the Arduino alone you will need to buy some extra supplies. Arduinos " +
+                "require a micro usb cord in order to power and connect it to your personal computer. It will need to be " +
+                "cable of powering the Arduino and doing data transfer.");
 
-        OnboardingItem item_motherboard = new OnboardingItem();
-        item_motherboard.setTitle("Motherboard");
-        item_motherboard.setDescription("Second is the motherboard");
-        item_motherboard.setImage(R.drawable.motherboard_link);
+        item_1.setImage(R.drawable.arduino_uno);
 
-        OnboardingItem item_RAM = new OnboardingItem();
-        item_RAM.setTitle("RAM (Memory)");
-        item_RAM.setDescription("GET YOUR RAM");
-        item_RAM.setImage(R.drawable.memory_link);
+        OnboardingItem item_2 = new OnboardingItem();
+        item_2.setTitle("Separate Computer");
+        item_2.setDescription("• Next you will need a separate computer in order to write your code and upload it to" +
+                "the Arduino. Most if not all computers should be capable as long as they have one free usb port " +
+                "and ability to download the Arduino IDE." +
+                "\n• You may also purchase some optional add ons that arent necessary for set up " +
+                ",but may be useful in the future such memory cards, shields, and carriers.");
+        item_2.setImage(R.drawable.monitor_link);
 
-        OnboardingItem item_CPUCOOL = new OnboardingItem();
-        item_CPUCOOL.setTitle("CPU COOLER");
-        item_CPUCOOL.setDescription("GET YOUR RAM");
-        item_CPUCOOL.setImage(R.drawable.cpu_cooler_link);
-
-        OnboardingItem item_GPU = new OnboardingItem();
-        item_GPU.setTitle("GPU(VGA)");
-        item_GPU.setDescription("GET YOUR RAM");
-        item_GPU.setImage(R.drawable.vga_link);
-
-        OnboardingItem item_STORAGE = new OnboardingItem();
-        item_STORAGE.setTitle("STORAGE");
-        item_STORAGE.setDescription("GET YOUR STORAGE");
-        item_STORAGE.setImage(R.drawable.storage_link);;
+        /*OnboardingItem item_2 = new OnboardingItem();
+        item_2.setTitle("MicroSD setup");
+        item_2.setDescription("  There are many OS options, but as a beginner the best place to start is the Raspberry Pi OS which can serve most needs. You will want to navigate " +
+                "to https://www.raspberrypi.com/software/ on your computer to download the Raspberry Pi OS. You will then want to insert your microSD card into your computer " +
+                "or use your SD card reader. When you launch the installer your system may try to warn you, but make sure to run it anyway. Select Raspberry Pi OS and the SD card you " +
+                "inserted then select WRITE. Once it's done you can eject your SD card from your computer and prepare for the next steps.");
+        item_2.setImage(R.drawable.sd_card);
+         */
 
         onboardingItemPcGuideActivityList.add(item_Intro);
-        onboardingItemPcGuideActivityList.add(item_CPU);
-        onboardingItemPcGuideActivityList.add(item_motherboard);
-        onboardingItemPcGuideActivityList.add(item_RAM);
-        onboardingItemPcGuideActivityList.add(item_CPUCOOL);
-        onboardingItemPcGuideActivityList.add(item_GPU);
-        onboardingItemPcGuideActivityList.add(item_STORAGE);
+        onboardingItemPcGuideActivityList.add(item_1);
+        onboardingItemPcGuideActivityList.add(item_2);
         onboardingAdapterPcGuide = new OnboardingAdapter(onboardingItemPcGuideActivityList);
     }
 
@@ -157,7 +150,7 @@ public class Arduino_Guide_Installation_Activity extends AppCompatActivity {
             }
         }
         if (index== onboardingAdapterPcGuide.getItemCount()-1){
-            buttonOnboardingAction.setText("Setup");
+            buttonOnboardingAction.setText("Finish");
         }else{
             buttonOnboardingAction.setText("Next");
         }

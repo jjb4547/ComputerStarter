@@ -23,7 +23,7 @@ import com.google.android.material.button.MaterialButton;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Arduino_Guide_Supplies_Activity extends AppCompatActivity {
+public class Arduino_Guide_Troubleshoot_Activity extends AppCompatActivity {
 
     private OnboardingAdapter onboardingAdapterPcGuide;
     private LinearLayout layoutOnboardingIndicators;
@@ -64,7 +64,7 @@ public class Arduino_Guide_Supplies_Activity extends AppCompatActivity {
             if(onboardingViewPager.getCurrentItem()+1< onboardingAdapterPcGuide.getItemCount()){
                 onboardingViewPager.setCurrentItem(onboardingViewPager.getCurrentItem()+1);
             }else{
-                startActivity(new Intent(this, Arduino_Guide_Installation_Activity.class));
+                startActivity(new Intent(this, Arduino_Guide_Setup_Activity.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 finish();
             }
@@ -80,11 +80,48 @@ public class Arduino_Guide_Supplies_Activity extends AppCompatActivity {
     private void setupOnboardingItems(){
         List<OnboardingItem> onboardingItemPcGuideActivityList = new ArrayList<>();
         OnboardingItem item_Intro = new OnboardingItem();
-        item_Intro.setTitle("Welcome to the Supplies Guide for Arduino");
-        item_Intro.setDescription("Description");
-        item_Intro.setImage(R.drawable.arduino_logo);
+        item_Intro.setTitle("Welcome to the Installation Guide");
+        item_Intro.setDescription("Here is where you will be able find out what components will be needed " +
+                "to build a computer and be able to achieve that life long dream of building a computer.");
+        item_Intro.setImage(R.drawable.pc_build_link);
+
+        OnboardingItem item_CPU = new OnboardingItem();
+        item_CPU.setTitle("CPU");
+        item_CPU.setDescription("First thing you need to get is the CPU");
+        item_CPU.setImage(R.drawable.cpu_link);
+
+        OnboardingItem item_motherboard = new OnboardingItem();
+        item_motherboard.setTitle("Motherboard");
+        item_motherboard.setDescription("Second is the motherboard");
+        item_motherboard.setImage(R.drawable.motherboard_link);
+
+        OnboardingItem item_RAM = new OnboardingItem();
+        item_RAM.setTitle("RAM (Memory)");
+        item_RAM.setDescription("GET YOUR RAM");
+        item_RAM.setImage(R.drawable.memory_link);
+
+        OnboardingItem item_CPUCOOL = new OnboardingItem();
+        item_CPUCOOL.setTitle("CPU COOLER");
+        item_CPUCOOL.setDescription("GET YOUR RAM");
+        item_CPUCOOL.setImage(R.drawable.cpu_cooler_link);
+
+        OnboardingItem item_GPU = new OnboardingItem();
+        item_GPU.setTitle("GPU(VGA)");
+        item_GPU.setDescription("GET YOUR RAM");
+        item_GPU.setImage(R.drawable.vga_link);
+
+        OnboardingItem item_STORAGE = new OnboardingItem();
+        item_STORAGE.setTitle("STORAGE");
+        item_STORAGE.setDescription("GET YOUR STORAGE");
+        item_STORAGE.setImage(R.drawable.storage_link);;
 
         onboardingItemPcGuideActivityList.add(item_Intro);
+        onboardingItemPcGuideActivityList.add(item_CPU);
+        onboardingItemPcGuideActivityList.add(item_motherboard);
+        onboardingItemPcGuideActivityList.add(item_RAM);
+        onboardingItemPcGuideActivityList.add(item_CPUCOOL);
+        onboardingItemPcGuideActivityList.add(item_GPU);
+        onboardingItemPcGuideActivityList.add(item_STORAGE);
         onboardingAdapterPcGuide = new OnboardingAdapter(onboardingItemPcGuideActivityList);
     }
 
@@ -120,7 +157,7 @@ public class Arduino_Guide_Supplies_Activity extends AppCompatActivity {
             }
         }
         if (index== onboardingAdapterPcGuide.getItemCount()-1){
-            buttonOnboardingAction.setText("Finish");
+            buttonOnboardingAction.setText("Setup");
         }else{
             buttonOnboardingAction.setText("Next");
         }
