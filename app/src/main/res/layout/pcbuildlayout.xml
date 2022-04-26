@@ -513,7 +513,7 @@
                         <ImageView
                             android:layout_width="100dp"
                             android:layout_height="100dp"
-                            android:src="@drawable/memory_link"
+                            android:src="@drawable/pc_case_link"
                             android:layout_margin="10dp"/>
                         <LinearLayout
                             android:layout_width="match_parent"
