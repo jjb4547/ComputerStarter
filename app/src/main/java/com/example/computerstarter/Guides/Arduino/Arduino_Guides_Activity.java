@@ -20,10 +20,12 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 
 import com.example.computerstarter.Build.MyBuildActivity;
+import com.example.computerstarter.Education.PC_Part_Activity;
 import com.example.computerstarter.Guides.Guides_Activity;
 import com.example.computerstarter.Login.Login_SignUpActivity;
 import com.example.computerstarter.Others.AccountActivity;
 import com.example.computerstarter.R;
+import com.example.computerstarter.SampleProjects.SampleProjects;
 import com.example.computerstarter.app.HomeActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -102,6 +104,7 @@ public class Arduino_Guides_Activity extends AppCompatActivity implements Naviga
                 log.setText("Log In");
                 //login.logged = false;
                 item_acc.setVisible(false);
+                startActivity(new Intent(this, Login_SignUpActivity.class));
             }else{
                 startActivity(new Intent(this, Login_SignUpActivity.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
@@ -155,17 +158,25 @@ public class Arduino_Guides_Activity extends AppCompatActivity implements Naviga
                 startActivity(new Intent(this, HomeActivity.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 break;
-            case R.id.building:
-                Toast.makeText(this,"My Builds",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this, MyBuildActivity.class));
-                overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
-                break;
             case R.id.account:
-                if(mAuth.getCurrentUser()!=null) {
-                    startActivity(new Intent(this, AccountActivity.class));
+                if (mAuth.getCurrentUser() != null) {
+                    startActivity(new Intent(Arduino_Guides_Activity.this, AccountActivity.class));
                     overridePendingTransition(R.anim.slide_in_bottom, R.anim.stay);
-                }else
-                    Toast.makeText(this,"LOG IN!!!!",Toast.LENGTH_SHORT).show();
+                } else
+                    Toast.makeText(this, "LOG IN!!!!", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.partsMenu:
+                startActivity(new Intent(Arduino_Guides_Activity.this, PC_Part_Activity.class)
+                        .putExtra("Act","Edu"));
+                break;
+            case R.id.guidesMenu:
+                startActivity(new Intent(Arduino_Guides_Activity.this, Guides_Activity.class));
+                break;
+            case R.id.projectsMenu:
+                startActivity(new Intent(Arduino_Guides_Activity.this, SampleProjects.class));
+                break;
+            default:
+                Toast.makeText(this, "Nothing was clicked.", Toast.LENGTH_SHORT).show();
                 break;
         }
         return true;

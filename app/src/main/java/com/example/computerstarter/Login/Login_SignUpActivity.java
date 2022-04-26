@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -34,6 +35,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
@@ -44,6 +46,7 @@ public class Login_SignUpActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private EditText email,password,name,age,signEmail,signPass;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    FirebaseUser firebaseUser;
     private String current;
     private ArrayList<String> build_name;
     private ArrayList<String> build_date;
@@ -220,9 +223,8 @@ public class Login_SignUpActivity extends AppCompatActivity {
                         //ArrayList<Build_Activity> build_data = new ArrayList<>();
                         //Toast.makeText(Login_SignUpActivity.this,"User Created", Toast.LENGTH_SHORT).show();
                         current = mAuth.getCurrentUser().getUid();
-                        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-                        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setDisplayName(user_name).build();
-                        firebaseUser.updateProfile(profileUpdates);
+                        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
                         Map<String,Object> user = new HashMap<>();
                         user.put("Age",userage);
                         user.put("build_date",build_date);
@@ -237,7 +239,20 @@ public class Login_SignUpActivity extends AppCompatActivity {
                                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
                                 image.compress(Bitmap.CompressFormat.PNG,15,stream);
                                 byte[] imageByte = stream.toByteArray();
-                                fileRef.putBytes(imageByte).addOnSuccessListener(taskSnapshot -> Toast.makeText(Login_SignUpActivity.this,"Default Profile Image Uploaded",Toast.LENGTH_SHORT).show());
+                                fileRef.putBytes(imageByte).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                    @Override
+                                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                        fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                            @Override
+                                            public void onSuccess(Uri uri) {
+                                                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                                        .setDisplayName(user_name).setPhotoUri(uri).build();
+                                                firebaseUser.updateProfile(profileUpdates);
+                                            }
+                                        });
+                                    }
+                                });
+                                //System.out.println(fileRef);
                                 mAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {

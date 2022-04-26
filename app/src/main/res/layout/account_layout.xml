@@ -17,6 +17,18 @@
                 android:layout_height="225dp"
                 android:background="@color/cardview_light">
 
+                <ImageButton
+                    android:id="@+id/home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:src="@drawable/ic_back"
+                    app:tint="@color/white" />
+
                 <com.makeramen.roundedimageview.RoundedImageView
                     android:id="@+id/profileImage"
                     android:layout_width="150dp"
@@ -25,7 +37,21 @@
                     android:scaleType="centerCrop"
                     app:riv_corner_radius="51dp"
                     app:riv_border_color="@color/black"
-                    android:src="@mipmap/ic_logo" />
+                    android:src="@mipmap/ic_logo"
+                    />
+
+                <ImageButton
+                    android:id="@+id/menuButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:src="@drawable/ic_menu"
+                    app:tint="@color/white" />
 
                 <ImageView
                     android:id="@+id/change_profile"
@@ -158,20 +184,6 @@
                     android:text="Log Out"
                     app:shapeAppearanceOverlay="@style/Button5" />
 
-                <TextView
-                    android:id="@+id/home"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_gravity="center"
-                    android:layout_below="@id/logOut"
-                    android:layout_alignParentBottom="true"
-                    android:fontFamily="@font/francois_one"
-                    android:layout_marginTop="50dp"
-                    android:text="Return Home"
-                    android:textColor="@color/cardview_light"
-                    android:textSize="30sp" />
-
             </RelativeLayout>
             </ScrollView>
 
@@ -183,7 +195,7 @@
         android:id="@+id/navigation_menu"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_gravity="start"
+        android:layout_gravity="end"
         android:background="@drawable/drawer_background_right2"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_menu"

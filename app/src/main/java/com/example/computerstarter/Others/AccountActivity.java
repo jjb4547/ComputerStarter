@@ -7,10 +7,12 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,13 +25,17 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.computerstarter.Build.MainBuilds;
 import com.example.computerstarter.Build.MyBuildActivity;
+import com.example.computerstarter.Education.PC_Part_Activity;
+import com.example.computerstarter.Guides.Guides_Activity;
 import com.example.computerstarter.Login.Login_SignUpActivity;
 import com.example.computerstarter.R;
+import com.example.computerstarter.SampleProjects.SampleProjects;
 import com.example.computerstarter.app.HomeActivity;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
@@ -46,7 +52,8 @@ public class AccountActivity extends AppCompatActivity implements NavigationView
     FirebaseAuth mAuth;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseUser user;
-    TextView nameUser,home;
+    TextView nameUser;
+    ImageButton home,menuButton;
     TextView ageUser;
     TextView email;
     TextView name;
@@ -74,17 +81,24 @@ public class AccountActivity extends AppCompatActivity implements NavigationView
         navigationView = findViewById(R.id.navigation_menu);
         toggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.navigation_draw_open,R.string.navigation_draw_close);
         toggle.syncState();
+        menuButton = findViewById(R.id.menuButton);
         drawerLayout = findViewById(R.id.drawerlayout);
         navigationView = findViewById(R.id.navigation_menu);
         toggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.navigation_draw_open,R.string.navigation_draw_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        //Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         navigationView.setNavigationItemSelectedListener(this);
         View headerView = navigationView.getHeaderView(0);
         Menu menu = navigationView.getMenu();
         item_acc = menu.findItem(R.id.account);
         log = findViewById(R.id.log_Text);
+        menuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.openDrawer(Gravity.RIGHT);
+            }
+        });
         if(user!=null) {
             log.setText("Log Out");
             item_acc.setVisible(true);
@@ -100,7 +114,12 @@ public class AccountActivity extends AppCompatActivity implements NavigationView
             name.setText(user.getDisplayName());
             email.setText(user.getEmail());
             StorageReference profileRef = storageReference.child("ProfileImage/Users/"+mAuth.getCurrentUser().getUid()+"/profile");
-            profileRef.getDownloadUrl().addOnSuccessListener(uri -> Picasso.get().load(uri).into(profile));
+            profileRef.getDownloadUrl().addOnSuccessListener(uri ->{
+                Picasso.get().load(uri).into(profile);
+                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                        .setPhotoUri(uri).build();
+                user.updateProfile(profileUpdates);
+            });
             //profile.setImageURI(user.getPhotoUrl()); //bugging out not sure why but only on the emulator
         }else{
             name.setText("Guest");
@@ -114,8 +133,9 @@ public class AccountActivity extends AppCompatActivity implements NavigationView
                 log.setText("Log In");
                 //login.logged = false;
                 item_acc.setVisible(false);
+                startActivity(new Intent(AccountActivity.this, Login_SignUpActivity.class));
             }else{
-                startActivity(new Intent(this, Login_SignUpActivity.class));
+                startActivity(new Intent(AccountActivity.this, Login_SignUpActivity.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 //log.setText("Log Out");
             }
@@ -232,6 +252,15 @@ public class AccountActivity extends AppCompatActivity implements NavigationView
                     overridePendingTransition(R.anim.slide_in_bottom, R.anim.stay);
                 }else
                     Toast.makeText(this,"LOG IN!!!!",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.partsMenu:
+                startActivity(new Intent(AccountActivity.this, PC_Part_Activity.class).putExtra("Act","Edu"));
+                break;
+            case R.id.guidesMenu:
+                startActivity(new Intent(AccountActivity.this, Guides_Activity.class));
+                break;
+            case R.id.projectsMenu:
+                startActivity(new Intent(AccountActivity.this, SampleProjects.class));
                 break;
         }
         return true;

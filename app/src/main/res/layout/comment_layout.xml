@@ -8,24 +8,36 @@
     <RelativeLayout
         android:id="@+id/topLayout"
         android:layout_width="match_parent"
-        android:layout_height="170dp">
+        android:layout_height="200dp">
+
         <ImageButton
             android:id="@+id/backButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_back"
-            android:layout_alignParentTop="true"
             android:layout_alignParentStart="true"
-            android:background="?attr/selectableItemBackground"
+            android:layout_alignParentTop="true"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
+            android:background="?attr/selectableItemBackground"
+            android:src="@drawable/ic_back"
             app:tint="@color/cardview_light" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/francois_one"
+            android:text="Comment Section"
+            android:textColor="@color/cardview_light"
+            android:textSize="25sp"
+            android:layout_alignTop="@id/backButton"/>
 
         <ImageView
             android:id="@+id/imageComment"
             android:layout_width="match_parent"
             android:layout_height="170dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="50dp"
             android:scaleType="centerCrop"
             android:src="@drawable/amd_cpu" />
 
@@ -112,12 +124,12 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/commentRecycler"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_below="@+id/likecommLayout"
         android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="20dp" />
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="100dp" />
     <View
         android:id="@+id/border"
         android:layout_width="match_parent"
@@ -125,21 +137,22 @@
         android:layout_marginBottom="10dp"
         android:layout_alignParentBottom="true"
         android:background="@drawable/border_text"/>
+
     <EditText
         android:id="@+id/commentText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignTop="@id/border"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="10dp"
-        android:layout_marginEnd="10dp"
         android:layout_marginStart="10dp"
-        android:fontFamily="@font/francois_one"
-        android:textSize="20sp"
-        android:ems="10"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         android:layout_toStartOf="@id/send"
+        android:ems="10"
+        android:fontFamily="@font/francois_one"
         android:hint="Comment Here..."
         android:textColorHint="@color/gray"
-        android:layout_alignTop="@id/border"/>
+        android:textSize="20sp" />
 
     <ImageButton
         android:id="@+id/send"

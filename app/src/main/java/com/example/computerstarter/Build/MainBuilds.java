@@ -19,9 +19,12 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.computerstarter.Education.PC_Part_Activity;
+import com.example.computerstarter.Guides.Guides_Activity;
 import com.example.computerstarter.Login.Login_SignUpActivity;
 import com.example.computerstarter.Others.AccountActivity;
 import com.example.computerstarter.R;
+import com.example.computerstarter.SampleProjects.SampleProjects;
 import com.example.computerstarter.app.HomeActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -112,6 +115,7 @@ public class MainBuilds extends AppCompatActivity implements NavigationView.OnNa
                 log.setText("Log In");
                 //login.logged = false;
                 item_acc.setVisible(false);
+                startActivity(new Intent(MainBuilds.this, Login_SignUpActivity.class));
             }else{
                 startActivity(new Intent(MainBuilds.this, Login_SignUpActivity.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
@@ -147,6 +151,15 @@ public class MainBuilds extends AppCompatActivity implements NavigationView.OnNa
                     overridePendingTransition(R.anim.slide_in_bottom, R.anim.stay);
                 }else
                     Toast.makeText(this,"LOG IN!!!!",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.partsMenu:
+                startActivity(new Intent(MainBuilds.this, PC_Part_Activity.class).putExtra("Act","Edu"));
+                break;
+            case R.id.guidesMenu:
+                startActivity(new Intent(MainBuilds.this, Guides_Activity.class));
+                break;
+            case R.id.projectsMenu:
+                startActivity(new Intent(MainBuilds.this, SampleProjects.class));
                 break;
         }
         return true;

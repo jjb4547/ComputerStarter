@@ -1,7 +1,7 @@
 package com.example.computerstarter.SocialMedia;
 
 public class Post {
-    private String postId, postImage, postedBy, postDescription,tag,profile;
+    private String postId, postImage, postedBy, postDescription,tag,profile,postUserId;
     private boolean defaultImage;
     private int postLike,postComment;
 
@@ -64,7 +64,7 @@ public class Post {
         this.tag = tag;
     }
 
-    public Post(String postId, String postImage, String postedBy, String postDescription, long postedAt, String tag, boolean defaultImage, String profile) {
+    public Post(String postId, String postImage, String postedBy, String postDescription, long postedAt, String tag, boolean defaultImage, String profile, String postUserId) {
         this.postId = postId;
         this.postImage = postImage;
         this.postedBy = postedBy;
@@ -73,6 +73,7 @@ public class Post {
         this.tag = tag;
         this.defaultImage = defaultImage;
         this.profile = profile;
+        this.postUserId = postUserId;
     }
 
     private long postedAt;
@@ -99,5 +100,13 @@ public class Post {
 
     public void setPostComment(int postComment) {
         this.postComment = postComment;
+    }
+
+    public String getPostUserId() {
+        return postUserId;
+    }
+
+    public void setPostUserId(String postUserId) {
+        this.postUserId = postUserId;
     }
 }

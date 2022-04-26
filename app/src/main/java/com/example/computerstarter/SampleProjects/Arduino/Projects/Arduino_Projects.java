@@ -2,9 +2,11 @@ package com.example.computerstarter.SampleProjects.Arduino.Projects;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,10 +21,13 @@ import androidx.navigation.NavController;
 
 import com.example.computerstarter.Build.MainBuilds;
 import com.example.computerstarter.Build.MyBuildActivity;
+import com.example.computerstarter.Education.PC_Part_Activity;
+import com.example.computerstarter.Guides.Guides_Activity;
 import com.example.computerstarter.Login.Login_SignUpActivity;
 import com.example.computerstarter.Others.AccountActivity;
 import com.example.computerstarter.R;
 import com.example.computerstarter.SampleProjects.Arduino.Projects.TemperatureSensor.Arduino_Temperature_Sensor;
+import com.example.computerstarter.SampleProjects.RaspiProj.RaspberryPi_Projects;
 import com.example.computerstarter.SampleProjects.SampleProjects;
 import com.example.computerstarter.app.HomeActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -30,6 +35,9 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import java.util.Objects;
 
@@ -50,15 +58,13 @@ public class Arduino_Projects extends AppCompatActivity implements NavigationVie
     private MenuItem item_log;
     private MenuItem item_quiz;
     private MenuItem item_acc;
+    private StorageReference storageReference = FirebaseStorage.getInstance().getReference();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.arduino_projects_layout);
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
-        //bottomNavigationView = findViewById(R.id.bottomNavigationView);
-        //navController = Navigation.findNavController(this,R.id.frame_layout);
-        //NavigationUI.setupWithNavController(bottomNavigationView,navController);
         drawerLayout = findViewById(R.id.drawerlayout);
         navigationView = findViewById(R.id.navigation_menu);
         toggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.navigation_draw_open,R.string.navigation_draw_close);
@@ -68,7 +74,7 @@ public class Arduino_Projects extends AppCompatActivity implements NavigationVie
         toggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.navigation_draw_open,R.string.navigation_draw_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        //Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         navigationView.setNavigationItemSelectedListener(this);
         View headerView = navigationView.getHeaderView(0);
         Menu menu = navigationView.getMenu();
@@ -89,6 +95,8 @@ public class Arduino_Projects extends AppCompatActivity implements NavigationVie
             String current = user.getUid();
             name.setText(user.getDisplayName());
             email.setText(user.getEmail());
+            StorageReference profileRef = storageReference.child("ProfileImage/Users/"+mAuth.getCurrentUser().getUid()+"/profile");
+            profileRef.getDownloadUrl().addOnSuccessListener(uri -> Picasso.get().load(uri).into(profile));
             //profile.setImageURI(user.getPhotoUrl()); //bugging out not sure why but only on the emulator
         }else{
             name.setText("Guest");
@@ -98,25 +106,28 @@ public class Arduino_Projects extends AppCompatActivity implements NavigationVie
             if(mAuth.getCurrentUser()!=null){
                 mAuth.signOut();
                 Toast.makeText(this,"Logged Out",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this, MainBuilds.class));
+                startActivity(new Intent(this, HomeActivity.class));
                 log.setText("Log In");
                 //login.logged = false;
                 item_acc.setVisible(false);
+                startActivity(new Intent(this, Login_SignUpActivity.class));
             }else{
                 startActivity(new Intent(this, Login_SignUpActivity.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 //log.setText("Log Out");
             }
         });
-        home = findViewById(R.id.home);
-        temperatureSensor = findViewById(R.id.temperatureSensor);
-        temperatureSensor.setOnClickListener(view -> {
-            startActivity(new Intent(this, Arduino_Temperature_Sensor.class));
+        ImageButton menuButton = findViewById(R.id.menuButton);
+        menuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.openDrawer(Gravity.RIGHT);
+            }
         });
+        ImageButton home = findViewById(R.id.homeBut);
         home.setOnClickListener(view->{
-            startActivity(new Intent(getApplicationContext(), SampleProjects.class)
-                    .putExtra("component", "Arduino"));
-            overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
+            startActivity(new Intent(getApplicationContext(), SampleProjects.class));
+            overridePendingTransition(R.anim.slide_in_top,R.anim.stay);
         });
     }
     @Override
@@ -128,11 +139,10 @@ public class Arduino_Projects extends AppCompatActivity implements NavigationVie
         switch (item.getItemId()){
             case R.id.home:
                 Toast.makeText(this,"Main Page",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this, HomeActivity.class));
+                startActivity(new Intent(this,HomeActivity.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 break;
             case R.id.building:
-                Toast.makeText(this,"My Builds",Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this, MyBuildActivity.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 break;
@@ -142,6 +152,15 @@ public class Arduino_Projects extends AppCompatActivity implements NavigationVie
                     overridePendingTransition(R.anim.slide_in_bottom, R.anim.stay);
                 }else
                     Toast.makeText(this,"LOG IN!!!!",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.partsMenu:
+                startActivity(new Intent(Arduino_Projects.this, PC_Part_Activity.class).putExtra("Act","Edu"));
+                break;
+            case R.id.guidesMenu:
+                startActivity(new Intent(Arduino_Projects.this, Guides_Activity.class));
+                break;
+            case R.id.projectsMenu:
+                startActivity(new Intent(Arduino_Projects.this, SampleProjects.class));
                 break;
         }
         return true;

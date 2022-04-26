@@ -21,6 +21,8 @@ import androidx.navigation.NavController;
 
 import com.example.computerstarter.Build.MainBuilds;
 import com.example.computerstarter.Build.MyBuildActivity;
+import com.example.computerstarter.Education.PC_Part_Activity;
+import com.example.computerstarter.Guides.Guides_Activity;
 import com.example.computerstarter.Login.Login_SignUpActivity;
 import com.example.computerstarter.Others.AccountActivity;
 import com.example.computerstarter.R;
@@ -111,6 +113,7 @@ public class SampleProjects extends AppCompatActivity implements NavigationView.
                 log.setText("Log In");
                 //login.logged = false;
                 item_acc.setVisible(false);
+                startActivity(new Intent(this, Login_SignUpActivity.class));
             }else{
                 startActivity(new Intent(this, Login_SignUpActivity.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
@@ -121,9 +124,7 @@ public class SampleProjects extends AppCompatActivity implements NavigationView.
             startActivity(new Intent(SampleProjects.this, RaspberryPi_Projects.class));
         });
         ard.setOnClickListener(view2 -> {
-            startActivity(new Intent(SampleProjects.this, Arduino_Projects.class)
-                    .putExtra("component","Arduino")
-                    .putExtra("Act","Edu"));
+            startActivity(new Intent(SampleProjects.this, Arduino_Projects.class));
         });
         home.setOnClickListener(view -> {
             startActivity(new Intent(SampleProjects.this, HomeActivity.class));
@@ -142,7 +143,6 @@ public class SampleProjects extends AppCompatActivity implements NavigationView.
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 break;
             case R.id.building:
-                Toast.makeText(this,"My Builds",Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this, MyBuildActivity.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 break;
@@ -152,6 +152,15 @@ public class SampleProjects extends AppCompatActivity implements NavigationView.
                     overridePendingTransition(R.anim.slide_in_bottom, R.anim.stay);
                 }else
                     Toast.makeText(this,"LOG IN!!!!",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.partsMenu:
+                startActivity(new Intent(SampleProjects.this, PC_Part_Activity.class).putExtra("Act","Edu"));
+                break;
+            case R.id.guidesMenu:
+                startActivity(new Intent(SampleProjects.this, Guides_Activity.class));
+                break;
+            case R.id.projectsMenu:
+                startActivity(new Intent(SampleProjects.this, SampleProjects.class));
                 break;
         }
         return true;

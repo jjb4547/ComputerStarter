@@ -38,6 +38,7 @@
                 android:textColor="@color/black"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"/>
+
                 <ImageButton
                     android:id="@+id/menuButton"
                     android:layout_width="wrap_content"
@@ -48,16 +49,17 @@
                     android:background="?attr/selectableItemBackground"
                     android:src="@drawable/ic_menu"
                     app:tint="@color/cardview_light" />
+
                 <ImageButton
                     android:id="@+id/homeBut"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:background="?attr/selectableItemBackground"
                     android:layout_centerVertical="true"
-                    app:tint="@color/cardview_light"
+                    android:layout_marginStart="10dp"
+                    android:background="?attr/selectableItemBackground"
                     android:src="@drawable/ic_back"
-                    android:layout_marginStart="10dp"/>
+                    app:tint="@color/cardview_light" />
             </RelativeLayout>
             <TextView
                 android:layout_width="wrap_content"
@@ -204,43 +206,6 @@
                         android:textColor="@color/white"/>
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
-            <!--
-            <androidx.cardview.widget.CardView
-                android:id="@+id/projects"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                app:cardElevation="8dp"
-                android:clickable="true"
-                app:cardPreventCornerOverlap="false"
-                app:cardCornerRadius="8dp"
-                android:foreground="?android:attr/selectableItemBackground">
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:background="@color/cardview_light">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:fontFamily="@font/halant_bold"
-                        android:text="Projects"
-                        android:textColor="@color/white"
-                        android:textSize="50sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_centerInParent="true"
-                        android:layout_marginBottom="15dp"
-                        android:text="Fun Projects to do with your Raspberry Pi"
-                        android:textColor="@color/white" />
-
-                </RelativeLayout>
-            </androidx.cardview.widget.CardView>
-            -->
         </LinearLayout>
 
 
@@ -256,7 +221,7 @@
         android:layout_gravity= "end"
         android:background="@drawable/drawer_background_right2"
         app:itemTextColor="@color/white"
-        app:itemIconTint="@color/cardview_light">
+        app:itemIconTint="@color/white">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

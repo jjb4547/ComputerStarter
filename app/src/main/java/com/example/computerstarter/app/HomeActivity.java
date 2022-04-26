@@ -103,6 +103,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         log.setOnClickListener(view -> {
             if (user != null) {
                 mAuth.signOut();
+                startActivity(new Intent(HomeActivity.this, Login_SignUpActivity.class));
             } else {
                 startActivity(new Intent(HomeActivity.this, Login_SignUpActivity.class));
             }
@@ -329,6 +330,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                     overridePendingTransition(R.anim.slide_in_bottom, R.anim.stay);
                 } else
                     Toast.makeText(this, "LOG IN!!!!", Toast.LENGTH_SHORT).show();
+                break;
             case R.id.partsMenu:
                 startActivity(new Intent(HomeActivity.this, PC_Part_Activity.class)
                         .putExtra("Act","Edu"));

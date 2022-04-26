@@ -28,11 +28,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".Settings.SettingsActivity" />
-        <activity android:name=".Others.AccountActivity"/>
+        <activity android:name=".Others.AccountActivity"
+            android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
         <activity android:name=".Build.MainBuilds"
             android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
-        <activity android:name=".Others.AboutActivity" />
-        <activity android:name=".Others.HelpActivity" />
         <activity android:name=".Build.Build_Activity"
             android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
         <activity android:name=".Build.PC_Build_Parts"
@@ -44,8 +43,6 @@
         <activity android:name=".Login.Login_SignUpActivity"
             android:theme="@style/Theme.ComputerStarter.NoActionBar" />
         <activity android:name=".Education.Education_Choosing_Activity"
-            android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
-        <activity android:name=".Education.RaspberryPi_Education"
             android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
         <!--PC Guides -->
         <activity android:name=".Guides.PC.PC_Building_Guide_Activity"
@@ -68,14 +65,16 @@
             android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
 
         <!-- Raspberry Pi Guides -->
-        <activity android:name=".Guides.RaspberryPi.RaspberryPi_Guides_Activity"/>
+        <activity android:name=".Guides.RaspberryPi.RaspberryPi_Guides_Activity"
+            android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
         <activity android:name=".Guides.RaspberryPi.RaspberryPi_Guide_Troubleshoot_Activity"
             android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
         <activity android:name=".Guides.RaspberryPi.RaspberryPi_Guide_Prep_Activity"
             android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
         <activity android:name=".Guides.RaspberryPi.RaspberryPi_Guide_Setup_Activity"
             android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
-        <activity android:name=".SampleProjects.RaspiProj.RaspberryPi_Projects"/>
+        <activity android:name=".SampleProjects.RaspiProj.RaspberryPi_Projects"
+            android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
         <activity android:name=".SampleProjects.RaspiProj.HumiditySensor.RaspberryPi_Humidity_Sensor"/>
         <activity android:name=".SampleProjects.RaspiProj.HumiditySensor.RaspberryPi_Humidity_Sensor_Supplies"
             android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
@@ -86,7 +85,8 @@
         <activity android:name=".Education.WebPageEducation"/>
         <activity android:name=".app.HomeActivity"
             android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
-        <activity android:name=".SampleProjects.Arduino.Projects.Arduino_Projects" />
+        <activity android:name=".SampleProjects.Arduino.Projects.Arduino_Projects"
+            android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
         <activity android:name=".SampleProjects.Arduino.Projects.TemperatureSensor.Arduino_Temperature_Sensor" />
         <activity android:name=".SampleProjects.Arduino.Projects.TemperatureSensor.Arduino_Temperature_Sensor_Coding"
             android:theme="@style/Theme.ComputerStarter.NoActionBar"/>

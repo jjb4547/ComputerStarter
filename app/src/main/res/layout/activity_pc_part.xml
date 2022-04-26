@@ -418,36 +418,34 @@
         app:itemTextAppearance="?android:attr/textAppearanceMedium"
         app:itemTextColor="@color/white"
         app:menu="@menu/drawer_menu">
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
             android:backgroundTint="@color/cardview_light">
-
             <ImageView
                 android:id="@+id/logButtton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:src="@drawable/ic_logout"
                 android:layout_alignParentBottom="true"
                 android:layout_toStartOf="@+id/log_Text"
                 android:backgroundTint="@color/cardview_light"
-                android:src="@drawable/ic_logout"
-                app:tint="@color/cardview_light" />
-
+                app:tint="@color/cardview_light"
+                />
             <TextView
                 android:id="@+id/log_Text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:fontFamily="@font/francois_one"
-                android:gravity="center"
                 android:text="Log Out"
                 android:textColor="@color/white"
+                android:gravity="center"
                 android:textSize="20sp"
-                android:layout_centerVertical="true"/>
+                android:layout_centerHorizontal="true"/>
         </RelativeLayout>
+
+
 
     </com.google.android.material.navigation.NavigationView>
 </androidx.drawerlayout.widget.DrawerLayout>

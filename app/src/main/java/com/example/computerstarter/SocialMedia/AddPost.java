@@ -1,10 +1,17 @@
 package com.example.computerstarter.SocialMedia;
+import android.Manifest;
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MenuItem;
@@ -16,9 +23,16 @@ import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContract;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.example.computerstarter.Build.MainBuilds;
 import com.example.computerstarter.R;
@@ -31,6 +45,9 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Date;
 
 
@@ -46,10 +63,11 @@ public class AddPost extends AppCompatActivity {
     ImageButton imagePostButton,tagButton, backButton;
     ImageView imagePost;
     String tag="";
-    String profile;
     String postImage="";
     String description="";
     boolean isImage=true;
+    private static final int CAMERA_PERMISSION_CODE = 112;
+    private static final int STORAGE_PERMISSION_CODE = 113;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,10 +123,7 @@ public class AddPost extends AppCompatActivity {
         imagePostButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                intent.setType("image/*");
-                startActivityForResult(intent, 10);
+                showImagePicDialog();
             }
         });
         tagButton.setOnClickListener(new View.OnClickListener() {
@@ -132,6 +147,7 @@ public class AddPost extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 dialog.show();
+                //System.out.println("PHOTO1: "+user.getPhotoUrl().toString());
                 final StorageReference reference = storage.getReference().child("Posts")
                         .child(FirebaseAuth.getInstance().getUid()).child(new Date().getTime()+"");
                 reference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -145,6 +161,8 @@ public class AddPost extends AppCompatActivity {
                                 post.setPostedBy(user.getDisplayName());
                                 post.setPostDescription(postDescription.getText().toString());
                                 post.setPostedAt(new Date().getTime());
+                                post.setPostUserId(user.getUid());
+                                post.setProfile(user.getPhotoUrl().toString());
                                 post.setTag(tag);
                                 post.setDefaultImage(isImage);
                                 database.getReference().child("Posts").push().setValue(post).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -164,25 +182,107 @@ public class AddPost extends AppCompatActivity {
         });
     }
 
-    private void getProfileImage() {
-        StorageReference storageReference = FirebaseStorage.getInstance().getReference();
-
+    private void showImagePicDialog() {
+        String[] options = {"Camera", "Gallery"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(AddPost.this);
+        //builder.setTitle("Pick Image From");
+        builder.setItems(options, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // check for the camera and storage permission if
+                // not given the request for permission
+                if (which == 0) {
+                    checkPermission(Manifest.permission.CAMERA,CAMERA_PERMISSION_CODE);
+                } else if (which == 1) {
+                    checkPermission(Manifest.permission.READ_EXTERNAL_STORAGE,STORAGE_PERMISSION_CODE);
+                }
+            }
+        });
+        builder.create().show();
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(data.getData()!=null){
-            uri = data.getData();
-            isImage = false;
-            imagePost.setImageURI(uri);
-            postImage = uri.toString();
-            if(!description.isEmpty()){
-                postButton.setVisibility(View.VISIBLE);
+    private void checkPermission(String permission, int requestCode) {
+        if(ContextCompat.checkSelfPermission(AddPost.this,permission)== PackageManager.PERMISSION_DENIED){
+            //Take Permission
+            ActivityCompat.requestPermissions(AddPost.this,new String[]{permission},requestCode);
+        }else{
+            Toast.makeText(this,"Permission already Granted",Toast.LENGTH_SHORT).show();
+            if(permission.compareTo(Manifest.permission.CAMERA)==0){
+                pickFromCamera();
+            }else if(permission.compareTo(Manifest.permission.READ_EXTERNAL_STORAGE)==0){
+                pickFromGallery();
             }
-            postButton.setBackgroundDrawable(getApplicationContext().getResources().getDrawable(R.drawable.rounded_corners_light));
-            postButton.setTextColor(getApplicationContext().getResources().getColor(R.color.white));
-            postButton.setEnabled(true);
         }
     }
+
+    private void pickFromGallery() {
+        Intent galleryIntent = new Intent(Intent.ACTION_PICK);
+        galleryIntent.setType("image/*");
+        galleryActivityResultLauncher.launch(galleryIntent);
+    }
+    private ActivityResultLauncher<Intent> galleryActivityResultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if(result.getResultCode()== Activity.RESULT_OK){
+                        Intent data = result.getData();
+                        uri = data.getData();
+                        imagePost.setImageURI(uri);
+                        InputStream inputStream = null;
+                        try{
+                            inputStream = getContentResolver().openInputStream(uri);
+                        }catch (FileNotFoundException e){
+                            e.printStackTrace();
+                        }
+                        Bitmap bmp = BitmapFactory.decodeStream(inputStream);
+                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                        bmp.compress(Bitmap.CompressFormat.JPEG, 25, stream);
+                        byte[] bytes = stream.toByteArray();
+                        try{
+                            stream.close();
+                            stream = null;
+                        }catch (IOException e){
+                            e.printStackTrace();
+                        }
+                        String path = MediaStore.Images.Media.insertImage(getApplicationContext().getContentResolver(), bmp, "Title",null);
+                        uri = Uri.parse(path);
+                        isImage=false;
+                        if(!description.isEmpty()){
+                            postButton.setVisibility(View.VISIBLE);
+                        }
+                        postButton.setBackgroundDrawable(getApplicationContext().getResources().getDrawable(R.drawable.rounded_corners_light));
+                        postButton.setTextColor(getApplicationContext().getResources().getColor(R.color.white));
+                        postButton.setEnabled(true);
+                    }
+                }
+            }
+    );
+
+    private void pickFromCamera() {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        cameraActivityResultLauncher.launch(intent);
+    }
+    private ActivityResultLauncher<Intent> cameraActivityResultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if(result.getResultCode()== Activity.RESULT_OK){
+                        Intent data = result.getData();
+                        Bitmap imageBit = (Bitmap) data.getExtras().get("data");
+                        imagePost.setImageBitmap(imageBit);
+                        isImage =false;
+                        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+                        imageBit.compress(Bitmap.CompressFormat.JPEG, 25, bytes);
+                        String path = MediaStore.Images.Media.insertImage(getApplicationContext().getContentResolver(), imageBit, "Title",null);
+                        uri = Uri.parse(path);
+                        if(!description.isEmpty()){
+                            postButton.setVisibility(View.VISIBLE);
+                        }
+                        postButton.setBackgroundDrawable(getApplicationContext().getResources().getDrawable(R.drawable.rounded_corners_light));
+                        postButton.setTextColor(getApplicationContext().getResources().getColor(R.color.white));
+                        postButton.setEnabled(true);
+                    }
+                }
+            }
+    );
 }

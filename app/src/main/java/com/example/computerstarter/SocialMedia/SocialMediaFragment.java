@@ -19,6 +19,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SimpleItemAnimator;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.computerstarter.Build.MainBuilds;
@@ -49,7 +50,7 @@ public class SocialMediaFragment extends Fragment {
     RecyclerView recyclerView;
     ArrayList<Post> posts;
     FloatingActionButton button;
-    ImageButton filter;
+    ImageButton filter,menuButton;
     String tag = "";
     private StorageReference storageReference = FirebaseStorage.getInstance().getReference();
 
@@ -76,6 +77,13 @@ public class SocialMediaFragment extends Fragment {
         posts = new ArrayList<>();
         button = view.findViewById(R.id.buttonCreate);
         filter = view.findViewById(R.id.filterButton);
+        menuButton = view.findViewById(R.id.menuButton);
+        menuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainBuilds)getActivity()).openDrawer();
+            }
+        });
         filter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,7 +105,11 @@ public class SocialMediaFragment extends Fragment {
         PostAdapter postAdapter = new PostAdapter(posts, getContext());
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);
+        linearLayoutManager.setSmoothScrollbarEnabled(true);
         recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL));
+        recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setAdapter(postAdapter);
         database.getReference().child("Posts").addValueEventListener(new ValueEventListener() {
             @Override

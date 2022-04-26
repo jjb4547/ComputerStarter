@@ -1,7 +1,10 @@
 package com.example.computerstarter.SocialMedia;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +15,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.computerstarter.R;
 import com.github.marlonlom.utilities.timeago.TimeAgo;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -33,6 +37,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder> {
     StorageReference profileRef;
     FirebaseUser user;
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    Dialog dialog;
+    ImageView imageView;
 
     public PostAdapter(ArrayList<Post> list, Context context) {
         this.list = list;
@@ -44,36 +50,36 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder> {
     public viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.row_posts, parent,false);
         user = mAuth.getCurrentUser();
-        profileRef = FirebaseStorage.getInstance().getReference()
-                .child("ProfileImage/Users/"+FirebaseAuth.getInstance().getCurrentUser().getUid()+"/profile");
         return new viewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull viewHolder holder, int position) {
         Post model = list.get(position);
-        Picasso.get().load(model.getPostImage())
-                .placeholder(R.drawable.blank)
-                .into(holder.postImage);
+        Picasso.get().load(model.getPostImage()).into(holder.postImage);
+        holder.postImage.setOnClickListener(v -> {
+            dialog = new Dialog(context);
+            dialog.setContentView(R.layout.imagelayout);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            imageView = dialog.findViewById(R.id.imagePrev);
+            try {
+                Glide.with(context).load(model.getPostImage()).into(imageView);
+            }catch (Exception e) {
+            }
+            dialog.show();
+            imageView.setOnClickListener(view1 -> dialog.dismiss());
+        });
         holder.name.setText(model.getPostedBy());
         holder.description.setText(model.getPostDescription());
         holder.tag.setText(model.getTag());
         holder.date.setText(TimeAgo.using(model.getPostedAt()));
         holder.like.setText(model.getPostLike()+"");
-        profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-            @Override
-            public void onSuccess(Uri uri) {
-                Picasso.get().load(uri).into(holder.profile);
-            }
-        });
-        holder.comment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                context.startActivity(new Intent(context, CommentActivity.class)
-                        .putExtra("postId",model.getPostId())
-                        .putExtra("postedBy",model.getPostedBy()));
-            }
-        });
+        holder.comment.setText(model.getPostComment()+"");
+        Picasso.get().load(model.getProfile()).into(holder.profile);
+        holder.comment.setOnClickListener(v -> context.startActivity(new Intent(context, CommentActivity.class)
+                .putExtra("postId",model.getPostId())
+                .putExtra("postedBy",model.getPostedBy())
+                .putExtra("postLike",model.getPostLike())));
         FirebaseDatabase.getInstance().getReference().child("Posts").child(model.getPostId()).child("Likes").child(user.getUid())
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -105,9 +111,9 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder> {
                                 @Override
                                 public void onSuccess(Void unused) {
                                     holder.like.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_like_border,0,0,0);
+                                    notifyDataSetChanged();
                                 }
                             });
-                            //notifyDataSetChanged();
                         }else{
                             FirebaseDatabase.getInstance().getReference().child("Posts")
                                     .child(model.getPostId()).child("Likes").child(FirebaseAuth.getInstance().getUid())
@@ -119,11 +125,11 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder> {
                                         @Override
                                         public void onSuccess(Void unused) {
                                             holder.like.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_heart_color,0,0,0);
+                                            notifyDataSetChanged();
                                         }
                                     });
                                 }
                             });
-                            //notifyDataSetChanged();
                         }
                     }
 

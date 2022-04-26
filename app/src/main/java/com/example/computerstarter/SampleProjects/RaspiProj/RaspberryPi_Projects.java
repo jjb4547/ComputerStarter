@@ -2,9 +2,11 @@ package com.example.computerstarter.SampleProjects.RaspiProj;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +21,8 @@ import androidx.navigation.NavController;
 
 import com.example.computerstarter.Build.MainBuilds;
 import com.example.computerstarter.Build.MyBuildActivity;
+import com.example.computerstarter.Education.PC_Part_Activity;
+import com.example.computerstarter.Guides.Guides_Activity;
 import com.example.computerstarter.Login.Login_SignUpActivity;
 import com.example.computerstarter.Others.AccountActivity;
 import com.example.computerstarter.R;
@@ -38,7 +42,7 @@ import java.util.Objects;
 
 public class RaspberryPi_Projects extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private CardView humiditySensor;
-    private TextView home;
+    private ImageButton home,menuButton;
     private DrawerLayout drawerLayout;
     private BottomNavigationView bottomNavigationView;
     private NavController navController;
@@ -69,7 +73,7 @@ public class RaspberryPi_Projects extends AppCompatActivity implements Navigatio
         toggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.navigation_draw_open,R.string.navigation_draw_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        //Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         navigationView.setNavigationItemSelectedListener(this);
         View headerView = navigationView.getHeaderView(0);
         Menu menu = navigationView.getMenu();
@@ -105,13 +109,15 @@ public class RaspberryPi_Projects extends AppCompatActivity implements Navigatio
                 log.setText("Log In");
                 //login.logged = false;
                 item_acc.setVisible(false);
+                startActivity(new Intent(this, Login_SignUpActivity.class));
             }else{
                 startActivity(new Intent(this, Login_SignUpActivity.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 //log.setText("Log Out");
             }
         });
-        home = findViewById(R.id.home);
+        home = findViewById(R.id.homeBut);
+        menuButton = findViewById(R.id.menuButton);
         humiditySensor = findViewById(R.id.humiditySensor);
         humiditySensor.setOnClickListener(view -> {
             startActivity(new Intent(this, RaspberryPi_Humidity_Sensor.class));
@@ -119,6 +125,12 @@ public class RaspberryPi_Projects extends AppCompatActivity implements Navigatio
         home.setOnClickListener(view->{
             startActivity(new Intent(getApplicationContext(), SampleProjects.class));
             overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
+        });
+        menuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.openDrawer(Gravity.RIGHT);
+            }
         });
     }
     @Override
@@ -130,11 +142,10 @@ public class RaspberryPi_Projects extends AppCompatActivity implements Navigatio
         switch (item.getItemId()){
             case R.id.home:
                 Toast.makeText(this,"Main Page",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this, HomeActivity.class));
+                startActivity(new Intent(this,HomeActivity.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 break;
             case R.id.building:
-                Toast.makeText(this,"My Builds",Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this, MyBuildActivity.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 break;
@@ -144,6 +155,15 @@ public class RaspberryPi_Projects extends AppCompatActivity implements Navigatio
                     overridePendingTransition(R.anim.slide_in_bottom, R.anim.stay);
                 }else
                     Toast.makeText(this,"LOG IN!!!!",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.partsMenu:
+                startActivity(new Intent(RaspberryPi_Projects.this, PC_Part_Activity.class).putExtra("Act","Edu"));
+                break;
+            case R.id.guidesMenu:
+                startActivity(new Intent(RaspberryPi_Projects.this, Guides_Activity.class));
+                break;
+            case R.id.projectsMenu:
+                startActivity(new Intent(RaspberryPi_Projects.this, SampleProjects.class));
                 break;
         }
         return true;

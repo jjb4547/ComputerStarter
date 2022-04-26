@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="1dp"
+    android:orientation="vertical"
+    app:cardBackgroundColor="@color/white"
+    app:contentPadding="2dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/profileImageComment"
+            android:layout_width="@dimen/_50mdp"
+            android:layout_height="@dimen/_50mdp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            tools:src="@drawable/ic_people"
+            app:civ_border_color="@color/cardview_light"
+            app:civ_border_width="5dp" />
+
+        <TextView
+            android:id="@+id/postCommentName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/profileImageComment"
+            android:layout_toEndOf="@id/profileImageComment"
+            android:fontFamily="@font/francois_one"
+            android:text="Name"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/postCommentDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/postCommentName"
+            android:layout_marginEnd="30dp"
+            android:layout_toEndOf="@id/profileImageComment"
+            android:fontFamily="@font/francois_one"
+            android:text="Date"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/postCommentText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/profileImageComment"
+            android:layout_marginEnd="30dp"
+            android:layout_toEndOf="@id/profileImageComment"
+            android:fontFamily="@font/francois_one"
+            android:text="Comment"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

@@ -2,9 +2,11 @@ package com.example.computerstarter.Guides.RaspberryPi;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -56,7 +58,8 @@ public class RaspberryPi_Guides_Activity extends AppCompatActivity implements Na
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.raspberrypi_guide_layout);
-        TextView home = findViewById(R.id.home);
+        ImageButton home = findViewById(R.id.homeBut);
+        ImageButton menuButton = findViewById(R.id.menuButton);
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
         drawerLayout = findViewById(R.id.drawerlayout);
@@ -68,7 +71,7 @@ public class RaspberryPi_Guides_Activity extends AppCompatActivity implements Na
         toggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.navigation_draw_open,R.string.navigation_draw_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        //Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         navigationView.setNavigationItemSelectedListener(this);
         View headerView = navigationView.getHeaderView(0);
         Menu menu = navigationView.getMenu();
@@ -105,6 +108,8 @@ public class RaspberryPi_Guides_Activity extends AppCompatActivity implements Na
                 log.setText("Log In");
                 //login.logged = false;
                 item_acc.setVisible(false);
+                startActivity(new Intent(this, Login_SignUpActivity.class)
+                        .putExtra("from","Main"));
             }else{
                 startActivity(new Intent(this, Login_SignUpActivity.class)
                         .putExtra("from","Main"));
@@ -115,6 +120,12 @@ public class RaspberryPi_Guides_Activity extends AppCompatActivity implements Na
         home.setOnClickListener(view->{
             startActivity(new Intent(getApplicationContext(), Guides_Activity.class));
             overridePendingTransition(R.anim.slide_in_top,R.anim.stay);
+        });
+        menuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.openDrawer(Gravity.RIGHT);
+            }
         });
         CardView prep = findViewById(R.id.prep);
         CardView setup = findViewById(R.id.setup);
