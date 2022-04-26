@@ -162,7 +162,7 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
         });
         backHome = findViewById(R.id.backHome);
         backHome.setOnClickListener(view->{
-            startActivity(new Intent(getApplicationContext(), HomeActivity.class));
+            startActivity(new Intent(getApplicationContext(), MainBuilds.class).putExtra("from","Builds"));
             overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
         });
         loginBut.setOnClickListener(v->{

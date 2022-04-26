@@ -386,5 +386,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         partsItemList.add(new PartsItem("SSD", R.drawable.storage_link));
         partsItemList.add(new PartsItem("GUIDES", R.drawable.rasp_logo));
         partsItemList.add(new PartsItem("RASPBERRY PI GUIDES", R.drawable.rasp_logo));
+        partsItemList.add(new PartsItem("PC GUIDES", R.drawable.rasp_logo));
     }
 }

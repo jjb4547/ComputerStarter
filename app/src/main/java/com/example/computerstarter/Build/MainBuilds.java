@@ -63,6 +63,8 @@ public class MainBuilds extends AppCompatActivity implements NavigationView.OnNa
             navController.navigate(R.id.action_navigation_main_to_navigation_education);
         }else if(getIntent().getExtras().getString("from").equals("Social")){
             navController.navigate(R.id.action_navigation_main_to_navigation_social);
+        }else{
+            navController.navigate(R.id.action_navigation_main_self);
         }
         drawerLayout = findViewById(R.id.drawerlayout);
         navigationView = findViewById(R.id.navigation_menu);

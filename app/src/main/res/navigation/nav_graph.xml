@@ -18,6 +18,9 @@
             android:id="@+id/action_navigation_main_to_navigation_education"
             app:destination="@id/navigation_education"
             app:enterAnim="@anim/slide_in_left" />
+        <action
+            android:id="@+id/action_navigation_main_self"
+            app:destination="@id/navigation_main" />
     </fragment>
     <fragment
         android:id="@+id/navigation_education"
