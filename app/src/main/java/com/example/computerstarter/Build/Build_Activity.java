@@ -379,7 +379,7 @@ public class Build_Activity extends AppCompatActivity {
                         .putExtra("Edit", getIntent().getExtras().getString("Edit"))
                         .putExtra("editBuild", getIntent().getStringArrayExtra("editBuild"))
                         .putExtra("name", "CPU").putExtra("Build", name_action_bar)
-                        .putExtra("ID", partsID));
+                        .putExtra("ID", partsID).putExtra("Num",numParts));
             });
             builder.create().show();
             return true;
@@ -403,11 +403,11 @@ public class Build_Activity extends AppCompatActivity {
                 checkAddVisibility();
             });
             builder.setNegativeButton("Edit", (dialog, which) -> {
-                startActivity(new Intent(Build_Activity.this, PCBuildLayout.class)
+                startActivity(new Intent(Build_Activity.this, PC_Build_Parts.class)
                         .putExtra("Edit", getIntent().getExtras().getString("Edit"))
                         .putExtra("editBuild", getIntent().getStringArrayExtra("editBuild"))
                         .putExtra("name", "Motherboards").putExtra("Build", name_action_bar)
-                        .putExtra("ID", partsID));
+                        .putExtra("ID", partsID).putExtra("Num",numParts));
             });
             builder.create().show();
             return true;
@@ -434,7 +434,7 @@ public class Build_Activity extends AppCompatActivity {
                         .putExtra("Edit", getIntent().getExtras().getString("Edit"))
                         .putExtra("editBuild", getIntent().getStringArrayExtra("editBuild"))
                         .putExtra("name", "Memory").putExtra("Build", name_action_bar)
-                        .putExtra("ID", partsID));
+                        .putExtra("ID", partsID).putExtra("Num",numParts));
             });
             builder.create().show();
             return true;
@@ -461,7 +461,7 @@ public class Build_Activity extends AppCompatActivity {
                         .putExtra("Edit", getIntent().getExtras().getString("Edit"))
                         .putExtra("editBuild", getIntent().getStringArrayExtra("editBuild"))
                         .putExtra("name", "Video Cards").putExtra("Build", name_action_bar)
-                        .putExtra("ID", partsID));
+                        .putExtra("ID", partsID).putExtra("Num",numParts));
             });
             builder.create().show();
             return true;
@@ -488,7 +488,7 @@ public class Build_Activity extends AppCompatActivity {
                         .putExtra("Edit", getIntent().getExtras().getString("Edit"))
                         .putExtra("editBuild", getIntent().getStringArrayExtra("editBuild"))
                         .putExtra("name", "Power Supplies").putExtra("Build", name_action_bar)
-                        .putExtra("ID", partsID));
+                        .putExtra("ID", partsID).putExtra("Num",numParts));
             });
             builder.create().show();
             return true;
@@ -515,7 +515,7 @@ public class Build_Activity extends AppCompatActivity {
                         .putExtra("Edit", getIntent().getExtras().getString("Edit"))
                         .putExtra("editBuild", getIntent().getStringArrayExtra("editBuild"))
                         .putExtra("name", "Storage").putExtra("Build", name_action_bar)
-                        .putExtra("ID", partsID));
+                        .putExtra("ID", partsID).putExtra("Num",numParts));
             });
             builder.create().show();
             return true;
@@ -542,7 +542,7 @@ public class Build_Activity extends AppCompatActivity {
                         .putExtra("Edit", getIntent().getExtras().getString("Edit"))
                         .putExtra("editBuild", getIntent().getStringArrayExtra("editBuild"))
                         .putExtra("name", "CPU Cooler").putExtra("Build", name_action_bar)
-                        .putExtra("ID", partsID));
+                        .putExtra("ID", partsID).putExtra("Num",numParts));
             });
             builder.create().show();
 
@@ -570,7 +570,7 @@ public class Build_Activity extends AppCompatActivity {
                         .putExtra("Edit", getIntent().getExtras().getString("Edit"))
                         .putExtra("editBuild", getIntent().getStringArrayExtra("editBuild"))
                         .putExtra("name", "Monitor").putExtra("Build", name_action_bar)
-                        .putExtra("ID", partsID));
+                        .putExtra("ID", partsID).putExtra("Num",numParts));
             });
             builder.create().show();
             return true;
@@ -596,7 +596,7 @@ public class Build_Activity extends AppCompatActivity {
                         .putExtra("Edit", getIntent().getExtras().getString("Edit"))
                         .putExtra("editBuild", getIntent().getStringArrayExtra("editBuild"))
                         .putExtra("name", "Cases").putExtra("Build", name_action_bar)
-                        .putExtra("ID", partsID));
+                        .putExtra("ID", partsID).putExtra("Num",numParts));
             });
             builder.create().show();
             return true;
