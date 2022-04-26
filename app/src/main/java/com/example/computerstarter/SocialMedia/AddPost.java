@@ -228,6 +228,7 @@ public class AddPost extends AppCompatActivity {
                         Intent data = result.getData();
                         uri = data.getData();
                         imagePost.setImageURI(uri);
+                        postImage = uri.toString();
                         InputStream inputStream = null;
                         try{
                             inputStream = getContentResolver().openInputStream(uri);
@@ -275,6 +276,7 @@ public class AddPost extends AppCompatActivity {
                         imageBit.compress(Bitmap.CompressFormat.JPEG, 25, bytes);
                         String path = MediaStore.Images.Media.insertImage(getApplicationContext().getContentResolver(), imageBit, "Title",null);
                         uri = Uri.parse(path);
+                        postImage = uri.toString();
                         if(!description.isEmpty()){
                             postButton.setVisibility(View.VISIBLE);
                         }
