@@ -114,6 +114,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder> {
                                     notifyDataSetChanged();
                                 }
                             });
+
                         }else{
                             FirebaseDatabase.getInstance().getReference().child("Posts")
                                     .child(model.getPostId()).child("Likes").child(FirebaseAuth.getInstance().getUid())
@@ -130,6 +131,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder> {
                                     });
                                 }
                             });
+
                         }
                     }
 

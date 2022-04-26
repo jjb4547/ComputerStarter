@@ -12,6 +12,7 @@ import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -51,6 +52,7 @@ public class SocialMediaFragment extends Fragment {
     ArrayList<Post> posts;
     FloatingActionButton button;
     ImageButton filter,menuButton;
+    PostAdapter postAdapter;
     String tag = "";
     private StorageReference storageReference = FirebaseStorage.getInstance().getReference();
 
@@ -93,16 +95,20 @@ public class SocialMediaFragment extends Fragment {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         tag = item.getTitle().toString();
+                        Toast.makeText(getContext(),tag,Toast.LENGTH_SHORT).show();
+                        if(user!=null)
+                            loadPost();
                         return true;
                     }
                 });
+                popupMenu.show();
             }
         });
         button.setOnClickListener(view1 -> {
             Intent intent = new Intent(getContext(), AddPost.class);
             startActivity(intent);
         });
-        PostAdapter postAdapter = new PostAdapter(posts, getContext());
+        postAdapter = new PostAdapter(posts, getContext());
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setReverseLayout(true);
         linearLayoutManager.setStackFromEnd(true);
@@ -111,16 +117,41 @@ public class SocialMediaFragment extends Fragment {
         recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL));
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setAdapter(postAdapter);
+        loadPost();
+        return view;
+    }
+
+    private void loadPost() {
         database.getReference().child("Posts").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                posts.clear();
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    Post post = dataSnapshot.getValue(Post.class);
-                    post.setPostId(dataSnapshot.getKey());
-                    posts.add(post);
+                if(tag.equals("")) {
+                    posts.clear();
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        Post post = dataSnapshot.getValue(Post.class);
+                        post.setPostId(dataSnapshot.getKey());
+                        posts.add(post);
+                    }
+                    postAdapter.notifyDataSetChanged();
+                }else{
+                    database.getReference().child("Posts").orderByChild("tag").equalTo(tag).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            posts.clear();
+                            for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
+                                Post post = dataSnapshot.getValue(Post.class);
+                                post.setPostId(dataSnapshot.getKey());
+                                posts.add(post);
+                            }
+                            postAdapter.notifyDataSetChanged();
+                        }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+
+                    });
                 }
-                postAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -128,6 +159,5 @@ public class SocialMediaFragment extends Fragment {
 
             }
         });
-        return view;
     }
 }
