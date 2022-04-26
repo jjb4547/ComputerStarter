@@ -28,7 +28,7 @@ public class PriceList {
             answerStr = "Out of stock.";
             return answerStr;
         }
-        answerStr = "$" + answer;
+        answerStr = "$" + String.format("%.2f", answer);
 
         return answerStr;
     }
@@ -78,6 +78,8 @@ public class PriceList {
                 return R.drawable.zotac;
             case "intel":
                 return R.drawable.intelicon;
+            case "asus":
+                return R.drawable.asus;
             default:
                 return R.drawable.amd_cpu;
         }
@@ -105,4 +107,59 @@ public class PriceList {
         return i;
     }
 
+    public static String getSocket(int id)
+    {
+        String answer = "null";
+        if(getPart(id).equals("cpu") || getPart(id).equals("motherboards"))
+        {
+            try{
+                answer = jsonObj.getJSONArray("items").getJSONObject(id).getString("socket");
+            } catch(JSONException e){
+                System.out.println(e);
+            }
+        }
+        return answer;
+    }
+
+    public static int getWattage(int id)
+    {
+        int answer = 0;
+        if(!(getPart(id).equals("monitor") || getPart(id).equals("cases")))
+        {
+            try {
+                answer = jsonObj.getJSONArray("items").getJSONObject(id).getInt("wattage");
+            } catch (JSONException e) {
+                System.out.println(e);
+            }
+        }
+        return answer;
+    }
+
+    public static String getMemType(int id)
+    {
+        String answer = "null";
+        if(getPart(id).equals("memory") || getPart(id).equals("motherboards"))
+        {
+            try{
+                answer = jsonObj.getJSONArray("items").getJSONObject(id).getString("mem_type");
+            } catch(JSONException e){
+                System.out.println(e);
+            }
+        }
+        return answer;
+    }
+
+    public static int getMemSlots(int id)
+    {
+        int answer = 0;
+        if(getPart(id).equals("memory") || getPart(id).equals("motherboards"))
+        {
+            try {
+                answer = jsonObj.getJSONArray("items").getJSONObject(id).getInt("mem_slots");
+            } catch (JSONException e) {
+                System.out.println(e);
+            }
+        }
+        return answer;
+    }
 }
