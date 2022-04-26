@@ -24,8 +24,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.computerstarter.R;
 
-import java.util.Locale;
-
 public class PC_Build_Parts extends AppCompatActivity {
     ListView listView;
     String mTitle[] = new String[10];
@@ -103,39 +101,39 @@ public class PC_Build_Parts extends AppCompatActivity {
                     switch (getIntent().getExtras().getString("name")) {
                         case "CPU":
                             partsID[0] = ids[i];
-                            numParts[0] = numParts[0]+1;
+                            numParts[0] = 1;
                             break;
                         case "Motherboards":
                             partsID[1] = ids[i];
-                            numParts[1]=numParts[1]+1;
+                            numParts[1]=1;
                             break;
                         case "Memory":
                             partsID[2] = ids[i];
-                            numParts[2]=numParts[2]+1;
+                            numParts[2]=1;
                             break;
                         case "Storage":
                             partsID[3] = ids[i];
-                            numParts[3]=numParts[3]+1;
+                            numParts[3]=1;
                             break;
                         case "Power Supplies":
                             partsID[4] = ids[i];
-                            numParts[4]=numParts[4]+1;
+                            numParts[4]=1;
                             break;
                         case "CPU Cooler":
                             partsID[5] = ids[i];
-                            numParts[5]=numParts[5]+1;
+                            numParts[5]=1;
                             break;
                         case "Monitor":
                             partsID[6] = ids[i];
-                            numParts[6]=numParts[6]+1;
+                            numParts[6]=1;
                             break;
                         case "Video Cards":
                             partsID[7] = ids[i];
-                            numParts[7]=numParts[7]+1;
+                            numParts[7]=1;
                             break;
                         case "Cases":
                             partsID[8] = ids[i];
-                            numParts[8]=numParts[8]+1;
+                            numParts[8]=1;
                             break;
                     }
                     startActivity(new Intent(PC_Build_Parts.this,Build_Activity.class)
