@@ -12,42 +12,45 @@
     android:fillViewport="true"
     android:gravity="center"
     android:background="@color/background_color">
-
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
-        android:fontFamily="@font/francois_one"
-        android:gravity="center"
-        android:text="Arduino Temperature Sensor"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        android:textStyle="bold" />
-    <!--
-    <TextView
-        android:id="@+id/extraText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="A tutorial on how to turn your raspberry pi into a Humidity Sensor.\n Using a DHT22 sensor allows for a slow, but long distance transmission of data up to 20 m away."
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:textSize="20sp"
-        android:textColor="@color/black"
-        android:layout_below="@+id/title"/>
-        -->
+        android:id="@+id/tempLayout"
+        android:layout_marginTop="10dp">
+        <ImageButton
+            android:id="@+id/homeBut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_back"
+            app:tint="@color/cardview_light"
+            android:background="?attr/selectableItemBackground"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="5dp"/>
 
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@id/homeBut"
+            android:fontFamily="@font/francois_one"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:text="Arduino Temperature Sensor"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
     <ScrollView
         android:id="@+id/scroll_Text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/home"
-        android:layout_below="@+id/title"
+        android:layout_below="@+id/tempLayout"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="5dp"
+        android:paddingBottom="10dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -195,9 +198,9 @@
                         android:textSize="30sp" />
 
                     <TextView
-                        android:layout_below="@id/trouble"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_below="@id/trouble"
                         android:layout_centerInParent="true"
                         android:layout_marginBottom="15dp"
                         android:text="Any issues come here for help."
@@ -206,22 +209,6 @@
             </androidx.cardview.widget.CardView>
         </LinearLayout>
     </ScrollView>
-    <TextView
-        android:id="@+id/home"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:textAlignment="center"
-        android:textColor="@color/cardview_light"
-        android:text="Return to Projects"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:fontFamily="@font/francois_one"
-        android:clickable="true"
-        android:textSize="30sp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
 </RelativeLayout>
 <com.google.android.material.navigation.NavigationView
 android:layout_width="wrap_content"

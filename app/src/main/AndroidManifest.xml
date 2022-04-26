@@ -88,7 +88,8 @@
             android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
         <activity android:name=".SampleProjects.Arduino.Projects.Arduino_Projects"
             android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
-        <activity android:name=".SampleProjects.Arduino.Projects.TemperatureSensor.Arduino_Temperature_Sensor" />
+        <activity android:name=".SampleProjects.Arduino.Projects.TemperatureSensor.Arduino_Temperature_Sensor"
+            android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
         <activity android:name=".SampleProjects.Arduino.Projects.TemperatureSensor.Arduino_Temperature_Sensor_Coding"
             android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
         <activity android:name=".SampleProjects.Arduino.Projects.TemperatureSensor.Arduino_Temperature_Sensor_Supplies"

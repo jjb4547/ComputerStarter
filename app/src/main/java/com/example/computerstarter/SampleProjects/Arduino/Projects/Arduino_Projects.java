@@ -19,7 +19,6 @@ import androidx.cardview.widget.CardView;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 
-import com.example.computerstarter.Build.MainBuilds;
 import com.example.computerstarter.Build.MyBuildActivity;
 import com.example.computerstarter.Education.PC_Part_Activity;
 import com.example.computerstarter.Guides.Guides_Activity;
@@ -27,7 +26,6 @@ import com.example.computerstarter.Login.Login_SignUpActivity;
 import com.example.computerstarter.Others.AccountActivity;
 import com.example.computerstarter.R;
 import com.example.computerstarter.SampleProjects.Arduino.Projects.TemperatureSensor.Arduino_Temperature_Sensor;
-import com.example.computerstarter.SampleProjects.RaspiProj.RaspberryPi_Projects;
 import com.example.computerstarter.SampleProjects.SampleProjects;
 import com.example.computerstarter.app.HomeActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -38,8 +36,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
-
-import java.util.Objects;
 
 public class Arduino_Projects extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private CardView temperatureSensor;
@@ -88,6 +84,13 @@ public class Arduino_Projects extends AppCompatActivity implements NavigationVie
             log.setText("Log In");
             item_acc.setVisible(false);
         }
+        temperatureSensor =findViewById(R.id.temperatureSensor);
+        temperatureSensor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Arduino_Projects.this, Arduino_Temperature_Sensor.class));
+            }
+        });
         TextView name = headerView.findViewById(R.id.myname);
         TextView email = headerView.findViewById(R.id.email);
         ImageView profile = headerView.findViewById(R.id.myimage);

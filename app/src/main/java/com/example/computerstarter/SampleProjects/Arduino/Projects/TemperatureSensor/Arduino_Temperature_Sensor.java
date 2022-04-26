@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,11 +22,10 @@ import com.example.computerstarter.Build.MainBuilds;
 import com.example.computerstarter.Build.MyBuildActivity;
 import com.example.computerstarter.Education.PC_Part_Activity;
 import com.example.computerstarter.Guides.Guides_Activity;
-import com.example.computerstarter.SampleProjects.Arduino.Projects.Arduino_Projects;
 import com.example.computerstarter.Login.Login_SignUpActivity;
 import com.example.computerstarter.Others.AccountActivity;
 import com.example.computerstarter.R;
-import com.example.computerstarter.SampleProjects.RaspiProj.RaspberryPi_Projects;
+import com.example.computerstarter.SampleProjects.Arduino.Projects.Arduino_Projects;
 import com.example.computerstarter.SampleProjects.SampleProjects;
 import com.example.computerstarter.app.HomeActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -33,8 +33,6 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.Objects;
 
 public class Arduino_Temperature_Sensor extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private TextView home;
@@ -70,7 +68,7 @@ public class Arduino_Temperature_Sensor extends AppCompatActivity implements Nav
         toggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.navigation_draw_open,R.string.navigation_draw_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        //Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         navigationView.setNavigationItemSelectedListener(this);
         View headerView = navigationView.getHeaderView(0);
         Menu menu = navigationView.getMenu();
@@ -123,7 +121,7 @@ public class Arduino_Temperature_Sensor extends AppCompatActivity implements Nav
         coding.setOnClickListener(view -> {
             startActivity(new Intent(this, Arduino_Temperature_Sensor_Coding.class));
         });
-        TextView home = findViewById(R.id.home);
+        ImageButton home = findViewById(R.id.homeBut);
         home.setOnClickListener(view->{
             startActivity(new Intent(getApplicationContext(), Arduino_Projects.class));
             overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
