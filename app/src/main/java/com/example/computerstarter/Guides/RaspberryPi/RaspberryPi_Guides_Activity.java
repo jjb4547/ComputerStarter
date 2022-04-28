@@ -145,7 +145,6 @@ public class RaspberryPi_Guides_Activity extends AppCompatActivity implements Na
         mAuth = FirebaseAuth.getInstance();
         Menu menu = navigationView.getMenu();
         MenuItem item_acc = menu.findItem(R.id.account);
-        //real_login login = new real_login();
         switch (item.getItemId()){
             case R.id.home:
                 Toast.makeText(this,"Main Page",Toast.LENGTH_SHORT).show();
