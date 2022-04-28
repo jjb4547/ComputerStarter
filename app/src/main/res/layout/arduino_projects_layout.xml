@@ -111,6 +111,7 @@
                         android:textColor="@color/white" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
+
         </LinearLayout>
     </ScrollView>
     <com.google.android.material.navigation.NavigationView
