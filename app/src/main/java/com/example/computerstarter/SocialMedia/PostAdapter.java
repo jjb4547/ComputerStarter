@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +24,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
@@ -79,6 +77,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.viewHolder> {
         holder.comment.setOnClickListener(v -> context.startActivity(new Intent(context, CommentActivity.class)
                 .putExtra("postId",model.getPostId())
                 .putExtra("postedBy",model.getPostedBy())
+                .putExtra("postedProfile",model.getProfile())
                 .putExtra("postLike",model.getPostLike())));
         FirebaseDatabase.getInstance().getReference().child("Posts").child(model.getPostId()).child("Likes").child(user.getUid())
                 .addListenerForSingleValueEvent(new ValueEventListener() {

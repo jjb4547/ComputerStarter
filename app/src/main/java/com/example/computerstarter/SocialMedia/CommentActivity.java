@@ -32,7 +32,7 @@ import java.util.Date;
 
 public class CommentActivity  extends AppCompatActivity {
     Intent intent;
-    String postId,postedBy;
+    String postId,postedBy,postedProfile;
     FirebaseAuth auth;
     FirebaseDatabase database;
     int postLike;
@@ -64,6 +64,7 @@ public class CommentActivity  extends AppCompatActivity {
         postId = intent.getStringExtra("postId");
         postedBy = intent.getStringExtra("postedBy");
         postLike = intent.getExtras().getInt("postLike");
+        postedProfile = intent.getStringExtra("postedProfile");
         name.setText(postedBy);
         database.getReference().child("Posts").child(postId).addValueEventListener(new ValueEventListener() {
             @Override
@@ -83,8 +84,7 @@ public class CommentActivity  extends AppCompatActivity {
 
             }
         });
-        StorageReference profileRef = storageReference.child("ProfileImage/Users/"+FirebaseAuth.getInstance().getUid()+"/profile");
-        profileRef.getDownloadUrl().addOnSuccessListener(uri -> Picasso.get().load(uri).into(profile));
+        Picasso.get().load(postedProfile).into(profile);
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

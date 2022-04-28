@@ -56,9 +56,6 @@ public class Arduino_Temperature_Sensor extends AppCompatActivity implements Nav
         setContentView(R.layout.arduino_temperature_project_layout);
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
-        //bottomNavigationView = findViewById(R.id.bottomNavigationView);
-        //navController = Navigation.findNavController(this,R.id.frame_layout);
-        //NavigationUI.setupWithNavController(bottomNavigationView,navController);
         drawerLayout = findViewById(R.id.drawerlayout);
         navigationView = findViewById(R.id.navigation_menu);
         toggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.navigation_draw_open,R.string.navigation_draw_close);
@@ -68,7 +65,6 @@ public class Arduino_Temperature_Sensor extends AppCompatActivity implements Nav
         toggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.navigation_draw_open,R.string.navigation_draw_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        //Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         navigationView.setNavigationItemSelectedListener(this);
         View headerView = navigationView.getHeaderView(0);
         Menu menu = navigationView.getMenu();
@@ -89,7 +85,6 @@ public class Arduino_Temperature_Sensor extends AppCompatActivity implements Nav
             String current = user.getUid();
             name.setText(user.getDisplayName());
             email.setText(user.getEmail());
-            //profile.setImageURI(user.getPhotoUrl()); //bugging out not sure why but only on the emulator
         }else{
             name.setText("Guest");
             email.setText("Guest Not Signed In");
@@ -100,13 +95,11 @@ public class Arduino_Temperature_Sensor extends AppCompatActivity implements Nav
                 Toast.makeText(this,"Logged Out",Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this, MainBuilds.class));
                 log.setText("Log In");
-                //login.logged = false;
                 item_acc.setVisible(false);
                 startActivity(new Intent(this, Login_SignUpActivity.class));
             }else{
                 startActivity(new Intent(this, Login_SignUpActivity.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
-                //log.setText("Log Out");
             }
         });
         CardView supplies = findViewById(R.id.supplies);
@@ -130,9 +123,6 @@ public class Arduino_Temperature_Sensor extends AppCompatActivity implements Nav
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         mAuth = FirebaseAuth.getInstance();
-        Menu menu = navigationView.getMenu();
-        MenuItem item_acc = menu.findItem(R.id.account);
-        //real_login login = new real_login();
         switch (item.getItemId()){
             case R.id.home:
                 Toast.makeText(this,"Main Page",Toast.LENGTH_SHORT).show();
