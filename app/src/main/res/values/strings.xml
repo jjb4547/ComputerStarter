@@ -406,12 +406,9 @@
     <string name="per_link"><a href="https://www.computerhope.com/jargon/c/cpu.htm">computerhope.com/jargon/c/cpu.htm</a></string>
     -->
     <string name="pref_previously_started">false</string>
-    <string name="pref_previously_started_login">false</string>
+    <string name="pref_previously_started_login">true</string>
     <string name="firstbuild">false</string>
     <string name="title_activity_pc_part">PC_Part_Activity</string>
-
-
-
     <string name="navigation_draw_open">open navigation drawer</string>
     <string name="navigation_draw_close">close navigation drawer</string>
     <string-array name="quiz">

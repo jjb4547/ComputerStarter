@@ -236,6 +236,8 @@
         <entry key="app/src/main/res/layout/account_layout.xml" value="0.11141304347826086" />
         <entry key="app/src/main/res/layout/activity_education_tabbed.xml" value="0.11548913043478261" />
         <entry key="app/src/main/res/layout/activity_pc_part.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/addblogs.xml" value="0.21354166666666666" />
+        <entry key="app/src/main/res/layout/arduino_guide_layout.xml" value="0.16018518518518518" />
         <entry key="app/src/main/res/layout/arduino_projects.xml" value="0.21354166666666666" />
         <entry key="app/src/main/res/layout/arduino_projects_layout.xml" value="0.21354166666666666" />
         <entry key="app/src/main/res/layout/arduino_temperature_project_layout.xml" value="0.21354166666666666" />
@@ -243,6 +245,7 @@
         <entry key="app/src/main/res/layout/comment_layout.xml" value="0.11388888888888889" />
         <entry key="app/src/main/res/layout/education_choosing_layout.xml" value="0.1" />
         <entry key="app/src/main/res/layout/education_layout.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_beginner.xml" value="0.16018518518518518" />
         <entry key="app/src/main/res/layout/fragment_forum.xml" value="0.15806159420289856" />
         <entry key="app/src/main/res/layout/homelayout.xml" value="0.335" />
         <entry key="app/src/main/res/layout/item_container_onboarding.xml" value="0.1" />
@@ -250,9 +253,12 @@
         <entry key="app/src/main/res/layout/nav_menu_home.xml" value="0.11141304347826086" />
         <entry key="app/src/main/res/layout/new_login_layout.xml" value="0.1" />
         <entry key="app/src/main/res/layout/onboard_layout.xml" value="0.14719202898550723" />
-        <entry key="app/src/main/res/layout/pc_building_guides_layout.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/pc_building_guides_layout.xml" value="0.18242950439453123" />
+        <entry key="app/src/main/res/layout/pcbuildlayout.xml" value="0.21354166666666666" />
+        <entry key="app/src/main/res/layout/raspberrypi_guide_layout.xml" value="0.1" />
         <entry key="app/src/main/res/layout/raspberrypi_humidity_project_layout.xml" value="0.1" />
         <entry key="app/src/main/res/layout/raspberrypi_projects_layout.xml" value="0.14719202898550723" />
+        <entry key="app/src/main/res/layout/row_posts.xml" value="0.16018518518518518" />
         <entry key="app/src/main/res/layout/splash.xml" value="0.1" />
         <entry key="app/src/main/res/layout/webpagelayout.xml" value="0.21354166666666666" />
         <entry key="app/src/main/res/menu/bottom_menu.xml" value="0.27783452502553624" />

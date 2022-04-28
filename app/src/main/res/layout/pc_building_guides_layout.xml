@@ -8,51 +8,51 @@
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    android:gravity="center"
     android:padding="2dp"
     android:background="@color/background_color">
+
     <RelativeLayout
         android:id="@+id/buildGuideLay"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true">
 
         <ImageButton
             android:id="@+id/homeBut"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
             android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
             android:background="?attr/selectableItemBackground"
             android:src="@drawable/ic_back"
-            app:tint="@color/cardview_light"
-            android:layout_marginStart="10dp"/>
+            app:tint="@color/cardview_light" />
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center"
-        android:fontFamily="@font/francois_one"
-        android:gravity="center"
-        android:text="PC Building Guides"
-        android:layout_centerVertical="true"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        android:textStyle="bold" />
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:fontFamily="@font/francois_one"
+            android:gravity="center"
+            android:text="PC Building Guides"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
         <ImageButton
             android:id="@+id/menuButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_menu"
-            android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_marginEnd="10dp"
-            app:tint="@color/cardview_light"
-            android:background="?attr/selectableItemBackground"/>
+            android:background="?attr/selectableItemBackground"
+            android:src="@drawable/ic_menu"
+            app:tint="@color/cardview_light" />
     </RelativeLayout>
 
     <TextView
@@ -204,6 +204,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:clickable="true"
+                android:visibility="gone"
                 android:foreground="?android:attr/selectableItemBackground"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="8dp"

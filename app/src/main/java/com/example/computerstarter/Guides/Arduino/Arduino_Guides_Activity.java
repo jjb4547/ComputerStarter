@@ -19,7 +19,6 @@ import androidx.cardview.widget.CardView;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 
-import com.example.computerstarter.Build.MyBuildActivity;
 import com.example.computerstarter.Education.PC_Part_Activity;
 import com.example.computerstarter.Guides.Guides_Activity;
 import com.example.computerstarter.Login.Login_SignUpActivity;
@@ -125,7 +124,6 @@ public class Arduino_Guides_Activity extends AppCompatActivity implements Naviga
         });
         CardView supplies = findViewById(R.id.prep);
         CardView setup = findViewById(R.id.setup);
-        CardView troubleshoot = findViewById(R.id.troubleshoot);
         supplies.setOnClickListener(view->{
             //Toast.makeText(this,"Future Improvement",Toast.LENGTH_SHORT).show();
             startActivity(new Intent(this, Arduino_Guide_Prep_Activity.class));
@@ -135,11 +133,6 @@ public class Arduino_Guides_Activity extends AppCompatActivity implements Naviga
             overridePendingTransition(R.anim.slide_in_left,R.anim.stay);
         });
         setup.setOnClickListener(view -> {
-            //Toast.makeText(this,"Future Improvement",Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(this, Arduino_Guide_Setup_Activity.class));
-            overridePendingTransition(R.anim.slide_in_left,R.anim.stay);
-        });
-        troubleshoot.setOnClickListener(view -> {
             //Toast.makeText(this,"Future Improvement",Toast.LENGTH_SHORT).show();
             startActivity(new Intent(this, Arduino_Guide_Setup_Activity.class));
             overridePendingTransition(R.anim.slide_in_left,R.anim.stay);

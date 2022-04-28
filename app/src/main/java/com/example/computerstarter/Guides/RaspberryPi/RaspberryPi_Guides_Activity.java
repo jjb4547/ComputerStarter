@@ -35,8 +35,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
-import java.util.Objects;
-
 public class RaspberryPi_Guides_Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private DrawerLayout drawerLayout;
     private BottomNavigationView bottomNavigationView;
@@ -129,7 +127,6 @@ public class RaspberryPi_Guides_Activity extends AppCompatActivity implements Na
         });
         CardView prep = findViewById(R.id.prep);
         CardView setup = findViewById(R.id.setup);
-        CardView troubleshoot = findViewById(R.id.troubleshoot);
         //CardView projects = findViewById(R.id.projects);
         prep.setOnClickListener(view->{
             startActivity(new Intent(this, RaspberryPi_Guide_Prep_Activity.class)
@@ -140,11 +137,6 @@ public class RaspberryPi_Guides_Activity extends AppCompatActivity implements Na
             startActivity(new Intent(this, RaspberryPi_Guide_Setup_Activity.class)
                     .putExtra("from","Edu"));
             overridePendingTransition(R.anim.slide_in_left,R.anim.stay);
-        });
-        troubleshoot.setOnClickListener(view -> {
-            Toast.makeText(this,"Future Improvement",Toast.LENGTH_SHORT).show();
-            //startActivity(new Intent(this, RaspberryPi_Guide_Troubleshoot_Activity.class));
-            //overridePendingTransition(R.anim.slide_in_left,R.anim.stay);
         });
     }
 
