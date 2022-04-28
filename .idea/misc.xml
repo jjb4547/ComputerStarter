@@ -86,6 +86,12 @@
         <entry key="..\:/Users/bjesu/StudioProjects/ComputerStarter/app/src/main/res/layout/fragment_main_page.xml" value="0.5142857142857143" />
         <entry key="..\:/Users/bjesu/StudioProjects/ComputerStarter/app/src/main/res/layout/nav_menu.xml" value="0.22282608695652173" />
         <entry key="..\:/Users/bjesu/StudioProjects/ComputerStarter/app/src/main/res/menu/drawer_menu.xml" value="0.2857142857142857" />
+        <entry key="app/src/main/res/layout/arduino_projects_layout.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/arduino_range_project_layout.xml" value="0.23854166666666668" />
+        <entry key="app/src/main/res/layout/arduino_temperature_project_layout.xml" value="0.23854166666666668" />
+        <entry key="app/src/main/res/layout/raspberrypi_emulator_project_layout.xml" value="0.23854166666666668" />
+        <entry key="app/src/main/res/layout/raspberrypi_humidity_project_layout.xml" value="0.23854166666666668" />
+        <entry key="app/src/main/res/layout/raspberrypi_projects_layout.xml" value="0.22314814814814815" />
       </map>
     </option>
   </component>
