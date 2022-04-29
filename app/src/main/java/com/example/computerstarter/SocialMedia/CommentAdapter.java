@@ -12,14 +12,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.computerstarter.R;
 import com.github.marlonlom.utilities.timeago.TimeAgo;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
-import org.w3c.dom.Text;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.viewHolder>{
@@ -45,8 +41,9 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.viewHold
         holder.commentBody.setText(comment.getCommentBody());
         holder.date.setText(TimeAgo.using(comment.getCommentedAt()));
         holder.name.setText(comment.getCommentedBy());
-        StorageReference profileRef = storageReference.child("ProfileImage/Users/"+ FirebaseAuth.getInstance().getCurrentUser().getUid()+"/profile");
-        profileRef.getDownloadUrl().addOnSuccessListener(uri -> Picasso.get().load(uri).into(holder.profile));
+        Picasso.get().load(comment.getCommentedProfile()).into(holder.profile);
+        /*StorageReference profileRef = storageReference.child("ProfileImage/Users/"+ FirebaseAuth.getInstance().getCurrentUser().getUid()+"/profile");
+        profileRef.getDownloadUrl().addOnSuccessListener(uri -> Picasso.get().load(uri).into(holder.profile));*/
     }
 
     @Override

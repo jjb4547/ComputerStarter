@@ -19,6 +19,7 @@ import com.example.computerstarter.Build.MainBuilds;
 import com.example.computerstarter.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -36,6 +37,7 @@ public class CommentActivity  extends AppCompatActivity {
     FirebaseAuth auth;
     FirebaseDatabase database;
     int postLike;
+    FirebaseUser user;
     StorageReference storageReference = FirebaseStorage.getInstance().getReference();
     ArrayList<Comment> list = new ArrayList<>();
     @Override
@@ -61,6 +63,7 @@ public class CommentActivity  extends AppCompatActivity {
         });
         database = FirebaseDatabase.getInstance();
         auth = FirebaseAuth.getInstance();
+        user = auth.getCurrentUser();
         postId = intent.getStringExtra("postId");
         postedBy = intent.getStringExtra("postedBy");
         postLike = intent.getExtras().getInt("postLike");
@@ -91,7 +94,8 @@ public class CommentActivity  extends AppCompatActivity {
                 Comment comments = new Comment();
                 comments.setCommentBody(commentBody.getText().toString());
                 comments.setCommentedAt(new Date().getTime());
-                comments.setCommentedBy(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+                comments.setCommentedBy(user.getDisplayName());
+                comments.setCommentedProfile(user.getPhotoUrl().toString());
                 database.getReference().child("Posts").child(postId).child("Comments").push().setValue(comments).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {

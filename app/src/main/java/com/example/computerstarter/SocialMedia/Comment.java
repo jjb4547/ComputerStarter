@@ -4,7 +4,7 @@ public class Comment {
     public Comment() {
     }
 
-    private String commentBody;
+    private String commentBody,commentedProfile;
 
     public String getCommentBody() {
         return commentBody;
@@ -32,4 +32,12 @@ public class Comment {
 
     private String commentedBy;
     private long commentedAt;
+
+    public String getCommentedProfile() {
+        return commentedProfile;
+    }
+
+    public void setCommentedProfile(String commentedProfile) {
+        this.commentedProfile = commentedProfile;
+    }
 }
