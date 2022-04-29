@@ -18,7 +18,6 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.example.computerstarter.Guides.OnboardHolder.OnboardingAdapter;
 import com.example.computerstarter.Guides.OnboardHolder.OnboardingItem;
 import com.example.computerstarter.R;
-import com.example.computerstarter.SampleProjects.Arduino.Projects.TemperatureSensor.Arduino_Temperature_Sensor;
 import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
@@ -97,7 +96,7 @@ public class Arduino_Range_Detector_Coding extends AppCompatActivity {
                 "\t a.) The following is all contained in the file\n" +
                 "2.) (Line 1-2) Define pins\n" +
                 "\t a.) #define trigPin 13 \n" +
-                "\t b.) #define echoPin 12\n\n" +
+                "\t b.) #define echoPin 12\n" +
                 "3.) (Line 3) These lines take place in the void setup()\n" +
                 "\t a.) void setup(){  \n" +
                 "4.) (Line 4-6) Begin serial monitor and set pins as input and ouput\n" +
@@ -114,7 +113,7 @@ public class Arduino_Range_Detector_Coding extends AppCompatActivity {
                 "\t f.) digitalWrite(trigPin, LOW);\n" +
                 "\t g.) duration = pulseIn(echoPin, HIGH);\n" +
                 "\t h.) distance = (duration/2) / 29.1;\n" +
-                "6.) (Line 14-) These lines take place in the if and else\n" +
+                "6.) (Line 15-20) These lines take place in the if and else\n" +
                 "These lines will finally print the distance or show it as out of range\n" +
                 "\t a.) if (distance >= 200 || distance <= 0){\n" +
                 "\t b.) Serial.println(\"Out of range\");}\n" +

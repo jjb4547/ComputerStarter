@@ -91,31 +91,31 @@ public class RaspberryPi_Emulator_Supplies extends AppCompatActivity {
         item_rasp.setImage(R.drawable.raspberry_pi);
 
         OnboardingItem item_screen = new OnboardingItem();
-        item_screen.setTitle("A seperate screen and HDMI cord to display the OS on the Raspberry Pi");
+        item_screen.setTitle("A separate screen and HDMI cord to display the OS on the Raspberry Pi");
         item_screen.setDescription("You will need a seperate screen and cord to show whats on the Raspberry Pi");
-        item_screen.setImage(R.drawable.raspberry_pi);
+        item_screen.setImage(R.drawable.monitor_link);
 
         OnboardingItem item_sdcard = new OnboardingItem();
-        item_sdcard.setTitle("8GB SD or MicroSD");
-        item_sdcard.setDescription("The size depends on how many ROMs you plan to get");
+        item_sdcard.setTitle("8GB MicroSD and thumb drive");
+        item_sdcard.setDescription("The size of the microSD depends on how many ROMs you plan to get. " +
+                "The thumb drive is for copying the ROMs over to the Raspberry Pi once its set up");
         item_sdcard.setImage(R.drawable.sd_card);
 
         OnboardingItem item_breadboard = new OnboardingItem();
         item_breadboard.setTitle("Keyboard and Mouse");
-        item_breadboard.setDescription("Make sure you have a breadboard and some jumper wires. " +
-                "The colors do not matter but as a recommendation make sure that the voltage are red " +
-                "and any ground wires are black.");
-        item_breadboard.setImage(R.drawable.breadboard);
+        item_breadboard.setDescription("You'll need a mouse and keyboard for initial set up" +
+                " and any other settings that the controller can't do.");
+        item_breadboard.setImage(R.drawable.key_mouse);
 
         OnboardingItem item_ohm = new OnboardingItem();
-        item_ohm.setTitle("Seperate computer");
-        item_ohm.setDescription("You a computer you can use to flash the SD card");
-        item_ohm.setImage(R.drawable.k_ohm_resistor);
+        item_ohm.setTitle("Separate computer");
+        item_ohm.setDescription("You need a computer you can use to flash the SD card");
+        item_ohm.setImage(R.drawable.pc_case_link);
 
         OnboardingItem item_dht22 = new OnboardingItem();
         item_dht22.setTitle("A game controller such as Playstation,Xbox,etc");
         item_dht22.setDescription("You will need a gamepad to control the games you get");
-        item_dht22.setImage(R.drawable.dht22);
+        item_dht22.setImage(R.drawable.emulator_controllers);
 
 
         onboardingItemPcGuideActivityList.add(item_Intro);
@@ -160,7 +160,7 @@ public class RaspberryPi_Emulator_Supplies extends AppCompatActivity {
             }
         }
         if (index== onboardingAdapterPcGuide.getItemCount()-1){
-            buttonOnboardingAction.setText("Wiring");
+            buttonOnboardingAction.setText("SD card");
         }else{
             buttonOnboardingAction.setText("Next");
         }

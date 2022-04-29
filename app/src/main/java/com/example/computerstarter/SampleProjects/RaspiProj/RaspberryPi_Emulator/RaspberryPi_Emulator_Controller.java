@@ -85,7 +85,7 @@ public class RaspberryPi_Emulator_Controller extends AppCompatActivity {
         item_Intro.setImage(R.drawable.rasp_logo);
 
         OnboardingItem item_prep = new OnboardingItem();
-        item_prep.setTitle("Get controller ready");
+        item_prep.setTitle("Get your controller ready");
         item_prep.setDescription("You will be meet with a welcome screen. Here you will need to" +
                 " connect your controller of choice. Hold down a button and you will be able to " +
                 "configure all the buttons for that controller. Now it is ready for use.");
@@ -96,7 +96,7 @@ public class RaspberryPi_Emulator_Controller extends AppCompatActivity {
         item_code.setDescription("Once you obtain a ROM you will need a thumb drive to send it " +
                 "into the emulator. You will need to enable “Enable USB ROM Service scripts“ on the " +
                 "Raspberry Pi for the system to see the thumb drive. ");
-        item_code.setImage(R.drawable.rasp_logo);
+        item_code.setImage(R.drawable.emulator_games);
 
         OnboardingItem item_save = new OnboardingItem();
         item_save.setTitle("Adding ROMS part two");
@@ -104,7 +104,7 @@ public class RaspberryPi_Emulator_Controller extends AppCompatActivity {
                 "in. This will take a few minutes but it will create folders for the systems it supports. " +
                 "You will simply drop the ROM in the right folder and then plug it back into the Raspberry Pi. " +
                 "After a few minutes it should show up on the system.");
-        item_save.setImage(R.drawable.rasp_logo);
+        item_save.setImage(R.drawable.emulator_games);
 
         onboardingItemPcGuideActivityList.add(item_Intro);
         onboardingItemPcGuideActivityList.add(item_prep);

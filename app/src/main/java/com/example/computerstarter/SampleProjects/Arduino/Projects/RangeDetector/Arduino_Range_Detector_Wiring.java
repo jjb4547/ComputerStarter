@@ -90,9 +90,9 @@ public class Arduino_Range_Detector_Wiring extends AppCompatActivity {
         item_circuit.setDescription("• Connect the Ultrasonic Sensor with the breadboard using female to male jumper wires\n" +
                 "• Wire Pin 1 of the Ultrasonic Sensor +5V(VCC)\n" +
                 "• Wire Pin 2 of the Ultrasonic Sensor to any digital pin(pin 13 in the diagram)\n" +
-                "• Wire Pin 3 of the Ultrasonic Sensor to any digital pin(pin 12 in the diagram)"+
+                "• Wire Pin 3 of the Ultrasonic Sensor to any digital pin(pin 12 in the diagram)\n"+
                 "• Wire Pin 4 of the Ultrasonic Sensor to ground(GND)");
-        item_circuit.setImage(R.drawable.arduino_temp_circuit);
+        item_circuit.setImage(R.drawable.arduino_range_circuit);
 
         onboardingItemPcGuideActivityList.add(item_intro);
         onboardingItemPcGuideActivityList.add(item_circuit);

@@ -100,7 +100,7 @@ public class Arduino_Range_Detector_Supplies extends AppCompatActivity {
                         "Pin 2 is trigpin(One drum)\n" +
                         "Pin 3 is echopin(Second drum)\n" +
                         "Pin 4 is GND(Ground)\n");
-        item_tempsen.setImage(R.drawable.arduino_ds18b20);
+        item_tempsen.setImage(R.drawable.arduino_hcsr04);
 
         OnboardingItem item_breadboard = new OnboardingItem();
         item_breadboard.setTitle("Breadboard and Jumper Wires");

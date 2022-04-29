@@ -88,8 +88,8 @@ public class RaspberryPi_Emulator_SD extends AppCompatActivity {
         OnboardingItem item_circuit = new OnboardingItem();
         item_circuit.setTitle("Download the RetroPie Image");
         item_circuit.setDescription("First you will need to visit the RetroPie website(https://retropie.org.uk/download/)"+
-                "download the correct image for the Raspberry Pi");
-        item_circuit.setImage(R.drawable.circuit);
+                "download the correct image for your Raspberry Pi");
+        item_circuit.setImage(R.drawable.emulator_retropie);
 
         OnboardingItem item_etcher = new OnboardingItem();
         item_etcher.setTitle("Download Etcher or similar software");
@@ -98,14 +98,14 @@ public class RaspberryPi_Emulator_SD extends AppCompatActivity {
                 "download and open the software with the SD card card connected to your computer. In Etcher you can click " +
                 "“Select Image” and select the RetroPie image. Then you will need to “Select drive” with your SD card selected. " +
                 "Finally you will be able to Flash the SD card. ");
-        item_etcher.setImage(R.drawable.circuit);
+        item_etcher.setImage(R.drawable.emulator_etcher);
 
         OnboardingItem item_plug = new OnboardingItem();
-        item_plug.setTitle("Plug and play");
+        item_plug.setTitle("Plug in everything");
         item_plug.setDescription("You will now want to put the microSD card into the " +
-                "SD card slot of your raspberry pi.Go Plug in the HDMI and power into cord into" +
+                "SD card slot of your raspberry pi. Plug in the HDMI and power into cord into " +
                 "the Raspberry Pi to begin the last step. ");
-        item_plug.setImage(R.drawable.circuit);
+        item_plug.setImage(R.drawable.raspberry_pi);
 
         onboardingItemPcGuideActivityList.add(item_intro);
         onboardingItemPcGuideActivityList.add(item_circuit);
@@ -146,7 +146,7 @@ public class RaspberryPi_Emulator_SD extends AppCompatActivity {
             }
         }
         if (index== onboardingAdapterPcGuide.getItemCount()-1){
-            buttonOnboardingAction.setText("Coding");
+            buttonOnboardingAction.setText("Controller config");
         }else{
             buttonOnboardingAction.setText("Next");
         }
