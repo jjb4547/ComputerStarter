@@ -10,7 +10,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    android:gravity="center"
+    android:layout_marginTop="10dp"
     android:background="@color/background_color">
     <RelativeLayout
         android:layout_width="match_parent"
@@ -35,7 +35,6 @@
             android:layout_centerInParent="true"
             android:layout_gravity="center"
             android:layout_marginStart="10dp"
-            android:layout_toEndOf="@id/homeBut"
             android:fontFamily="@font/francois_one"
             android:gravity="center"
             android:text="Arduino Range Detector"
