@@ -25,10 +25,6 @@ import com.example.computerstarter.Guides.Guides_Activity;
 import com.example.computerstarter.Login.Login_SignUpActivity;
 import com.example.computerstarter.Others.AccountActivity;
 import com.example.computerstarter.R;
-import com.example.computerstarter.SampleProjects.RaspiProj.HumiditySensor.RaspberryPi_Humidity_Sensor;
-import com.example.computerstarter.SampleProjects.RaspiProj.HumiditySensor.RaspberryPi_Humidity_Sensor_Coding;
-import com.example.computerstarter.SampleProjects.RaspiProj.HumiditySensor.RaspberryPi_Humidity_Sensor_Supplies;
-import com.example.computerstarter.SampleProjects.RaspiProj.HumiditySensor.RaspberryPi_Humidity_Sensor_Wiring;
 import com.example.computerstarter.SampleProjects.RaspiProj.RaspberryPi_Projects;
 import com.example.computerstarter.SampleProjects.SampleProjects;
 import com.example.computerstarter.app.HomeActivity;
@@ -62,7 +58,7 @@ public class RaspberryPi_Emulator extends AppCompatActivity implements Navigatio
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //need to change this to emulator layout
-        setContentView(R.layout.raspberrypi_humidity_project_layout);
+        setContentView(R.layout.raspberrypi_emulator_project_layout);
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
         //bottomNavigationView = findViewById(R.id.bottomNavigationView);

@@ -86,23 +86,31 @@ public class RaspberryPi_Emulator_SD extends AppCompatActivity {
         item_intro.setImage(R.drawable.rasp_logo);
 
         OnboardingItem item_circuit = new OnboardingItem();
-        item_circuit.setTitle("First you will need to visit the RetroPie website(https://retropie.org.uk/download/)" +
+        item_circuit.setTitle("Download the RetroPie Image");
+        item_circuit.setDescription("First you will need to visit the RetroPie website(https://retropie.org.uk/download/)"+
                 "download the correct image for the Raspberry Pi");
-        item_circuit.setDescription("");
         item_circuit.setImage(R.drawable.circuit);
 
         OnboardingItem item_etcher = new OnboardingItem();
-        item_etcher.setTitle("You will then need to write the image to your SD card. You can do this using a tool " +
+        item_etcher.setTitle("Download Etcher or similar software");
+        item_etcher.setDescription("You will then need to write the image to your SD card. You can do this using a tool " +
                 "called “Etcher”. It will format the SD card for you and write the RetroPie image to it. You should " +
                 "download and open the software with the SD card card connected to your computer. In Etcher you can click " +
                 "“Select Image” and select the RetroPie image. Then you will need to “Select drive” with your SD card selected. " +
                 "Finally you will be able to Flash the SD card. ");
-        item_etcher.setDescription("");
         item_etcher.setImage(R.drawable.circuit);
+
+        OnboardingItem item_plug = new OnboardingItem();
+        item_plug.setTitle("Plug and play");
+        item_plug.setDescription("You will now want to put the microSD card into the " +
+                "SD card slot of your raspberry pi.Go Plug in the HDMI and power into cord into" +
+                "the Raspberry Pi to begin the last step. ");
+        item_plug.setImage(R.drawable.circuit);
 
         onboardingItemPcGuideActivityList.add(item_intro);
         onboardingItemPcGuideActivityList.add(item_circuit);
         onboardingItemPcGuideActivityList.add(item_etcher);
+        onboardingItemPcGuideActivityList.add(item_plug);
         onboardingAdapterPcGuide = new OnboardingAdapter(onboardingItemPcGuideActivityList);
     }
 

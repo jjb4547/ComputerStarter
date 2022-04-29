@@ -27,6 +27,7 @@ import com.example.computerstarter.Login.Login_SignUpActivity;
 import com.example.computerstarter.Others.AccountActivity;
 import com.example.computerstarter.R;
 import com.example.computerstarter.SampleProjects.RaspiProj.HumiditySensor.RaspberryPi_Humidity_Sensor;
+import com.example.computerstarter.SampleProjects.RaspiProj.RaspberryPi_Emulator.RaspberryPi_Emulator;
 import com.example.computerstarter.SampleProjects.SampleProjects;
 import com.example.computerstarter.app.HomeActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -38,10 +39,9 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
-import java.util.Objects;
-
 public class RaspberryPi_Projects extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private CardView humiditySensor;
+    private CardView emulator;
     private ImageButton home,menuButton;
     private DrawerLayout drawerLayout;
     private BottomNavigationView bottomNavigationView;
@@ -118,9 +118,15 @@ public class RaspberryPi_Projects extends AppCompatActivity implements Navigatio
         });
         home = findViewById(R.id.homeBut);
         menuButton = findViewById(R.id.menuButton);
+        emulator =findViewById(R.id.emulator);
+
         humiditySensor = findViewById(R.id.humiditySensor);
         humiditySensor.setOnClickListener(view -> {
             startActivity(new Intent(this, RaspberryPi_Humidity_Sensor.class));
+        });
+        //emulator xml
+        emulator.setOnClickListener(view -> {
+            startActivity(new Intent(this, RaspberryPi_Emulator.class));
         });
         home.setOnClickListener(view->{
             startActivity(new Intent(getApplicationContext(), SampleProjects.class));

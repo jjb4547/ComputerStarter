@@ -38,7 +38,7 @@
             android:layout_toEndOf="@id/homeBut"
             android:fontFamily="@font/francois_one"
             android:gravity="center"
-            android:text="Arduino Temperature Sensor"
+            android:text="Arduino Range Detector"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="30sp"
@@ -166,44 +166,6 @@
                         android:layout_centerInParent="true"
                         android:layout_marginBottom="15dp"
                         android:text="How to get the Arduino running."
-                        android:textColor="@color/white" />
-                </RelativeLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:layout_marginBottom="15dp"
-                android:clickable="true"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:paddingBottom="15dp"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="8dp"
-                app:cardPreventCornerOverlap="false">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:background="@color/cardview_light">
-
-                    <TextView
-                        android:id="@+id/trouble"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:fontFamily="@font/francois_one"
-                        android:text="Troubleshoot"
-                        android:textColor="@color/white"
-                        android:textSize="30sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/trouble"
-                        android:layout_centerInParent="true"
-                        android:layout_marginBottom="15dp"
-                        android:text="Any issues come here for help."
                         android:textColor="@color/white" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>

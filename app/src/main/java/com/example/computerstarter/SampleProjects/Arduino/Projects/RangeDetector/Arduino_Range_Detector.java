@@ -26,9 +26,6 @@ import com.example.computerstarter.Login.Login_SignUpActivity;
 import com.example.computerstarter.Others.AccountActivity;
 import com.example.computerstarter.R;
 import com.example.computerstarter.SampleProjects.Arduino.Projects.Arduino_Projects;
-import com.example.computerstarter.SampleProjects.Arduino.Projects.TemperatureSensor.Arduino_Temperature_Sensor_Coding;
-import com.example.computerstarter.SampleProjects.Arduino.Projects.TemperatureSensor.Arduino_Temperature_Sensor_Supplies;
-import com.example.computerstarter.SampleProjects.Arduino.Projects.TemperatureSensor.Arduino_Temperature_Sensor_Wiring;
 import com.example.computerstarter.SampleProjects.SampleProjects;
 import com.example.computerstarter.app.HomeActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -56,7 +53,7 @@ public class Arduino_Range_Detector extends AppCompatActivity implements Navigat
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.arduino_temperature_project_layout);
+        setContentView(R.layout.arduino_range_project_layout);
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
         //bottomNavigationView = findViewById(R.id.bottomNavigationView);
