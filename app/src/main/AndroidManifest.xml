@@ -104,6 +104,22 @@
             android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
         <activity android:name=".SocialMedia.CommentActivity"
             android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
+        <activity android:name=".SampleProjects.Arduino.Projects.RangeDetector.Arduino_Range_Detector"
+            android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
+        <activity android:name=".SampleProjects.Arduino.Projects.RangeDetector.Arduino_Range_Detector_Coding"
+            android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
+        <activity android:name=".SampleProjects.Arduino.Projects.RangeDetector.Arduino_Range_Detector_Supplies"
+            android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
+        <activity android:name=".SampleProjects.Arduino.Projects.RangeDetector.Arduino_Range_Detector_Wiring"
+            android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
+        <activity android:name=".SampleProjects.RaspiProj.RaspberryPi_Emulator.RaspberryPi_Emulator"
+            android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
+        <activity android:name=".SampleProjects.RaspiProj.RaspberryPi_Emulator.RaspberryPi_Emulator_Controller"
+            android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
+        <activity android:name=".SampleProjects.RaspiProj.RaspberryPi_Emulator.RaspberryPi_Emulator_SD"
+            android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
+        <activity android:name=".SampleProjects.RaspiProj.RaspberryPi_Emulator.RaspberryPi_Emulator_Supplies"
+            android:theme="@style/Theme.ComputerStarter.NoActionBar"/>
 
         <!-- Fonts -->
         <meta-data

@@ -1,8 +1,7 @@
-package com.example.computerstarter.SampleProjects.RaspiProj;
+package com.example.computerstarter.SampleProjects.Arduino.Projects.RangeDetector;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,8 +25,7 @@ import com.example.computerstarter.Guides.Guides_Activity;
 import com.example.computerstarter.Login.Login_SignUpActivity;
 import com.example.computerstarter.Others.AccountActivity;
 import com.example.computerstarter.R;
-import com.example.computerstarter.SampleProjects.RaspiProj.HumiditySensor.RaspberryPi_Humidity_Sensor;
-import com.example.computerstarter.SampleProjects.RaspiProj.RaspberryPi_Emulator.RaspberryPi_Emulator;
+import com.example.computerstarter.SampleProjects.Arduino.Projects.Arduino_Projects;
 import com.example.computerstarter.SampleProjects.SampleProjects;
 import com.example.computerstarter.app.HomeActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -35,14 +33,9 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.squareup.picasso.Picasso;
 
-public class RaspberryPi_Projects extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
-    private CardView humiditySensor;
-    private CardView emulator;
-    private ImageButton home,menuButton;
+public class Arduino_Range_Detector extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+    private TextView home;
     private DrawerLayout drawerLayout;
     private BottomNavigationView bottomNavigationView;
     private NavController navController;
@@ -57,13 +50,15 @@ public class RaspberryPi_Projects extends AppCompatActivity implements Navigatio
     private MenuItem item_log;
     private MenuItem item_quiz;
     private MenuItem item_acc;
-    private StorageReference storageReference = FirebaseStorage.getInstance().getReference();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.raspberrypi_projects_layout);
+        setContentView(R.layout.arduino_range_project_layout);
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
+        //bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        //navController = Navigation.findNavController(this,R.id.frame_layout);
+        //NavigationUI.setupWithNavController(bottomNavigationView,navController);
         drawerLayout = findViewById(R.id.drawerlayout);
         navigationView = findViewById(R.id.navigation_menu);
         toggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.navigation_draw_open,R.string.navigation_draw_close);
@@ -94,8 +89,6 @@ public class RaspberryPi_Projects extends AppCompatActivity implements Navigatio
             String current = user.getUid();
             name.setText(user.getDisplayName());
             email.setText(user.getEmail());
-            StorageReference profileRef = storageReference.child("ProfileImage/Users/"+mAuth.getCurrentUser().getUid()+"/profile");
-            profileRef.getDownloadUrl().addOnSuccessListener(uri -> Picasso.get().load(uri).into(profile));
             //profile.setImageURI(user.getPhotoUrl()); //bugging out not sure why but only on the emulator
         }else{
             name.setText("Guest");
@@ -116,27 +109,22 @@ public class RaspberryPi_Projects extends AppCompatActivity implements Navigatio
                 //log.setText("Log Out");
             }
         });
-        home = findViewById(R.id.homeBut);
-        menuButton = findViewById(R.id.menuButton);
-        emulator =findViewById(R.id.emulator);
-
-        humiditySensor = findViewById(R.id.humiditySensor);
-        humiditySensor.setOnClickListener(view -> {
-            startActivity(new Intent(this, RaspberryPi_Humidity_Sensor.class));
+        CardView supplies = findViewById(R.id.supplies);
+        supplies.setOnClickListener(view -> {
+            startActivity(new Intent(this, Arduino_Range_Detector_Supplies.class));
         });
-        //emulator xml
-        emulator.setOnClickListener(view -> {
-            startActivity(new Intent(this, RaspberryPi_Emulator.class));
+        CardView wiring = findViewById(R.id.installation);
+        wiring.setOnClickListener(view -> {
+            startActivity(new Intent(this, Arduino_Range_Detector_Wiring.class));
         });
+        CardView coding = findViewById(R.id.setup);
+        coding.setOnClickListener(view -> {
+            startActivity(new Intent(this, Arduino_Range_Detector_Coding.class));
+        });
+        ImageButton home = findViewById(R.id.homeBut);
         home.setOnClickListener(view->{
-            startActivity(new Intent(getApplicationContext(), SampleProjects.class));
+            startActivity(new Intent(getApplicationContext(), Arduino_Projects.class));
             overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
-        });
-        menuButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                drawerLayout.openDrawer(Gravity.RIGHT);
-            }
         });
     }
     @Override
@@ -148,7 +136,7 @@ public class RaspberryPi_Projects extends AppCompatActivity implements Navigatio
         switch (item.getItemId()){
             case R.id.home:
                 Toast.makeText(this,"Main Page",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this,HomeActivity.class));
+                startActivity(new Intent(this, HomeActivity.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 break;
             case R.id.building:
@@ -163,13 +151,13 @@ public class RaspberryPi_Projects extends AppCompatActivity implements Navigatio
                     Toast.makeText(this,"LOG IN!!!!",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.partsMenu:
-                startActivity(new Intent(RaspberryPi_Projects.this, PC_Part_Activity.class).putExtra("Act","Edu"));
+                startActivity(new Intent(Arduino_Range_Detector.this, PC_Part_Activity.class).putExtra("Act","Edu"));
                 break;
             case R.id.guidesMenu:
-                startActivity(new Intent(RaspberryPi_Projects.this, Guides_Activity.class));
+                startActivity(new Intent(Arduino_Range_Detector.this, Guides_Activity.class));
                 break;
             case R.id.projectsMenu:
-                startActivity(new Intent(RaspberryPi_Projects.this, SampleProjects.class));
+                startActivity(new Intent(Arduino_Range_Detector.this, SampleProjects.class));
                 break;
         }
         return true;

@@ -111,6 +111,48 @@
                         android:textColor="@color/white" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                app:cardElevation="8dp"
+                android:clickable="true"
+                app:cardPreventCornerOverlap="false"
+                android:id="@+id/rangeDetector"
+                app:cardCornerRadius="8dp"
+                android:foreground="?android:attr/selectableItemBackground">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:background="@color/cardview_light">
+
+                    <TextView
+                        android:id="@+id/titleText1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="35dp"
+                        android:fontFamily="@font/francois_one"
+                        android:gravity="center"
+                        android:text="Range Detector"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="30sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/titleText1"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="15dp"
+
+                        android:text="Arduino range detector step by step tutorial"
+                        android:textAlignment="center"
+                        android:textColor="@color/white" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
         </LinearLayout>
     </ScrollView>
     <com.google.android.material.navigation.NavigationView

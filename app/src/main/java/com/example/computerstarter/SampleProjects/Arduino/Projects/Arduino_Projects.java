@@ -25,6 +25,7 @@ import com.example.computerstarter.Guides.Guides_Activity;
 import com.example.computerstarter.Login.Login_SignUpActivity;
 import com.example.computerstarter.Others.AccountActivity;
 import com.example.computerstarter.R;
+import com.example.computerstarter.SampleProjects.Arduino.Projects.RangeDetector.Arduino_Range_Detector;
 import com.example.computerstarter.SampleProjects.Arduino.Projects.TemperatureSensor.Arduino_Temperature_Sensor;
 import com.example.computerstarter.SampleProjects.SampleProjects;
 import com.example.computerstarter.app.HomeActivity;
@@ -39,6 +40,7 @@ import com.squareup.picasso.Picasso;
 
 public class Arduino_Projects extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private CardView temperatureSensor;
+    private CardView rangeDetector;
     private TextView home;
     private DrawerLayout drawerLayout;
     private BottomNavigationView bottomNavigationView;
@@ -84,11 +86,18 @@ public class Arduino_Projects extends AppCompatActivity implements NavigationVie
             log.setText("Log In");
             item_acc.setVisible(false);
         }
+        rangeDetector =findViewById(R.id.rangeDetector);
         temperatureSensor =findViewById(R.id.temperatureSensor);
         temperatureSensor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Arduino_Projects.this, Arduino_Temperature_Sensor.class));
+            }
+        });
+        rangeDetector.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Arduino_Projects.this, Arduino_Range_Detector.class));
             }
         });
         TextView name = headerView.findViewById(R.id.myname);
