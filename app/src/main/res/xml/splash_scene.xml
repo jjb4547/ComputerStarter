@@ -1,9 +1,11 @@
-<MotionScene>
-<Transition motion:constraintSetEnd="@+id/end"
-    motion:constraintSetStart="@id/start"
+<MotionScene
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+<Transition
+    android:id="@+id/transitionScene"
     motion:duration="4500"
     motion:autoTransition="animateToEnd"
-    xmlns:motion="http://schemas.android.com/apk/res-auto"
+    motion:constraintSetEnd="@+id/end"
+    motion:constraintSetStart="@id/start"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <KeyFrameSet>
         <KeyAttribute
