@@ -106,10 +106,19 @@ public class RaspberryPi_Emulator_Controller extends AppCompatActivity {
                 "After a few minutes it should show up on the system.");
         item_save.setImage(R.drawable.emulator_games);
 
+        OnboardingItem item_credit = new OnboardingItem();
+        item_credit.setTitle("References");
+        item_credit.setDescription("This project is by Emmet from the pimylifeup website with help from " +
+                "the official RetroPie website\n" +
+                "\nhttps://pimylifeup.com/raspberry-pi-retropie/\n" +
+                "\nhttps://retropie.org.uk/docs/First-Installation/");
+        item_credit.setImage(R.drawable.rasp_logo);
+
         onboardingItemPcGuideActivityList.add(item_Intro);
         onboardingItemPcGuideActivityList.add(item_prep);
         onboardingItemPcGuideActivityList.add(item_code);
         onboardingItemPcGuideActivityList.add(item_save);
+        onboardingItemPcGuideActivityList.add(item_credit);
         onboardingAdapterPcGuide = new OnboardingAdapter(onboardingItemPcGuideActivityList);
     }
 

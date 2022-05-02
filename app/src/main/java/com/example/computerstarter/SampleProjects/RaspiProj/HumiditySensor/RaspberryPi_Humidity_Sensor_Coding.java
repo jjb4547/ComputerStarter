@@ -175,10 +175,17 @@ public class RaspberryPi_Humidity_Sensor_Coding extends AppCompatActivity {
                 "\t i.) 05/04/19, 05:51,22.2C,50.2%\n");
         item_save.setImage(R.drawable.rasp_logo);
 
+        OnboardingItem item_credit = new OnboardingItem();
+        item_credit.setTitle("References");
+        item_credit.setDescription("This project is by Emmet from the pimylifeup website\n" +
+                "\nhttps://pimylifeup.com/raspberry-pi-humidity-sensor-dht22/");
+        item_credit.setImage(R.drawable.rasp_logo);
+
         onboardingItemPcGuideActivityList.add(item_Intro);
         onboardingItemPcGuideActivityList.add(item_prep);
         onboardingItemPcGuideActivityList.add(item_code);
         onboardingItemPcGuideActivityList.add(item_save);
+        onboardingItemPcGuideActivityList.add(item_credit);
         onboardingAdapterPcGuide = new OnboardingAdapter(onboardingItemPcGuideActivityList);
     }
 
