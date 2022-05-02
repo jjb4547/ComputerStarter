@@ -130,7 +130,7 @@
                         android:layout_below="@+id/wiring"
                         android:layout_centerInParent="true"
                         android:layout_marginBottom="15dp"
-                        android:text="How/Where to put the components."
+                        android:text="Getting the SD card ready."
                         android:textColor="@color/white" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
@@ -162,12 +162,12 @@
                         android:textSize="30sp" />
 
                     <TextView
-                        android:layout_below="@id/coding"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_below="@id/coding"
                         android:layout_centerInParent="true"
                         android:layout_marginBottom="15dp"
-                        android:text="How to get the Raspberry Pi running."
+                        android:text="Setting up the controller and more."
                         android:textColor="@color/white" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>

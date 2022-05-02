@@ -127,9 +127,16 @@ public class Arduino_Temperature_Sensor_Coding extends AppCompatActivity {
                 "https://github.com/fdebrabander/Arduino-LiquidCrystal-I2C-library ");
         item_code.setImage(R.drawable.arduino_logo);
 
+        OnboardingItem item_credit = new OnboardingItem();
+        item_credit.setTitle("References");
+        item_credit.setDescription("This project is by Konstantin Dimitrov from the project hub website\n" +
+                "\nhttps://create.arduino.cc/projecthub/TheGadgetBoy/ds18b20-digital-temperature-sensor-and-arduino-9cc806?ref=platform&ref_id=424_popular__beginner_&offset=2");
+        item_credit.setImage(R.drawable.arduino_logo);
+
         onboardingItemPcGuideActivityList.add(item_Intro);
         onboardingItemPcGuideActivityList.add(item_prep);
         onboardingItemPcGuideActivityList.add(item_code);
+        onboardingItemPcGuideActivityList.add(item_credit);
         onboardingAdapterPcGuide = new OnboardingAdapter(onboardingItemPcGuideActivityList);
     }
 

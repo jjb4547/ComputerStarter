@@ -127,9 +127,16 @@ public class Arduino_Range_Detector_Coding extends AppCompatActivity {
                 "Out of Range\n");
         item_code.setImage(R.drawable.arduino_logo);
 
+        OnboardingItem item_credit = new OnboardingItem();
+        item_credit.setTitle("References");
+        item_credit.setDescription("This project is by RZtronics from the project hub website\n" +
+                "\nhttps://create.arduino.cc/projecthub/rztronics/ultrasonic-range-detector-using-arduino-and-sr-04f-8a804d?ref=search&ref_id=ultrasonic&offset=2");
+        item_credit.setImage(R.drawable.arduino_logo);
+
         onboardingItemPcGuideActivityList.add(item_Intro);
         onboardingItemPcGuideActivityList.add(item_prep);
         onboardingItemPcGuideActivityList.add(item_code);
+        onboardingItemPcGuideActivityList.add(item_credit);
         onboardingAdapterPcGuide = new OnboardingAdapter(onboardingItemPcGuideActivityList);
     }
 
