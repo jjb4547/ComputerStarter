@@ -220,8 +220,6 @@ public class Login_SignUpActivity extends AppCompatActivity {
                 .addOnCompleteListener((task) -> {
                     if(task.isSuccessful()){
                         progressDialog.dismiss();
-                        //ArrayList<Build_Activity> build_data = new ArrayList<>();
-                        //Toast.makeText(Login_SignUpActivity.this,"User Created", Toast.LENGTH_SHORT).show();
                         current = mAuth.getCurrentUser().getUid();
                         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
