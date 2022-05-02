@@ -17,4 +17,23 @@ ComputerStarter is a multimedia application that is geared towards promoting a c
 ![Members](group_image.jpg)
 
 # App Layout
+
 ## Build Section
+
+- Browse a wide range of Computer Parts.
+- Pick the parts that you want for your build.
+- View an overview of your builds' cost and specifications.
+- Manage up to 5 builds.
+
+## Education Section
+
+- Learn about Computer Parts and what they do.
+- Use the guides to program an Arduino or Raspberry Pi and build a Computer.
+- Create some awesome projects with the Sample Projects page.
+
+## Community Section
+
+- Post the builds you have made.
+- Interact with other users.
+- Ask any computer related questions.
+- Comment on other users builds and questions.
