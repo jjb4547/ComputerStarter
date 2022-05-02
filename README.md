@@ -13,7 +13,6 @@ ComputerStarter is a multimedia application that is geared towards promoting a c
 |Ryan Santillan|Education Researcher|ryan.santillan.###@my.csun.edu|
 |Jared Immerman|Lead Art Designer/Front-End Developer|jared.immerman.###@my.csun.edu|
 |Justin Kingston|Back-End Developer/Script Writer|justin.kingston.###@my.csun.edu|
-|Professor Amini|Customer|afshin.amini@csun.edu|
 
 ![Members](group_image.jpg)
 
