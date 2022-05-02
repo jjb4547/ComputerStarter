@@ -3,7 +3,7 @@ ComputerStarter is a multimedia application that is geared towards promoting a c
 # Team Members (Left to Right)
 |Team Member|Role|Email|
 |-----------|----|-----|
-|Jesus Banuelos|Team Lead|jesus.banuelos.951@my.csun.edu|
+|Jesus Banuelos|Team Lead|bjesusjavier@gmail.com|
 |Brandon Leyden|Project Design|brandon.leyden.###@my.csun.edu|
 - Jesus Banuelos
 - Brandon Leyden
