@@ -341,6 +341,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             case R.id.projectsMenu:
                 startActivity(new Intent(HomeActivity.this, SampleProjects.class));
                 break;
+            case R.id.community:
+                startActivity(new Intent(this,MainBuilds.class)
+                        .putExtra("from","Social"));
+                break;
             default:
                 Toast.makeText(this, "Nothing was clicked.", Toast.LENGTH_SHORT).show();
                 break;

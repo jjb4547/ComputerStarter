@@ -372,6 +372,10 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
             case R.id.projectsMenu:
                 startActivity(new Intent(MyBuildActivity.this, SampleProjects.class));
                 break;
+            case R.id.community:
+                startActivity(new Intent(MyBuildActivity.this,MainBuilds.class)
+                        .putExtra("from","Social"));
+                break;
         }
         return true;
     }

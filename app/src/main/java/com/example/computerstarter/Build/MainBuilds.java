@@ -163,6 +163,10 @@ public class MainBuilds extends AppCompatActivity implements NavigationView.OnNa
             case R.id.projectsMenu:
                 startActivity(new Intent(MainBuilds.this, SampleProjects.class));
                 break;
+            case R.id.community:
+                startActivity(new Intent(MainBuilds.this,MainBuilds.class)
+                        .putExtra("from","Social"));
+                break;
         }
         return true;
     }

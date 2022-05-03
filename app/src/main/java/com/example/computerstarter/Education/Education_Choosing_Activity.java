@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.computerstarter.Build.MainBuilds;
 import com.example.computerstarter.Build.MyBuildActivity;
 import com.example.computerstarter.Guides.Guides_Activity;
 import com.example.computerstarter.Login.Login_SignUpActivity;
@@ -155,6 +156,10 @@ public class Education_Choosing_Activity extends AppCompatActivity implements Na
                 break;
             case R.id.projectsMenu:
                 startActivity(new Intent(Education_Choosing_Activity.this, SampleProjects.class));
+                break;
+            case R.id.community:
+                startActivity(new Intent(Education_Choosing_Activity.this, MainBuilds.class)
+                        .putExtra("from","Social"));
                 break;
         }
         return true;

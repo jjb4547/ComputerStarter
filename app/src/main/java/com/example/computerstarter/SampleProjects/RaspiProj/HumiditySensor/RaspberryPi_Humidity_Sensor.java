@@ -165,6 +165,10 @@ public class RaspberryPi_Humidity_Sensor extends AppCompatActivity implements Na
             case R.id.projectsMenu:
                 startActivity(new Intent(RaspberryPi_Humidity_Sensor.this, SampleProjects.class));
                 break;
+            case R.id.community:
+                startActivity(new Intent(this,MainBuilds.class)
+                        .putExtra("from","Social"));
+                break;
         }
         return true;
     }

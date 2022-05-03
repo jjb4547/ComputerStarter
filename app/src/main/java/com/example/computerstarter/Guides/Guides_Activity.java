@@ -164,6 +164,10 @@ public class Guides_Activity extends AppCompatActivity implements NavigationView
             case R.id.projectsMenu:
                 startActivity(new Intent(Guides_Activity.this, SampleProjects.class));
                 break;
+            case R.id.community:
+                startActivity(new Intent(Guides_Activity.this,MainBuilds.class)
+                        .putExtra("from","Social"));
+                break;
         }
         return true;
     }

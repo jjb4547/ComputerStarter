@@ -149,6 +149,10 @@ public class Arduino_Temperature_Sensor extends AppCompatActivity implements Nav
             case R.id.projectsMenu:
                 startActivity(new Intent(Arduino_Temperature_Sensor.this, SampleProjects.class));
                 break;
+            case R.id.community:
+                startActivity(new Intent(this,MainBuilds.class)
+                        .putExtra("from","Social"));
+                break;
         }
         return true;
     }

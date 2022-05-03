@@ -26,6 +26,13 @@
                 android:id="@+id/projectsMenu"/>
         </menu>
     </item>
+    <item android:title="Social Media">
+        <menu>
+            <item
+                android:title="Community"
+                android:id="@+id/community"/>
+        </menu>
+    </item>
     <item android:title="Settings">
         <menu>
             <item

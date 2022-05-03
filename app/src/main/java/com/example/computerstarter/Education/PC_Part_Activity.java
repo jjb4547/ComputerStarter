@@ -230,6 +230,10 @@ public class PC_Part_Activity extends AppCompatActivity implements NavigationVie
             case R.id.projectsMenu:
                 startActivity(new Intent(PC_Part_Activity.this, SampleProjects.class));
                 break;
+            case R.id.community:
+                startActivity(new Intent(PC_Part_Activity.this,MainBuilds.class)
+                        .putExtra("from","Social"));
+                break;
         }
         return true;
     }

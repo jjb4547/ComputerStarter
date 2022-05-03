@@ -40,13 +40,12 @@
                 android:id="@+id/GuidesTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
+                android:layout_centerInParent="true"
                 android:fontFamily="@font/francois_one"
                 android:text="Sample Projects"
-                android:textColor="@color/cardview_light"
-                android:textSize="40sp"
-                android:textStyle="bold"
-                android:layout_centerVertical="true"/>
+                android:textColor="@color/black"
+                android:textSize="30sp"
+                android:textStyle="bold" />
         </RelativeLayout>
         <ScrollView
             android:id="@+id/guidesScroll"

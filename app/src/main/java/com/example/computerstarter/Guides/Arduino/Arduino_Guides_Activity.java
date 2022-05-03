@@ -19,6 +19,7 @@ import androidx.cardview.widget.CardView;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 
+import com.example.computerstarter.Build.MainBuilds;
 import com.example.computerstarter.Education.PC_Part_Activity;
 import com.example.computerstarter.Guides.Guides_Activity;
 import com.example.computerstarter.Login.Login_SignUpActivity;
@@ -167,6 +168,10 @@ public class Arduino_Guides_Activity extends AppCompatActivity implements Naviga
                 break;
             case R.id.projectsMenu:
                 startActivity(new Intent(Arduino_Guides_Activity.this, SampleProjects.class));
+                break;
+            case R.id.community:
+                startActivity(new Intent(Arduino_Guides_Activity.this, MainBuilds.class)
+                        .putExtra("from","Social"));
                 break;
             default:
                 Toast.makeText(this, "Nothing was clicked.", Toast.LENGTH_SHORT).show();

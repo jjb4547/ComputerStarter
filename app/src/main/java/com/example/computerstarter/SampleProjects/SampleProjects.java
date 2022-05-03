@@ -127,7 +127,8 @@ public class SampleProjects extends AppCompatActivity implements NavigationView.
             startActivity(new Intent(SampleProjects.this, Arduino_Projects.class));
         });
         home.setOnClickListener(view -> {
-            startActivity(new Intent(SampleProjects.this, HomeActivity.class));
+            startActivity(new Intent(SampleProjects.this, MainBuilds.class)
+                    .putExtra("from","Edu"));
         });
     }
 
@@ -161,6 +162,10 @@ public class SampleProjects extends AppCompatActivity implements NavigationView.
                 break;
             case R.id.projectsMenu:
                 startActivity(new Intent(SampleProjects.this, SampleProjects.class));
+                break;
+            case R.id.community:
+                startActivity(new Intent(this,MainBuilds.class)
+                        .putExtra("from","Social"));
                 break;
         }
         return true;

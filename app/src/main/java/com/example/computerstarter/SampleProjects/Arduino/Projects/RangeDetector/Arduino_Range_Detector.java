@@ -159,6 +159,10 @@ public class Arduino_Range_Detector extends AppCompatActivity implements Navigat
             case R.id.projectsMenu:
                 startActivity(new Intent(Arduino_Range_Detector.this, SampleProjects.class));
                 break;
+            case R.id.community:
+                startActivity(new Intent(this,MainBuilds.class)
+                        .putExtra("from","Social"));
+                break;
         }
         return true;
     }

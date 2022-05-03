@@ -19,6 +19,7 @@ import androidx.cardview.widget.CardView;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 
+import com.example.computerstarter.Build.MainBuilds;
 import com.example.computerstarter.Build.MyBuildActivity;
 import com.example.computerstarter.Education.PC_Part_Activity;
 import com.example.computerstarter.Guides.Guides_Activity;
@@ -173,6 +174,10 @@ public class Arduino_Projects extends AppCompatActivity implements NavigationVie
                 break;
             case R.id.projectsMenu:
                 startActivity(new Intent(Arduino_Projects.this, SampleProjects.class));
+                break;
+            case R.id.community:
+                startActivity(new Intent(this, MainBuilds.class)
+                        .putExtra("from","Social"));
                 break;
         }
         return true;

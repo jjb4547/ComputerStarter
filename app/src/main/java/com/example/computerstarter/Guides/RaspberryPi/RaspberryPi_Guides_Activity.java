@@ -21,10 +21,12 @@ import androidx.navigation.NavController;
 
 import com.example.computerstarter.Build.MainBuilds;
 import com.example.computerstarter.Build.MyBuildActivity;
+import com.example.computerstarter.Education.PC_Part_Activity;
 import com.example.computerstarter.Guides.Guides_Activity;
 import com.example.computerstarter.Login.Login_SignUpActivity;
 import com.example.computerstarter.Others.AccountActivity;
 import com.example.computerstarter.R;
+import com.example.computerstarter.SampleProjects.SampleProjects;
 import com.example.computerstarter.app.HomeActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -148,11 +150,10 @@ public class RaspberryPi_Guides_Activity extends AppCompatActivity implements Na
         switch (item.getItemId()){
             case R.id.home:
                 //Toast.makeText(this,"Main Page",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this, HomeActivity.class));
+                startActivity(new Intent(this,HomeActivity.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 break;
             case R.id.building:
-                //Toast.makeText(this,"My Builds",Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this, MyBuildActivity.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 break;
@@ -162,6 +163,19 @@ public class RaspberryPi_Guides_Activity extends AppCompatActivity implements Na
                     overridePendingTransition(R.anim.slide_in_bottom, R.anim.stay);
                 }else
                     Toast.makeText(this,"LOG IN!!!!",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.partsMenu:
+                startActivity(new Intent(this, PC_Part_Activity.class).putExtra("Act","Edu"));
+                break;
+            case R.id.guidesMenu:
+                startActivity(new Intent(this, Guides_Activity.class));
+                break;
+            case R.id.projectsMenu:
+                startActivity(new Intent(this, SampleProjects.class));
+                break;
+            case R.id.community:
+                startActivity(new Intent(this,MainBuilds.class)
+                        .putExtra("from","Social"));
                 break;
         }
         return true;
