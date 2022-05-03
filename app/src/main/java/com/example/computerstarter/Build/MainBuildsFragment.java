@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
@@ -91,7 +90,7 @@ public class MainBuildsFragment extends Fragment {
         }
         CardView feat = view.findViewById(R.id.helpful_link);
         feat.setOnClickListener(view ->{
-            Toast.makeText(getActivity(),"PC Building Guides",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getActivity(),"PC Building Guides",Toast.LENGTH_SHORT).show();
             startActivity(new Intent(getContext(), PC_Building_Guide_Activity.class));
             getActivity().overridePendingTransition(R.anim.slide_in_bottom,R.anim.stay);
         });

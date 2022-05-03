@@ -2,7 +2,6 @@ package com.example.computerstarter.Education;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -206,12 +205,12 @@ public class PC_Part_Activity extends AppCompatActivity implements NavigationVie
         //real_login login = new real_login();
         switch (item.getItemId()){
             case R.id.home:
-                Toast.makeText(this,"Main Page",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this,"Main Page",Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this,HomeActivity.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 break;
             case R.id.building:
-                Toast.makeText(this,"My Builds",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this,"My Builds",Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this, MyBuildActivity.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 break;

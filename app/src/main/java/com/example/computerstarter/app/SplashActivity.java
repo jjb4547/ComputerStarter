@@ -44,17 +44,17 @@ public class SplashActivity extends AppCompatActivity  {
             JSONObject jsonObj;
             try {
                 jsonObj = new JSONObject(s);
-                System.out.println("JSON ARRAY: " + jsonObj.getJSONArray("items").getJSONObject(0).getString("url"));
+                //System.out.println("JSON ARRAY: " + jsonObj.getJSONArray("items").getJSONObject(0).getString("url"));
                 PriceList.jsonObj = jsonObj;
             } catch(JSONException e) {
-                System.out.println(e);
+                //System.out.println(e);
             }
-            System.out.println("FILE OUTPUT: " + s);
+            //System.out.println("FILE OUTPUT: " + s);
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {
                 // Handle any errors
-                System.out.println("FILE FAILURE");
+                //System.out.println("FILE FAILURE");
             }
         });
     }

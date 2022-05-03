@@ -147,12 +147,12 @@ public class RaspberryPi_Guides_Activity extends AppCompatActivity implements Na
         MenuItem item_acc = menu.findItem(R.id.account);
         switch (item.getItemId()){
             case R.id.home:
-                Toast.makeText(this,"Main Page",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this,"Main Page",Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this, HomeActivity.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 break;
             case R.id.building:
-                Toast.makeText(this,"My Builds",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this,"My Builds",Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this, MyBuildActivity.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 break;

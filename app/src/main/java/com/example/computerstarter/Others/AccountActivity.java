@@ -45,7 +45,6 @@ import com.squareup.picasso.Picasso;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Map;
-import java.util.Objects;
 
 
 public class AccountActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -129,15 +128,12 @@ public class AccountActivity extends AppCompatActivity implements NavigationView
             if(mAuth.getCurrentUser()!=null){
                 mAuth.signOut();
                 Toast.makeText(this,"Logged Out",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this, MainBuilds.class));
                 log.setText("Log In");
-                //login.logged = false;
                 item_acc.setVisible(false);
                 startActivity(new Intent(AccountActivity.this, Login_SignUpActivity.class));
             }else{
                 startActivity(new Intent(AccountActivity.this, Login_SignUpActivity.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
-                //log.setText("Log Out");
             }
         });
     }
@@ -237,12 +233,12 @@ public class AccountActivity extends AppCompatActivity implements NavigationView
         MenuItem item_acc = menu.findItem(R.id.account);
         switch (item.getItemId()){
             case R.id.home:
-                Toast.makeText(this,"Main Page",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this,"Main Page",Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this,HomeActivity.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 break;
             case R.id.building:
-                Toast.makeText(this,"My Builds",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this,"My Builds",Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this, MyBuildActivity.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 break;

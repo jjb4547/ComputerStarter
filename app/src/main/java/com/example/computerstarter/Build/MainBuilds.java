@@ -138,12 +138,12 @@ public class MainBuilds extends AppCompatActivity implements NavigationView.OnNa
         //real_login login = new real_login();
         switch (item.getItemId()){
             case R.id.home:
-                Toast.makeText(this,"Main Page",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this,"Main Page",Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(MainBuilds.this, HomeActivity.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 break;
             case R.id.building:
-                Toast.makeText(this,"My Builds",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this,"My Builds",Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(MainBuilds.this, MyBuildActivity.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 break;

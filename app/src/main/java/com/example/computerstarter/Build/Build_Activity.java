@@ -117,7 +117,7 @@ public class Build_Activity extends AppCompatActivity {
         else if(partsID[1] != -1 && numParts[2] * PriceList.getMemSlots(partsID[2]) >= PriceList.getMemSlots(partsID[1]))
             plusMem.setVisibility(View.GONE);
         plusMem.setOnClickListener(view->{
-            System.out.println("MEM SLOTS: " + PriceList.getMemSlots(partsID[2]));
+            //System.out.println("MEM SLOTS: " + PriceList.getMemSlots(partsID[2]));
             numParts[2]=numParts[2]+1;
             memPrice.setText(String.format("$%.2f",PriceList.getPrice(partsID[2])*numParts[2]));
             totalNum.setText(String.format("$%.2f", getPriceSum()));
@@ -743,7 +743,7 @@ public class Build_Activity extends AppCompatActivity {
             if (partsID[i] != -1) {
                 price = price + PriceList.getPrice(partsID[i])*numParts[i];
             }
-            System.out.println(price);
+            //System.out.println(price);
         }
         price = Math.floor(price * 100) / 100;
         return price;
@@ -763,7 +763,7 @@ public class Build_Activity extends AppCompatActivity {
                         voltage = voltage + PriceList.getWattage(partsID[i]) * numParts[i];
                     }
             }
-            System.out.println(voltage);
+            //System.out.println(voltage);
         }
         return voltage;
     }

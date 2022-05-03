@@ -26,7 +26,6 @@ import com.example.computerstarter.Guides.Guides_Activity;
 import com.example.computerstarter.Login.Login_SignUpActivity;
 import com.example.computerstarter.Others.AccountActivity;
 import com.example.computerstarter.R;
-import com.example.computerstarter.SampleProjects.RaspiProj.RaspberryPi_Projects;
 import com.example.computerstarter.SampleProjects.SampleProjects;
 import com.example.computerstarter.app.HomeActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -153,7 +152,7 @@ public class PC_Building_Guide_Activity extends AppCompatActivity implements Nav
         //real_login login = new real_login();
         switch (item.getItemId()){
             case R.id.home:
-                Toast.makeText(this,"Main Page",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this,"Main Page",Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this,HomeActivity.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 break;

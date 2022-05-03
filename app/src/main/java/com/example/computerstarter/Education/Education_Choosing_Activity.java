@@ -17,7 +17,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import com.example.computerstarter.Build.MainBuilds;
 import com.example.computerstarter.Build.MyBuildActivity;
 import com.example.computerstarter.Guides.Guides_Activity;
 import com.example.computerstarter.Login.Login_SignUpActivity;
@@ -132,12 +131,12 @@ public class Education_Choosing_Activity extends AppCompatActivity implements Na
         //real_login login = new real_login();
         switch (item.getItemId()){
             case R.id.home:
-                Toast.makeText(this,"Main Page",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this,"Main Page",Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this, HomeActivity.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 break;
             case R.id.building:
-                Toast.makeText(this,"My Builds",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this,"My Builds",Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this, MyBuildActivity.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 break;

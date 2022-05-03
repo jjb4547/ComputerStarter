@@ -15,8 +15,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -74,7 +74,7 @@ public class PC_Build_Parts extends AppCompatActivity {
                 images[counter] = PriceList.getIcon(i);
                 ids[counter]=i;
                 counter++;
-                System.out.println(counter);
+                //System.out.println(counter);
             }
         }
 
@@ -83,7 +83,7 @@ public class PC_Build_Parts extends AppCompatActivity {
         MyAdapter adapter = new MyAdapter(this, mTitle, mDesc, images);
         listView.setAdapter(adapter);
         listView.setOnItemLongClickListener((adapterView, view, i, l) -> {
-            LinearLayout details = view.findViewById(R.id.detailsParts);
+            RelativeLayout details = view.findViewById(R.id.detailsParts);
             LinearLayout layout = view.findViewById(R.id.layoutParts);
             TextView textDetails = view.findViewById(R.id.socketInfo);
             layout.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
@@ -97,7 +97,7 @@ public class PC_Build_Parts extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 if(i<counter) {
-                    Toast.makeText(PC_Build_Parts.this, PriceList.getPriceAsString(ids[i]), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(PC_Build_Parts.this, PriceList.getPriceAsString(ids[i]), Toast.LENGTH_SHORT).show();
                     switch (getIntent().getExtras().getString("name")) {
                         case "CPU":
                             partsID[0] = ids[i];
@@ -192,7 +192,7 @@ public class PC_Build_Parts extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        System.out.println("PC PART ID: " + item.getItemId());
+        //System.out.println("PC PART ID: " + item.getItemId());
         if (item.getItemId()==android.R.id.home) {
             this.finish();
             return true;

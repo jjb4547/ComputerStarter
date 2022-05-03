@@ -14,7 +14,7 @@ public class PriceList {
         try{
              answer = jsonObj.getJSONArray("items").getJSONObject(id).getDouble("price");
         } catch(JSONException e){
-            System.out.println(e);
+            //System.out.println(e);
         }
         return answer;
     }
@@ -39,7 +39,7 @@ public class PriceList {
         try{
             answer = jsonObj.getJSONArray("items").getJSONObject(id).getString("name");
         } catch(JSONException e){
-            System.out.println(e);
+            //System.out.println(e);
         }
         return answer;
     }
@@ -50,7 +50,7 @@ public class PriceList {
         try{
             answer = jsonObj.getJSONArray("items").getJSONObject(id).getString("icon");
         } catch(JSONException e){
-            System.out.println(e);
+            //System.out.println(e);
         }
         return answer;
     }
@@ -91,7 +91,7 @@ public class PriceList {
         try{
             answer = jsonObj.getJSONArray("items").getJSONObject(id).getString("part");
         } catch(JSONException e){
-            System.out.println(e);
+            //System.out.println(e);
         }
         return answer;
     }
@@ -102,7 +102,7 @@ public class PriceList {
         try{
             i = jsonObj.getJSONArray("items").length();
         } catch(JSONException e){
-            System.out.println(e);
+            //System.out.println(e);
         }
         return i;
     }
@@ -115,7 +115,7 @@ public class PriceList {
             try{
                 answer = jsonObj.getJSONArray("items").getJSONObject(id).getString("socket");
             } catch(JSONException e){
-                System.out.println(e);
+                //System.out.println(e);
             }
         }
         return answer;
@@ -129,7 +129,7 @@ public class PriceList {
             try {
                 answer = jsonObj.getJSONArray("items").getJSONObject(id).getInt("wattage");
             } catch (JSONException e) {
-                System.out.println(e);
+                //System.out.println(e);
             }
         }
         return answer;
@@ -143,7 +143,7 @@ public class PriceList {
             try{
                 answer = jsonObj.getJSONArray("items").getJSONObject(id).getString("mem_type");
             } catch(JSONException e){
-                System.out.println(e);
+                //System.out.println(e);
             }
         }
         return answer;
@@ -157,7 +157,7 @@ public class PriceList {
             try {
                 answer = jsonObj.getJSONArray("items").getJSONObject(id).getInt("mem_slots");
             } catch (JSONException e) {
-                System.out.println(e);
+                //System.out.println(e);
             }
         }
         return answer;

@@ -315,12 +315,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         //real_login login = new real_login();
         switch (item.getItemId()) {
             case R.id.home:
-                Toast.makeText(this, "Main Page", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Main Page", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(HomeActivity.this, HomeActivity.class));
                 overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
                 break;
             case R.id.building:
-                Toast.makeText(this, "My Builds", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "My Builds", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(HomeActivity.this, MyBuildActivity.class));
                 overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
                 break;
@@ -359,7 +359,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     protected void onResume() {
         super.onResume();
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        boolean previouslyStarted = prefs.getBoolean(getString(R.string.pref_previously_started), false);
+        boolean previouslyStarted = prefs.getBoolean(getString(R.string.pref_previously_started_login), false);
         if (!previouslyStarted) {
             SharedPreferences.Editor edit = prefs.edit();
             edit.putBoolean(getString(R.string.pref_previously_started_login), Boolean.TRUE);

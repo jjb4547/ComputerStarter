@@ -15,7 +15,7 @@
     android:id="@+id/PartsCard">
     <LinearLayout
         android:id="@+id/layoutParts"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:animateLayoutChanges="true">
@@ -63,21 +63,39 @@
                     android:fontFamily="@font/francois_one"/>
             </RelativeLayout>
         </LinearLayout>
-        <LinearLayout
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/gray"/>
+        <RelativeLayout
             android:id="@+id/detailsParts"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_margin="10dp"
             android:visibility="gone">
             <TextView
+                android:id="@+id/detailtitle"
+                android:layout_alignParentTop="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Details"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                android:fontFamily="@font/francois_one"/>
+
+            <TextView
                 android:id="@+id/socketInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="HELLO MY NAME IS JESUS"
+                tools:text="INFO"
+                android:layout_marginStart="5dp"
+                android:layout_below="@id/detailtitle"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
-        </LinearLayout>
+                android:textSize="20sp"
+                android:fontFamily="@font/francois_one"/>
+        </RelativeLayout>
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

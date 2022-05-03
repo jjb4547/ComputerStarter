@@ -138,7 +138,7 @@ public class SampleProjects extends AppCompatActivity implements NavigationView.
         MenuItem item_acc = menu.findItem(R.id.account);
         switch (item.getItemId()){
             case R.id.home:
-                Toast.makeText(this,"Main Page",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this,"Main Page",Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this,HomeActivity.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 break;

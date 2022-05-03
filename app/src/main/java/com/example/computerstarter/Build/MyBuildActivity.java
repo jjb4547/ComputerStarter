@@ -347,12 +347,12 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
         MenuItem item_acc = menu.findItem(R.id.account);
         switch (item.getItemId()){
             case R.id.home:
-                Toast.makeText(this,"Main Page",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this,"Main Page",Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this,HomeActivity.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 break;
             case R.id.building:
-                Toast.makeText(this,"My Builds",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this,"My Builds",Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this, MyBuildActivity.class));
                 overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
                 break;
@@ -424,7 +424,7 @@ public class MyBuildActivity extends AppCompatActivity implements NavigationView
         strArr = build.get(position).getNumParts().substring(10).split(",");
         for(int i=0;i<strArr.length;i++){
             numParts[i] = Integer.parseInt(strArr[i]);
-            System.out.println("i"+i+" "+numParts[i]);
+            //System.out.println("i"+i+" "+numParts[i]);
         }
         build.get(position).setNumPart(numParts);
     }
