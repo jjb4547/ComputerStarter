@@ -87,8 +87,22 @@
         <entry key="..\:/Users/bjesu/StudioProjects/ComputerStarter/app/src/main/res/layout/fragment_main_page.xml" value="0.5142857142857143" />
         <entry key="..\:/Users/bjesu/StudioProjects/ComputerStarter/app/src/main/res/layout/nav_menu.xml" value="0.22282608695652173" />
         <entry key="..\:/Users/bjesu/StudioProjects/ComputerStarter/app/src/main/res/menu/drawer_menu.xml" value="0.2857142857142857" />
+        <entry key="app/src/main/res/layout/about_layout.xml" value="0.21354166666666666" />
+        <entry key="app/src/main/res/layout/account_layout.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_builds_main.xml" value="0.14907407407407408" />
+        <entry key="app/src/main/res/layout/activity_education_tabbed.xml" value="0.14907407407407408" />
+        <entry key="app/src/main/res/layout/activity_pc_part.xml" value="0.14907407407407408" />
         <entry key="app/src/main/res/layout/cardviewparts.xml" value="0.17314814814814813" />
+        <entry key="app/src/main/res/layout/education_choosing_layout.xml" value="0.14907407407407408" />
+        <entry key="app/src/main/res/layout/education_layout.xml" value="0.14907407407407408" />
+        <entry key="app/src/main/res/layout/fragment_add_blogs.xml" value="0.14907407407407408" />
+        <entry key="app/src/main/res/layout/fragment_beginner.xml" value="0.14907407407407408" />
+        <entry key="app/src/main/res/layout/fragment_expert.xml" value="0.14907407407407408" />
+        <entry key="app/src/main/res/layout/fragment_intermediate.xml" value="0.14907407407407408" />
+        <entry key="app/src/main/res/layout/result_layout.xml" value="0.21354166666666666" />
         <entry key="app/src/main/res/layout/sample_projects.xml" value="0.14907407407407408" />
+        <entry key="app/src/main/res/layout/settings_layout.xml" value="0.21354166666666666" />
+        <entry key="app/src/main/res/layout/splash.xml" value="0.1" />
         <entry key="app/src/main/res/menu/drawer_menu.xml" value="0.14907407407407408" />
       </map>
     </option>

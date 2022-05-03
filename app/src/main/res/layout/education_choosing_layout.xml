@@ -15,7 +15,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:padding="2dp"
-    android:background="@color/background_color">
+    android:background="@drawable/gradient_home">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,19 +26,19 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/pcpartTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Default Title"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:textSize="45sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:fontFamily="@font/francois_one"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"/>
+
+            <TextView
+                android:id="@+id/pcpartTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:fontFamily="@font/francois_one"
+                android:gravity="center"
+                android:text="Default Title"
+                android:textColor="@color/black"
+                android:textSize="30sp"
+                android:textStyle="bold" />
 
             <ImageButton
                 android:id="@+id/homeBut"

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -18,6 +19,7 @@ public class Education_Tabbed extends AppCompatActivity {
 
     //private ActivityEducationTabbedBinding binding;
     private String from;
+    private TextView title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,8 @@ public class Education_Tabbed extends AppCompatActivity {
                         .putExtra("Act", getIntent().getExtras().getString("Act")));
             }
         });
+        title = findViewById(R.id.titleComp);
+        title.setText(getIntent().getExtras().getString("component"));
         from = getIntent().getExtras().getString("from");
         String[] diffTitles = getResources().getStringArray(R.array.comp_names);
         BottomNavigationView bottomNavigationView = findViewById(R.id.topNavigationView);

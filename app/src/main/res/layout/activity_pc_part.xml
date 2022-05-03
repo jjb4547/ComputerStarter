@@ -36,7 +36,7 @@
                 android:fontFamily="@font/francois_one"
                 android:text="Learn More Below"
                 android:textColor="@color/black"
-                android:textSize="35sp" />
+                android:textSize="30sp" />
 
             <ImageButton
                 android:id="@+id/menuButton"
