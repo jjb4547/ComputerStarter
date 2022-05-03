@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.Gravity;
@@ -17,6 +16,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -43,13 +46,12 @@ import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.util.Map;
 
 
 public class AccountActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     FirebaseAuth mAuth;
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    final FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseUser user;
     TextView nameUser;
     ImageButton home,menuButton;
@@ -59,7 +61,7 @@ public class AccountActivity extends AppCompatActivity implements NavigationView
     Button logOut;
     ImageView profile;
     ImageView profileImage;
-    StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+    final StorageReference storageReference = FirebaseStorage.getInstance().getReference();
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle toggle;
     private NavigationView navigationView;
@@ -183,34 +185,33 @@ public class AccountActivity extends AppCompatActivity implements NavigationView
             overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
         });
         profile.setOnClickListener(view -> {
-            Intent openGalleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            startActivityForResult(openGalleryIntent,1000);
+            //Intent openGalleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            pickFromCamera();
         });
         home.setOnClickListener(view->{
             startActivity(new Intent(getApplicationContext(), HomeActivity.class));
             overridePendingTransition(R.anim.slide_in_bottom,R.anim.stay);
         });
     }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==1000){
-            if(resultCode== Activity.RESULT_OK){
-                Uri image = data.getData();
-                //profileImage.setImageURI(image);
-                try {
-                    Bitmap original = MediaStore.Images.Media.getBitmap(getContentResolver(),image);
-                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                    original.compress(Bitmap.CompressFormat.PNG,15,stream);
-                    byte[] imageByte = stream.toByteArray();
-                    uploadImageToFirebase(imageByte);
-                } catch (IOException e) {
-                    e.printStackTrace();
+    private void pickFromCamera() {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        cameraActivityResultLauncher.launch(intent);
+    }
+    private ActivityResultLauncher<Intent> cameraActivityResultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if(result.getResultCode()== Activity.RESULT_OK){
+                        Intent data = result.getData();
+                        Bitmap imageBit = (Bitmap) data.getExtras().get("data");
+                        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+                        imageBit.compress(Bitmap.CompressFormat.JPEG, 25, bytes);
+                        byte[] imageByte = bytes.toByteArray();
+                        uploadImageToFirebase(imageByte);
+                    }
                 }
             }
-        }
-    }
+    );
 
     private void uploadImageToFirebase(byte[] image) {
         ProgressDialog progressDialog = new ProgressDialog(AccountActivity.this);
@@ -219,7 +220,12 @@ public class AccountActivity extends AppCompatActivity implements NavigationView
         StorageReference fileRef = storageReference.child("ProfileImage/Users/"+mAuth.getCurrentUser().getUid()+"/profile");
         fileRef.putBytes(image).addOnSuccessListener(taskSnapshot -> {
             progressDialog.dismiss();
-            fileRef.getDownloadUrl().addOnSuccessListener(uri -> Picasso.get().load(uri).into(profileImage));
+            fileRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                Picasso.get().load(uri).into(profileImage);
+                UserProfileChangeRequest profileUpdate = new UserProfileChangeRequest.Builder()
+                        .setPhotoUri(uri).build();
+                user.updateProfile(profileUpdate);
+            });
         }).addOnFailureListener(e -> {
             progressDialog.dismiss();
             Toast.makeText(AccountActivity.this, "Image Not Uploaded", Toast.LENGTH_SHORT).show();
