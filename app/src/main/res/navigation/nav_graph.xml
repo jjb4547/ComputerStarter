@@ -9,7 +9,7 @@
         android:id="@+id/navigation_main"
         android:label="Main Page"
         tools:layout="@layout/fragment_builds_main"
-        android:name="com.example.computerstarter.Build.MainBuildsFragment">
+        android:name="com.seniordesign.computerstarter.Build.MainBuildsFragment">
         <action
             android:id="@+id/action_navigation_main_to_navigation_social"
             app:destination="@id/navigation_social"
@@ -26,7 +26,7 @@
         android:id="@+id/navigation_education"
         android:label="Education"
         tools:layout="@layout/education_layout"
-        android:name="com.example.computerstarter.Education.EducationFragment">
+        android:name="com.seniordesign.computerstarter.Education.EducationFragment">
         <action
             android:id="@+id/action_navigation_education_to_navigation_main"
             app:destination="@id/navigation_main" />
@@ -43,7 +43,7 @@
         android:id="@+id/navigation_social"
         android:label="Social Media"
         tools:layout="@layout/fragment_forum"
-        android:name="com.example.computerstarter.SocialMedia.SocialMediaFragment">
+        android:name="com.seniordesign.computerstarter.SocialMedia.SocialMediaFragment">
         <action
             android:id="@+id/action_navigation_social_to_navigation_education"
             app:destination="@id/navigation_education" />

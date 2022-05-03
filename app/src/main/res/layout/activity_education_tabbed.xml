@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Education.Education_Tabbed"
+    tools:context="com.seniordesign.computerstarter.Education.Education_Tabbed"
     android:background="@drawable/gradient_home">
     <RelativeLayout
         android:id="@+id/relLayout"

@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/navigation_detail"
-        android:name="com.example.computerstarter.Education.Education_IntermediateFragment"
+        android:name="com.seniordesign.computerstarter.Education.Education_IntermediateFragment"
         android:label="Intermediate"
         tools:layout="@layout/fragment_intermediate">
         <action
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_basic"
-        android:name="com.example.computerstarter.Education.Education_BeginnerFragment"
+        android:name="com.seniordesign.computerstarter.Education.Education_BeginnerFragment"
         android:label="Basic"
         tools:layout="@layout/fragment_beginner">
         <action
